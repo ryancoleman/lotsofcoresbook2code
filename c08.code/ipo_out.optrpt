@@ -1,0 +1,381 @@
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: true
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: true
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: disabled
+  -inline-max-per-compile: disabled
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: main()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main()) [1/25=4.0%] am_call.cpp(138,1)
+  -> EXTERN: (144,17) _rdtsc()
+  -> INLINE (MANUAL): (145,17) baw_scalaropt(float, float, float, float, float, float) (isz = 175) (sz = 192)
+    -> EXTERN: (101,20) expf(float)
+    -> EXTERN: (107,45) expf(float)
+    -> EXTERN: (112,17) expf(float)
+    -> INLINE (MANUAL): (114,13) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (84,17) logf(float)
+      -> EXTERN: (86,28) expf(float)
+      -> INLINE (MANUAL): (86,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+      -> EXTERN: (86,61) expf(float)
+      -> INLINE (MANUAL): (86,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+    -> EXTERN: (115,14) logf(float)
+    -> INLINE (MANUAL): (116,18) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (66,20) erff(float)
+    -> INLINE (MANUAL): (118,50) n_opt(float) (isz = 6) (sz = 13)
+      -> EXTERN: (71,34) expf(float)
+    -> INLINE (MANUAL): (122,9) std::fabs(float) (isz = 0) (sz = 7)
+    -> INLINE (MANUAL): (125,16) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (84,17) logf(float)
+      -> EXTERN: (86,28) expf(float)
+      -> INLINE (MANUAL): (86,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+      -> EXTERN: (86,61) expf(float)
+      -> INLINE (MANUAL): (86,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+    -> EXTERN: (130,14) logf(float)
+    -> INLINE (MANUAL): (131,26) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (66,20) erff(float)
+    -> EXTERN: (132,9) powf(float, float)
+  -> EXTERN: (146,15) _rdtsc()
+  -> EXTERN: (147,10) std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *) (isz = 19) (sz = 28)
+     [[ Unable to inline callsite  <1>]]
+  -> EXTERN: (148,3) std::operator<<<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, std::_Setprecision) (isz = 9) (sz = 18)
+     [[ Unable to inline callsite  <1>]]
+  -> INLINE (MANUAL): (148,24) std::setprecision(int) (isz = 0) (sz = 6)
+  -> EXTERN: (148,27) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, float) (isz = 2) (sz = 11)
+     [[ Unable to inline callsite  <1>]]
+  -> EXTERN: (148,34) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)) (isz = 0) (sz = 9)
+     [[ Unable to inline callsite  <1>]]
+  -> EXTERN: (148,42) std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *) (isz = 19) (sz = 28)
+     [[ Unable to inline callsite  <1>]]
+  -> EXTERN: (148,69) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, unsigned long long) (isz = 1) (sz = 10)
+     [[ Unable to inline callsite  <1>]]
+  -> EXTERN: (148,93) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)) (isz = 0) (sz = 9)
+     [[ Unable to inline callsite  <1>]]
+  -> EXTERN: (150,6) kmp_set_defaults(const char *)
+  -> EXTERN: (151,18) omp_get_max_threads()
+  -> EXTERN: (152,2) omp_set_num_threads(int)
+  -> EXTERN: (158,2) setlocale(int, const char *)
+  -> EXTERN: (159,2) printf(const char *, ...)
+  -> EXTERN: (164,13) omp_get_thread_num()
+  -> EXTERN: (169,31) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (170,32) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (171,31) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (172,33) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (173,32) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (174,32) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (175,31) scalable_aligned_malloc(size_t, size_t)
+  -> INLINE (MANUAL): (182,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (61,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (183,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (61,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (184,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (61,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (185,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (61,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (186,21) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (61,22) rand_r(unsigned int *)
+  -> INLINE: (190,10) second() (isz = 8) (sz = 13)
+    -> EXTERN: (55,5) gettimeofday(timeval *, timezone *)
+  -> INLINE (MANUAL): (206,21) baw_scalaropt(float, float, float, float, float, float) (isz = 175) (sz = 192)
+    -> EXTERN: (101,20) expf(float)
+    -> EXTERN: (107,45) expf(float)
+    -> EXTERN: (112,17) expf(float)
+    -> INLINE (MANUAL): (114,13) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (84,17) logf(float)
+      -> EXTERN: (86,28) expf(float)
+      -> INLINE (MANUAL): (86,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+      -> EXTERN: (86,61) expf(float)
+      -> INLINE (MANUAL): (86,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+    -> EXTERN: (115,14) logf(float)
+    -> INLINE (MANUAL): (116,18) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (66,20) erff(float)
+    -> INLINE (MANUAL): (118,50) n_opt(float) (isz = 6) (sz = 13)
+      -> EXTERN: (71,34) expf(float)
+    -> INLINE (MANUAL): (122,9) std::fabs(float) (isz = 0) (sz = 7)
+    -> INLINE (MANUAL): (125,16) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (84,17) logf(float)
+      -> EXTERN: (86,28) expf(float)
+      -> INLINE (MANUAL): (86,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+      -> EXTERN: (86,61) expf(float)
+      -> INLINE (MANUAL): (86,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (66,20) erff(float)
+    -> EXTERN: (130,14) logf(float)
+    -> INLINE (MANUAL): (131,26) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (66,20) erff(float)
+    -> EXTERN: (132,9) powf(float, float)
+  -> INLINE: (211,11) second() (isz = 8) (sz = 13)
+    -> EXTERN: (55,5) gettimeofday(timeval *, timezone *)
+  -> EXTERN: (212,10) printf(const char *, ...)
+  -> EXTERN: (213,10) printf(const char *, ...)
+  -> EXTERN: (215,2) scalable_aligned_free(void *)
+  -> EXTERN: (216,2) scalable_aligned_free(void *)
+  -> EXTERN: (217,2) scalable_aligned_free(void *)
+  -> EXTERN: (218,2) scalable_aligned_free(void *)
+  -> EXTERN: (219,2) scalable_aligned_free(void *)
+  -> EXTERN: (220,2) scalable_aligned_free(void *)
+  -> EXTERN: (221,2) scalable_aligned_free(void *)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at am_call.cpp(188,1)
+   remark #16207: OpenMP multithreaded code generation for BARRIER was successful
+OpenMP Construct at am_call.cpp(189,1)
+   remark #16205: OpenMP multithreaded code generation for MASTER was successful
+OpenMP Construct at am_call.cpp(208,1)
+   remark #16207: OpenMP multithreaded code generation for BARRIER was successful
+OpenMP Construct at am_call.cpp(209,1)
+   remark #16205: OpenMP multithreaded code generation for MASTER was successful
+OpenMP Construct at am_call.cpp(161,1)
+   remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at am_call.cpp(86,36) inlined into am_call.cpp(145,17)
+<Peeled>
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between Si.7425 line 119 and Si.7425 line 84
+   remark #15346: vector dependence: assumed ANTI dependence between Si.7425 line 84 and Si.7425 line 119
+   remark #15346: vector dependence: assumed ANTI dependence between Si.7425 line 84 and Si.7425 line 119
+   remark #15346: vector dependence: assumed FLOW dependence between Si.7425 line 119 and Si.7425 line 84
+   remark #25015: Estimate of max trip count of loop=100
+LOOP END
+
+LOOP BEGIN at am_call.cpp(179,2)
+   remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ am_call.cpp(61,22) ]
+   remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ am_call.cpp(61,22) ]
+   remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ am_call.cpp(61,22) ]
+   remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ am_call.cpp(61,22) ]
+   remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ am_call.cpp(61,22) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #25018: Total number of lines prefetched=12
+   remark #25021: Number of initial-value prefetches=6
+   remark #25035: Number of pointer data prefetches=12, dist=21
+   remark #25141: Using second-level distance 2 for prefetching pointer data reference   [ am_call.cpp(181,3) ]
+   remark #25141: Using second-level distance 2 for prefetching pointer data reference   [ am_call.cpp(182,3) ]
+   remark #25141: Using second-level distance 2 for prefetching pointer data reference   [ am_call.cpp(183,3) ]
+   remark #25141: Using second-level distance 2 for prefetching pointer data reference   [ am_call.cpp(184,3) ]
+   remark #25141: Using second-level distance 2 for prefetching pointer data reference   [ am_call.cpp(185,3) ]
+   remark #25141: Using second-level distance 2 for prefetching pointer data reference   [ am_call.cpp(186,3) ]
+LOOP END
+
+LOOP BEGIN at am_call.cpp(197,2)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation: ( 1 2 ) --> ( 2 1 ) 
+   remark #15388: vectorization support: reference OptionYears has aligned access   [ am_call.cpp(200,13) ]
+   remark #15388: vectorization support: reference StockPrice has aligned access   [ am_call.cpp(201,13) ]
+   remark #15388: vectorization support: reference OptionStrike has aligned access   [ am_call.cpp(202,13) ]
+   remark #15388: vectorization support: reference CostofCarry has aligned access   [ am_call.cpp(203,13) ]
+   remark #15388: vectorization support: reference Volatility has aligned access   [ am_call.cpp(204,13) ]
+   remark #15388: vectorization support: reference CallResult has aligned access   [ am_call.cpp(206,3) ]
+   remark #15412: vectorization support: streaming store was generated for CallResult   [ am_call.cpp(206,3) ]
+   remark #15301: SIMD LOOP WAS VECTORIZED
+   remark #15467: unmasked aligned streaming stores: 1 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 2669 
+   remark #15477: vector loop cost: 173.180 
+   remark #15478: estimated potential speedup: 14.410 
+   remark #15479: lightweight vector operations: 487 
+   remark #15482: vectorized math library calls: 19 
+   remark #15488: --- end vector loop cost summary ---
+   remark #25018: Total number of lines prefetched=5
+   remark #25021: Number of initial-value prefetches=6
+   remark #25035: Number of pointer data prefetches=5, dist=2
+
+   LOOP BEGIN at am_call.cpp(83,23) inlined into am_call.cpp(206,21)
+      remark #25460: No loop optimizations reported
+      remark #25015: Estimate of max trip count of loop=100
+   LOOP END
+LOOP END
+
+LOOP BEGIN at am_call.cpp(197,2)
+<Remainder>
+   remark #15388: vectorization support: reference OptionYears has aligned access   [ am_call.cpp(200,13) ]
+   remark #15388: vectorization support: reference StockPrice has aligned access   [ am_call.cpp(201,13) ]
+   remark #15388: vectorization support: reference OptionStrike has aligned access   [ am_call.cpp(202,13) ]
+   remark #15388: vectorization support: reference CostofCarry has aligned access   [ am_call.cpp(203,13) ]
+   remark #15388: vectorization support: reference Volatility has aligned access   [ am_call.cpp(204,13) ]
+   remark #15388: vectorization support: reference CallResult has aligned access   [ am_call.cpp(206,3) ]
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+
+   LOOP BEGIN at am_call.cpp(83,23) inlined into am_call.cpp(206,21)
+      remark #25460: No loop optimizations reported
+      remark #25015: Estimate of max trip count of loop=100
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::ios_base::precision(std::ios_base *, std::streamsize)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (std::ios_base::precision(std::ios_base *, std::streamsize)) [3/25=12.0%] /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/ios_base.h(633,5)
+
+===========================================================================
+
+Begin optimization report for: std::char_traits<char>::length(const std::char_traits<char>::char_type *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (std::char_traits<char>::length(const std::char_traits<char>::char_type *)) [6/25=24.0%] /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/char_traits.h(261,7)
+  -> EXTERN: (261,16) __builtin_strlen(const char *)
+
+===========================================================================
+
+Begin optimization report for: __sti__$E()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (__sti__$E()) [11/25=44.0%] <compiler generated>
+  -> EXTERN: /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/iostream:(75,25) __cxa_atexit()
+  -> EXTERN: /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/iostream:(75,25) std::ios_base::Init::Init(std::ios_base::Init *)
+
+===========================================================================
+
+Begin optimization report for: std::__check_facet<std::basic_ios<char, std::char_traits<char>>::__ctype_type>(const std::basic_ios<char, std::char_traits<char>>::__ctype_type *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::__check_facet<std::basic_ios<char, std::char_traits<char>>::__ctype_type>(const std::basic_ios<char, std::char_traits<char>>::__ctype_type *)) /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/basic_ios.h(49,5)
+
+===========================================================================
+
+Begin optimization report for: std::ctype<char>::widen(const std::ctype<char> *, char) const
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::ctype<char>::widen(const std::ctype<char> *, char) const) /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/locale_facets.h(867,7)
+
+===========================================================================
+
+Begin optimization report for: std::operator|(std::_Ios_Iostate, std::_Ios_Iostate)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::operator|(std::_Ios_Iostate, std::_Ios_Iostate)) /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/ios_base.h(160,3)
+
+===========================================================================
+
+Begin optimization report for: std::setprecision(int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::setprecision(int)) /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/iomanip(195,3)
+
+===========================================================================
+
+Begin optimization report for: std::fabs(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::fabs(float)) /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/cmath(237,3)
+
+===========================================================================
+
+Begin optimization report for: second()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (second()) am_call.cpp(53,1)
+
+===========================================================================
+
+Begin optimization report for: RandFloat(float, float, unsigned int *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (RandFloat(float, float, unsigned int *)) am_call.cpp(60,66)
+
+===========================================================================
+
+Begin optimization report for: cnd_opt(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (cnd_opt(float)) am_call.cpp(65,23)
+
+===========================================================================
+
+Begin optimization report for: n_opt(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (n_opt(float)) am_call.cpp(70,28)
+
+===========================================================================
+
+Begin optimization report for: european_call_opt(float, float, float, float, float, float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (european_call_opt(float, float, float, float, float, float)) am_call.cpp(81,1)
+
+===========================================================================
+
+Begin optimization report for: baw_scalaropt(float, float, float, float, float, float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (baw_scalaropt(float, float, float, float, float, float)) am_call.cpp(96,1)
+
+===========================================================================
+
+    Report from: Profile guided optimizations [pgo]
+
+
+
+Profile feedback used a statically estimated profile for the following routines:
+
+  File: <compiler generated>
+        __sti__$E()
+
+  File: /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/char_traits.h
+        std::char_traits<char>::length(const std::char_traits<char>::char_type *)(261)
+
+  File: /usr/linux-k1om-4.7/linux-k1om/../x86_64-k1om-linux/include/c++/4.7.0/bits/ios_base.h
+        std::ios_base::precision(std::ios_base *, std::streamsize)(633)
+
+  File: am_call.cpp
+        main()(138)
+
+
+  0 out of 4 routine(s) used training profile data for PGO feedback
+  0 out of 4 routine(s) were unable to use training profile data for PGO feedback
+  0 out of 4 routine(s) were unable to find training profile data for PGO feedback
+  4 out of 4 routine(s) used a static estimate profile for PGO feedback
+
+
+
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> Inlining the function will lead to incorrect program behavior.
+
