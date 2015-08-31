@@ -1,0 +1,142 @@
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at main.cpp(135,5)
+   remark #15382: vectorization support: call to function rand() cannot be vectorized   [ main.cpp(136,25) ]
+   remark #15382: vectorization support: call to function std::vector<double, tbb::cache_aligned_allocator<double>>::operator[](std::vector<double, tbb::cache_aligned_allocator<double>> *, std::vector<double, tbb::cache_aligned_allocator<double>>::size_type) cannot be vectorized   [ main.cpp(136,12) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at main.cpp(142,5)
+   remark #15382: vectorization support: call to function Interpolator::Interpolate(const Interpolator *, double) const cannot be vectorized   [ main.cpp(151,35) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between src_ptr line 151 and dst_ptr line 151
+   remark #15346: vector dependence: assumed FLOW dependence between dst_ptr line 151 and src_ptr line 151
+
+   LOOP BEGIN at main.cpp(150,5)
+      remark #15382: vectorization support: call to function Interpolator::Interpolate(const Interpolator *, double) const cannot be vectorized   [ main.cpp(151,35) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+
+LOOP BEGIN at main.cpp(157,5)
+   remark #15520: loop was not vectorized: loop with early exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+===========================================================================
+
+Begin optimization report for: Interpolator::Interpolator(Interpolator *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at main.cpp(67,9)
+   remark #15382: vectorization support: call to function std::vector<Interpolator::point, std::allocator<Interpolator::point>>::operator[](std::vector<Interpolator::point, std::allocator<Interpolator::point>> *, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::size_type) cannot be vectorized   [ main.cpp(72,17) ]
+   remark #15382: vectorization support: call to function std::vector<Interpolator::point, std::allocator<Interpolator::point>>::operator[](std::vector<Interpolator::point, std::allocator<Interpolator::point>> *, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::size_type) cannot be vectorized   [ main.cpp(73,17) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between this line 68 and c0 line 72
+   remark #15346: vector dependence: assumed FLOW dependence between c0 line 72 and this line 68
+LOOP END
+===========================================================================
+
+Begin optimization report for: Interpolator::Interpolator(Interpolator *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at main.cpp(67,9)
+   remark #15382: vectorization support: call to function std::vector<Interpolator::point, std::allocator<Interpolator::point>>::operator[](std::vector<Interpolator::point, std::allocator<Interpolator::point>> *, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::size_type) cannot be vectorized   [ main.cpp(72,17) ]
+   remark #15382: vectorization support: call to function std::vector<Interpolator::point, std::allocator<Interpolator::point>>::operator[](std::vector<Interpolator::point, std::allocator<Interpolator::point>> *, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::size_type) cannot be vectorized   [ main.cpp(73,17) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: Interpolator::Interpolator(Interpolator *, int)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at main.cpp(67,9)
+   remark #15382: vectorization support: call to function std::vector<Interpolator::point, std::allocator<Interpolator::point>>::operator[](std::vector<Interpolator::point, std::allocator<Interpolator::point>> *, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::size_type) cannot be vectorized   [ main.cpp(72,17) ]
+   remark #15382: vectorization support: call to function std::vector<Interpolator::point, std::allocator<Interpolator::point>>::operator[](std::vector<Interpolator::point, std::allocator<Interpolator::point>> *, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::size_type) cannot be vectorized   [ main.cpp(73,17) ]
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::__fill_a<std::_Iter_base<std::_Vector_base<Interpolator::point, std::allocator<Interpolator::point>>::pointer, false>::iterator_type, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::value_type>(std::_Iter_base<std::_Vector_base<Interpolator::point, std::allocator<Interpolator::point>>::pointer, false>::iterator_type, std::_Iter_base<std::_Vector_base<Interpolator::point, std::allocator<Interpolator::point>>::pointer, false>::iterator_type, const std::vector<Interpolator::point, std::allocator<Interpolator::point>>::value_type &)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(681,7)
+<Multiversioned v1>
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15462: unmasked indexed (or gather) loads: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 5 
+   remark #15477: vector loop cost: 5.000 
+   remark #15478: estimated potential speedup: 0.990 
+   remark #15479: lightweight vector operations: 5 
+   remark #15481: heavy-overhead vector operations: 1 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(681,7)
+<Remainder, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(681,7)
+<Multiversioned v2>
+   remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(681,7)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::__fill_n_a<std::_Iter_base<std::_Vector_base<Interpolator::point, std::allocator<Interpolator::point>>::pointer, false>::iterator_type, unsigned long, std::vector<Interpolator::point, std::allocator<Interpolator::point>>::value_type>(std::_Iter_base<std::_Vector_base<Interpolator::point, std::allocator<Interpolator::point>>::pointer, false>::iterator_type, unsigned long, const std::vector<Interpolator::point, std::allocator<Interpolator::point>>::value_type &)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(737,7)
+<Multiversioned v1>
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15462: unmasked indexed (or gather) loads: 2 
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 6 
+   remark #15477: vector loop cost: 5.500 
+   remark #15478: estimated potential speedup: 1.080 
+   remark #15479: lightweight vector operations: 7 
+   remark #15481: heavy-overhead vector operations: 2 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(737,7)
+<Remainder, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(737,7)
+<Multiversioned v2>
+   remark #15304: loop was not vectorized: non-vectorizable loop instance from multiversioning
+LOOP END
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_algobase.h(737,7)
+<Remainder, Multiversioned v2>
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::__uninitialized_fill_n_a<std::_Vector_base<double, tbb::cache_aligned_allocator<double>>::pointer, std::vector<double, tbb::cache_aligned_allocator<double>>::size_type, std::vector<double, tbb::cache_aligned_allocator<double>>::value_type, std::_Vector_base<double, tbb::cache_aligned_allocator<double>>::_Tp_alloc_type>(std::_Vector_base<double, tbb::cache_aligned_allocator<double>>::pointer, std::vector<double, tbb::cache_aligned_allocator<double>>::size_type, const std::vector<double, tbb::cache_aligned_allocator<double>>::value_type &, std::_Vector_base<double, tbb::cache_aligned_allocator<double>>::_Tp_alloc_type &)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /usr/include/c++/4.8.3/bits/stl_uninitialized.h(319,4)
+   remark #15382: vectorization support: call to function std::__addressof<tbb::cache_aligned_allocator<double>::value_type>(tbb::cache_aligned_allocator<double>::value_type &) cannot be vectorized   [ /usr/include/c++/4.8.3/bits/stl_uninitialized.h(320,35) ]
+   remark #15382: vectorization support: call to function __gnu_cxx::__alloc_traits<tbb::cache_aligned_allocator<double>>::construct<std::vector<double, tbb::cache_aligned_allocator<double>>::value_type>(tbb::cache_aligned_allocator<double> &, __gnu_cxx::__alloc_traits<tbb::cache_aligned_allocator<double>>::pointer, const std::vector<double, tbb::cache_aligned_allocator<double>>::value_type &) cannot be vectorized   [ /usr/include/c++/4.8.3/bits/stl_uninitialized.h(320,6) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================

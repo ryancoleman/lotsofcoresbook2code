@@ -1,0 +1,53 @@
+
+Begin optimization report for: MAIN
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at main.f90(64,7)
+   remark #15382: vectorization support: call to function FUNC cannot be vectorized   [ main.f90(66,16) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between x line 65 and x line 66
+   remark #15346: vector dependence: assumed OUTPUT dependence between x line 66 and x line 65
+LOOP END
+
+LOOP BEGIN at main.f90(75,12)
+   remark #15388: vectorization support: reference SRC has aligned access
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15475: --- begin vector loop cost summary ---
+   remark #15476: scalar loop cost: 104 
+   remark #15477: vector loop cost: 9.500 
+   remark #15478: estimated potential speedup: 10.520 
+   remark #15479: lightweight vector operations: 5 
+   remark #15481: heavy-overhead vector operations: 1 
+   remark #15482: vectorized math library calls: 1 
+   remark #15488: --- end vector loop cost summary ---
+LOOP END
+
+LOOP BEGIN at main.f90(75,12)
+<Remainder>
+   remark #15388: vectorization support: reference SRC has aligned access
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at main.f90(83,22)
+   remark #15382: vectorization support: call to function INTERPOLATE cannot be vectorized
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between 109 line 83 and 109 line 83
+   remark #15346: vector dependence: assumed OUTPUT dependence between 109 line 83 and 109 line 83
+
+   LOOP BEGIN at main.f90(82,10)
+      remark #15382: vectorization support: call to function INTERPOLATE cannot be vectorized   [ main.f90(83,22) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed OUTPUT dependence between 109 line 83 and 109 line 83
+      remark #15346: vector dependence: assumed OUTPUT dependence between 109 line 83 and 109 line 83
+   LOOP END
+LOOP END
+
+LOOP BEGIN at main.f90(89,7)
+   remark #15382: vectorization support: call to function FUNC cannot be vectorized   [ main.f90(90,20) ]
+   remark #15382: vectorization support: call to function for_write_seq_lis cannot be vectorized   [ main.f90(93,13) ]
+   remark #15382: vectorization support: call to function for_stop_core cannot be vectorized   [ main.f90(94,18) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+===========================================================================

@@ -1,0 +1,32 @@
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at main.c(66,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between prev_val line 73 and prev_val line 69
+   remark #15346: vector dependence: assumed ANTI dependence between prev_val line 69 and prev_val line 73
+LOOP END
+
+LOOP BEGIN at main.c(77,5)
+   remark #15527: loop was not vectorized: function call to rand(void) cannot be vectorized   [ main.c(78,25) ]
+LOOP END
+
+LOOP BEGIN at main.c(81,5)
+   remark #15382: vectorization support: call to function Interpolate(double, const point *) cannot be vectorized   [ main.c(87,18) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between  line 87 and  line 87
+   remark #15346: vector dependence: assumed OUTPUT dependence between  line 87 and  line 87
+
+   LOOP BEGIN at main.c(86,5)
+      remark #15382: vectorization support: call to function Interpolate(double, const point *) cannot be vectorized   [ main.c(87,18) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+
+LOOP BEGIN at main.c(92,5)
+   remark #15520: loop was not vectorized: loop with early exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+===========================================================================
