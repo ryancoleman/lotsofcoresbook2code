@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests
+END
+outoforder.F90
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/outoforder.F90
+END
+errtest.F90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/errtest.F90
+END
+testpapi.F90
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/testpapi.F90
+END
+handle.F90
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/handle.F90
+END
+nlreader.F90
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/nlreader.F90
+END
+summary.F90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/summary.F90
+END
+overhead.F90
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/overhead.F90
+END
+toomanythreads.F90
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/toomanythreads.F90
+END
+testinit.F90
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/testinit.F90
+END
+gptlnl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/gptlnl
+END
+testbasics.F90
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/testbasics.F90
+END
+pmpi.F90
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/pmpi.F90
+END
+utrtest.F90
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/utrtest.F90
+END
+testbacktrace.F90
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/testbacktrace.F90
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ftests/Makefile
+END

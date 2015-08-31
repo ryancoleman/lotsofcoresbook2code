@@ -1,0 +1,551 @@
+#!/bin/csh
+
+# This script builds the WSM6 stand-alone kernel.
+#
+### Apologies for use of csh, this automation was inherited. ###
+#
+# Usage: Execute this script with the "-help" option.  
+#
+# This script checks validity of arguments and sets internal build-time 
+# switches ($arch, $threading, etc.).  It then writes a file to be sourced 
+# (module_setup), uses rsync to create/update a build directory "../src_*" 
+# whose name depends on the build-time switches, and runs "make" in the 
+# build directory.  If successful, executable wsm6kernel is created in 
+# "../src_*/bin/" and run directory ../run_* is created and populated.  
+#
+# Current argument defaults are: 
+#    arch=intelxeon threading=no chunk=no nz=no 
+#    translatei=auto fpmp=yes iinside=no
+#
+# The "arch" option sets the target architecture and compiler.  This sample 
+# code only supports Intel compilers with either Xeon or Xeon Phi.  
+#
+# The "threading" option turns OpenMP threading on/off.  Note that when 
+# threading=yes the default value for chunk=8 (otherwise only one thread would 
+# have any work to do).  
+#
+# The "translatei" option is only used for performance tuning experiments and 
+# should never be changed from its default for production runs.  
+#
+# fpmp=no turns off "-fp-model precise" for ifort builds.  This is used for 
+# performance tuning and may be made the default if the model can be validated 
+# without it.  fpmp is ignored for non-ifort builds.  
+#
+# iinside=yes builds with variants of nislfv_rain_plm*() routines that have 
+# i-on-the-inside within their "intp" loops.  This is an optimization by John 
+# Michalakes from his work on WSM5.  It appears to be slower than the 
+# alternative when translation of k loop and memory bounds to compile-time 
+# constants is turned on.  
+#
+# "makewsm6 clean" removes any ../src_* directories (created by earlier 
+# invocations of "makewsm6") in the parent directory.  It does not 
+# touch ../run_* directories.  
+
+set validarch = (intelxeon intelxeonphi)
+set validthreading = (yes no)
+set validchunk = (no)   # or a non-negative integer, "0"=="no"
+set validnz = (no)      # or a non-negative integer, "0"=="no"
+set validtranslatei = (auto no)
+set validfpmp = (yes no)
+set validiinside = (no yes)
+set thisscript = $0
+set srcdir = $cwd
+
+# Set messages to be printed on request or given bad input
+set usemsg = "Usage: $thisscript [clean] [-*help] [arch=?] [threading=?] [chunk=?] [nz=?] [translatei=?] [fpmp=?] [iinside=?]"
+set usemsg_clean     = "clean means remove all builds"
+set usemsg_help      = "help or -help or --help prints a verbose use message"
+set usemsg_arch      = "arch=[one of: $validarch]"
+set usemsg_threading = "threading=[one of: $validthreading]"
+set usemsg_chunk     = "chunk=[one of: $validchunk or a non-negative integer]"
+set usemsg_nz        = "nz=[one of: $validnz or a non-negative integer], chunk must be set whenever nz is set"
+set usemsg_translatei = "translatei=[one of: $validtranslatei]"
+set usemsg_fpmp = "fpmp=[one of: $validfpmp]"
+set usemsg_iinside = "iinside=[one of: $validiinside]"
+
+# makewsm6 must be run from the src directory
+if ($cwd:t != src || ! -d kernel || ! -d tools) then
+  echo "ERROR:  ${thisscript}: MUST be run from NIM src directory! $srcdir looks suspicious"
+  exit 1
+endif
+
+# Special cases of "makewsm6 clean" and "makewsm6 -*help"
+if ($#argv == 1) then
+  if ($argv[1] == "clean") then
+    set cmd = 'rm -rf ../src_*'
+    echo "Executing $cmd..."
+    $cmd
+    exit 0
+  else if ($argv[1] == "-help" || $argv[1] == "--help" || $argv[1] == "help") then
+    echo "Usage: $usemsg"
+    echo '      ' $usemsg_clean
+    echo '      ' $usemsg_help
+    echo '      ' $usemsg_arch
+    echo '      ' $usemsg_threading
+    echo '      ' $usemsg_chunk
+    echo '      ' $usemsg_nz
+    echo '      ' $usemsg_translatei
+    echo '      ' $usemsg_fpmp
+    echo '      ' $usemsg_iinside
+    exit 0
+  endif
+endif
+
+# Parse arg list for presence of key=value pairs. 
+# Of course csh does not have getopt.  
+
+while ($#argv)
+# Throw away what comes after "=" to get the key
+  set key = `echo $1 | sed 's/=.*$//'`
+# Throw away what comes before "=" to get the value
+  set val = `echo $1 | sed 's/.*=//'`
+  if ($key == "" || $val == "") then
+    echo "ERROR:  Cannot parse arg list: For help run: $thisscript -help"
+    exit 1
+  endif
+  if ($key != "arch" &&  $key != "threading" && $key != "chunk" && $key != "nz" && $key != "translatei" && $key != "fpmp" && $key != "iinside" ) then
+    echo "ERROR:  key=value not found or LHS of = must be one of arch|threading|chunk|nz|translatei|fpmp|iinside"
+    echo "For help run: $thisscript -help"
+    exit 1
+  endif
+
+# Check validity of input. csh lack of functions is beyond ridiculous.  
+  if ($key == "arch") then
+    set validopts = ($validarch)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      echo "ERROR:  $val is an unknown arch: Need arch=[one of: $validarch]"
+      exit 1
+    endif
+  else if ($key == "threading") then
+    set validopts = ($validthreading)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      echo "ERROR:  $val is an unknown threading: Need threading=[one of: $validthreading]"
+      exit 1
+    endif
+  else if ($key == "chunk") then
+    set validopts = ($validchunk)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      # Is $val a valid positive non-octal integer?  
+      echo $val | egrep '^[1-9]+[0-9]*$' > /dev/null
+      if ( $status ) then
+        echo "ERROR:  $val is an unknown chunk: Need chunk=[one of: $validchunk] or a positive non-octal integer"
+        exit 1
+      endif
+    endif
+  else if ($key == "nz") then
+    set validopts = ($validnz)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      # Is $val a valid positive non-octal integer?  
+      echo $val | egrep '^[1-9]+[0-9]*$' > /dev/null
+      if ( $status ) then
+        echo "ERROR:  $val is an unknown nz: Need nz=[one of: $validnz] or a positive non-octal integer"
+        exit 1
+      endif
+    endif
+  else if ($key == "translatei") then
+    set validopts = ($validtranslatei)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      echo "ERROR:  $val is an unknown translatei: Need translatei=[one of: $validtranslatei]"
+      exit 1
+    endif
+  else if ($key == "fpmp") then
+    set validopts = ($validfpmp)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      echo "ERROR:  $val is an unknown fpmp: Need fpmp=[one of: $validfpmp]"
+      exit 1
+    endif
+  else if ($key == "iinside") then
+    set validopts = ($validiinside)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      echo "ERROR:  $val is an unknown iinside: Need iinside=[one of: $validiinside]"
+      exit 1
+    endif
+  endif
+  eval "set $key = $val"
+  shift argv
+end
+
+# Exit if arch not set on cmd line. 
+if ( ! $?arch ) then
+  echo "ERROR:  You must set arch=[one of: $validarch]"
+  echo "For help run: $thisscript -help"
+  exit 1
+endif
+echo "Using arch = $arch"
+echo ""
+
+# Exit if threading not set on cmd line
+if ( ! $?threading ) then
+  echo "ERROR:  You must set threading=[one of: $validthreading]"
+  echo "For help run: $thisscript -help"
+  exit 1
+endif
+echo "Using threading = $threading"
+echo ""
+
+# Determine build root.  
+set buildroot = `cd .. && echo $cwd`
+
+# Determine chunk.  Use default if not specified on command-line.
+# When threading is turned on, default value is 8.  
+if ( ! $?chunk ) then
+  set chunk = $validchunk[1]
+  if ($threading == 'yes') then
+    set chunk = 8
+  endif
+endif
+
+# Determine nz.  Use default if not specified on command-line.  
+if ( ! $?nz ) then
+  set nz = $validnz[1]
+endif
+
+# Determine translatei.  Use default if not specified on command-line.  
+if ( ! $?translatei ) then
+  set translatei = $validtranslatei[1]
+endif
+
+# Determine fpmp.  Use default if not specified on command-line.  
+if ( ! $?fpmp ) then
+  set fpmp = $validfpmp[1]
+endif
+
+# Determine iinside.  Use default if not specified on command-line.  
+if ( ! $?iinside ) then
+  set iinside = $validiinside[1]
+endif
+
+# Set objdir (where "make" is run) and rundir (where run scripts are put) 
+# based on build-time options.
+
+if ($chunk == 'no') then
+  set chunktype = ""
+else
+  set chunktype = "_CHUNK${chunk}"
+endif
+
+if ($nz == 'no') then
+  set nztype = ""
+else
+  set nztype = "_NZ${nz}"
+endif
+
+if ($translatei == 'no') then
+  set translateitype = "_XLATEI${translatei}"
+else
+  set translateitype = ""
+endif
+
+if ($fpmp == 'no') then
+  set fpmptype = "_FPMP${fpmp}"
+else
+  set fpmptype = ""
+endif
+
+if ($iinside == 'yes') then
+  set iinsidetype = "_IINSIDE${iinside}"
+else
+  set iinsidetype = ""
+endif
+
+set buildname = ${arch}_omp${threading}${chunktype}${nztype}${translateitype}${fpmptype}${iinsidetype}
+set objbase = src_${buildname}
+set objdir = ${buildroot}/${objbase}
+set runbase = run_${buildname}
+set rundir = ${buildroot}/${runbase}
+set toolsdir = ${objdir}/tools
+
+if ( ! -d $objdir) then
+  mkdir -p $objdir || echo "ERROR:  Failure from mkdir -p $objdir" && exit 1
+endif
+
+echo "'make' will be run in ${objdir}"
+echo ""
+
+# Create a script which can build NIM directly from the build directory
+cat >! ${objdir}/makewsm6_fromobj <<EOF
+#!/bin/csh
+source ./module_setup || echo "ERROR:  Failure to source ./module_setup"
+make
+exit 0
+EOF
+chmod 755 ${objdir}/makewsm6_fromobj
+
+if ( ! -d $rundir) then
+  mkdir $rundir || echo "ERROR:  Failure from mkdir $rundir" && exit 1
+endif
+
+# Make objdir a full path, and rsync the source tree
+set curdir = $cwd
+cd $objdir
+set objdir = $cwd
+
+cd ${curdir}/.. || echo "ERROR:  Failure to cd ${curdir}/.." && exit 1
+
+# -C says to ignore CVS stuff, which also means .svn/ dirs
+set cmd = "rsync -auC src/ $objdir"
+echo "Issuing cmd: $cmd ..."
+time $cmd || echo "ERROR:  rsync failure for src/" && exit 1
+echo "Done"
+
+# Don't want "makewsm6" to exist in objdir--use makewsm6_fromobj instead
+\rm -f ${objdir}/makewsm6
+
+set cmd = "rsync -au run/ $rundir"
+echo "Issuing cmd: $cmd ..."
+time $cmd || echo "ERROR:  rsync failure for run/" && exit 1
+echo "Done"
+
+cd $objdir || echo "ERROR:  Failure to cd $objdir" && exit 1
+
+# Insert compile-time CHUNK values into chunkfilter.pl and chunk.h .  
+set chunkfilter = "${toolsdir}/chunkfilter.pl"
+cat >! ${chunkfilter} <<EOF
+#!/usr/bin/perl -p
+# insert compile-time chunk sizes
+EOF
+# Note that chunkfilter.pl will be a NOOP if $chunk is 'no'
+# welcome to the joys of csh where one cannot echo "\$1 $chunkfilter"
+if ($chunk != 'no') then
+  echo -n 's/\\b(do\\s+\\d*\\s*\\w+\\s*=\\s*)ii*ts\\s*,\\s*ii*te\\b/$1 1,' >> ${chunkfilter}
+  echo -n "${chunk}" >> ${chunkfilter}
+  echo -n '/gi; ' >> ${chunkfilter}
+  echo -n 's/\\bii*[mt]s\\s*:\\s*ii*[mt]e\\b/1:' >> ${chunkfilter}
+  echo -n "${chunk}" >> ${chunkfilter}
+  echo    '/gi;' >> ${chunkfilter}
+endif
+chmod a+x ${chunkfilter}
+# Insert compile-time NZ values into literalkfilter.pl and literalk.h .  
+set literalkfilter = "${toolsdir}/literalkfilter.pl"
+# Note that literalkfilter.pl will be a NOOP if $nz is 'no'
+cat >! ${literalkfilter} <<EOF
+#!/usr/bin/perl -p
+# insert compile-time vertical sizes
+EOF
+if ($nz != 'no') then
+  # Note that kme=kte+1 in Esther's code to match MPAS behavior
+  @ nzp1 = $nz + 1
+  # do k = kts,kte
+  echo -n ' s/\\b(do\\s+\\d*\\s*\\w+\\s*=\\s*)kk*ts\\s*,\\s*kk*te\\b/$1 1,' >> ${literalkfilter}
+  echo -n "${nz}" >> ${literalkfilter}
+  echo -n '/gi; ' >> ${literalkfilter}
+  # do k = kte,kts,-1
+  echo -n ' s/\\b(do\\s+\\d*\\s*\\w+\\s*=\\s*)kk*te\\s*,\\s*kk*ts\\b/$1 ' >> ${literalkfilter}
+  echo -n "${nz}" >> ${literalkfilter}
+  echo -n ',1/gi; ' >> ${literalkfilter}
+  # do k = kts,kts+1
+  echo -n ' s/\\b(do\\s+\\d*\\s*\\w+\\s*=\\s*)kk*ts\\s*,\\s*kk*ts\\b/$1 1,1/gi; ' >> ${literalkfilter}
+  # do k = kte,kte-1
+  echo -n ' s/\\b(do\\s+\\d*\\s*\\w+\\s*=\\s*)kk*ts\\s*,\\s*kk*te\\b/$1 ' >> ${literalkfilter}
+  echo -n "${nz},${nz}" >> ${literalkfilter}
+  echo -n '/gi; ' >> ${literalkfilter}
+  # kte:kte, kkte:kkte
+  echo -n 's/\\bkk*ts\\s*:\\s*kk*te\\b/1:' >> ${literalkfilter}
+  echo -n "${nz}" >> ${literalkfilter}
+  echo -n '/gi;' >> ${literalkfilter}
+  # kms:kme, kkms:kkme
+  echo -n 's/\\bkk*ms\\s*:\\s*kk*me\\b/1:' >> ${literalkfilter}
+  echo -n "${nzp1}" >> ${literalkfilter}
+  echo    '/gi;' >> ${literalkfilter}
+endif
+chmod a+x ${literalkfilter}
+set chunkh = "${toolsdir}/chunk.h"
+set literalkh = "${toolsdir}/literalk.h"
+echo "" >! ${chunkh}
+if ($chunk == 'no') then
+  echo "#undef _CHUNK_" >> ${chunkh}
+else
+  echo "#define _CHUNK_ ${chunk}" >> ${chunkh}
+endif
+echo "" >! ${literalkh}
+if ($nz == 'no') then
+  echo "#undef _NZ_" >> ${literalkh}
+else
+  echo "#define _NZ_ ${nz}" >> ${literalkh}
+endif
+
+# Create macros.make based on these settings and the appropriate macros.make.* file
+if ( ! -e macros.make.${arch} ) then
+  echo "ERROR:  ${thisscript}: macros.make.${arch} does not exist"
+  exit 1
+endif
+
+echo "# Beginning of script-generated settings" >! macros.make
+echo "ARCH      = $arch"      >> macros.make
+echo "OPENMP    = $threading" >> macros.make
+echo "CHUNK     = $chunk"     >> macros.make
+echo "TRANSLATEI= $translatei">> macros.make
+echo "FPMP      = $fpmp"      >> macros.make
+echo "IINSIDE   = $iinside"   >> macros.make
+echo "NZ        = $nz"        >> macros.make
+echo "DEFINES   = "           >> macros.make
+echo "CPP_FLAGS = "           >> macros.make
+if ($chunk != 'no') then
+  # remove Intel alignment directives if chunking is turned off
+  echo "DEFINES += -DALIGN_OK" >> macros.make
+endif
+# path to chunk.h
+echo "CPP_FLAGS += -I${toolsdir}" >> macros.make
+if ($chunk == 'no' || $translatei == 'no') then
+  # cat is a noop in this context
+  # cat is used here for clarity when debugging build output
+  echo "CHUNKCMD = cat" >> macros.make
+else
+  echo "CHUNKCMD = ${chunkfilter}" >> macros.make
+endif
+if ($nz == 'no') then
+  # cat is a noop in this context
+  # cat is used here for clarity when debugging build output
+  echo "LITERALKCMD = cat" >> macros.make
+else
+  echo "LITERALKCMD = ${literalkfilter}" >> macros.make
+endif
+echo "# End of script-generated settings" >> macros.make
+echo ""                       >> macros.make
+
+# Append the appropriate already-existing macros.make.* file
+echo "# Beginning of macros.make.${arch}" >> macros.make
+cat macros.make.${arch} >> macros.make
+echo "# End of macros.make.${arch}" >> macros.make
+echo ""                       >> macros.make
+
+# Append macros.make.all
+echo "# Beginning of macros.make.all" >> macros.make
+cat macros.make.all >> macros.make
+echo "# End of macros.make.all" >> macros.make
+echo ""                       >> macros.make
+
+# Done creating macros.make
+# Now create module_setup: arch and objdir settings are needed in batch environment
+# even when "modules" aren't available
+
+\rm -f module_setup
+
+cat >! module_setup <<EOF
+#!/bin/csh
+set arch = $arch
+set threading = $threading
+set chunk = $chunk
+set translatei = $translatei
+set fpmp = $fpmp
+set iinside = $iinside
+set nz = $nz
+set objdir = $objdir
+EOF
+
+# Environment and module settings
+# EDIT HERE
+switch ($arch)
+
+  case 'intelxeon':
+  cat >> module_setup <<EOF
+  # Enable Intel-specific Xeon cmds
+  # add any module commands here
+  set path = ( $path /opt/intel/bin )
+EOF
+  breaksw
+
+  case 'intelxeonphi':
+  cat >> module_setup <<EOF
+  # Enable Intel-specific MIC cmds
+  # add any module commands here
+  set path = ( $path /opt/intel/mic/bin )
+EOF
+  breaksw
+
+# If we get here, there is a bug in the script. Probably a new "arch" entry is needed.
+  default:
+  echo "ERROR:  ${thisscript}: arch=$arch is unknown" && exit 1
+endsw
+
+# Done creating module_setup
+
+# This file need to remain as is--do not edit
+chmod 444 module_setup
+
+# Copy module_setup to $rundir so jetsub will know module settings and $objdir
+/bin/cp -f module_setup $rundir || echo "ERROR:  failure to copy module_setup" && exit 1
+
+# Source module_setup, run make to build GPTL, and run make to build wsm6kernel
+
+cd $objdir || echo "ERROR:  Failure to cd $objdir" && exit 1
+echo "Sourcing module_setup..."
+source ./module_setup
+echo "Done"
+
+echo "Building GPTL ..."
+cd $objdir/gptl || echo "ERROR:  Failure to cd $objdir/gptl" && exit 1
+/bin/cp -f macros.make.$arch macros.make || echo "ERROR:  failure to copy macros.make.$arch" && exit 1
+make || echo "ERROR:  GPTL make failure" && exit 1
+make install || echo "ERROR:  GPTL make install failure" && exit 1
+
+cd $objdir || echo "ERROR:  Failure to cd $objdir" && exit 1
+echo "Starting make for wsm6kernel ..."
+env BINDIR="$objdir/bin" make all || echo "ERROR:  make failure" && exit 1
+echo "make succeeded" 
+echo ""
+echo "Run scripts are in:"
+echo "  $rundir"
+
+# link binaries to run directory
+# use relative paths to allow relocation of entire working copy
+set curdir = $cwd
+cd ${rundir} || echo "ERROR:  Failure to cd to ${rundir}" && exit 1
+ln -sf ../${objbase}/bin/* . || echo "Failure to link binaries to ${rundir}" && exit 1
+cd ${curdir} || echo "ERROR:  Failure to cd ${curdir}" && exit 1
+
+# print message about likely run script for chosen $arch
+echo "Run script is:"
+echo -n "  "
+if ($arch == 'intelxeon') then
+  echo "runintelxeon"
+else if ($arch == 'intelxeonphi') then
+  echo "runintelxeonphi"
+else
+  echo "unknown"
+endif
+
+exit 0
+

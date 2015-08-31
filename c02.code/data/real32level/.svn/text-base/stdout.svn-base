@@ -1,0 +1,81 @@
+running time env OMP_NUM_THREADS=10 OMP_STACKSIZE=256M ./wsm6kernel
+ wsm6init():  read constants
+ wsm62D():  read input state
+ wsm62D():  itimestep ==           96
+ ims,ime,iims,iime           1       10242           1           8
+omp_get_max_threads() returned:         10
+ CHUNK =           8
+ NUMBER OF CHUNKS =        1281
+ NZ_BUILD =          32
+  max t =    310.695055284652       at         6227           1
+  min t =    185.827308802452       at          984          29
+  max qci =   9.977814622375695E-004  at         1108           6           1
+  min qci =   0.000000000000000E+000  at            2           1           1
+  max qrs =   1.165168937363044E-003  at         5848          17           2
+  min qrs =   0.000000000000000E+000  at            1           1           1
+  max q =   2.554868329668602E-002  at          984           1
+  min q =   0.000000000000000E+000  at         2323          14
+  max den =    1.45759578911411       at         5145           1
+  min den =   5.507885288873403E-002  at         7883          33
+  max p =    103563.471687618       at         5207           1
+  min p =    3583.29105298019       at          529          33
+  max delz =    977.178985731636       at         8096          33
+  min delz =    80.1350734803327       at         7646           1
+  delt =    900.000000000000     
+  g =    9.80616000000000     
+  cpd =    1003.00000000000     
+  cpv =    1846.40000000000     
+  t0c =    273.150000000000     
+  den0 =    1.28000000000000     
+  rd =    287.000000000000     
+  rv =    461.600000000000     
+  ep1 =   0.608362369337979     
+  ep2 =   0.621750433275563     
+  qmin =   1.000000000000000E-015
+  XLS =    2850000.00000000     
+  XLV0 =    2500000.00000000     
+  XLF0 =    350000.000000000     
+  cliq =    4190.00000000000     
+  cice =    2106.00000000000     
+  psat =    610.780000000000     
+  denr =    1000.00000000000     
+  max rain =   0.000000000000000E+000  at            1
+  min rain =   0.000000000000000E+000  at            1
+  max rainncv =   0.000000000000000E+000  at            1
+  min rainncv =   0.000000000000000E+000  at            1
+  max sr =   0.000000000000000E+000  at            1
+  min sr =   0.000000000000000E+000  at            1
+  max snow =   0.000000000000000E+000  at            1
+  min snow =   0.000000000000000E+000  at            1
+  max snowncv =   0.000000000000000E+000  at            1
+  min snowncv =   0.000000000000000E+000  at            1
+  max graupel =   0.000000000000000E+000  at            1
+  min graupel =   0.000000000000000E+000  at            1
+  max graupelncv =   0.000000000000000E+000  at            1
+  min graupelncv =   0.000000000000000E+000  at            1
+ wsm62D():  itimestep ==           96 , write output state
+  max t =    310.695055284652       at         6227           1
+  min t =    185.833899720012       at          984          29
+  max qci =   6.090638830966424E-004  at         2289           1           1
+  min qci =   0.000000000000000E+000  at            1           1           1
+  max qrs =   1.448044748235021E-003  at          984          17           2
+  min qrs =   0.000000000000000E+000  at            1           1           1
+  max q =   2.609866543354823E-002  at         5848           1
+  min q =   7.335085930186959E-013  at         9211          33
+  max rain =    3.37783004167863       at         5848
+  min rain =   0.000000000000000E+000  at            2
+  max rainncv =    3.37783004167863       at         5848
+  min rainncv =   0.000000000000000E+000  at            2
+  max sr =    1.99999996540119       at         9242
+  min sr =   0.000000000000000E+000  at            2
+  max snow =   0.219216009325317       at         7866
+  min snow =   0.000000000000000E+000  at            2
+  max snowncv =   0.219216009325317       at         7866
+  min snowncv =   0.000000000000000E+000  at            2
+  max graupel =   0.228320546988490       at         8185
+  min graupel =   0.000000000000000E+000  at            1
+  max graupelncv =   0.228320546988490       at         8185
+  min graupelncv =   0.000000000000000E+000  at            1
+ 
+ Total time =  0.954996464774013     
+6.537u 0.163s 0:01.29 518.6%	0+0k 1848+37184io 15pf+0w

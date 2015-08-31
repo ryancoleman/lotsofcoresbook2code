@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/nim/!svn/ver/4284/branches/WSM6sample/src/kernel
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/nim/!svn/ver/4260/branches/WSM6sample/src/kernel/LICENSE
+END
+wsm6_kernel.F90
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/nim/!svn/ver/4284/branches/WSM6sample/src/kernel/wsm6_kernel.F90
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/nim/!svn/ver/4260/branches/WSM6sample/src/kernel/Makefile
+END

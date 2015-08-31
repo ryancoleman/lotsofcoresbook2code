@@ -1,0 +1,139 @@
+#!/bin/csh
+set validarch = (jetintel jetpgi theiaintel zeusintel edisoncray titanintel titancray titanpgi \
+                 stampedeintel stampedeintelxeonphi endeavor endeavorxeonphi eosintel psgintel)
+set usemsg = "Usage: $0 <arch>"
+if ($#argv != 1) then
+  echo $usemsg
+  echo "Supported values for arch are:"
+  echo $validarch && exit 1
+endif
+
+# Special case of makegptl clean: remove files by hand since macros.make doesn't yet exist
+if ($1 == clean) then
+  \rm *.o *.mod ctests/*.o ftests/*.o ftests/*.mod
+  exit 0
+endif
+
+set arch = $1
+
+# Ensure a valid architecture was specified
+set validopts = ($validarch)
+while ($#validopts)
+  if ($arch == $validopts[1]) then
+    break
+  endif
+  shift validopts
+end
+if ($#validopts == 0) then
+  echo "arch=$arch is unknown"
+  echo "Supported values for arch are:"
+  echo $validarch && exit 1
+endif
+
+switch ($arch)
+  case 'jetintel':
+  module purge
+  module load intel/14.0.3
+  module load mvapich2/1.8
+  module list
+  breaksw
+
+  case 'jetpgi':
+  module purge
+  module load pgi/12.5-0
+  module load mvapich2/1.8
+  module list
+  breaksw
+
+  case 'titanintel':
+  (module list) |& grep -q PrgEnv-pgi  && module switch PrgEnv-pgi PrgEnv-intel
+  (module list) |& grep -q PrgEnv-cray && module switch PrgEnv-cray PrgEnv-intel
+  module list
+  breaksw
+
+  case 'titancray':
+  module switch PrgEnv-pgi PrgEnv-cray
+  module switch PrgEnv-intel PrgEnv-cray
+  module list
+  breaksw
+
+  case 'psgintel':
+  module load gcc
+  module load intel/compiler/15.0
+  module load cuda/7.0
+  module load openmpi-1.8.5-20150312-RDMA/intel-15.0/cuda-6.5
+  module load hwloc/1.1
+  module list
+  breaksw
+
+  case 'eosintel':
+# ASSUME PrgEnv-intel is loaded (that is the default on eos)
+  module list
+  breaksw
+
+  case 'theiaintel':
+  module unload intel impi
+  module load intel/14.0.2
+  module load impi/5.0.1.035
+  module list
+  breaksw
+
+  case 'edisoncray':
+  module switch PrgEnv-intel PrgEnv-cray
+  module list
+  breaksw
+
+  case 'zeusintel':
+  module purge
+  module load intel/12-12.0.4.191
+  module load mpt/2.06
+  module list
+  breaksw
+
+  # stampede host: symmetric mode currently requires impi not mvapich2
+  case 'stampedeintel':
+  module load intel intel/14.0.1.106
+  module load impi/4.1.1.036
+  module list
+  breaksw
+
+  # stampede xeonphi: symmetric mode currently requires impi not mvapich2
+  case 'stampedeintelxeonphi':
+  module load intel intel/14.0.1.106
+  module load impi/4.1.1.036
+  module list
+  breaksw
+
+  # ORNL eos currently only set up for Intel (SNB and no coprocessor)
+  case 'eosintel':
+  module list
+  breaksw
+
+  # endeavor: no modules but run sourceME_Xeon with correct settings
+  case 'endeavor':
+#  source /home/Xjrosin/sourceME_Xeon.csh 14.0.3
+  source ~/sourceME_Xeon.csh latest
+  breaksw
+
+  # endeavor: no modules but run sourceME_Xeon with correct settings
+  case 'endeavorxeonphi':
+#  source /home/Xjrosin/sourceME_Xeon.csh 14.0.3
+  source ~/sourceME_Xeon.csh latest
+  breaksw
+
+# If we get here, there is a bug in the script. Probably a new "arch" entry is needed.
+  default:
+  echo "${0}: arch=$arch is unknown" && exit 1
+endsw
+
+\rm macros.make
+ln -s macros.make.$arch macros.make
+if ($status != 0) then
+  echo "ln -s macros.make.$arch macros.make failed" && exit 1
+endif
+
+make clean || echo "make clean failed" && exit 1
+make || echo "make failed" && exit 1
+make install || echo "make install failed" && exit 1
+
+echo "Successfully built and installed gptl" using macros.make.$arch

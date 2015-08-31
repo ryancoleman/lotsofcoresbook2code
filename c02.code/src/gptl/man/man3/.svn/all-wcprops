@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3
+END
+GPTLnum_errors.3
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLnum_errors.3
+END
+GPTLstart.3
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLstart.3
+END
+GPTLfinalize.3
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLfinalize.3
+END
+GPTLinitialize.3
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLinitialize.3
+END
+GPTLget_memusage.3
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLget_memusage.3
+END
+GPTLprocess_namelist.3
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLprocess_namelist.3
+END
+gptlprocess_namelist.3
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/gptlprocess_namelist.3
+END
+GPTLevent_code_to_name.3
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLevent_code_to_name.3
+END
+GPTLevent_name_to_code.3
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLevent_name_to_code.3
+END
+GPTLinit_handle.3
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLinit_handle.3
+END
+GPTLpr.3
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLpr.3
+END
+GPTLget_nregions.3
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLget_nregions.3
+END
+GPTLstamp.3
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLstamp.3
+END
+GPTLsetoption.3
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLsetoption.3
+END
+GPTLenable.3
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLenable.3
+END
+GPTLquerycounters.3
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLquerycounters.3
+END
+GPTLpr_summary_file.3
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLpr_summary_file.3
+END
+GPTLpr_summary.3
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLpr_summary.3
+END
+GPTLstop_handle.3
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLstop_handle.3
+END
+GPTL_PAPIlibraryinit.3
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTL_PAPIlibraryinit.3
+END
+GPTLprint_rusage.3
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLprint_rusage.3
+END
+GPTLdisable.3
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLdisable.3
+END
+GPTLquery.3
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLquery.3
+END
+GPTLstart_handle.3
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLstart_handle.3
+END
+GPTLget_wallclock.3
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLget_wallclock.3
+END
+GPTLget_eventvalue.3
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLget_eventvalue.3
+END
+GPTLprint_memusage.3
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLprint_memusage.3
+END
+GPTL.3
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTL.3
+END
+GPTLpr_file.3
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLpr_file.3
+END
+GPTLreset.3
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLreset.3
+END
+GPTLget_regionname.3
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLget_regionname.3
+END
+GPTLstop.3
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLstop.3
+END
+GPTLsetutr.3
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLsetutr.3
+END
+GPTLbarrier.3
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/man/man3/GPTLbarrier.3
+END

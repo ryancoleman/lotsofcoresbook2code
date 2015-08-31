@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/nim/!svn/ver/4260/branches/WSM6sample/data/real32level
+END
+wsm6_constants.dat
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/nim/!svn/ver/4260/branches/WSM6sample/data/real32level/wsm6_constants.dat
+END
+stdout
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/nim/!svn/ver/4260/branches/WSM6sample/data/real32level/stdout
+END
+wsm6_input.dat
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/nim/!svn/ver/4260/branches/WSM6sample/data/real32level/wsm6_input.dat
+END
+wsm6_output.dat
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/nim/!svn/ver/4260/branches/WSM6sample/data/real32level/wsm6_output.dat
+END

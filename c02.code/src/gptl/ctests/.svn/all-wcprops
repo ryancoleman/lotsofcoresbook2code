@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests
+END
+cygprofilesubs.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/cygprofilesubs.c
+END
+global.c
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/global.c
+END
+printwhileon.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/printwhileon.c
+END
+cygprofile.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/cygprofile.c
+END
+gran_overhead.c
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/gran_overhead.c
+END
+papiomptest.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/papiomptest.c
+END
+pmpi.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/pmpi.c
+END
+knownflopcount.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/knownflopcount.c
+END
+myclasses.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/myclasses.h
+END
+profcxx.C
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/profcxx.C
+END
+testpapi.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/testpapi.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/Makefile
+END
+avail.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/avail.c
+END
+summary.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/nim/!svn/ver/4265/branches/WSM6sample/src/gptl/ctests/summary.c
+END

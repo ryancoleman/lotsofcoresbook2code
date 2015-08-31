@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/nim/!svn/ver/4281/branches/WSM6sample/run
+END
+runem.sh
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/nim/!svn/ver/4260/branches/WSM6sample/run/runem.sh
+END
+GPTLnamelist
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/nim/!svn/ver/4260/branches/WSM6sample/run/GPTLnamelist
+END
+cmpwsm6.bash
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/nim/!svn/ver/4281/branches/WSM6sample/run/cmpwsm6.bash
+END
+runintelxeon
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/nim/!svn/ver/4270/branches/WSM6sample/run/runintelxeon
+END
+runintelxeonphi
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/nim/!svn/ver/4270/branches/WSM6sample/run/runintelxeonphi
+END
+runnext.sh
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/nim/!svn/ver/4260/branches/WSM6sample/run/runnext.sh
+END

@@ -1,0 +1,121 @@
+#!/bin/csh
+#
+#  Usage: runintelxeonphi [threads=<omp_threads>] [case=<real32level|ideal32level|real41level>]
+
+set usemsg = "Usage: $0 [threads=<omp_threads>] [case=<real32level|ideal32level|real41level>]"
+
+if ($#argv > 0) then
+  if ($argv[1] == "-h") then
+    echo $usemsg
+    exit 0
+  endif
+endif
+set validcase = (real32level ideal32level real41level)
+
+# Sourcing module_setup will set local variables used below.  
+# It will also set up the environment and optionally run "module" commands.  
+if ( -e ./module_setup) then
+  source ./module_setup || echo "Failure from source ./module_setup" && exit 1
+else
+  echo "File ${cwd}/module_setup does not exist!" && exit 1
+endif
+
+# Set variable defaults.
+set jobname = "wsm6kernel"
+
+# Parse args if present. First initialize to default values
+set case = $validcase[1]
+set omp_threads_per_mic_mpi_task = 240
+# Of course csh does not have getopts...  
+while ($#argv)
+# Throw away what comes after "=" to get the key
+  set key = `echo $1 | sed 's/=.*$//'`
+# Throw away what comes before "=" to get the value
+  set val = `echo $1 | sed 's/.*=//'`
+  if ($key == "" || $val == "") then
+    echo "Cannot parse arg list."
+    echo $usemsg
+    exit 1
+  endif
+  if ($key != "threads" && $key != "case") then
+    echo "key=value not found or LHS of = must be one of threads|case"
+    exit 1
+  endif
+# Check validity of input. csh lack of functions is beyond ridiculous.
+  if ($key == "case") then
+    set validopts = ($validcase)
+    while ($#validopts)
+      if ($val == $validopts[1]) then
+        break
+      endif
+      shift validopts
+    end
+    if ($#validopts == 0) then
+      echo "$val is an unknown case: Need case=[one of: $validcase]"
+      exit 1
+    endif
+  else if ($key == "threads") then
+    # Is $val a valid positive non-octal integer?  
+    echo $val | egrep '^[1-9]+[0-9]*$' > /dev/null
+    if ( $status ) then
+      echo "$val is an incorrect number of threads: Need threads=[a positive non-octal integer]"
+      exit 1
+    endif
+    set omp_threads_per_mic_mpi_task = $val
+  endif
+  eval "set $key = $val"
+  shift argv
+end
+
+if ($threading == 'yes') then
+  set threadstr = "_${omp_threads_per_mic_mpi_task}threads"
+else
+  set threadstr = ""
+endif
+
+set rundir = "RUN_${case}${threadstr}_${$}"
+mkdir $rundir || echo "mkdir $rundir failed" && exit 1
+echo "Made directory: $rundir"
+
+cp cmpwsm6.*sh $rundir
+cp GPTLnamelist $rundir
+cp module_setup $rundir
+cp ${objdir}/bin/* $rundir
+cd $rundir
+
+# link input data set
+set datadir = "${objdir}/../data/${case}"
+ln -fs ${datadir}/wsm6_constants.dat           .
+ln -fs ${datadir}/wsm6_input.dat .
+
+set runscript = "runscript"
+
+cat << EOF >! ${runscript}
+#!/bin/sh
+ulimit -s unlimited
+# EDIT HERE:  fix LD_LIBRARY_PATH if needed
+export LD_LIBRARY_PATH=/opt/intel/composer_xe_2013.4.183/compiler/lib/mic:\$LD_LIBRARY_PATH
+# Set OMP scheduling metric (default is static)
+export OMP_SCHEDULE=guided
+export OMP_NUM_THREADS=$omp_threads_per_mic_mpi_task
+export KMP_AFFINITY="granularity=fine,scatter"
+# magic stack size settings
+export OMP_STACKSIZE=256M
+export MIC_ULIMIT_STACKSIZE=365536
+export MIC_TIMINGDEVICE=tsc
+export ULIMIT_STACKSIZE=365536
+export TIMINGDEVICE=tsc
+./wsm6kernel > stdout
+if [ \"$?\" -eq \"0\" ]; then
+  echo \"wsm6kernel finished\"
+else
+  echo \"wsm6kernel failed\"
+  exit 23
+fi
+exit 0
+EOF
+chmod 755 ./${runscript}
+
+echo "To run case '${case}', ssh to your MIC card, change to directory '${rundir}' and execute './${runscript}'"
+
+exit 0

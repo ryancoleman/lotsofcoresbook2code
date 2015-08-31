@@ -1,0 +1,67 @@
+# For parallel make
+GMAKEMINUSJ = -j8
+
+# Compiler settings.  Add build-specific cpp definitions here if needed.  
+BUILD_DEFINES = 
+
+CPP       = /lib/cpp
+CPP_OPTS  = -traditional -P
+CPP_FLAGS += $(CPP_OPTS) $(GPTLINCLUDE) $(DEFINES) $(BUILD_DEFINES)
+
+FC         = ifort
+FCserial   = ifort
+FCfrontend = ifort
+FCgfort    = n/a
+FCncarg    = n/a
+
+# Flag to enable "-fp-model precise" ("makenim" automatically sets this to 
+# yes or no)
+ifeq ($(FPMP),yes)
+  PRECISEFLAG = -fp-model precise
+endif
+
+# Fortran flags for various subdirs. If DEBUG=yes, set for debugging
+# fpe0 will cause the code to abort on overflow, divide-by-zero, or invalid
+# fpe0 does not change the output but adds about 15% to the run time
+
+# Xeon Phi currently does not support -fpe0.
+DEBUG = no
+AGGRESSIVE = -fp-model fast=1 -no-prec-div -no-prec-sqrt -fimf-precision=low -fimf-domain-exclusion=15 -opt-assume-safe-padding -opt-streaming-stores always -opt-streaming-cache-evict=0
+ifeq ($(DEBUG),yes)
+  PHYSFLAGS  = -g -O0 -ftz -traceback -I ../include -fp-model precise -align array64byte
+else
+  PHYSFLAGS  = -g -O3 -ftz -traceback -vec-report6 -align array64byte -I ../include $(PRECISEFLAG)
+#  PHYSFLAGS  = -g -O3 -ftz -traceback -vec-report6 -align array64byte -I ../include $(AGGRESSIVE)
+endif
+
+# Whether to enable auto-profiling
+PROFILE = no
+ifeq ($(PROFILE),yes)
+  INSTRFLAGS = -finstrument-functions -rdynamic
+  PHYSFLAGS += $(INSTRFLAGS)
+endif
+
+# Flag to target native mode on Xeon-Phi (empty for everyone except xeonphi)
+MICFLAGS = -mmic
+
+# Implicit real*8 flag needed in physics
+R8FLAG = -r8
+
+# Flag to enable OpenMP ("makenim" automatically sets this to yes or no)
+ifeq ($(OPENMP),yes)
+  OMPFLAG = -openmp
+  BUILD_DEFINES += -D_OPENMP
+endif
+
+# Flag to switch to i-on-inside versions of nislfv_rain_plm*() routines
+ifeq ($(IINSIDE),yes)
+  BUILD_DEFINES += -DIINSIDE
+endif
+
+# GPTL timing library: To shut off entirely, set USE_GPTL = no
+USE_GPTL = yes
+ifeq ($(USE_GPTL),yes)
+  GPTL = ../gptl_install
+  GPTLINCLUDE = -I$(GPTL)/include
+  GPTLLIB     = -L$(GPTL)/lib -lgptl
+endif

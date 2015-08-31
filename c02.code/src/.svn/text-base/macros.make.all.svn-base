@@ -1,0 +1,15 @@
+# USE_GPTL=yes means we'll link to the library rather than use dummy objects
+# In this case GPTLINCLUDE was set in macros.make
+
+RM = rm -f
+
+ifeq ($(USE_GPTL),yes)
+  GPTLOBJS =
+else
+  GPTLINCLUDE = -I$(SRCDIR)/dummygptl
+  GPTLOBJS = $(shell ls $(SRCDIR)/dummygptl/*.o)
+endif
+
+FCX    = $(FCserial)
+
+WSM6EXE = $(BINDIR)/wsm6kernel

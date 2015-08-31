@@ -1,0 +1,133 @@
+
+WSM6 Stand-Alone Sample Code
+
+This document contains instructions for building and running the stand-alone 
+WSM6 sample code on a Xeon host node with attached MIC (KNC Xeon Phi) card.  
+Build-time and run-time options used to create results described in the 
+"Optimizing Numerical Weather Prediction" chapter of "High Performance 
+Parallelism Pearls: Multicore and Many-core Programming Approaches, 2nd 
+Edition" are described.  
+
+The sample code reads input state based upon a full model run with real data, 
+executes a single call to the WSM6 microphysics top-level routine "wsm62d()", 
+and writes output state to disk.  Built-in timers measure execution time.  
+
+Please note that times quoted in the chapter cannot be replicated using this 
+simplified sample code.  The chapter times measure execution of 72 time steps 
+of a complete NWP model that includes a full dynamical core and suite of 
+physics packages.  This sample code contains only the WSM6 physics package 
+and executes only a single call to it.  However, it is possible to use this 
+sample code to explore code modifications described in the chapter and to 
+roughly reproduce relative performance differences, with caveats noted 
+below.  
+
+
+Building and Running the Sample Code
+
+$$$: Do not assume that "." is in the path.  
+$$$: All defaults must create the real32 case!  
+
+0)  All commands in this recipe use tcsh.  ">>" is the command-line prompt on 
+    a Xeon host.  "$" is the command-line prompt on a KNC card.  
+
+1)  Grab the tarfile and stuff it into your working directory.  In this case 
+    the directory is "/panfs/users/${USER}/WSM6/":  
+  >> cd /panfs/users/${USER}/WSM6/
+  >> cp /panfs/users/Xtbhend/WSM6/WSM6sample.tgz .
+    Note that Fortran source code lives in src/kernel/wsm6_kernel.F90.  
+
+2)  Untar:  
+  >> tar xfz WSM6sample.tgz 
+
+3)  Go to the source directory:  
+  >> cd WSM6kernel/src
+
+4)  Build the "optimized" case for KNC.  The "makewsm6" command sets up 
+    any modules (or runs "sourceMe.*sh" scripts) and executes "make" with the 
+$$$  - Explain how to edit makewsm6 script to insert env settings
+$$$    - Explain how to edit macros.make.* to change compiler flags, etc.
+    appropriate target(s).  Arguments mean:  
+      arch=intelxeonphi   Build for Endeavor KNC.  Make macros for this 
+                             build configuration can be found in file 
+                             src/macros.make.intelxeonphi.  
+      threading=yes          Turn on OpenMP theading.  
+      chunk=8                Use horizontal chunk size=8 and translate "chunk" 
+                             dimension to use literal constants for loop and 
+                             memory bounds.  Units of "chunk" are 
+                             double-precision words so "chunk=8" matches KNC 
+                             vector length.  
+      nz=32                  Use vertical loop length=32 and translate vertical 
+                             dimension to use literal constants for loop and 
+                             memory bounds.  
+      fpmp=no                Turn off "-fp-model precise".  
+    Please note that the compiler options used do not include the extra 
+    optimizations added by Indraneil and Ashish yet.  (These can be added by 
+    adding the $(AGGRESSIVE) flag to the definition of PHYSFLAGS in 
+    src/macros.make.intelxeonphi if desired.)  
+  >> makewsm6 arch=intelxeonphi threading=yes chunk=8 nz=32 fpmp=no > & ! make.out
+
+5)  Look in file make.out for any build errors.  If there are no error, make.out 
+    will end with two messages indicating location and name of a script that 
+    will run the sample code:  
+Run scripts are in:
+  /panfs/users/${USER}/WSM6/WSM6kernel/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno
+Run script is:
+  intelsub.mic.serial
+
+6)  Go to the run directory and execute the run script from the compile node:  
+  >> cd /panfs/users/${USER}/WSM6/WSM6kernel/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno
+  >> intelsub.mic.serial
+Made directory: RUN_real32level_240threads_16727
+Execute case 'real32level' from '/panfs/users/${USER}/WSM6/WSM6kernel/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno/RUN_real32level_240threads_16727' via script 'runscript' by hand...
+
+7)  The run script creates a subdirectory and places a file called "runscript" 
+    in it.  In this case the subdirectory is "RUN_real32level_240threads_16727".
+    Launch an interactive session and login to a KNC card.  Then execute 
+    ./runscript :  
+$$$ need to edit ./runscript for MIC before running it, MIC software stacks are too unique to generalize
+  $ cd /panfs/users/${USER}/WSM6/WSM6kernel/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno/RUN_real32level_240threads_16727/
+  $ ./runscript 
+
+8)  Look for output files.  The sample code should create the following files:  
+-rw-r--r-- 1 Xtbhend Xtbhend      519 Oct  6 17:29 timing.summary
+-rw-r--r-- 1 Xtbhend Xtbhend    99074 Oct  6 17:29 timing.0
+-rw-r--r-- 1 Xtbhend Xtbhend     4103 Oct  6 17:29 stdout
+-rw-r--r-- 1 Xtbhend Xtbhend 24171208 Oct  6 17:29 wsm6_output.dat
+    stdout can be used to validate the run.  More on this later.  
+$$$ Validate using fpmp=yes, stdout printed max/min values should be 
+$$$ within 1%, variation in location of maxima/minima is OK.  
+    timing.summary contains brief timer output of the following form:  
+name            ncalls   wallmax (thred)   wallmin (thred)
+Total                1     2.638 (    0)     2.638 (    0)
+WSM62D+OpenMP        1     0.658 (    0)     0.658 (    0)
+WSM62D            1281     0.158 (   12)     0.124 (    0)
+    All times are in seconds.  
+    "Total" time is total execution time for the sample code including all I/O.  
+    "WSM62D+OpenMP" time is execution time for the single OpenMP loop that 
+    contains only one call to wsm62d().  The loops has 10242/chunk iterations, 
+    which is 1281 in this case.  
+    "WSM62D" time is execution time measured inside the OpenMP loop.  This 
+    timer is placed around the call to wsm62d().  See source file 
+    src/kernel/wsm6_kernel.F90 for details.  Note the large difference 
+    between the slowest thread of the "WSM62D" timer and the "WSM62D+OpenMP" 
+    timer.  This is key mystery we must solve.   
+
+
+Build-time and Run-time Settings for Chapter Examples
+
+$$$
+
+
+Performance Caveats
+$$$  - Explain how timings will not match chapter because sample code only
+$$$    runs for one time step
+$$$    - There is dynamics load imbalance in WSM6
+$$$    - Also, run-to-run variability can skew results.  Many runs needed to
+$$$      extract signal from noise.  Worse for single-time-step runs.
+$$$    - May need to turn off "turbo", etc.
+$$$    - Explain GPTLnamelist file
+$$$    - ${host}-mic0 vs. ${host}-mic1 (we used mic0)
+$$$    - software stack (compiler versions, etc.)
+$$$    - Note many runs are needed to wash out run-to-run variability!  
+
+
