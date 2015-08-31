@@ -1,0 +1,85 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=20
+#PBS -l walltime=00:20:00
+#PBS -N stest_hybrid
+#PBS -A ipcc
+#PBS -q PhiTestQ
+#PBS -o out.log
+#PBS -e err.log
+
+# Comment these out if you wish:
+echo "qsub host is"
+echo $PBS_O_HOST
+echo "original queue is"
+echo $PBS_O_QUEUE
+echo "qsub working directory absolute is"
+echo $PBS_O_WORKDIR
+echo "pbs environment is"
+echo $PBS_ENVIRONMENT
+echo "pbs batch id"
+echo $PBS_JOBID
+echo "pbs job name from me is"
+echo $PBS_JOBNAME
+echo "Name of file containing nodes is"
+echo $PBS_NODEFILE
+echo "contents of nodefile is"
+cat $PBS_NODEFILE
+echo "Name of queue to which job went is"
+echo $PBS_QUEUE
+
+cd $PBS_O_WORKDIR
+rm -f hfile.mic
+
+module purge
+module load libs >& /dev/null
+module load phi >& /dev/null
+module load intel/2015 >& /dev/null
+
+# First, ENV variables:
+export I_MPI_PIN_DOMAIN=omp
+export KMP_STACKSIZE=1g
+export KMP_AFFINITY="scatter,granularity=fine"
+
+HOSTS=$(sort -u $PBS_NODEFILE )
+HOSTFILE=hfile.mic
+
+for host in $HOSTS ; do
+cat >> $HOSTFILE << EOF
+${host}-mic0
+EOF
+done
+
+export I_MPI_MIC=enable
+export I_MPI_MIC_POSTFIX=.MIC
+export MIC_LD_LIBRARY_PATH=${MIC_LD_LIBRARY_PATH}:/ichec/packages/intel/intel-cluster-studio-2015/composer_xe_2015.0.090/compiler/lib/mic:/ichec/packages/intel/intel-cluster-studio-2015/composer_xe_2015.0.090/mkl/lib/mic
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/ichec/packages/intel/intel-cluster-studio-2015/composer_xe_2015.0.090/compiler/lib/mic:/ichec/packages/intel/intel-cluster-studio-2015/composer_xe_2015.0.090/mkl/lib/mic
+
+export MIC_ENV_PREFIX=MIC_
+export KMP_STACKSIZE=200MB
+export MIC_KMP_STACKSIZE=50MB
+export MIC_KMP_MONITOR_STACKSIZE=12MB
+export KMP_AFFINITY="scatter,granularity=fine"
+export MIC_KMP_AFFINITY="scatter,granularity=fine"
+
+rm -f stresstest.dat
+
+# First run on the Phi:
+export OMP_NUM_THREADS=200
+export MIC_OMP_NUM_THREADS=200
+(time mpiexec.hydra -n 1 -machinefile ./hfile.mic ./stest_hybrid_fine.x < input_6GB_p1.txt ) >& t200_p1_6GB_phi.log 
+
+export OMP_NUM_THREADS=100
+export MIC_OMP_NUM_THREADS=100
+(time mpiexec.hydra -n 2 -machinefile ./hfile.mic ./stest_hybrid_fine.x < input_6GB_p1x1x2.txt ) >& t100_p1x1x2_6GB_phi.log 
+
+
+# Now run on the host:
+# 20 MPI processes on 20 physical cores, 2 threads/core (to use hyperthreading):
+export OMP_NUM_THREADS=2
+(time mpiexec.hydra -n 20 ./stest_hybrid_fine.x < input_6GB_p2x2x5.txt ) >& t2_p2x2x5_6GB_host.log
+
+# 40 MPI processes on all 40 logical cores (again using hyperthreads):
+export OMP_NUM_THREADS=1
+rm -f stresstest.dat
+(time mpiexec.hydra -n 40 ./stest_hybrid_fine.x < input_6GB_p2x4x5.txt ) >& t1_p2x4x5_6GB_host.log 
+

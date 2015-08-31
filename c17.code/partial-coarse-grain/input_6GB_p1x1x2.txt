@@ -1,0 +1,8 @@
+ 40             # Number of smoothing iterations to be done.
+ 800, 800, 1200 # Number of points in each dimension of 3-d grid
+ 1              # Interval between smoothing iterations for screen output
+ 0.05           # Weight to be given to each neighbouring point (.001 - .1)
+ 100.           # Max. range of initial data (1. - 100000.)
+ 0              # Deterministic initialization if zero, random init otherwise
+ 1, 1, 2        # nprocx, nprocy, nprocz domain decomposition
+
