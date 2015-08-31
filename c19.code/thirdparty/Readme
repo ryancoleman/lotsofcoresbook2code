@@ -1,0 +1,29 @@
+The following thirdparty solutions are used.
+Check out the links below for further information.
+
+The downloads.tar.gz contain versions of all the thirdparty codes.
+If you don't wish to download, simply run:
+	tar -xzf downloads.tar.gz
+	./build.sh
+
+To automatically download and build everything simply run "download.sh"
+followed by "build.sh". See the scripts for details.
+
+HAM: 
+	https://github.com/noma/ham
+
+CLU: 
+	https://github.com/Computing-Language-Utility/CLU
+
+Vc: 
+	http://code.compeng.uni-frankfurt.de/projects/vc/
+	NOTE: MIC support is in the master branch of git://code.compeng.uni-frankfurt.de/vc.git
+
+VCL (Vector Class Library): 
+	http://www.agner.org/optimize/#vectorclass
+	NOTE: For MIC support:
+		a) http://www.agner.org/optimize/vectorclass.zip (download this)
+		b) http://bitbucket.org/veclibknc/vclknc (MIC version by Przemysław Karpiński)
+		   https://bitbucket.org/veclibknc/vclknc.git (clone this)
+		=> Merge b) into a) = MIC version
+
