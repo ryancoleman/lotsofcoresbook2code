@@ -1,0 +1,40 @@
+sources = AlignCore.cpp  Align.cpp  main.cpp  SeqFileParser.cpp Sequence.cpp  Utils.cpp AlignCoreNaive.cpp AlignCoreTiling.cpp
+
+src_dir = src
+objs_dir = objs
+mpi_objs += $(patsubst %.cpp, $(objs_dir)/%.mpi.cpp.o, $(sources))
+
+#Intel C++ compiler install directory
+INTEL_DIR=/opt/intel/install
+
+#ZLIB header file directory
+ZLIB_HEADER=../../zlib-1.2.8
+
+#MPI C++ compiler (the MPI library must be compiled with Intel C++ compiler)
+#MPI_CXX = mpic++
+MPI_CXX = mpiicpc
+
+#zlib-compressed input
+#MACROS += -DCOMPRESSED_INPUT
+
+#compiler options
+MIC_FLAGS = -offload-option,mic,ld,"-z defs -rpath /opt/intel/mic/myo/lib/ -rpath /opt/intel/mic/coi/device-linux-release/lib"
+CXXFLAGS = $(MIC_FLAGS) -O3 -Wall -funroll-all-loops -openmp -I $(INTEL_DIR)/include  -I $(ZLIB_HEADER) $(MACROS)
+
+mylibs = -lz -lm
+MPI_EXEC = mpi-swaphi-ls
+
+all: dir $(mpi_objs)
+	$(MPI_CXX) $(CXXFLAGS) -o $(MPI_EXEC) $(mpi_objs) $(mylibs)
+	strip $(MPI_EXEC)
+
+dir:
+	mkdir -p $(objs_dir)
+
+clean:
+	-rm -rf $(objs_dir) $(MPI_EXEC)
+
+$(objs_dir)/%.mpi.cpp.o: $(src_dir)/%.cpp
+	$(MPI_CXX) $(CXXFLAGS) -DMPI_PARALLEL -o $@ -c $<
+
+

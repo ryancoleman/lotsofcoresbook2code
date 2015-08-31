@@ -1,0 +1,40 @@
+sources = AlignCore.cpp  Align.cpp  main.cpp  SeqFileParser.cpp Sequence.cpp  Utils.cpp AlignCoreNaive.cpp AlignCoreTiling.cpp
+
+src_dir = src
+objs_dir = objs
+objs += $(patsubst %.cpp, $(objs_dir)/%.cpp.o, $(sources))
+
+#Intel C++ compiler install directory
+INTEL_DIR=/opt/intel/install
+
+#ZLIB header file directory
+ZLIB_HEADER=../../zlib-1.2.8
+
+
+#Intel C++ compiler
+CXX = icpc
+
+#zlib-compressed input
+#MACROS += -DCOMPRESSED_INPUT
+
+#compiler options
+MIC_FLAGS = -offload-option,mic,ld,"-z defs -rpath /opt/intel/mic/myo/lib/ -rpath /opt/intel/mic/coi/device-linux-release/lib"
+CXXFLAGS = $(MIC_FLAGS) -O3 -Wall -funroll-all-loops -openmp -I $(INTEL_DIR)/include  -I $(ZLIB_HEADER) $(MACROS)
+
+mylibs = -lz -lm
+EXEC = swaphi-ls
+
+all: dir $(objs)
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(objs) $(mylibs)
+	strip $(EXEC)
+	
+dir:
+	mkdir -p $(objs_dir)
+
+clean:
+	-rm -rf $(objs_dir) $(EXEC)
+
+$(objs_dir)/%.cpp.o: $(src_dir)/%.cpp
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+
