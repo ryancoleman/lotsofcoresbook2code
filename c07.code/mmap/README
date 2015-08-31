@@ -1,0 +1,98 @@
+This sub-directory contains two files, scif_accept_rma_fence.c and scif_connect_rma_fence.c, that provide sample code demonstrating the mmap APIs of SCIF. 
+
+Build Dependencies:
+-------------------
+* Intel C compiler or gcc.
+* The Manycore Platform Software Stack (Intel(R) MPSS)
+* At least on Intel(R) Xeon Phi(TM) coprocessor that is enabled and "online"
+
+Build:
+------
+* Invoke "make clean; make"
+* Note: one side is built using the -mmic compiler flag. This binary needs to run on the Intel(R) Xeon Phi(TM) coprocessor.
+
+Example:
+--------
+$ make clean; make
+rm -f scif_connect_rma_host scif_accept_rma_mic
+icc -mmic scif_accept_rma_fence.c -lscif -o scif_accept_rma_mic
+icc scif_connect_rma_fence.c -lscif -L/usr/lib64 -o scif_connect_rma_host
+
+Execution:
+----------
+Two sides of the "conversation" must be started for this application to work. scif_accept_rma_mic 
+runs on the coprocessor, while scif_connect_rma_host runs on the host.
+
+1. Start by copying scif_accept_rma_mic to the coprocessor as follows:
+$ scp scif_accept_rma_mic mic0:
+scif_accept_rma_mic                                                 100%   58KB  57.8KB/s   00:00    
+
+2. Hop onto the coprocessor 
+$ ssh mic0
+mic0$ ls
+scif_accept_rma_mic
+
+3. Run the coprocessor side of the application.
+mic0$ ./scif_accept_rma_mic 
+./scif_accept_rma_mic -n <4K page count>
+Argunments
+	count of 4K page: Number of 4K pages to scif_mmap() 
+
+4. Run the host side of the application.
+$ ./scif_connect_rma_host 
+./scif_connect_rma_host -n <4K page count> -c <cpu vs. dma 1/0> -r <remote node>
+Argunments
+	count of 4K page: Number of 4K pages to scif_mmap() 
+	cpu vs. DMA: Method of data transfer 
+	remote node: Remote node to connect to 
+
+The output should be something like this, starting with the coprocessor 
+(the side that accepts the connection). In this example, we allocate and register two 4K pages.
+
+Example output:
+-------
+
+Coprocessor Side:
+-----------------
+
+mic0$ ./scif_accept_rma_mic -n 2
+Listening for incoming connection(s) ... Accepting connection ... done 
+Registering memory of size 12288 bytes ... Done (offset 0x80000)
+Card: I'm done with registration!
+Data received correctly! 
+Card: Data reverse done
+Flag transitioned to "go" 
+Host wrote: Hello Card, How are you? 
+Waiting for final message from host 
+Received Good Bye 
+Card: Window unregistered
+Success
+
+Host Side:
+----------
+
+$ ./scif_connect_rma_host -n 2 -c 1 -r 1
+Params: msg_size 8192 bytes, using CPU remote node 1 
+Estabilishing connection ... done 
+Registering memory of size 12288 bytes ...Done (offset 0x80000)
+Host: I'm done with registration!
+Moving bytes now ... 
+0xf12000[0] : 1010101
+0xf13000[0] : 2020202
+Fencing DMA Write to card ... Done 
+Spinning for data transfer completion ...Done
+Host: Waiting for card to reverse the data
+Reading data from remote side ... Done 
+Fencing DMA Read from card ... Done 
+Spinning for data transfer completion ...Done
+curr_addr[0] : 2020202
+curr_addr[0] : 1010101
+Getting pointer to buffer on card ... Done
+Waiting for card to 0xDEED 
+Received from Card: I'm okay, How are you doing, Host? 
+Host: Window unregistered
+Success
+
+Conclusions:
+------------
+Several other parameters could be tried out, including starting the coprocessor side first.

@@ -1,0 +1,141 @@
+Introduction
+------------
+The code has two parts. A client that runs on the host and a server that runs on 
+the coprocessor. The included Makefile is simple to read/modify if needed and shows 
+the files needed to build the binaries for the client and the server.
+
+The "SCIF Queue" and "SCIF Node" abstractions is provided by the supporting code 
+in the remaining files.
+
+The client (runs on the host) establishes a connection (using SCIF) with the server 
+(runs on the coprocessor). Packets of a configurable size are pushed into a queue and 
+made available for processing on the coprocessor. The code running on the coprocessor 
+processes (the handler) the packets and pushes the a result packet back into another 
+queue for the host to complete processing for a packet (e.g. trade).
+
+Once the code is built using Intel C/C++ compilers, the host and card side can be 
+invoked as follows. The card side binary must be copied to the coprocessor and invoked 
+from the Linux shell on the coprocessor. Note that the host side locks (pins) down memory
+to avoid page faults at run-time. In this example this is done via mlock() requiring sudo
+access.
+
+This sub-directory contains the following files:
+-----------------------------------------------
+scif_accept_rbuf.cpp	
+scif_connect_rbuf.cpp  
+ScifNode.cpp  
+ScifNode.h  
+ScifQueue.cpp	
+ScifQueue.h
+
+Build Dependencies:
+-------------------
+* Intel C compiler or gcc.
+* The Manycore Platform Software Stack (Intel(R) MPSS)
+* At least on Intel(R) Xeon Phi(TM) coprocessor that is enabled and "online"
+
+Build:
+------
+* Invoke "make clean; make"
+* Note: one side is built using the -mmic compiler flag. This binary needs to run on the Intel(R) Xeon Phi(TM) coprocessor.
+
+Example:
+--------
+$ make clean; make
+rm -f scif_connect_rbuf_host scif_accept_rbuf_mic
+icc -mmic -O3 -I /usr/include  -Wall ScifQueue.cpp ScifNode.cpp  scif_accept_rbuf.cpp -lscif -lpthread -o scif_accept_rbuf_mic 
+icpc -g -O3 -I /usr/include  -Wall -DHOST ScifQueue.cpp ScifNode.cpp scif_connect_rbuf.cpp -lscif -lpthread -o scif_connect_rbuf_host 
+
+NOTE: -DVERBOSE_DEBUG is used for debug only and will generate a lot of extra prints on the console.
+
+Execution:
+----------
+Two sides of the "conversation" must be started for this application to work. scif_accept_rbuf_mic
+runs on the coprocessor, while scif_connect_rbuf_host runs on the host.
+
+1. Start by copying scif_accept_rbuf to the coprocessor as follows:
+$ scp scif_accept_rbuf_mic mic0:
+scif_accept_rbuf_mic                                         100%   96KB  95.6KB/s   00:00  
+
+2. Hop onto the coprocessor 
+$ ssh mic0
+[mic@mic0 ~]$ ls
+scif_accept_rbuf_mic
+
+3. Run the coprocessor side of the application. To list the options, simply run each side without any options.
+
+[mic@mic0 ~]$ ./scif_accept_rbuf_mic 
+./scif_accept_rbuf_mic -s <message size> -c <queue capacity> -n <total messages>
+Arguments: 
+	-s message size - size of each message sent between host and coprocessor 
+	-c queue capacity - number of elements the queue should be sized to 
+	-n total messages - total number of messages that should be sent from the host 
+
+4. Run the host side of the application.
+$ ./scif_connect_rbuf_host 
+./scif_connect_rbuf_host -s <message size> -c <queue capacity> -t <time interval> -n <total messages>
+Arguments: 
+	-s message size - size of each message sent between host and coprocessor 
+	-c queue capacity - number of elements the queue should be sized to 
+	-t time interval - inter packet gap (IGP) 
+	-n total messages - total number of messages that should be sent from the host 
+
+The output should be something like this, starting with the coprocessor 
+(the side that accepts the connection). In this example, we allocate and register two 4K pages.
+
+Example output:
+----------------
+In this example, the host sends 1000 messages (-n) via a queue sized to hold 100 packets (-c) with an average interpacket gap of 10 microsecond. The size of each packet is 1500 bytes.
+
+Coprocessor Side:
+-----------------
+$ ./scif_accept_rbuf_mic -s 1500 -c 100 -n 1000
+Coprocessor setup as server
+bind success to port 2050
+ScifServer::accept accepted connection to local port 2050 epd: 4
+ScifServer::accept accepted connection to local port 2051 epd: 5
+all connections successful
+ScifQueue::ScifQueue Creating Queue ... 
+ScifQueue::ScifQueue Queue instantiated! 
+ScifRecvQueue::pair done with token host_send_queue
+ScifQueue::ScifQueue Creating Queue ... 
+ScifQueue::ScifQueue Queue instantiated! 
+ScifSendQueue::pair -- Sanity Checking ... Succeeded
+ScifSendQueue::pair succeeded with token host_recv_queue
+Coprocessor processed  1000 messages! 
+ScifQueue::~ScifQueue
+ScifQueue::~ScifQueue
+
+Host Side: (NOTE: The code expects to lock down pages and requires "sudo" access)
+----------
+$ sudo ./scif_connect_rbuf_host -s 1500 -c 100 -n 1000 -t 10
+Host setup as client
+msg_size 1500 capacity 100 time 10 num_msg 1000
+ScifClient::connect successful bind to local port2050 epd: 3
+ScifClient::connect successful bind to local port2051 epd: 4
+all connections successful
+ScifQueue::ScifQueue Creating Queue ... 
+ScifQueue::ScifQueue Queue instantiated! 
+ScifSendQueue::pair -- Sanity Checking ... Succeeded
+ScifSendQueue::pair succeeded with token mic_recv_queue
+ScifQueue::ScifQueue Creating Queue ... 
+ScifQueue::ScifQueue Queue instantiated! 
+ScifRecvQueue::pair done with token mic_send_queue
+Number of messages: 1000
+
+Host side recieve thread processed 1000 packets
+
+Total RTT from first send to last receive for 1000 messages: 11017 microsecs
+RTT for the first 20 messages: 51 40 35 33 31 30 28 26 23 20 18 15 13 12 11 11 11 11 10 11 
+RTT for the last 20 messages: 10 11 11 11 11 10 11 10 11 11 11 10 10 11 10 11 10 11 11 10 
+Mean RTT: 10.99 microsecs
+  50.0000%  70.0000%  75.0000%  80.0000%  85.0000%  90.0000%  91.0000%  92.0000%  93.0000%  94.0000%  95.0000%  96.0000%  97.0000%  98.0000%  99.0000%  99.9000%  99.9900%  99.9990%  99.9999%
+        11        11        11        11        11        11        11        11        11        12        12        12        12        13        26        51        51        51        51
+Mean time interval between sends: 11.018 microsecs
+  50.0000%  70.0000%  75.0000%  80.0000%  85.0000%  90.0000%  91.0000%  92.0000%  93.0000%  94.0000%  95.0000%  96.0000%  97.0000%  98.0000%  99.0000%  99.9000%  99.9900%  99.9990%  99.9999%
+        11        11        11        11        11        11        11        11        11        11        11        11        11        11        11        18        18        18        18
+
+Conclusions:
+------------
+The above example run shows a mean RTT of 10.99 microseconds. 
+Several other command line option are possible and should be tried.

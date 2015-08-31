@@ -1,0 +1,102 @@
+Introduction
+-------------
+This sub-directory contains two files and provides sample code demonstrating the connection 
+establishment and memory registration APIs of SCIF. The two files are scif_accept_register.c 
+and scif_connect_register.c
+
+Build Dependencies:
+-------------------
+* Intel C compiler or gcc.
+* The Manycore Platform Software Stack (Intel(R) MPSS)
+* At least on Intel(R) Xeon Phi(TM) coprocessor that is enabled and "online"
+
+Build:
+------
+* Invoke "make clean; make"
+* Note: one side is built using the -mmic compiler flag. This binary needs to run on the Intel(R) Xeon Phi(TM) coprocessor.
+
+Example:
+--------
+$ make clean; make
+rm -f scif_connect_register scif_accept_register
+icc scif_accept_register.c -lscif -L/usr/lib64 -o scif_accept_register
+icc -mmic scif_connect_register.c -lscif -o scif_connect_register 
+
+Execution:
+----------
+Two sides of the "conversation" must be started for this application to work. scif_connect_register 
+runs on the coprocessor, while scif_accept_register runs on the host.
+
+1. Start by copying scif_connect_register to the coprocessor as follows:
+$ scp scif_connect_register mic0:
+scif_connect_register                                                100%   33KB  32.9KB/s   00:00    
+
+2. Run the host side of the application in one terminal.
+$ ./scif_accept_register 
+./scif_accept_register -n <4K page count> -m <mmap chooser 0/1/2>
+Argunments
+	count of 4K page: Number of 4K pages to scif_mmap() 
+	mmap chooser: method to obtain the offset via scif_mmap 
+
+3. Hop onto the coprocessor and run the client side of the application. 
+$ ssh mic0
+$ ls
+scif_connect_register
+mic0$ ./scif_connect_register -n <4K page count> -m <map chooser 0/1/2> -r <remote node> 
+Argunments
+	count of 4K page: Number of 4K pages to scif_mmap() 
+	mmap chooser: method to obtain the offset via scif_mmap 
+	remote node: the node to connect to 
+
+
+The output should be something like this, starting with the host 
+(the side that accepts the connection). In this example, we allocate and register two 4K pages.
+
+
+
+Example output:
+---------------
+
+Host Side:
+----------
+
+$ ./scif_accept_register -n 2 -m 1
+bind success to port 2050
+connection accepted!
+Buffer allocated at 0x1f7e000
+Registered buffer at offset 0x80000
+Memory registration done 
+
+==============================================================
+Obtained peer offset: 0x80000
+SCIF mmap'd buffers at address 0x1f7e000
+pattern verified
+==============================================================
+unmap and unregister
+==============================================================
+Success
+
+Coprocessor side:
+-----------------
+
+mic0$ ./scif_connect_register -n 2 -m 1 -r 0
+Successfully bound to port 1090
+Connection established 
+Allocated buffer at 0x174b000
+registered buffer at offset 0x80000
+register window done
+==============================================================
+peer window offset : 0x80000
+mapped buffers at address 0x174b000
+pattern verified
+==============================================================
+unmap and unregister
+==============================================================
+Success
+mic0$ 
+
+
+
+Conclusions:
+------------
+Several other parameters could be tried out, including starting the coprocessor side first.
