@@ -1,0 +1,84 @@
+//$Id: spin.dox,v 1.1 2005-04-22 16:08:20 zbigniew Exp $
+/*!
+\page spinpage Spin Conventions
+
+\section secspin Spin Conventions
+
+The following set of \f$\gamma\f$-matrices are used in four
+dimensions:
+\f[
+\begin{array}{lccc}
+\gamma_0\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&0&i\\
+   0&0&i&0\\
+   0&-i&0&0\\
+   -i&0&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&i\sigma^1\\
+   -i\sigma^1&0
+ \end{array}\right)\quad\quad &
+ -\sigma^2\!\otimes\!\sigma^1\\
+\gamma_1\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&0&-1\\
+   0&0&1&0\\
+   0&1&0&0\\
+   -1&0&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&-i\sigma^2\\
+   i\sigma^2&0
+ \end{array}\right)\quad\quad &
+ \sigma^2\!\otimes\!\sigma^2\\
+\gamma_2\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&i&0\\
+   0&0&0&-i\\
+   -i&0&0&0\\
+   0&i&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&i\sigma^3\\
+   -i\sigma^3&0
+ \end{array}\right)\quad\quad &
+ -\sigma^2\!\otimes\!\sigma^3\\
+\gamma_3\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&1&0\\
+   0&0&0&1\\
+   1&0&0&0\\
+   0&1&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&\mathbf{1}\\
+   \mathbf{1}&0
+ \end{array}\right)\quad\quad &
+ \sigma^1\!\otimes\!1\\
+\end{array}
+\f]
+
+The basis is chiral. All the possible gamma matrix products are
+represented via
+\f[
+\Gamma(n) = \gamma_0^{n_0} \gamma_1^{n_1} \gamma_2^{n_2} \gamma_3^{n_3}
+\f]
+where <em>n<sub>i</sub></em> are single bit fields.  Since \f$\gamma_0\f$ comes first the
+bit for it must come first. 
+
+So, \f$\gamma_5 = \gamma_0\gamma_1\gamma_2\gamma_3\f$ 
+is represented as 1111b = 15d, and 
+\f$\gamma_0\gamma_1\gamma_3\f$ is represented as 1011b = 11d
+(note the ordering). The conventional \f$\gamma\f$-matrices are
+\f[
+\Gamma(1) = \gamma_0\qquad
+\Gamma(2) = \gamma_1\qquad
+\Gamma(4) = \gamma_2\qquad
+\Gamma(8) = \gamma_3
+\f]
+
+This enumeration is \f$\gamma\f$-basis independent.
+
+
+*/

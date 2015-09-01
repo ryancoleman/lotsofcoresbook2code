@@ -1,0 +1,39 @@
+/*******************************************************************
+ *                                                                 *
+ *                       MakeOperators tool                        *
+ *                                                                 *
+ *******************************************************************/
+                            
+This directory contains the MakeOperators tool that generates
+operators and functions that return expression template objects.
+See the man page in html/makeoperators.html for a description
+of the tool produced here.
+
+The makefile in this directory has several targets:
+
+make default:
+  produces the MakeOperators tool.
+
+make peteheaders:
+  makes the file OperatorTags.h found in src/PETE.  To install it
+  there type 'make installheaders'.
+
+make newpeteops:
+  makes the file PeteOps.cpp in the current directory.
+
+The last target needs a little explaining.  PETE comes with 45
+built-in operators, defined in PeteOps.in.  These could be included
+by saying 'MakeOperators --operators PeteOps.in', but that would
+force users to provide the correct path to PeteOps.in or make a
+local copy.  We decided, therefore, to build these operators into
+the executable, so that users wouldn't have to explicitly include
+the file PeteOps.in.  The data for these operators is in PeteOps.cpp.
+To avoid maintaining duplicate versions of the same data, MakeOperators
+can be used to build PeteOps.cpp from PeteOps.in.  Note that users
+can always provide their own input file for operator definitions,
+but if you wanted to permanently extend the set of PETE's built-in
+operators, you should add the operators to PeteOps.in, use
+'make newpeteops' to build PeteOps.cpp, and then re-build
+MakeOperators.
+
+

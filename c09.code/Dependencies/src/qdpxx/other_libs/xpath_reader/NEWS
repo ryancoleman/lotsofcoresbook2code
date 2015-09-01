@@ -1,0 +1,26 @@
+23-Feb-2006 -- Balint Joo
+
+	Version 1.4.0. Added set function to reader.
+
+16-May-2005 -- Robert Edwards
+
+	Version 1.3.1. Some new XMLArray functions.
+
+27-Apr-2005 -- Robert Edwards
+
+	Version 1.3.0. Renamed include files to have unique xml prefix.
+        Put Array and TComplex in namespaces. Went through and removed
+        all using namespace std like stuff and cleaned it up.
+
+27-Apr-2005 -- Robert Edwards
+
+	Version 1.2.3. Last minor release before rearrangement.
+
+27-Apr-2004 -- (RGE)
+ 
+	More support for printing XML input trees.
+
+09-Apr-2003 -- (BJ)
+ 
+	Created -- can deal with doubles, ints and strings read from file,
+ 	and written to file.		

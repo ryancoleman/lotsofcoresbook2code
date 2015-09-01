@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+
+<t_nersc>
+  <lattis>
+    <Nd>4</Nd>
+    <Nc>3</Nc>
+    <nrow>4 4 4 4</nrow>
+  </lattis>
+  <Initial_observables>
+    <w_plaq>-0.00175386</w_plaq>
+    <link>0.00312937</link>
+  </Initial_observables><NERSC>
+  <mat_size>12</mat_size>
+  <nrow>4 4 4 4</nrow>
+  <boundary>1 1 1 1</boundary>
+  <ensemble_id>X1101145605</ensemble_id>
+  <ensemble_label>NERSC</ensemble_label>
+  <creator>QDP++</creator>
+  <creator_hardware>QDP++</creator_hardware>
+  <creation_date>Mon</creation_date>
+  <archive_date>Mon</archive_date>
+</NERSC>
+
+  <Final_observables>
+    <w_plaq>-0.00175385</w_plaq>
+    <link>0.00312937</link>
+  </Final_observables>
+</t_nersc>

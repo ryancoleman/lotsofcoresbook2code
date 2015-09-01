@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+
+<prop_header>
+  <kappa>0</kappa>
+  <source_smearingparam>0</source_smearingparam>
+  <source_type>0</source_type>
+  <source_direction>3</source_direction>
+  <sink_smearingparam>0</sink_smearingparam>
+  <sink_type>0</sink_type>
+  <sink_direction>0</sink_direction>
+</prop_header>

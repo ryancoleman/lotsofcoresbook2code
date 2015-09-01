@@ -1,0 +1,9 @@
+Makefile.in
+aclocal.m4
+bin/Makefile.in
+configure
+doc/Makefile.in
+examples/Makefile.in
+include/Makefile.in
+include/qio_config_internal.h.in
+lib/Makefile.in

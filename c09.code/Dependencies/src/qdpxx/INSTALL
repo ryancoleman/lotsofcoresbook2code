@@ -1,0 +1,247 @@
+Installation instructions for QDP++
+=================================
+
+1) Configuration.
+---------------- 
+
+QDP++ has been modified to use the GNU autoconf build system.
+To configure you have to execute the command:
+
+./configure <configuration options>
+
+Some important options for QDP++ are
+
+        --enable-parallel-arch=<arch>
+        --prefix=<installation directory>
+        --with-qmp=DIR
+	--enable-Nc=<no of colours> 
+	--enable-Nd=<no of spacetime dimensions>
+	--enable-Ns=<no of spin components>
+
+The environment variables QMP_CFLAGS, QMP_LDFLAGS, QMP_LIBS can also be used
+to override the values given by the qmp-config script, but this is recommended
+only for the experts.
+
+--with-qmp=<DIR> 	Specifies a directory where QMP is installed.
+		  This option is only useful for versions of QMP 1.4 or 
+		  higher, where the QMP build system leaves a file in 
+		  <DIR>/bin/qmp-config  listing the environment
+		  variables needed for compiling with QMP. All values in 
+		  qmp-config are overriden, if the relevant values
+		  are already defined in the shell, or if they are defined
+		  on the configure command line with --with-qmp-xxxx= 
+		  switches. 
+
+
+ --enable-parallel-arch=<arch>    Specifies the type of architecture. Allowed
+                                  values for <arch> are:
+                                   scalar    -- single processor implementation
+                                   parscalar -- parallel collection of single 
+                                                processor nodes using QMP for
+                                                  communications.
+				   default value is scalar.
+				
+ --prefix=<installdir>            specifies where the QDP headers 
+                                  and libraries should be installed 
+                                  when you type: make install. 
+	                          By default it is set to /usr/local.
+
+
+ --with-qmp-comms-type=<comms-type>    This specifies what comms harness QMP
+                                  is to be built over. Allowed values for
+	                          COMMS_TYPE are:
+				     MPI  -- Build over MPI (also MPI/GM)
+				     GM   -- Build over GM.
+
+				  this flag is only needed for non scalar
+				  builds. Its default value is MPI
+
+--enable-Nc=<Nc>                  Specify the number of colour components
+				  (default is Nc=3)
+
+--enable-Ns=<Ns>                  Specify the number of spin components
+				  (default is Ns=4)
+
+--enable-Nd=<Nd>                  Specify the number of spacetime dimensions
+				  (default is Nd=4)
+
+Specifying a compiler:
+
+You can specify a compiler by using the CXX environment variable on the 
+configure command line eg:
+
+./configure CXX=xlC 
+
+or 
+
+./configure CXX=powerpc-gnu-elf-g++
+
+This currently takes care of the cross compiling issues, as there is currently
+no need to distinguish between host and target compilers.
+
+Autoconf guesses some default compiler flags for you. On Linux this is
+usually "-g -O2 -Wall". You can override (specify more optimisations)
+by defining the CXXFLAGS variable which gets passed on by autoconf.
+Likewise if you need extra libraries (like -lm) you can specify these
+with LDFLAGS and LIBS environment variables eg:
+
+./configure CXX=g++ CXXFLAGS="-O3" LIBS="-lm"
+
+2) Building
+-----------
+After configuration, to make the library  
+simply type 
+	
+	make
+
+in the directory where you executed the configure script.
+
+In this case the library will be built in ./lib
+the config header file will be placed in  ./include/qmp_config.h
+
+3) Building the examples
+------------------------
+The examples are no longer built by default. Type make check
+to make them
+
+3) Building in a different directory from the Source
+----------------------------------------------------
+
+This is supported, and may be desirable if you wish to have several
+different configurations of the same source tree around. 
+Suppose you have the distribution unpacked in directory ./qdp
+you can then build a scalar version in ./scalar-build as follows
+
+mkdir ./scalar-build
+cd ./scalar-build
+../qdp/configure  < options >
+gmake
+
+the libraries examples and config header file would be placed
+as in 2) but relative to scalar-build
+
+Note: You may find that there are fewer header files in this 
+directory than in the toplevel source directory. This is because
+most of them are still in the toplevel source directory (including
+all the PETE stuff and the input files to the examples ). Only things
+that actually get built end up in the build directory.
+
+4) Building the documentation
+-----------------------------
+
+Documentation is not built by default (files produced by doxygen
+take up a lot of space and take time to produce). To make the 
+documentation type 
+
+    gmake doc 
+
+in the directory you ran configure in. The documentation should 
+be built in the ./docs subdirectory of your build directory  (
+which is where you ran configure ).
+
+5) Installing
+-------------
+
+You install the library,  by typing 
+
+	gmake install
+
+in the top build directory ( where you ran configure ).
+This will install the include files the library and the built
+examples. 
+
+It will NOT install the examples.
+It will NOT install the documentation.
+
+To install the documentation you have to type 
+
+	gmake doc-install
+
+6) Cleaning up. 
+--------------
+
+You can clean a build in the usual way by typing: gmake clean
+You need to type: gmake doc-clean to clean up the built docs
+
+To remove an installation, you should type gmake uninstall
+(or for the docs gmake doc-uninstall)
+
+To remove the Makefiles etc made by autoconf, type 
+gmake distclean. To distclean the documentation type
+gmake doc-distclean.
+
+Since gmake distclean removes the makefiles, we recommend 
+you do the gmake doc-distclean before gmake distclean.
+
+Note if you built in a separate directory from the source, 
+you can just remove the whole directory.
+
+
+7) A complete example
+---------------------
+
+Here is an example 
+
+-- with QMP installed in /Home/bj/scratch/qmp-1.3-mpich built over MPI
+   (default qmp-comms-type)
+
+-- with MPICH installed in /Home/bj/scratch/mpich-1.2.4
+
+-- building for parallel scalar architecture with Nc=3, Nd=4, Ns=4
+
+-- building the examples and the documentation
+
+-- to install in /Home/bj/scratch/qdp-0.19-Nd4-Ns4-Nc4-vol2048-parscalar
+
+I do the following:
+
+mkdir build; cd build
+
+../configure CXX=/Home/bj/scratch/mpich-1.2.4/bin/mpiCC \
+     --with-qmp-cxxflags="-I/Home/bj/scratch/qmp-1.3-mpich/include" \
+     --with-qmp-ldflags="-L/Home/bj/scratch/qmp-1.3-mpich/lib" \
+     --with-qmp-libs="-lqmp" \
+     --enable-parallel-arch=parscalar \
+     --prefix=/Home/bj/scratch/qdp-0.19-Nd4-Ns4-Nc4-vol2048-parscalar
+
+gmake 
+gmake examples
+gmake doc
+gmake install
+gmake doc-install
+
+
+or another alternative, is if you use a version of QMP which leaves a 
+<qmp_dir>/bin/qmp-config file on installation, you can try
+
+../configure CXX=/Home/bj/scratch/mpich-1.2.4/bin/mpiCC \
+	     --enable-parallel-arch=parscalar \
+	     --with-qmp=/Home/bj/scratch/qmp-install \
+	     --prefix=/Home/bj/scratch/qdp-0.19-Nd4-Ns4-Nc4-vol2048-parscalar
+
+etc etc
+
+
+5) Leaving a file containing the values of the environment variables.
+---------------------------------------------------------------------
+
+As of version 1.0, qdp++ creates and installs a file called 
+qdp++-config in <prefix>/bin
+
+This file defines all the environment variables used in configuring 
+QDP++, (ie: QMP_CXXFLAGS, QMP_LDFLAGS, QMP_LIBS, QMP_COMMS_CXXFLAGS, QMP_COMMS_LDFLAGS, QMP_LIBS) as well as QDP_CXXFLAGS, QDP_LDFLAGS and QDP_LIBS which 
+contain the relevant compiler options to compile programs with QDP++. 
+Each environment variable definition in this file is guarded, so that
+environment variables defined in the shell calling ./configure take
+precedence over those defined in the file, when the file is sourced.
+
+This file may be useful in projects that use QDP++. For example a configure
+script in such a project may source this file, and then attempt 
+to compile a simple QDP++ program, saving the user from entering 
+8-9 configuration options. 
+
+5) Reporting Bugs etc.
+---------------------
+
+Send bugreports to edwards@jlab.org
+ 

@@ -1,0 +1,16 @@
+LIME may be built as a separate package.
+
+If you like to build it in a separate, sibling build directory,
+create the build directory and then from that directory, run (for
+example)
+
+../lime-1.1/configure --prefix=$LIMEPREFIX CC=gcc CFLAGS=-O3
+make
+make install
+
+where LIMEPREFIX is the installation directory.
+
+
+The utilities are in the examples directory.  To build them, run
+
+   make check

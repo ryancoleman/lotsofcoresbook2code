@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<foo xmlns:bj="http://www.ph.ed.ac.uk/~bj/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ww.ph.ed.ac.uk/ukqcd/community/the_grid/xml_schema/qcdmetadata-v0.4.xsd">
+
+  <bar index="foo">
+    <kappa> 0.1440e-2 </kappa>
+  </bar>
+
+  <bar xmlns:fred="http://www.ph.ed.ac.uk/~bj2" funkyAttribute="Four and twenty virgins" index="5">
+    <fred:kappa>
+	0.1440e-2
+
+
+    </fred:kappa>
+  </bar>
+
+  <bar>
+     0.5
+  </bar>
+  <bj:fred/>
+
+  <bj:gnus>
+       <bj:gnats>
+	 <bj:armadillo>200</bj:armadillo>
+	 <armadillo2>jiminicricket</armadillo2>
+       </bj:gnats>
+
+  </bj:gnus>
+  <bj:foo>Foo bar 26 maidens</bj:foo>
+  <multi_quarkP>
+	false
+</multi_quarkP>
+
+  <bj:mybool>true</bj:mybool>
+
+  <funky>25 35</funky>
+  <funky2>25 kool</funky2>
+
+  <funkybool> true false </funkybool>
+
+  <jim>
+      <cmpx><re>5.4</re><im>3.2</im></cmpx>
+  </jim>
+
+  <george>
+      <cmpx><re>frankie</re><im>johnnie</im></cmpx>
+  </george>
+
+  <nested_george>
+      <cmpx>
+        <re>
+          <cmpx><re>nfrankie1</re><im>njohnnie1</im></cmpx>
+        </re>
+        <im>
+          <cmpx><re>nfrankie2</re><im>njohnnie2</im></cmpx>
+        </im>
+      </cmpx>
+  </nested_george>
+
+
+  <arraytest_tag>
+	<array sizeName="afoo" elemName="abar" indexName="idx" indexStart="0">
+	<afoo>4</afoo>
+	  <abar idx="0">fred1</abar>
+	  <abar idx="1">fred2</abar>
+	  <abar idx="2">fred3</abar>
+	  <abar idx="3">fred4</abar>
+	</array>
+  </arraytest_tag>
+
+    <jimmi>
+    <bj:rarraytest>
+       <array sizeName="size" elemName="el" indexName="i" indexStart="5">
+        <size>2</size>
+        <el i="6">
+          <array sizeName="size" elemName="el" indexName="i" indexStart="5">
+           <size>2</size>
+           <el i="5">
+             <cmpx><re>foo10r</re><im>foo10i</im></cmpx>
+           </el>
+           <el i="6">
+             <cmpx><re>foo11r</re><im>foo11i</im></cmpx>
+           </el>
+          </array>
+        </el>
+
+        <el i="5">
+          <array sizeName="size" elemName="el" indexName="i" indexStart="5">
+           <size>2</size>
+           <el i="5">
+             <cmpx><re>foo00r</re><im>foo00i</im></cmpx>
+           </el>
+           <el i="6">
+             <cmpx><re>foo01r</re><im>foo01i</im></cmpx>
+           </el>
+          </array>
+        </el>
+       </array>
+     </bj:rarraytest>
+     </jimmi>
+
+     <size>
+       <x value="16"/>
+       <y value="16"/>
+     </size>
+
+    <bj:pooh>
+	<bj:bear>5</bj:bear>
+    </bj:pooh>
+    <list>1 2 3 4 5 6</list>
+</foo>

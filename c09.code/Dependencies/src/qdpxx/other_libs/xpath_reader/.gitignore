@@ -1,0 +1,10 @@
+aclocal.m4
+configure
+examples/Makefile.in
+include/Makefile.in
+lib/Makefile.in
+Makefile.in
+include/xpath_reader_config_internal.h.in
+autom4te.cache
+include/xpath_reader_config_internal.h.in~
+

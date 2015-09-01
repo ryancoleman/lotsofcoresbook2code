@@ -1,0 +1,504 @@
+\documentclass[12pt,letterpaper]{article}
+
+
+% Somewhat wider and taller page than in art12.sty
+\topmargin -0.4in  \headsep 0.4in  \textheight 9.0in
+\oddsidemargin 0.25in  \evensidemargin 0.25in  \textwidth 6in
+
+\footnotesep 14pt
+\floatsep 28pt plus 2pt minus 4pt      % Nominal is double what is in art12.sty
+\textfloatsep 40pt plus 2pt minus 4pt
+\intextsep 28pt plus 4pt minus 4pt
+
+\begin{document}
+\pagestyle{empty} 
+\begin{center}
+{\bfseries\large QDP++}
+\end{center}
+\bigskip
+
+\date{Sept. 25, 2002}
+
+\section{Description}
+%\noindent
+%{\bf\large Description:}
+
+QDP++ is a C++ data-parallel interface for Lattice field theory
+applications. Many of the issues have been discussed in the
+corresponding C interface description which can be found at
+{\tt http://www.jlab.org/\~edwards/qcdapi/Level2API\_latest.pdf}. The
+motivation for this development comes from the U.S. Dept. of Energy
+SciDAC program.
+
+The QDP interface provides an environment somewhat similar to 
+Fortran 90 - namely data-parallel operations (operator/infix form)
+which can be applied on lattice wide objects. The interface provides a
+level of abstraction such that high-level user code written using the
+API can be run unchanged on a single processor workstation or a
+collection of multiprocessor nodes with parallel communications.
+Architectural dependencies are hidden below the interface. A variety
+of types for the site elements are provided. To achieve good
+performance, overlapping communication and computation primitives are
+provided.
+
+\medskip
+
+\section{Supported operations}
+
+All QDP objects are of type QDPType. Supported operations are listed below.
+Convention: protoyypes are basically of the form:
+
+\begin{verbatim}
+QDPType  unary_function(const QDPType&)
+QDPType  binary_function(const QDPType&, const QDPType&)
+\end{verbatim}
+
+\medskip
+
+\subsection{Subsets}
+\label{sec:subsets}
+
+\begin{verbatim}
+Set::Make(int func(),int num) : Set construction of ordinality num subsets.
+                                func maps coordinates to a coloring in [0,num)
+\end{verbatim}
+
+\medskip
+
+\subsection{Infix operators}
+\label{sec:infix}
+
+\noindent
+{\em Unary infix (e.g., "operator-"):}
+
+\begin{verbatim}
+- : negation
++ : unaryplus
+~ : bitwise not
+! : boolean not
+\end{verbatim}
+
+\noindent
+{\em Binary infix (e.g., "operator+"):}
+
+\begin{verbatim}
++  : addition
+-  : subtraction
+*  : multiplication
+/  : division
+%  : mod
+&  : bitwise and
+|  : bitwise or
+^  : bitwise exclusive or
+<< : left-shift
+>> : right-shift
+\end{verbatim}
+
+\noindent
+{\em Comparisons (returning booleans, e.g., "operator<"):}
+
+\begin{verbatim}
+<, <=, >, >=, ==, !=
+&& : and of 2 booleans
+|| : or of 2 boolean
+\end{verbatim}
+
+
+\noindent
+{\em Assignments (e.g., "operator+="):}
+
+\begin{verbatim}
+=, +=, -=, *=, /=, %=, |=, &=, ^=, <<=, >>=
+\end{verbatim}
+
+\noindent
+{\em Trinary:}
+
+\begin{verbatim}
+where(bool,arg1,arg2) : the C trinary "?" operator -> (bool) ? arg1 : arg2
+\end{verbatim}
+
+\medskip
+
+
+\subsection{Functions (standard C math lib)}
+\label{sec:cfuncs}
+
+\noindent
+{\em Unary:}
+
+\begin{verbatim}
+cos, sin, tan, acos, asin, atan, cosh, sinh, tanh,
+exp, log, log10, sqrt,
+ceil, floor, fabs
+\end{verbatim}
+
+\noindent
+{\em Binary:}
+
+\begin{verbatim}
+ldexp, pow, fmod, atan2
+\end{verbatim}
+
+\medskip
+
+
+\subsection{Additional functions (specific to QDP)}
+\label{sec:funcs}
+
+\noindent
+{\em Unary:}
+
+\begin{verbatim}
+conj             : hermitian conjugate (adjoint)
+trace            : matrix trace
+real             : real part
+imag             : imaginary part
+colorTrace       : trace over color indices
+spinTrace        : trace over spin indices
+multiplyI        : multiplies argument by imag "i"
+multiplyMinusI   : multiplies argument by imag "-i"
+localNorm2       : on fibers computes trace(conj(source)*source)
+\end{verbatim}
+
+%noColorTrace     : trace over all but color indices
+%noSpinTrace      : trace over all but spin indices
+
+\noindent
+{\em Binary}:
+
+\begin{verbatim}
+cmplx              : returns complex object   arg1 + i*arg2
+localInnerproduct  : at each site computes trace(conj(arg1)*arg2)
+\end{verbatim}
+
+\subsection{In place functions}
+\label{sec:inplace}
+
+\begin{verbatim}
+random(dest)            : uniform random numbers - all components
+gaussian(dest)          : uniform random numbers - all components
+zero(dest)              : zero out all elements
+copymask(dest,mask,src) : copy src to dest under boolean mask
+\end{verbatim}
+
+\medskip
+
+\subsection{Global reductions}
+\label{sec:reductions}
+
+\begin{verbatim}
+sum(arg1)               : sum over lattice indices returning 
+                          object of same fiber type
+norm2(arg1)             : sum(localNorm2(arg1))
+innerproduct(arg1,arg2) : sum(localInnerproduct(arg1,arg2))
+sumMulti(arg1,Set)      : sum over each subset of Set returning #subset
+                          objects of same fiber type
+\end{verbatim}
+
+\medskip
+
+\subsection{Accessors}
+\label{sec:peek}
+
+Peeking and poking (accessors) into various component indices of objects.
+
+\begin{verbatim}
+peekSite(arg1,multi1d<int> coords): return site object of primitive type of arg1
+peekColor(arg1,int row,int col)   : return object from color matrix elem row and col
+peekColor(arg1,int row)           : return object from color vector elem row
+peekSpin(arg1,int row,int col )   : return object from spin matrix elem row and col
+peekSpin(arg1,int row)            : return object from spin vector elem row
+
+pokeSite(dest,src,multi1d<int> coords): insert src at site given by coords
+pokeColor(dest,src,int row,int col)   : insert src into color matrix elem row and col
+pokeColor(dest,src,int row)           : insert src into color vector elem row
+pokeSpin(dest,src,int row,int col )   : insert src into spin matrix elem row and col
+pokeSpin(dest,src,int row)            : insert src into spin vector elem row
+\end{verbatim}
+
+
+\medskip
+
+\subsection{More exotic functions:}
+\label{sec:otherfuncs}
+
+Gauge and spin related functions
+
+\begin{itemize}
+\item
+\verb|spinProject(QDPType psi, int dir, int isign)|\\
+Applies spin projection $(1 + isign*\gamma_\mu)$*\verb|psi|
+returning a half spin vector or matrix
+
+\item
+\verb|spinReconstruct(QDPType psi, int dir, int isign)|\\
+Applies spin reconstruction of $(1 + isign*\gamma_\mu)$*\verb|psi|
+returning a full spin vector or matrix
+
+\item
+\verb|quarkContract13(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+This is used for diquark constructions. Eventually, it could handle larger
+Nc. 
+The numbers represent which spin index to sum over.
+   
+The sources and targets must all be propagators but not
+necessarily of the same lattice type. Effectively, one can use
+this to construct an anti-quark from a di-quark contraction. In
+explicit index form, the operation  \verb|quarkContract13| does
+
+$$target^{k' k}_{\alpha\beta} =
+ \epsilon^{i j k}\epsilon^{i' j' k'}* source1^{i i'}_{\rho\alpha}* source2^{j j'}_{\rho\beta}$$
+   
+and is (currently) only appropriate for Nc=3  (or SU(3)).
+
+\item
+\verb|quarkContract14(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+   
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\alpha}*source2^{j j'}_{\beta\rho}$$
+
+\item
+\verb|quarkContract23(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+   
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\alpha\rho}*source2^{j j'}_{\rho\beta}$$
+
+\item
+\verb|quarkContract24(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+   
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\alpha}*source2^{j j'}_{\beta\rho}$$
+
+\item
+\verb|quarkContract12(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\rho}*source2^{j j'}_{\alpha\beta}$$
+
+\item
+\verb|quarkContract34(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\alpha\beta}*source2^{j j'}_{\rho\rho}$$
+
+\item
+\verb|colorContract(a,b,c)|\\
+Epsilon contract 3 color primitives and return a primitive scalar.
+The sources and targets must all be of the same primitive type (a matrix or vector)
+but not necessarily of the same lattice type. In
+explicit index form, the operation  colorContract does
+$$
+target =
+  \epsilon^{i j k}\epsilon^{i' j' k'}* source1^{i i'}* source2^{j j'}*source3^{k k'}
+$$
+or
+$$
+target =
+ \epsilon^{i j k}* source1^{i}* source2^{j}*source3^{k}
+$$
+and is (currently) only appropriate for Nc=3  (or SU(3)).
+
+\end{itemize}
+
+\bigskip
+
+
+\newpage
+\section{Types}
+
+Mathematically, QDP types are the product of a {\em Nd} dimensional
+lattice type and a type at each site (the fiber). The fiber type
+describes data primitives on each site.  Lattice fields are defined
+and always allocated over the entire lattice; however, the operations
+can be narrowed to only a subset of sites.  The primitive types at
+each site are represented as the (tensor) product space of, for
+example, a vector space over color components with a vector space over
+spin components and complex valued elements.
+
+Generically objects transform under different spaces with a tensor
+product structure like
+
+\begin{verbatim}
+                         Color      Spin      Complexity
+Gauge fields:   Product(Matrix(Nc),Scalar,    Complex)
+Fermions:       Product(Vector(Nc),Vector(Ns),Complex)
+Scalars:        Product(Scalar,    Scalar,    Scalar)
+Propagators:    Product(Matrix(Nc),Matrix(Ns),Complex)
+Gamma:          Product(Scalar,    Matrix(Ns),Complex)
+\end{verbatim}
+
+\noindent
+$Nd$ is the number of space-time dimensions\\
+\noindent
+$Nc$ is the dimension of the color vector space\\
+\noindent
+$Ns$ is the dimension of the spin vector space\\
+\noindent
+NOTE: these parameters are compile time defined in  {\tt qdp++/params.h}
+
+Gauge fields can left-multiply fermions via color matrix times color
+vector but is diagonal in spin space (spin scalar times spin vector).
+A gamma matrix can right-multiply a propagator (spin matrix times
+spin matrix) but is diagonal in color space (color matrix times color
+scalar).
+
+Types in the QDP interface are parameterized by a variety of types including:
+\begin{itemize}
+\item {\em Word type}: 
+  int, float, double, bool. Basic machine types.
+\item {\em Reality type}: 
+  complex or scalar. This is where the idea of a complex number
+  lives.
+\item {\em Primitive type}: 
+  scalar, vector, matrix, etc. This is where the concept of a gauge or
+  spin field lives. There can be many more types here.
+\item {\em Inner grid type}: 
+  scalar or lattice. Supports vector style architectures.
+\item {\em Outer grid type}:
+  scalar or lattice. Supports super-scalar style architectures. In
+  combination with Inner grid can support a mixed mode like a
+  super-scalar architecture with short length vector instructions.
+\end{itemize}
+
+There are template classes for each of the type variants listed
+above. The interface relies heavily on templates for
+composition - there is very little inheritance. The basic objects are
+constructed (at the users choice) by compositions like the following:
+
+\begin{verbatim}
+typedef OLattice<PScalar<ColorMatrix<Complex<float>, Nc> > > LatticeGauge
+typedef OLattice<SpinVector<ColorVector<Complex<float>, Nc>, Ns> > LatticeFermion
+\end{verbatim}
+%
+The ordering of types here is suitable for a microprocessor
+architecture.  The classes PScalar, SpinVector, ColorMatrix,
+ColorVector are all subtypes of a primitive type. The relative
+ordering of the classes is important. It is simply a user convention
+that spin is used as the second index (second level of type
+composition) and color is the third. The ordering of types can be
+changes. From looking at the types one can immediately decide what
+operations among objects makes sense.
+NOTE: these typdefs are defined in  {\tt qdp++/defs.h}
+
+Operations on each level are listed below. The meaning (and validity)
+of an operation on the complete type (a LatticeFermion) is deduced
+from the intersection of these operations among each type.
+
+\subsection{Operations on subtypes}
+
+Supported operations for each type level
+\begin{itemize}
+\item
+{\bf\em Grid type}: {\em OScalar, OLattice, IScalar, ILattice}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}
+
+\item
+{\bf\em Primitive type}:
+\begin{itemize}
+\item
+{\bf\em PScalar}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}
+
+\item
+{\bf\em PMatrix$<$N$>$}\\
+  {\em Unary}: {\tt -(PMatrix)}, {\tt +(PMatrix)}\\
+  {\em Binary}: {\tt -(PMatrix,PMatrix)}, {\tt +(PMatrix,PMatrix)}, 
+       {\tt *(PMatrix,PScalar)}, {\tt *(PScalar,PMatrix)}, {\tt *(PMatrix,PMatrix)}\\
+  {\em Comparisons}: none\\
+  {\em Assignments}: {\tt =(PMatrix)}, {\tt =(PScalar)}, {\tt -=(PMatrix)}, 
+       {\tt +=(PMatrix)}, {\tt *=(PScalar)}\\
+  {\em Trinary}: {\tt where}\\
+  {\em C-lib funcs}: none\\
+  {\em QDP funcs}: all\\
+  {\em In place funcs}: all\\
+  {\em Reductions}: all\\
+
+\item
+{\bf\em PVector$<$N$>$}\\
+  {\em Unary}: {\tt -(PVector)}, {\tt +(PVector)}\\
+  {\em Binary}: {\tt -(PVector,PVector)}, {\tt +(PVector,PVector)}, 
+       {\tt *(PVector,PScalar)}, {\tt *(PScalar,PVector)}, {\tt *(PMatrix,PVector)}\\
+  {\em Comparisons}: none\\
+  {\em Assignments}: {\tt =(PVector)}, {\tt -=(PVector)}, {\tt +=(PVector)}, 
+       {\tt *=(PScalar)}\\
+  {\em Trinary}: {\tt where}\\
+  {\em C-lib funcs}: none\\
+  {\em QDP funcs}: {\tt real}, {\tt imag}, {\tt multiplyI}, {\tt multiplyMinusI}, 
+        {\tt localNorm2}, {\tt cmplx}, {\tt localInnerproduct}\\
+  {\em In place funcs}: all\\
+  {\em Reductions}: all\\
+
+\item
+{\bf\em PSpinMatrix$<$N$>$}\\
+  Inherits same operations as PMatrix\\
+  {\em Unary}: {\tt spinTrace}\\
+  {\em Binary}: {\tt *(PSpinMatrix,Gamma)}, {\tt *(Gamma,PSpinMatrix)}\\
+  {\em Exotic}: {\tt peekSpin}, {\tt pokeSpin}, {\tt spinProjection}, 
+      {\tt spinReconstruction}
+
+\item
+{\bf\em PSpinVector$<$N$>$}\\
+  Inherits same operations as PVector\\
+  {\em Binary}: {\tt *(Gamma,PSpinVector)}\\
+  {\em Exotic}: {\tt peekSpin}, {\tt pokeSpin}, {\tt spinProjection}, 
+      {\tt spinReconstruction}
+
+\item
+{\bf\em PColorMatrix$<$N$>$}\\
+  Inherits same operations as PMatrix\\
+  {\em Unary}: {\tt colorTrace}\\
+  {\em Binary}: {\tt *(PColorMatrix,Gamma)}, {\tt *(Gamma,PColorMatrix)}\\
+  {\em Exotic}: {\tt peekColor}, {\tt pokeColor}, 
+
+\item
+{\bf\em PColorVector$<$N$>$}\\
+  Inherits same operations as PVector\\
+  {\em Binary}: {\tt *(Gamma,PColorVector)}\\
+  {\em Exotic}: {\tt peekColor}, {\tt pokeColor}, 
+
+\end{itemize}  % end primitive
+
+\item
+{\bf\em Reality}: {\em RScalar, RComplex}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}
+
+\item
+{\bf\em Word}: {\em int, float, double, bool}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}.
+Only boolean ops allowed on bool.
+
+
+\end{itemize}  % end subtypes
+
+
+Note, some operations are conspicuously absent:
+\begin{verbatim}
+LatticeFermion foo = 1.0;     // illegal, operator=(PVector,PScalar) missing
+trace(foo);                   // trace on a vector is not allowed
+conj(foo);                    // illegal, there is no row vector type
+\end{verbatim}
+
+\subsection{Some known types}
+Some defined known types are listed below. More can easily be added or the
+names changed in the file {\tt qdp++/defs.h} .
+These names should reflect those in the C interface.
+
+\begin{verbatim}
+Real, Integer, Double, Boolean
+Complex, DComplex,
+LatticeReal, LatticeInteger, LatticeComplex
+LatticeFermion, LatticeColorMatrix, LatticeGauge,
+LatticePropagator
+
+ColorMatrix, ColorVector, SpinMatrix, SpinVector
+LatticeColorMatrix, LatticeColorVector, LatticeSpinMatrix, LatticeSpinVector
+\end{verbatim}
+
+
+\end{document}
+

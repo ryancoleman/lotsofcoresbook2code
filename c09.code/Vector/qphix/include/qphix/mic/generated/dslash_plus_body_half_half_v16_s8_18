@@ -1,0 +1,2560 @@
+__m512 b_S0_C0_RE = _mm512_setzero_ps(); 
+__m512 b_S0_C0_IM = _mm512_setzero_ps(); 
+__m512 b_S0_C1_RE = _mm512_setzero_ps(); 
+__m512 b_S0_C1_IM = _mm512_setzero_ps(); 
+__m512 b_S0_C2_RE = _mm512_setzero_ps(); 
+__m512 b_S0_C2_IM = _mm512_setzero_ps(); 
+__m512 b_S1_C0_RE = _mm512_setzero_ps(); 
+__m512 b_S1_C0_IM = _mm512_setzero_ps(); 
+__m512 b_S1_C1_RE = _mm512_setzero_ps(); 
+__m512 b_S1_C1_IM = _mm512_setzero_ps(); 
+__m512 b_S1_C2_RE = _mm512_setzero_ps(); 
+__m512 b_S1_C2_IM = _mm512_setzero_ps(); 
+__m512 ub_S0_C0_RE = _mm512_setzero_ps(); 
+__m512 ub_S0_C0_IM = _mm512_setzero_ps(); 
+__m512 ub_S0_C1_RE = _mm512_setzero_ps(); 
+__m512 ub_S0_C1_IM = _mm512_setzero_ps(); 
+__m512 ub_S0_C2_RE = _mm512_setzero_ps(); 
+__m512 ub_S0_C2_IM = _mm512_setzero_ps(); 
+__m512 ub_S1_C0_RE = _mm512_setzero_ps(); 
+__m512 ub_S1_C0_IM = _mm512_setzero_ps(); 
+__m512 ub_S1_C1_RE = _mm512_setzero_ps(); 
+__m512 ub_S1_C1_IM = _mm512_setzero_ps(); 
+__m512 ub_S1_C2_RE = _mm512_setzero_ps(); 
+__m512 ub_S1_C2_IM = _mm512_setzero_ps(); 
+__m512 u_00_re = _mm512_setzero_ps(); 
+__m512 u_00_im = _mm512_setzero_ps(); 
+__m512 u_01_re = _mm512_setzero_ps(); 
+__m512 u_01_im = _mm512_setzero_ps(); 
+__m512 u_02_re = _mm512_setzero_ps(); 
+__m512 u_02_im = _mm512_setzero_ps(); 
+__m512 u_10_re = _mm512_setzero_ps(); 
+__m512 u_10_im = _mm512_setzero_ps(); 
+__m512 u_11_re = _mm512_setzero_ps(); 
+__m512 u_11_im = _mm512_setzero_ps(); 
+__m512 u_12_re = _mm512_setzero_ps(); 
+__m512 u_12_im = _mm512_setzero_ps(); 
+__m512 u_20_re = _mm512_setzero_ps(); 
+__m512 u_20_im = _mm512_setzero_ps(); 
+__m512 u_21_re = _mm512_setzero_ps(); 
+__m512 u_21_im = _mm512_setzero_ps(); 
+__m512 u_22_re = _mm512_setzero_ps(); 
+__m512 u_22_im = _mm512_setzero_ps(); 
+__m512 psi_S0_RE = _mm512_setzero_ps(); 
+__m512 psi_S0_IM = _mm512_setzero_ps(); 
+__m512 psi_S1_RE = _mm512_setzero_ps(); 
+__m512 psi_S1_IM = _mm512_setzero_ps(); 
+__m512 tmp_1_re = _mm512_setzero_ps(); 
+__m512 tmp_1_im = _mm512_setzero_ps(); 
+__m512 tmp_2_re = _mm512_setzero_ps(); 
+__m512 tmp_2_im = _mm512_setzero_ps(); 
+__m512 tmp_3_re = _mm512_setzero_ps(); 
+__m512 tmp_3_im = _mm512_setzero_ps(); 
+__m512 tmp_4_re = _mm512_setzero_ps(); 
+__m512 tmp_4_im = _mm512_setzero_ps(); 
+__m512 zero = _mm512_setzero_ps(); 
+zero = _mm512_setzero_ps(); 
+__m512 out_S0_C0_RE = _mm512_setzero_ps(); 
+__m512 out_S0_C0_IM = _mm512_setzero_ps(); 
+__m512 out_S0_C1_RE = _mm512_setzero_ps(); 
+__m512 out_S0_C1_IM = _mm512_setzero_ps(); 
+__m512 out_S0_C2_RE = _mm512_setzero_ps(); 
+__m512 out_S0_C2_IM = _mm512_setzero_ps(); 
+__m512 out_S1_C0_RE = _mm512_setzero_ps(); 
+__m512 out_S1_C0_IM = _mm512_setzero_ps(); 
+__m512 out_S1_C1_RE = _mm512_setzero_ps(); 
+__m512 out_S1_C1_IM = _mm512_setzero_ps(); 
+__m512 out_S1_C2_RE = _mm512_setzero_ps(); 
+__m512 out_S1_C2_IM = _mm512_setzero_ps(); 
+__m512 out_S2_C0_RE = _mm512_setzero_ps(); 
+__m512 out_S2_C0_IM = _mm512_setzero_ps(); 
+__m512 out_S2_C1_RE = _mm512_setzero_ps(); 
+__m512 out_S2_C1_IM = _mm512_setzero_ps(); 
+__m512 out_S2_C2_RE = _mm512_setzero_ps(); 
+__m512 out_S2_C2_IM = _mm512_setzero_ps(); 
+__m512 out_S3_C0_RE = _mm512_setzero_ps(); 
+__m512 out_S3_C0_IM = _mm512_setzero_ps(); 
+__m512 out_S3_C1_RE = _mm512_setzero_ps(); 
+__m512 out_S3_C1_IM = _mm512_setzero_ps(); 
+__m512 out_S3_C2_RE = _mm512_setzero_ps(); 
+__m512 out_S3_C2_IM = _mm512_setzero_ps(); 
+out_S0_C0_RE = _mm512_setzero_ps(); 
+out_S0_C0_IM = _mm512_setzero_ps(); 
+out_S0_C1_RE = _mm512_setzero_ps(); 
+out_S0_C1_IM = _mm512_setzero_ps(); 
+out_S0_C2_RE = _mm512_setzero_ps(); 
+out_S0_C2_IM = _mm512_setzero_ps(); 
+out_S1_C0_RE = _mm512_setzero_ps(); 
+out_S1_C0_IM = _mm512_setzero_ps(); 
+out_S1_C1_RE = _mm512_setzero_ps(); 
+out_S1_C1_IM = _mm512_setzero_ps(); 
+out_S1_C2_RE = _mm512_setzero_ps(); 
+out_S1_C2_IM = _mm512_setzero_ps(); 
+out_S2_C0_RE = _mm512_setzero_ps(); 
+out_S2_C0_IM = _mm512_setzero_ps(); 
+out_S2_C1_RE = _mm512_setzero_ps(); 
+out_S2_C1_IM = _mm512_setzero_ps(); 
+out_S2_C2_RE = _mm512_setzero_ps(); 
+out_S2_C2_IM = _mm512_setzero_ps(); 
+out_S3_C0_RE = _mm512_setzero_ps(); 
+out_S3_C0_IM = _mm512_setzero_ps(); 
+out_S3_C1_RE = _mm512_setzero_ps(); 
+out_S3_C1_IM = _mm512_setzero_ps(); 
+out_S3_C2_RE = _mm512_setzero_ps(); 
+out_S3_C2_IM = _mm512_setzero_ps(); 
+ if ( accumulate[0] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_s), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+__mmask accMask;
+
+accMask = accumulate[0];
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[0][0][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe, ((*xyBase)[0][0][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x100, ((*xyBase)[0][0][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe00, ((*xyBase)[0][0][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[0][0][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe, ((*xyBase)[0][0][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x100, ((*xyBase)[0][0][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe00, ((*xyBase)[0][0][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[0][3][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe, ((*xyBase)[0][3][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x100, ((*xyBase)[0][3][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe00, ((*xyBase)[0][3][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[0][3][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe, ((*xyBase)[0][3][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x100, ((*xyBase)[0][3][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe00, ((*xyBase)[0][3][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[1][0][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe, ((*xyBase)[1][0][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x100, ((*xyBase)[1][0][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe00, ((*xyBase)[1][0][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[1][0][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe, ((*xyBase)[1][0][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x100, ((*xyBase)[1][0][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe00, ((*xyBase)[1][0][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[1][3][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe, ((*xyBase)[1][3][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x100, ((*xyBase)[1][3][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe00, ((*xyBase)[1][3][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[1][3][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe, ((*xyBase)[1][3][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x100, ((*xyBase)[1][3][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe00, ((*xyBase)[1][3][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[2][0][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe, ((*xyBase)[2][0][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x100, ((*xyBase)[2][0][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe00, ((*xyBase)[2][0][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[2][0][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe, ((*xyBase)[2][0][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x100, ((*xyBase)[2][0][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe00, ((*xyBase)[2][0][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[2][3][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe, ((*xyBase)[2][3][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x100, ((*xyBase)[2][3][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe00, ((*xyBase)[2][3][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[2][3][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe, ((*xyBase)[2][3][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x100, ((*xyBase)[2][3][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe00, ((*xyBase)[2][3][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[0][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[0][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[0][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[0][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[0][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[0][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[0][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[0][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[0][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[0][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[0][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[0][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[0][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[0][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[0][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[0][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[0][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[0][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_01_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_02_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_10_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fmadd_ps(u_10_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_10_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_12_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_20_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fmadd_ps(u_20_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_20_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_21_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_mask_mov_ps(out_S0_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE));
+out_S0_C0_IM = _mm512_mask_mov_ps(out_S0_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM));
+out_S0_C1_RE = _mm512_mask_mov_ps(out_S0_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE));
+out_S0_C1_IM = _mm512_mask_mov_ps(out_S0_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM));
+out_S0_C2_RE = _mm512_mask_mov_ps(out_S0_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE));
+out_S0_C2_IM = _mm512_mask_mov_ps(out_S0_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM));
+out_S3_C0_RE = _mm512_mask_mov_ps(out_S3_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S3_C0_RE));
+out_S3_C0_IM = _mm512_mask_mov_ps(out_S3_C0_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C0_RE, out_S3_C0_IM));
+out_S3_C1_RE = _mm512_mask_mov_ps(out_S3_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S3_C1_RE));
+out_S3_C1_IM = _mm512_mask_mov_ps(out_S3_C1_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C1_RE, out_S3_C1_IM));
+out_S3_C2_RE = _mm512_mask_mov_ps(out_S3_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S3_C2_RE));
+out_S3_C2_IM = _mm512_mask_mov_ps(out_S3_C2_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C2_RE, out_S3_C2_IM));
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[0][1][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe, ((*xyBase)[0][1][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x100, ((*xyBase)[0][1][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe00, ((*xyBase)[0][1][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[0][1][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe, ((*xyBase)[0][1][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x100, ((*xyBase)[0][1][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe00, ((*xyBase)[0][1][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[0][2][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe, ((*xyBase)[0][2][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x100, ((*xyBase)[0][2][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe00, ((*xyBase)[0][2][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[0][2][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe, ((*xyBase)[0][2][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x100, ((*xyBase)[0][2][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe00, ((*xyBase)[0][2][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[1][1][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe, ((*xyBase)[1][1][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x100, ((*xyBase)[1][1][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe00, ((*xyBase)[1][1][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[1][1][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe, ((*xyBase)[1][1][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x100, ((*xyBase)[1][1][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe00, ((*xyBase)[1][1][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[1][2][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe, ((*xyBase)[1][2][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x100, ((*xyBase)[1][2][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe00, ((*xyBase)[1][2][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[1][2][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe, ((*xyBase)[1][2][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x100, ((*xyBase)[1][2][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe00, ((*xyBase)[1][2][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[2][1][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe, ((*xyBase)[2][1][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x100, ((*xyBase)[2][1][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfe00, ((*xyBase)[2][1][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[2][1][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe, ((*xyBase)[2][1][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x100, ((*xyBase)[2][1][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfe00, ((*xyBase)[2][1][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[2][2][0] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe, ((*xyBase)[2][2][0] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x100, ((*xyBase)[2][2][0] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfe00, ((*xyBase)[2][2][0] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[2][2][1] + xbOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe, ((*xyBase)[2][2][1] + xbOffs[1]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x100, ((*xyBase)[2][2][1] + xbOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfe00, ((*xyBase)[2][2][1] + xbOffs[9]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_01_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_02_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_10_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fmadd_ps(u_10_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_10_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_12_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_20_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fmadd_ps(u_20_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_20_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_21_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_mask_mov_ps(out_S1_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE));
+out_S1_C0_IM = _mm512_mask_mov_ps(out_S1_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM));
+out_S1_C1_RE = _mm512_mask_mov_ps(out_S1_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE));
+out_S1_C1_IM = _mm512_mask_mov_ps(out_S1_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM));
+out_S1_C2_RE = _mm512_mask_mov_ps(out_S1_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE));
+out_S1_C2_IM = _mm512_mask_mov_ps(out_S1_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM));
+out_S2_C0_RE = _mm512_mask_mov_ps(out_S2_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S2_C0_RE));
+out_S2_C0_IM = _mm512_mask_mov_ps(out_S2_C0_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C0_RE, out_S2_C0_IM));
+out_S2_C1_RE = _mm512_mask_mov_ps(out_S2_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S2_C1_RE));
+out_S2_C1_IM = _mm512_mask_mov_ps(out_S2_C1_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C1_RE, out_S2_C1_IM));
+out_S2_C2_RE = _mm512_mask_mov_ps(out_S2_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S2_C2_RE));
+out_S2_C2_IM = _mm512_mask_mov_ps(out_S2_C2_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C2_RE, out_S2_C2_IM));
+}
+ if ( accumulate[1] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_s), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+__mmask accMask;
+
+accMask = accumulate[1];
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f, ((*xyBase)[0][0][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x80, ((*xyBase)[0][0][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f00, ((*xyBase)[0][0][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x8000, ((*xyBase)[0][0][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f, ((*xyBase)[0][0][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x80, ((*xyBase)[0][0][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f00, ((*xyBase)[0][0][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x8000, ((*xyBase)[0][0][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f, ((*xyBase)[0][3][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x80, ((*xyBase)[0][3][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f00, ((*xyBase)[0][3][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x8000, ((*xyBase)[0][3][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f, ((*xyBase)[0][3][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x80, ((*xyBase)[0][3][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f00, ((*xyBase)[0][3][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x8000, ((*xyBase)[0][3][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f, ((*xyBase)[1][0][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x80, ((*xyBase)[1][0][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f00, ((*xyBase)[1][0][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x8000, ((*xyBase)[1][0][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f, ((*xyBase)[1][0][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x80, ((*xyBase)[1][0][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f00, ((*xyBase)[1][0][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x8000, ((*xyBase)[1][0][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f, ((*xyBase)[1][3][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x80, ((*xyBase)[1][3][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f00, ((*xyBase)[1][3][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x8000, ((*xyBase)[1][3][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f, ((*xyBase)[1][3][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x80, ((*xyBase)[1][3][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f00, ((*xyBase)[1][3][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x8000, ((*xyBase)[1][3][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f, ((*xyBase)[2][0][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x80, ((*xyBase)[2][0][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f00, ((*xyBase)[2][0][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x8000, ((*xyBase)[2][0][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f, ((*xyBase)[2][0][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x80, ((*xyBase)[2][0][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f00, ((*xyBase)[2][0][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x8000, ((*xyBase)[2][0][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f, ((*xyBase)[2][3][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x80, ((*xyBase)[2][3][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f00, ((*xyBase)[2][3][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x8000, ((*xyBase)[2][3][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f, ((*xyBase)[2][3][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x80, ((*xyBase)[2][3][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f00, ((*xyBase)[2][3][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x8000, ((*xyBase)[2][3][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[1][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[1][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[1][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[1][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[1][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[1][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[1][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[1][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[1][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[1][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[1][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[1][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[1][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[1][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[1][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[1][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[1][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[1][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_10_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_20_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_01_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_01_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fmadd_ps(u_01_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_21_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_02_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_02_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fmadd_ps(u_02_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_12_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_mask_mov_ps(out_S0_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE));
+out_S0_C0_IM = _mm512_mask_mov_ps(out_S0_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM));
+out_S0_C1_RE = _mm512_mask_mov_ps(out_S0_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE));
+out_S0_C1_IM = _mm512_mask_mov_ps(out_S0_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM));
+out_S0_C2_RE = _mm512_mask_mov_ps(out_S0_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE));
+out_S0_C2_IM = _mm512_mask_mov_ps(out_S0_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM));
+out_S3_C0_RE = _mm512_mask_mov_ps(out_S3_C0_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C0_IM, out_S3_C0_RE));
+out_S3_C0_IM = _mm512_mask_mov_ps(out_S3_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S3_C0_IM));
+out_S3_C1_RE = _mm512_mask_mov_ps(out_S3_C1_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C1_IM, out_S3_C1_RE));
+out_S3_C1_IM = _mm512_mask_mov_ps(out_S3_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S3_C1_IM));
+out_S3_C2_RE = _mm512_mask_mov_ps(out_S3_C2_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C2_IM, out_S3_C2_RE));
+out_S3_C2_IM = _mm512_mask_mov_ps(out_S3_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S3_C2_IM));
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f, ((*xyBase)[0][1][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x80, ((*xyBase)[0][1][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f00, ((*xyBase)[0][1][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x8000, ((*xyBase)[0][1][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f, ((*xyBase)[0][1][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x80, ((*xyBase)[0][1][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f00, ((*xyBase)[0][1][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x8000, ((*xyBase)[0][1][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f, ((*xyBase)[0][2][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x80, ((*xyBase)[0][2][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f00, ((*xyBase)[0][2][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x8000, ((*xyBase)[0][2][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f, ((*xyBase)[0][2][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x80, ((*xyBase)[0][2][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f00, ((*xyBase)[0][2][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x8000, ((*xyBase)[0][2][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f, ((*xyBase)[1][1][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x80, ((*xyBase)[1][1][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f00, ((*xyBase)[1][1][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x8000, ((*xyBase)[1][1][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f, ((*xyBase)[1][1][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x80, ((*xyBase)[1][1][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f00, ((*xyBase)[1][1][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x8000, ((*xyBase)[1][1][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f, ((*xyBase)[1][2][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x80, ((*xyBase)[1][2][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f00, ((*xyBase)[1][2][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x8000, ((*xyBase)[1][2][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f, ((*xyBase)[1][2][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x80, ((*xyBase)[1][2][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f00, ((*xyBase)[1][2][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x8000, ((*xyBase)[1][2][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f, ((*xyBase)[2][1][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x80, ((*xyBase)[2][1][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x7f00, ((*xyBase)[2][1][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x8000, ((*xyBase)[2][1][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f, ((*xyBase)[2][1][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x80, ((*xyBase)[2][1][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x7f00, ((*xyBase)[2][1][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x8000, ((*xyBase)[2][1][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f, ((*xyBase)[2][2][0] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x80, ((*xyBase)[2][2][0] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x7f00, ((*xyBase)[2][2][0] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x8000, ((*xyBase)[2][2][0] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f, ((*xyBase)[2][2][1] + xfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x80, ((*xyBase)[2][2][1] + xfOffs[7]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x7f00, ((*xyBase)[2][2][1] + xfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x8000, ((*xyBase)[2][2][1] + xfOffs[15]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_10_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_20_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_01_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_01_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fmadd_ps(u_01_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_21_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_02_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_02_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fmadd_ps(u_02_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_12_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_mask_mov_ps(out_S1_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE));
+out_S1_C0_IM = _mm512_mask_mov_ps(out_S1_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM));
+out_S1_C1_RE = _mm512_mask_mov_ps(out_S1_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE));
+out_S1_C1_IM = _mm512_mask_mov_ps(out_S1_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM));
+out_S1_C2_RE = _mm512_mask_mov_ps(out_S1_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE));
+out_S1_C2_IM = _mm512_mask_mov_ps(out_S1_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM));
+out_S2_C0_RE = _mm512_mask_mov_ps(out_S2_C0_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C0_IM, out_S2_C0_RE));
+out_S2_C0_IM = _mm512_mask_mov_ps(out_S2_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S2_C0_IM));
+out_S2_C1_RE = _mm512_mask_mov_ps(out_S2_C1_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C1_IM, out_S2_C1_RE));
+out_S2_C1_IM = _mm512_mask_mov_ps(out_S2_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S2_C1_IM));
+out_S2_C2_RE = _mm512_mask_mov_ps(out_S2_C2_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C2_IM, out_S2_C2_RE));
+out_S2_C2_IM = _mm512_mask_mov_ps(out_S2_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S2_C2_IM));
+}
+ if ( accumulate[2] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_s), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+__mmask accMask;
+
+accMask = accumulate[2];
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[0][0][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[0][0][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[0][0][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[0][0][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[0][3][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[0][3][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[0][3][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[0][3][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[1][0][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[1][0][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[1][0][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[1][0][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[1][3][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[1][3][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[1][3][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[1][3][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[2][0][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[2][0][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[2][0][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[2][0][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[2][3][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[2][3][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[2][3][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[2][3][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[2][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[2][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[2][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[2][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[2][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[2][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[2][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[2][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[2][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[2][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[2][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[2][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[2][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[2][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[2][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[2][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[2][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[2][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_01_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_02_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_10_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fmadd_ps(u_10_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_10_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_12_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_20_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fmadd_ps(u_20_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_20_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_21_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_mask_mov_ps(out_S0_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE));
+out_S0_C0_IM = _mm512_mask_mov_ps(out_S0_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM));
+out_S0_C1_RE = _mm512_mask_mov_ps(out_S0_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE));
+out_S0_C1_IM = _mm512_mask_mov_ps(out_S0_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM));
+out_S0_C2_RE = _mm512_mask_mov_ps(out_S0_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE));
+out_S0_C2_IM = _mm512_mask_mov_ps(out_S0_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM));
+out_S3_C0_RE = _mm512_mask_mov_ps(out_S3_C0_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C0_RE, out_S3_C0_RE));
+out_S3_C0_IM = _mm512_mask_mov_ps(out_S3_C0_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C0_IM, out_S3_C0_IM));
+out_S3_C1_RE = _mm512_mask_mov_ps(out_S3_C1_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C1_RE, out_S3_C1_RE));
+out_S3_C1_IM = _mm512_mask_mov_ps(out_S3_C1_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C1_IM, out_S3_C1_IM));
+out_S3_C2_RE = _mm512_mask_mov_ps(out_S3_C2_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C2_RE, out_S3_C2_RE));
+out_S3_C2_IM = _mm512_mask_mov_ps(out_S3_C2_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S0_C2_IM, out_S3_C2_IM));
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[0][1][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[0][1][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[0][1][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[0][1][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[0][2][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[0][2][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[0][2][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[0][2][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[1][1][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[1][1][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[1][1][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[1][1][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[1][2][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[1][2][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[1][2][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[1][2][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[2][1][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[2][1][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[2][1][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[2][1][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[2][2][0] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[2][2][0] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[2][2][1] + ybOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[2][2][1] + ybOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_01_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_02_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_10_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fmadd_ps(u_10_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_10_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_12_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_20_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fmadd_ps(u_20_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_20_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_21_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_mask_mov_ps(out_S1_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE));
+out_S1_C0_IM = _mm512_mask_mov_ps(out_S1_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM));
+out_S1_C1_RE = _mm512_mask_mov_ps(out_S1_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE));
+out_S1_C1_IM = _mm512_mask_mov_ps(out_S1_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM));
+out_S1_C2_RE = _mm512_mask_mov_ps(out_S1_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE));
+out_S1_C2_IM = _mm512_mask_mov_ps(out_S1_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM));
+out_S2_C0_RE = _mm512_mask_mov_ps(out_S2_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S2_C0_RE));
+out_S2_C0_IM = _mm512_mask_mov_ps(out_S2_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S2_C0_IM));
+out_S2_C1_RE = _mm512_mask_mov_ps(out_S2_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S2_C1_RE));
+out_S2_C1_IM = _mm512_mask_mov_ps(out_S2_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S2_C1_IM));
+out_S2_C2_RE = _mm512_mask_mov_ps(out_S2_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S2_C2_RE));
+out_S2_C2_IM = _mm512_mask_mov_ps(out_S2_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S2_C2_IM));
+}
+ if ( accumulate[3] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_s), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+__mmask accMask;
+
+accMask = accumulate[3];
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[0][0][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[0][0][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[0][0][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[0][0][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[0][3][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[0][3][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[0][3][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[0][3][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[1][0][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[1][0][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[1][0][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[1][0][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[1][3][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[1][3][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[1][3][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[1][3][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[2][0][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[2][0][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[2][0][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[2][0][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[2][3][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[2][3][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[2][3][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[2][3][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[3][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[3][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[3][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[3][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[3][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[3][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[3][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[3][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[3][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[3][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[3][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[3][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[3][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[3][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[3][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[3][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[3][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[3][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_10_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_20_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_01_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_01_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fmadd_ps(u_01_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_21_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_02_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_02_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fmadd_ps(u_02_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_12_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_mask_mov_ps(out_S0_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE));
+out_S0_C0_IM = _mm512_mask_mov_ps(out_S0_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM));
+out_S0_C1_RE = _mm512_mask_mov_ps(out_S0_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE));
+out_S0_C1_IM = _mm512_mask_mov_ps(out_S0_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM));
+out_S0_C2_RE = _mm512_mask_mov_ps(out_S0_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE));
+out_S0_C2_IM = _mm512_mask_mov_ps(out_S0_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM));
+out_S3_C0_RE = _mm512_mask_mov_ps(out_S3_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S3_C0_RE));
+out_S3_C0_IM = _mm512_mask_mov_ps(out_S3_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S3_C0_IM));
+out_S3_C1_RE = _mm512_mask_mov_ps(out_S3_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S3_C1_RE));
+out_S3_C1_IM = _mm512_mask_mov_ps(out_S3_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S3_C1_IM));
+out_S3_C2_RE = _mm512_mask_mov_ps(out_S3_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S3_C2_RE));
+out_S3_C2_IM = _mm512_mask_mov_ps(out_S3_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S3_C2_IM));
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[0][1][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[0][1][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[0][1][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[0][1][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[0][2][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[0][2][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[0][2][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[0][2][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[1][1][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[1][1][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[1][1][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[1][1][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[1][2][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[1][2][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[1][2][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[1][2][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*xyBase)[2][1][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*xyBase)[2][1][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*xyBase)[2][1][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*xyBase)[2][1][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*xyBase)[2][2][0] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*xyBase)[2][2][0] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*xyBase)[2][2][1] + yfOffs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*xyBase)[2][2][1] + yfOffs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_10_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_20_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_01_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_01_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fmadd_ps(u_01_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_21_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_02_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_02_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fmadd_ps(u_02_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_12_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_mask_mov_ps(out_S1_C0_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE));
+out_S1_C0_IM = _mm512_mask_mov_ps(out_S1_C0_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM));
+out_S1_C1_RE = _mm512_mask_mov_ps(out_S1_C1_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE));
+out_S1_C1_IM = _mm512_mask_mov_ps(out_S1_C1_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM));
+out_S1_C2_RE = _mm512_mask_mov_ps(out_S1_C2_RE, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE));
+out_S1_C2_IM = _mm512_mask_mov_ps(out_S1_C2_IM, accMask, _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM));
+out_S2_C0_RE = _mm512_mask_mov_ps(out_S2_C0_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C0_RE, out_S2_C0_RE));
+out_S2_C0_IM = _mm512_mask_mov_ps(out_S2_C0_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C0_IM, out_S2_C0_IM));
+out_S2_C1_RE = _mm512_mask_mov_ps(out_S2_C1_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C1_RE, out_S2_C1_RE));
+out_S2_C1_IM = _mm512_mask_mov_ps(out_S2_C1_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C1_IM, out_S2_C1_IM));
+out_S2_C2_RE = _mm512_mask_mov_ps(out_S2_C2_RE, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C2_RE, out_S2_C2_RE));
+out_S2_C2_IM = _mm512_mask_mov_ps(out_S2_C2_IM, accMask, _mm512_fnmadd_ps(beta_vec, ub_S1_C2_IM, out_S2_C2_IM));
+}
+ if ( accumulate[4] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_s), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zbBase)[0][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zbBase)[0][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zbBase)[0][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zbBase)[0][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zbBase)[0][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zbBase)[0][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zbBase)[0][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zbBase)[0][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zbBase)[1][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zbBase)[1][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zbBase)[1][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zbBase)[1][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zbBase)[1][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zbBase)[1][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zbBase)[1][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zbBase)[1][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zbBase)[2][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zbBase)[2][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zbBase)[2][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zbBase)[2][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zbBase)[2][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zbBase)[2][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zbBase)[2][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zbBase)[2][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[4][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[4][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[4][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[4][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[4][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[4][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[4][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[4][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[4][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[4][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[4][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[4][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[4][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[4][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[4][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[4][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[4][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[4][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_01_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_02_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_10_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fmadd_ps(u_10_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_10_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_12_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_20_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fmadd_ps(u_20_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_20_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_21_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE);
+out_S0_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM);
+out_S0_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE);
+out_S0_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM);
+out_S0_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE);
+out_S0_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM);
+out_S2_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S2_C0_RE);
+out_S2_C0_IM = _mm512_fnmadd_ps(beta_vec, ub_S0_C0_RE, out_S2_C0_IM);
+out_S2_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S2_C1_RE);
+out_S2_C1_IM = _mm512_fnmadd_ps(beta_vec, ub_S0_C1_RE, out_S2_C1_IM);
+out_S2_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S2_C2_RE);
+out_S2_C2_IM = _mm512_fnmadd_ps(beta_vec, ub_S0_C2_RE, out_S2_C2_IM);
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zbBase)[0][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zbBase)[0][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zbBase)[0][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zbBase)[0][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zbBase)[0][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zbBase)[0][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zbBase)[0][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zbBase)[0][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zbBase)[1][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zbBase)[1][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zbBase)[1][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zbBase)[1][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zbBase)[1][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zbBase)[1][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zbBase)[1][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zbBase)[1][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zbBase)[2][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zbBase)[2][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zbBase)[2][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zbBase)[2][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zbBase)[2][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zbBase)[2][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zbBase)[2][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zbBase)[2][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_01_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_02_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_10_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fmadd_ps(u_10_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_10_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_12_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_20_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fmadd_ps(u_20_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_20_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_21_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE);
+out_S1_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM);
+out_S1_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE);
+out_S1_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM);
+out_S1_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE);
+out_S1_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM);
+out_S3_C0_RE = _mm512_fnmadd_ps(beta_vec, ub_S1_C0_IM, out_S3_C0_RE);
+out_S3_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S3_C0_IM);
+out_S3_C1_RE = _mm512_fnmadd_ps(beta_vec, ub_S1_C1_IM, out_S3_C1_RE);
+out_S3_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S3_C1_IM);
+out_S3_C2_RE = _mm512_fnmadd_ps(beta_vec, ub_S1_C2_IM, out_S3_C2_RE);
+out_S3_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S3_C2_IM);
+}
+ if ( accumulate[5] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_s), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zfBase)[0][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zfBase)[0][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zfBase)[0][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zfBase)[0][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zfBase)[0][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zfBase)[0][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zfBase)[0][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zfBase)[0][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zfBase)[1][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zfBase)[1][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zfBase)[1][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zfBase)[1][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zfBase)[1][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zfBase)[1][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zfBase)[1][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zfBase)[1][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zfBase)[2][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zfBase)[2][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zfBase)[2][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zfBase)[2][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zfBase)[2][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zfBase)[2][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zfBase)[2][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zfBase)[2][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[5][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[5][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[5][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[5][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[5][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[5][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[5][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[5][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[5][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[5][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[5][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[5][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[5][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[5][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[5][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[5][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[5][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[5][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_10_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_20_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_01_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_01_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fmadd_ps(u_01_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_21_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_02_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_02_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fmadd_ps(u_02_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_12_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE);
+out_S0_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM);
+out_S0_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE);
+out_S0_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM);
+out_S0_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE);
+out_S0_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM);
+out_S2_C0_RE = _mm512_fnmadd_ps(beta_vec, ub_S0_C0_IM, out_S2_C0_RE);
+out_S2_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S2_C0_IM);
+out_S2_C1_RE = _mm512_fnmadd_ps(beta_vec, ub_S0_C1_IM, out_S2_C1_RE);
+out_S2_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S2_C1_IM);
+out_S2_C2_RE = _mm512_fnmadd_ps(beta_vec, ub_S0_C2_IM, out_S2_C2_RE);
+out_S2_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S2_C2_IM);
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zfBase)[0][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zfBase)[0][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zfBase)[0][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zfBase)[0][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zfBase)[0][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zfBase)[0][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zfBase)[0][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zfBase)[0][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zfBase)[1][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zfBase)[1][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zfBase)[1][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zfBase)[1][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zfBase)[1][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zfBase)[1][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zfBase)[1][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zfBase)[1][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*zfBase)[2][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*zfBase)[2][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*zfBase)[2][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*zfBase)[2][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*zfBase)[2][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*zfBase)[2][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*zfBase)[2][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*zfBase)[2][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_RE );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_10_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_20_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_01_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_01_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fmadd_ps(u_01_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_21_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_02_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_02_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fmadd_ps(u_02_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_12_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE);
+out_S1_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM);
+out_S1_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE);
+out_S1_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM);
+out_S1_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE);
+out_S1_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM);
+out_S3_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S3_C0_RE);
+out_S3_C0_IM = _mm512_fnmadd_ps(beta_vec, ub_S1_C0_RE, out_S3_C0_IM);
+out_S3_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S3_C1_RE);
+out_S3_C1_IM = _mm512_fnmadd_ps(beta_vec, ub_S1_C1_RE, out_S3_C1_IM);
+out_S3_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S3_C2_RE);
+out_S3_C2_IM = _mm512_fnmadd_ps(beta_vec, ub_S1_C2_RE, out_S3_C2_IM);
+}
+ if ( accumulate[6] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_t_b), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tbBase)[0][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tbBase)[0][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tbBase)[0][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tbBase)[0][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tbBase)[0][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tbBase)[0][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tbBase)[0][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tbBase)[0][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tbBase)[1][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tbBase)[1][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tbBase)[1][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tbBase)[1][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tbBase)[1][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tbBase)[1][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tbBase)[1][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tbBase)[1][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tbBase)[2][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tbBase)[2][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tbBase)[2][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tbBase)[2][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tbBase)[2][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tbBase)[2][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tbBase)[2][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tbBase)[2][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[6][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[6][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[6][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[6][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[6][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[6][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[6][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[6][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[6][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[6][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[6][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[6][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[6][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[6][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[6][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[6][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[6][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[6][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_01_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_01_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_02_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_02_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_10_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fmadd_ps(u_10_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_10_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_12_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_12_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_20_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fmadd_ps(u_20_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_20_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_21_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_21_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE);
+out_S0_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM);
+out_S0_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE);
+out_S0_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM);
+out_S0_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE);
+out_S0_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM);
+out_S2_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S2_C0_RE);
+out_S2_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S2_C0_IM);
+out_S2_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S2_C1_RE);
+out_S2_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S2_C1_IM);
+out_S2_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S2_C2_RE);
+out_S2_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S2_C2_IM);
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tbBase)[0][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tbBase)[0][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tbBase)[0][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tbBase)[0][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tbBase)[0][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tbBase)[0][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tbBase)[0][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tbBase)[0][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C0_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tbBase)[1][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tbBase)[1][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tbBase)[1][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tbBase)[1][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tbBase)[1][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tbBase)[1][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tbBase)[1][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tbBase)[1][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C1_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tbBase)[2][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tbBase)[2][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tbBase)[2][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tbBase)[2][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tbBase)[2][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tbBase)[2][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tbBase)[2][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tbBase)[2][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C2_IM = _mm512_add_ps( psi_S0_IM , psi_S1_IM );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_01_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_01_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_01_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_02_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_02_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fnmadd_ps(u_02_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_10_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fmadd_ps(u_10_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_10_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_10_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_12_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_12_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fnmadd_ps(u_12_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_20_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fmadd_ps(u_20_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_20_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_20_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_21_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_21_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_21_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fnmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE);
+out_S1_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM);
+out_S1_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE);
+out_S1_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM);
+out_S1_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE);
+out_S1_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM);
+out_S3_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S3_C0_RE);
+out_S3_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S3_C0_IM);
+out_S3_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S3_C1_RE);
+out_S3_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S3_C1_IM);
+out_S3_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S3_C2_RE);
+out_S3_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S3_C2_IM);
+}
+ if ( accumulate[7] ) { 
+__m512 beta_vec = _mm512_setzero_ps(); 
+beta_vec = _mm512_extload_ps((&coeff_t_f), _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST_1X16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tfBase)[0][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tfBase)[0][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tfBase)[0][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tfBase)[0][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tfBase)[0][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tfBase)[0][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tfBase)[0][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tfBase)[0][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tfBase)[1][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tfBase)[1][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tfBase)[1][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tfBase)[1][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tfBase)[1][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tfBase)[1][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tfBase)[1][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tfBase)[1][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tfBase)[2][0][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tfBase)[2][0][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tfBase)[2][0][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tfBase)[2][0][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tfBase)[2][2][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tfBase)[2][2][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tfBase)[2][2][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tfBase)[2][2][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S0_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+u_00_re = _mm512_mask_extload_ps(u_00_re, 0xFFFF, (*gBase)[7][0][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_00_im = _mm512_mask_extload_ps(u_00_im, 0xFFFF, (*gBase)[7][0][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_re = _mm512_mask_extload_ps(u_01_re, 0xFFFF, (*gBase)[7][0][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_01_im = _mm512_mask_extload_ps(u_01_im, 0xFFFF, (*gBase)[7][0][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_re = _mm512_mask_extload_ps(u_02_re, 0xFFFF, (*gBase)[7][0][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_02_im = _mm512_mask_extload_ps(u_02_im, 0xFFFF, (*gBase)[7][0][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_re = _mm512_mask_extload_ps(u_10_re, 0xFFFF, (*gBase)[7][1][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_10_im = _mm512_mask_extload_ps(u_10_im, 0xFFFF, (*gBase)[7][1][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_re = _mm512_mask_extload_ps(u_11_re, 0xFFFF, (*gBase)[7][1][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_11_im = _mm512_mask_extload_ps(u_11_im, 0xFFFF, (*gBase)[7][1][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_re = _mm512_mask_extload_ps(u_12_re, 0xFFFF, (*gBase)[7][1][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_12_im = _mm512_mask_extload_ps(u_12_im, 0xFFFF, (*gBase)[7][1][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_re = _mm512_mask_extload_ps(u_20_re, 0xFFFF, (*gBase)[7][2][0][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_20_im = _mm512_mask_extload_ps(u_20_im, 0xFFFF, (*gBase)[7][2][0][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_re = _mm512_mask_extload_ps(u_21_re, 0xFFFF, (*gBase)[7][2][1][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_21_im = _mm512_mask_extload_ps(u_21_im, 0xFFFF, (*gBase)[7][2][1][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_re = _mm512_mask_extload_ps(u_22_re, 0xFFFF, (*gBase)[7][2][2][0], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+u_22_im = _mm512_mask_extload_ps(u_22_im, 0xFFFF, (*gBase)[7][2][2][1], _MM_UPCONV_PS_FLOAT16, _MM_BROADCAST32_NONE, _MM_HINT_NONE);
+
+ub_S0_C0_RE = _mm512_mul_ps( u_00_re , b_S0_C0_RE );
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S0_C0_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_mul_ps( u_00_re , b_S0_C0_IM );
+ub_S0_C0_IM = _mm512_fmadd_ps(u_00_im, b_S0_C0_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_10_re, b_S0_C1_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S0_C1_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_re, b_S0_C1_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_10_im, b_S0_C1_RE, ub_S0_C0_IM);
+ub_S0_C0_RE = _mm512_fmadd_ps(u_20_re, b_S0_C2_RE, ub_S0_C0_RE);
+ub_S0_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S0_C2_IM, ub_S0_C0_RE);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_re, b_S0_C2_IM, ub_S0_C0_IM);
+ub_S0_C0_IM = _mm512_fmadd_ps(u_20_im, b_S0_C2_RE, ub_S0_C0_IM);
+ub_S0_C1_RE = _mm512_mul_ps( u_01_re , b_S0_C0_RE );
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S0_C0_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_mul_ps( u_01_re , b_S0_C0_IM );
+ub_S0_C1_IM = _mm512_fmadd_ps(u_01_im, b_S0_C0_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_11_re, b_S0_C1_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S0_C1_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_re, b_S0_C1_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_11_im, b_S0_C1_RE, ub_S0_C1_IM);
+ub_S0_C1_RE = _mm512_fmadd_ps(u_21_re, b_S0_C2_RE, ub_S0_C1_RE);
+ub_S0_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S0_C2_IM, ub_S0_C1_RE);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_re, b_S0_C2_IM, ub_S0_C1_IM);
+ub_S0_C1_IM = _mm512_fmadd_ps(u_21_im, b_S0_C2_RE, ub_S0_C1_IM);
+ub_S0_C2_RE = _mm512_mul_ps( u_02_re , b_S0_C0_RE );
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S0_C0_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_mul_ps( u_02_re , b_S0_C0_IM );
+ub_S0_C2_IM = _mm512_fmadd_ps(u_02_im, b_S0_C0_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_12_re, b_S0_C1_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S0_C1_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_re, b_S0_C1_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_12_im, b_S0_C1_RE, ub_S0_C2_IM);
+ub_S0_C2_RE = _mm512_fmadd_ps(u_22_re, b_S0_C2_RE, ub_S0_C2_RE);
+ub_S0_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S0_C2_IM, ub_S0_C2_RE);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_re, b_S0_C2_IM, ub_S0_C2_IM);
+ub_S0_C2_IM = _mm512_fmadd_ps(u_22_im, b_S0_C2_RE, ub_S0_C2_IM);
+out_S0_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C0_RE, out_S0_C0_RE);
+out_S0_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C0_IM, out_S0_C0_IM);
+out_S0_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C1_RE, out_S0_C1_RE);
+out_S0_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C1_IM, out_S0_C1_IM);
+out_S0_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S0_C2_RE, out_S0_C2_RE);
+out_S0_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S0_C2_IM, out_S0_C2_IM);
+out_S2_C0_RE = _mm512_fnmadd_ps(beta_vec, ub_S0_C0_RE, out_S2_C0_RE);
+out_S2_C0_IM = _mm512_fnmadd_ps(beta_vec, ub_S0_C0_IM, out_S2_C0_IM);
+out_S2_C1_RE = _mm512_fnmadd_ps(beta_vec, ub_S0_C1_RE, out_S2_C1_RE);
+out_S2_C1_IM = _mm512_fnmadd_ps(beta_vec, ub_S0_C1_IM, out_S2_C1_IM);
+out_S2_C2_RE = _mm512_fnmadd_ps(beta_vec, ub_S0_C2_RE, out_S2_C2_RE);
+out_S2_C2_IM = _mm512_fnmadd_ps(beta_vec, ub_S0_C2_IM, out_S2_C2_IM);
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tfBase)[0][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tfBase)[0][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tfBase)[0][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tfBase)[0][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tfBase)[0][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tfBase)[0][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tfBase)[0][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tfBase)[0][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tfBase)[1][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tfBase)[1][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tfBase)[1][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tfBase)[1][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tfBase)[1][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tfBase)[1][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tfBase)[1][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tfBase)[1][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff, ((*tfBase)[2][1][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xff00, ((*tfBase)[2][1][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff, ((*tfBase)[2][1][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xff00, ((*tfBase)[2][1][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff, ((*tfBase)[2][3][0] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xff00, ((*tfBase)[2][3][0] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff, ((*tfBase)[2][3][1] + offs[0]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xff00, ((*tfBase)[2][3][1] + offs[8]), _MM_UPCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_sub_ps( psi_S0_RE , psi_S1_RE );
+b_S1_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_IM );
+ub_S1_C0_RE = _mm512_mul_ps( u_00_re , b_S1_C0_RE );
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_00_im, b_S1_C0_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_mul_ps( u_00_re , b_S1_C0_IM );
+ub_S1_C0_IM = _mm512_fmadd_ps(u_00_im, b_S1_C0_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_10_re, b_S1_C1_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_10_im, b_S1_C1_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_re, b_S1_C1_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_10_im, b_S1_C1_RE, ub_S1_C0_IM);
+ub_S1_C0_RE = _mm512_fmadd_ps(u_20_re, b_S1_C2_RE, ub_S1_C0_RE);
+ub_S1_C0_RE = _mm512_fnmadd_ps(u_20_im, b_S1_C2_IM, ub_S1_C0_RE);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_re, b_S1_C2_IM, ub_S1_C0_IM);
+ub_S1_C0_IM = _mm512_fmadd_ps(u_20_im, b_S1_C2_RE, ub_S1_C0_IM);
+ub_S1_C1_RE = _mm512_mul_ps( u_01_re , b_S1_C0_RE );
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_01_im, b_S1_C0_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_mul_ps( u_01_re , b_S1_C0_IM );
+ub_S1_C1_IM = _mm512_fmadd_ps(u_01_im, b_S1_C0_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_11_re, b_S1_C1_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_11_im, b_S1_C1_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_re, b_S1_C1_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_11_im, b_S1_C1_RE, ub_S1_C1_IM);
+ub_S1_C1_RE = _mm512_fmadd_ps(u_21_re, b_S1_C2_RE, ub_S1_C1_RE);
+ub_S1_C1_RE = _mm512_fnmadd_ps(u_21_im, b_S1_C2_IM, ub_S1_C1_RE);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_re, b_S1_C2_IM, ub_S1_C1_IM);
+ub_S1_C1_IM = _mm512_fmadd_ps(u_21_im, b_S1_C2_RE, ub_S1_C1_IM);
+ub_S1_C2_RE = _mm512_mul_ps( u_02_re , b_S1_C0_RE );
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_02_im, b_S1_C0_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_mul_ps( u_02_re , b_S1_C0_IM );
+ub_S1_C2_IM = _mm512_fmadd_ps(u_02_im, b_S1_C0_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_12_re, b_S1_C1_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_12_im, b_S1_C1_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_re, b_S1_C1_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_12_im, b_S1_C1_RE, ub_S1_C2_IM);
+ub_S1_C2_RE = _mm512_fmadd_ps(u_22_re, b_S1_C2_RE, ub_S1_C2_RE);
+ub_S1_C2_RE = _mm512_fnmadd_ps(u_22_im, b_S1_C2_IM, ub_S1_C2_RE);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_re, b_S1_C2_IM, ub_S1_C2_IM);
+ub_S1_C2_IM = _mm512_fmadd_ps(u_22_im, b_S1_C2_RE, ub_S1_C2_IM);
+out_S1_C0_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C0_RE, out_S1_C0_RE);
+out_S1_C0_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C0_IM, out_S1_C0_IM);
+out_S1_C1_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C1_RE, out_S1_C1_RE);
+out_S1_C1_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C1_IM, out_S1_C1_IM);
+out_S1_C2_RE = _mm512_fmadd_ps(beta_vec, ub_S1_C2_RE, out_S1_C2_RE);
+out_S1_C2_IM = _mm512_fmadd_ps(beta_vec, ub_S1_C2_IM, out_S1_C2_IM);
+out_S3_C0_RE = _mm512_fnmadd_ps(beta_vec, ub_S1_C0_RE, out_S3_C0_RE);
+out_S3_C0_IM = _mm512_fnmadd_ps(beta_vec, ub_S1_C0_IM, out_S3_C0_IM);
+out_S3_C1_RE = _mm512_fnmadd_ps(beta_vec, ub_S1_C1_RE, out_S3_C1_RE);
+out_S3_C1_IM = _mm512_fnmadd_ps(beta_vec, ub_S1_C1_IM, out_S3_C1_IM);
+out_S3_C2_RE = _mm512_fnmadd_ps(beta_vec, ub_S1_C2_RE, out_S3_C2_RE);
+out_S3_C2_IM = _mm512_fnmadd_ps(beta_vec, ub_S1_C2_IM, out_S3_C2_IM);
+}
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S0_C0_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S0_C0_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S0_C0_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S0_C0_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+0),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+0),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S1_C0_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S1_C0_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S1_C0_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S1_C0_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+16),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+16),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S2_C0_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S2_C0_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S2_C0_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S2_C0_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+32),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+32),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S3_C0_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S3_C0_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S3_C0_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S3_C0_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+48),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+48),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S0_C1_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S0_C1_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S0_C1_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S0_C1_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+64),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+64),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S1_C1_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S1_C1_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S1_C1_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S1_C1_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+80),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+80),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S2_C1_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S2_C1_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S2_C1_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S2_C1_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+96),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+96),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S3_C1_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S3_C1_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S3_C1_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S3_C1_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+112),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+112),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S0_C2_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S0_C2_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S0_C2_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S0_C2_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+128),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+128),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S1_C2_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S1_C2_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S1_C2_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S1_C2_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+144),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+144),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S2_C2_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S2_C2_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S2_C2_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S2_C2_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+160),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+160),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff, out_S3_C2_RE, (_MM_PERM_ENUM)68);
+tmp_1_re = _mm512_mask_permute4f128_ps(tmp_1_re, 0xff00, out_S3_C2_IM, (_MM_PERM_ENUM)68);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff, out_S3_C2_RE, (_MM_PERM_ENUM)238);
+tmp_2_re = _mm512_mask_permute4f128_ps(tmp_2_re, 0xff00, out_S3_C2_IM, (_MM_PERM_ENUM)238);
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[0])+176),tmp_1_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+
+_mm512_extstore_ps((((*oBase)[0][0][0] + offs[8])+176),tmp_2_re, _MM_DOWNCONV_PS_FLOAT16, _MM_HINT_NONE);
+

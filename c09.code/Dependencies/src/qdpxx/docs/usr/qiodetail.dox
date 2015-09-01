@@ -1,0 +1,422 @@
+//$Id: qiodetail.dox,v 1.1 2005-08-22 16:09:05 zbigniew Exp $
+/*! 
+\page qiodetailpage QIO internals
+
+\section qiodetailsec QIO internals
+
+QIO is a C library independent of %QDP. The %QDP interface to QIO is described
+in the \ref secqio section. QIO is designed to write SciDAC
+format data files, which means a mixture of binary data and XML
+metadata bundled together in the same file according to a scheme
+called Lime. Lime itself can be built as a seperate library and it comes with 
+a more detailed specification document.
+Briefly, each piece of data forms
+a Lime record, and associated with it is a record of
+user-written metadata. There is also a record of private metadata
+associated with each data record, and one with the file as a
+whole. Users need never know about the private records; they contain
+information in a format known unto QIO/Lime that makes the whole thing
+work.
+
+Data is written in big-endian format and any necessary byte-swapping
+is taken care of. The IO is also automatically verified.
+Each metadata record is associated with a string
+(#LIME_type), which are noted below in case it is useful. They are
+defined in qio.h.
+
+
+QIO sits on top of layers called DML and LML The source code (in
+\c other_libs/qio/) is well-commented and browsable with doxygen, but
+there is a lot of 
+it, so we try here to provide a summary of how it works and its
+interface with %QDP. We
+concentrate on IO for 
+lattice field data (like a gauge configuration) but the code can
+handle the (presumably easier) case of scalar data (like the mean plaquette).
+
+
+\subsection qio-output-open Opening the file for output
+
+As explained in the \ref qioapi section, the %QDP wrapper class is
+QDPFileWriter.   
+
+First we need to open a file. This can be done using a constructor or
+directly using the QDPFileWriter::open method. The constructor takes an
+XMLBufferWriter object containing metadata for the file, a string
+which is the file name, a  flag specififying the file format, and
+another flag which doesn't do anything (yet).
+
+The file format flag can take one of the values:
+-     QDP::QDPIO_SINGLEFILE
+-     QDP::QDPIO_MULTIFILE
+-     QDP::QDPIO_PARTFILE
+
+They map on to  QIO flags defined in qio.h as
+follows:
+-     QDP::QDPIO_SINGLEFILE -> #QIO_SINGLEFILE
+-     QDP::QDPIO_MULTIFILE -> #QIO_MULTIFILE
+-     QDP::QDPIO_PARTFILE -> #QIO_PARTFILE
+
+which in turn are defined in terms of DML flag values.
+
+These can take an additional parameter describing the
+mode in which to open the file, which defaults to QDP::QDPIO_OPEN for
+opening with truncation.
+
+The method creates a number of things needed by the QIO layer in order
+for it to know the geometry of the lattice and the processor grid. Of
+note are pointers to the functions (static in qdp_qdpio.cc)
+#get_node_number, #get_node_index and #get_coords:
+
+#get_node_number returns the node number given the global site coordinates;
+#get_node_index returns the local site index given the global site coordinates; 
+#get_coords gives the global site coordinates given the local site
+index and the node number.
+
+Note that the mapping between site coordinates and index is defined at
+build (actually configure) time and there are several available.
+
+These are all contained in a QIO_Layout structure.
+
+The method calls our first QIO function, #QIO_open_write.
+
+This takes the XML metadata, the filename, the flags, and a
+structure containing all the information about the lattice geometry,
+decomposition and layout. It opens files for writing by calling 
+#QIO_generic_open_write.
+
+#QIO_generic_open_write also takes as arguments pointers to two
+functions to identify a master IO node and the node that performs IO
+for any given node. The values passed for these arguments are,
+respectively, #DML_master_io_node and #DML_io_node, which use a QMP call
+in a parallel environment. 
+
+Single file format, #QIO_SINGLEFILE, is forced if running on a single
+node.
+
+One or more nodes, depending on the type of IO requested, open the file.
+In all cases, the master IO node opens the file.
+For partitioned IO (#QIO_PARTFILE), the partition IO nodes open the file.
+For multifile IO (#QIO_MULTIFILE)
+the nodes other than the master 
+node open files with the multifile naming convention (see the \ref
+multifulnamesec section).
+For parallel single file IO (#QIO_PARALLEL and #QIO_SINGLEFILE), each
+node opens the unaltered filename.
+
+#LRL_open_write_file is called to open the file
+This is the bit that actually calls calls fopen. 
+Files are always opened in write mode.
+The #LRL_FileWriter structure returned contains the FILE* (and other
+stuff).
+
+The master node writes the private and user file metadata records and
+something called site-lists (see the \ref sitelist section) which is a
+list of global lexicographic site 
+indices in the order in which they are laid out in memory (see the
+\ref lexisec section). 
+There is a #LIME_type string #QIO_LIMETYPE_SITELIST  associated with this..
+
+In #QIO_open_write, the master node writes some private XML to its
+file. The #LIME_type string #QIO_LIMETYPE_PRIVATE_RECORD_XML is associated with this..
+
+If using the multifile option, all nodes write  a
+site-list to their files, 
+
+Finally the master node writes the XML stuff you supplied. The
+associated Lime string is #QIO_LIMETYPE_FILE_XML.
+ 
+#QIO_open_write returns a QIO_Writer structure. This contains the
+lower-level DRL and LRL constructions - all the information and the
+file handle needed to write to the file.
+
+\subsection qio-output-write Data output
+
+Now that  the file is opened; we can write some data to it.
+
+We use an appropriate QDPFileWriter::write template method. These
+exist for OScalar and OLattice objects and are inlined in qdp_qdpio.h.
+
+First, the record XML is set up with a call to #QIO_create_record_info, 
+which returns a QIO_RecordInfo pointer which is a collection of
+tag-value pairs which will be used to write some XML describing the
+data. Note that the \c precision tag is hardwired to be \c F, despite
+what it says in the comments in qioxml.h.
+
+Then the real work is done in a call to #QIO_write.
+
+This is called with: 
+- (a pointer to) the QIO_Writer created in
+QDPFileWriter::open; 
+- a QIO_RecordInfo pointer to the private record metadata
+- the user record XML you supplied;
+- a pointer to a function which moves data between buffers. This is
+#QDPOLatticeFactoryGet<T> or #QDPOLatticeFactoryGetArray<T> if you are
+writing an OLattice<T> or a multi1d<OLattice<T> > respectively. There
+are a number of these functions defined in qdp_qdpio.h which have the
+same arguments <em>(char *buf, size_t linear, int count, void *arg)</em>. They
+copy \a count T objects from location \a arg with offset \a linear to the
+buffer \a buf. They use \c memcpy, so \a arg and \a buf should not point to
+overlapping memory regions.
+- the size in bytes of the data at each site - \a sizeof(T) multiplied
+by the size of the array if you are writing a multi1d.
+- \a sizeof(typename WordType<T>::Type_t), which looks to me like it's
+the same as \a sizeof(T).
+- a pointer to the data.
+
+This calls #QIO_generic_write. After performing some consistency
+checks, the master node writes to its
+file some private XML containing the #QIO_RecordInfo metadata and with
+the associated #LIME_type string #QIO_LIMETYPE_PRIVATE_RECORD_XML, and then the
+user-suplied XML metadata (#QIO_LIMETYPE_RECORD_XML). ILDG things are done
+here if specified in the QIO_Writer and if the type of data is
+supported by the ILDG standards. The ILDG record Lime string is
+#QIO_LIMETYPE_ILDG_FORMAT. The ILDG LFN, if known at this point, is
+written in a record labelled #QIO_LIMETYPE_ILDG_DATA_LFN.
+
+At this point, if DO_BINX is defined, the master node writes BinX
+metadata (Lime string \c "scidac-binx-xml"). The string containing the BinX would
+have to be created here to avoid changing the QIO interface.
+
+Then all nodes call #QIO_write_record_data to write the data to a record
+labelled #QIO_LIMETYPE_ILDG_BINARY_DATA for data in ILDG format or
+#QIO_LIMETYPE_BINARY_DATA otherwise. This calls #QIO_write_field.
+
+The arguments to #QIO_write_field are:
+- That QIO_Writer again. 
+- some flags specifying if this is the first or last thing this node
+will write.
+- a flag specifying whether this is scalar data or a lattice field.
+- that Factory function for copying data to a buffer 
+- \a count; the number of data per site (greater than one if you are writing a
+multi1d<OLattice<T> >)
+- \a datum_size; the number of bytes per site
+- \a word_size; the number of bytes per datum
+- The checksum is given back
+- The #LIME_type string, as  specified above.
+
+It calls #QIO_open_write_field decides which nodes open and write, and the size
+of the data, depending on whether the data is a scalar or a lattice
+field and on the type of IO, serial or parallel. 
+
+Then it calls #QIO_write_field_data to write the data record. An
+appropriate function, #DML_global_out or #DML_partition_out, is called
+depending on whether the data is scalar or a lattice field. 
+
+Before writing the data, byte-swaps, if necessary, and checksums (see
+the \ref checksumsec section) are done in that order.
+
+For distributed data, the IO nodes are identified with #DML_my_ionode.
+For single file serial IO, the master node is the IO node.
+For single file parallel IO and multi-file IO, all nodes are IO nodes.
+For part-file IO, the IO nodes are identified by the
+call-back function that was supplied long ago in the QIO_Writer.
+
+#DML_partition_out loops over the sites in the site-list.
+It finds the node that has that site. Data is
+sent to the IO node for that site if the IO node is different. 
+A buffer is used to collect data in and then,
+when the buffer is full or there is no more data left,
+the contents of the buffer to the file by
+#DML_write_buf_next for serial IO and #DML_seek_write_buf for parallel IO.
+The buffer size has to be enough for data at an integer number of
+sites. This number is returned by #DML_max_buf_sites  and can be
+constrined to be a multiple of some factor, but it isn't in this
+function. The buffer size is limited by #DML_BUF_BYTES.
+This can be set at build time with the configure flag --enable-dml-bufsize=N
+
+Finally, after returning up the call stack, in QIO_write, the master
+node writes the checksum in a metadata record with Lime string
+\c "scidac-checksum".
+
+
+
+\subsection qio-input-open Opening the file for input
+
+The %QDP wrapper class for data input is  QDPFileReader. 
+
+A file is opened for reading either with the constructor or by calling
+the  QDPFileReader::open method. This takes an XMLReader object, a
+string which is the file name and a flag specifying the type of IO to use.
+
+Just as in QDPFileWriter, a QIO_Layout object is initialised with
+details about the lattice layout. Then #QIO_open_read is called.
+
+This takes a pointer to the XML metadata, the filename, 
+the structure containing all the information about the lattice geometry,
+decomposition and layout; the serial/parallel IO flag is ignored.
+It opens a file for reading. 
+
+First it calls #QIO_open_read_master, supplying callbacks #DML_io_node
+ and #DML_master_io_node to identify to the lower layers the IO nodes
+ and master node. 
+ This creates the QIO_reader with
+#QIO_create_reader, which descends to the DML layer. Only a master IO
+node opens the file. The ID number of this master node is returned by
+#DML_layout::master_io_node, which is actually the supplied callback and uses
+ a QMP call in a parallel environment. 
+Finally, #LRL_open_read_file actually opens the file for reading.
+If this succeeds then the file must be a single file. Otherwise an
+ attempt is made to open a mult-file format file by appending a node
+ number to the end of the file name with #QIO_filename_edit.
+
+#QIO_read_private_file_info is called to read the private Lime file record,
+which, among other things, tells the reader what about the
+single/parallel file format. It is parsed by #QIO_decode_file_info.
+The file format is one of the things stored in the QIO_Reader returned
+by #QIO_open_read_master.
+Another useful thing similarly obtained from the  private metadata is
+a flag saying whether the data is global (scalar) or a lattice
+field. 
+
+#QIO_create_reader initially looks for a file to open of the name
+given in the string argument. If this cannot be found, it looks the
+the file written in a parallel multifile format (see the \ref
+multifilenamesec section).
+In this way it automatically copes with single and multifilex IO.
+
+Next, #QIO_open_read calls  #QIO_open_read_nonmaster with the #QIO_Reader
+created in the call to #QIO_open_read_master. Other nodes open the file
+depending on the file type (single or partitioned) and IO type (serial
+or parallel): for  multi-file and parallel single file, all nodes open
+for reading; for part-file, the designated IO nodes open.
+
+Using the site-list (see the \ref sitelistsec section) mechanism,
+#QIO_read_check_sitelist verifies that the geometry of the lattice
+field in the file is correct.
+
+The user file metadata record into the
+#QIO_open_read argument xml_file with a call  to #QIO_read_user_file_xml. 
+The file metadata is the variable \a xml_c in QDPFileReader::open.
+This XML is iserted into the XMLReader argument of QDPFileReader::open.
+
+So now we have opened the file for reading!
+
+
+\subsection qio-input-read Reading from the file
+
+
+To read the data, there are a number of overloaded QDPFileReader::read
+methods.
+
+These rely on some template functions like
+#QDPOLatticeFactoryPut 
+which do the opposite of their #QDPOLatticeFactoryGet counterparts
+described above, i.e. they move data from \a buf to \a arg+linear
+
+The first call is to #QIO_create_record_info to make a structure
+containing tag-value pairs describing the information in the private
+record metadata. The precision string is hardwired as \c F.
+
+The main call is to 
+#QIO_read which is the analogue to #QIO_write.
+It reads the private info (if not already done) and if something goes
+wrong here, it returns the return value of #QIO_read_record_info, which
+should be #QIO_SUCCESS if all goes well.
+
+Then the data is read with a call to #QIO_read_record_data, and its
+return value is returned 
+
+#QIO_read_record_data uses #QIO_get_global_data to examine the
+previously read metadata to see whether the data is scalar or distributed.
+
+Then it calls #QIO_generic_read_record_data to read the data.
+This carries out some consistency checks of the size of the data.
+#QIO_generic_read_record_data returns #QIO_ERR_BAD_READ_BYTES if there
+is a mismatch between the 
+amount of data expected and the amount specified in the private metadata or
+the amount actually read. 
+If DO_BINX is defined, the BinX metadata is read into a string. 
+#QIO_open_read_field is called, in which nodes open the file at
+the next record depending on the type of file and IO.
+Then #QIO_read_field_data is called to actually read the data
+
+This calls an appropriate function depending on the sort of IO  
+required. If the data is scalar, then #DML_global_in is called.
+If the data is a distributed lattice field, then #DML_partition_in is called.
+These take care of byte-swapping if the platform is little-endian and
+collect the checksum (see the \ref checksumsec section). 
+
+#DML_global_in calls #LRL_read_bytes, which actually finally
+calls fread! 
+
+#DML_partition_in uses an IO buffer.
+The nodes doing IO loop over all sites in the global lattice in
+lexicographic order (see the
+\ref lexisec section). 
+To read the data for that site into a buffer, 
+it uses #LRL_read_buf_next or #LRL_seek_read_buf for serial or
+parallel IO respectively.
+We determine the node on which the site lives. 
+and the data is sent to a buffer on that node (if it is different)
+with #DML_route_bytes. 
+After checksumming and byte-swapping if necessary, 
+the put function is used to move the data from the buffer to the data
+array.
+
+
+After the hierarchy of read routines has returned, #QIO_read_record_data
+combines the checksums from all nodes and compares the result
+against  the expected checksum obtained from the private record metadata.
+
+#QIO_SUCCESS is returned if all goes well. A return value of
+#QIO_ERR_CHECKSUM_INFO indicates that the checksum failed.
+
+If #QIO_read returns something other than #QIO_SUCCESS,
+QDPFileReader::read prints a warning message
+to stderr.
+The user metadata is written to the XMLReader parameter.
+
+\subsection sitelistsec Site list
+
+The sitelist, stored in a DML_SiteList structure, 
+is a list of the global lexicographic indices (see the
+\ref lexisec section) of the sites for which
+the node is doing IO.
+- For single file IO, the site list is not used.
+- For multi-file IO, all nodes use a site lost consisting of all the
+sites on that node.
+- For partitioned IO, nodes that  are not designated IO nodes  will
+have an empty list.
+.
+See #QIO_create_sitelist, #QIO_write_sitelist and the functions they call. 
+
+The DML_SiteList contains information about whether to use a sitelist
+at all (it is not used for  single-file IO) and the number of sites to be
+read by this node. This is the global volume for #DML_SINGLEFILE
+format and the local volume for #DML_MULTIFILE, and something else for
+#DML_PARTFILE.
+
+\subsection checksumsec Checksum
+
+The checksum is calculated as the bytes are being written to disk, therefore
+very near the bottom of the call stack. The checksum routines are in
+DML_utils.c and consist of a 32-bit CRC on the data at each
+lattice site. This is then bit-twiddled based on the global lattice
+cordinate. Finally a global XOR is performed over all sites.
+The comments describe exactly what happens.
+
+\subsection lexisec Lexicographic order
+
+Lexicographic order here means that, given Cartesian coordinates 
+(x<sub>0</sub>, x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>) in that order, x<sub>0</sub> runs fastest and x<sub>3</sub> runs
+slowest (see #DML_lex_coords and #DML_lex_rank in DML_utils.c). I
+don't know what physical directions the coordinates correspond to.
+
+\subsection multifulnamesec Multifile naming convention.
+
+In the multifile format, each node has its own file. The master node
+has a file with the standard supplied filename. The other nodes have
+files of
+the same name but with <code>.vol<em>nnnn</em></code> appended, where
+\e nnnn is a four digit node number left-padded with zeroes. 
+
+\subsection qiomondebug Monitoring and debugging
+
+Messages about what QIO is doing can be printed to stdout if
+desired. The amount of information printed is controlled at runtime by 
+setting a verbosity level with #QIO_verbose. This level can be one of
+#QIO_VERB_DEBUG, #QIO_VERB_LOW, #QIO_VERB_MED, #QIO_VERB_REG or
+#QIO_VERB_OFF. The current level is returned by #QIO_verbosity.
+
+*/

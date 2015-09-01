@@ -1,0 +1,23 @@
+; $Id: t_nml.input,v 1.3 2003-04-26 01:54:25 edwards Exp $
+;
+; t_nml  test input file.
+;
+&IO_version
+ version = 3,
+&END
+&param
+ FermTypeP = 1,
+ Nd = 4,
+ Nc = 3,
+ numKappa = 1,
+ Kappa = (0.11),
+ numSeq_src = 5,
+ Seq_src = (0, 1, 2, 3, 10),
+ my_bool = 1,
+ my_bool2 = "false",
+ seed = (11,0,0,0),
+ my_complex = [1.4, 0.5],
+&END
+&Cfg
+ cfg_file = "../test_purgaug.cfg1",
+&END

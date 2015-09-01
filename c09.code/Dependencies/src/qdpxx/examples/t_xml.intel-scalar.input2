@@ -1,0 +1,760 @@
+<?xml version="1.0"?>
+
+
+<complex_xml>
+  <charStarThingy>whether tis nobler to suffer the slings and arrows</charStarThingy>
+  <stringThingy>Sat Jun 16 00:35:57 2001</stringThingy>
+  <realThingy>0.2</realThingy>
+  <complexThingy>
+    <re>0.2</re>
+    <im>-1.2</im>
+  </complexThingy>
+  <seedThingy>
+    <Seed>
+      <elem>1</elem>
+      <elem>0</elem>
+      <elem>0</elem>
+      <elem>0</elem>
+    </Seed>
+  </seedThingy>
+  <arrayInt>37 38 39</arrayInt>
+  <arrayReal>107.5 108.5 109.5</arrayReal>
+  <arrayComplex>
+    <elem>
+      <re>1</re>
+      <im>42</im>
+    </elem>
+    <elem>
+      <re>1</re>
+      <im>43</im>
+    </elem>
+  </arrayComplex>
+  <colorVectorThingy>
+    <Vector>
+      <elem  row="0">
+        <re>0.33787</re>
+        <im>0.192837</im>
+      </elem>
+      <elem  row="1">
+        <re>0.956926</re>
+        <im>0.632566</im>
+      </elem>
+      <elem  row="2">
+        <re>0.0183825</re>
+        <im>0.352688</im>
+      </elem>
+    </Vector>
+  </colorVectorThingy>
+  <spinMatrixThingy>
+    <Matrix>
+      <elem  row="0"  col="0">
+        <re>0.817719</re>
+        <im>0.0751958</im>
+      </elem>
+      <elem  row="0"  col="1">
+        <re>0.616034</re>
+        <im>0.513418</im>
+      </elem>
+      <elem  row="0"  col="2">
+        <re>0.154928</re>
+        <im>0.405634</im>
+      </elem>
+      <elem  row="0"  col="3">
+        <re>0.371056</re>
+        <im>0.31481</im>
+      </elem>
+      <elem  row="1"  col="0">
+        <re>0.421286</re>
+        <im>0.310982</im>
+      </elem>
+      <elem  row="1"  col="1">
+        <re>0.883559</re>
+        <im>0.879925</im>
+      </elem>
+      <elem  row="1"  col="2">
+        <re>0.426262</re>
+        <im>0.154254</im>
+      </elem>
+      <elem  row="1"  col="3">
+        <re>0.0201573</re>
+        <im>0.0158104</im>
+      </elem>
+      <elem  row="2"  col="0">
+        <re>0.192751</re>
+        <im>0.480218</im>
+      </elem>
+      <elem  row="2"  col="1">
+        <re>0.21345</re>
+        <im>0.831854</im>
+      </elem>
+      <elem  row="2"  col="2">
+        <re>0.174046</re>
+        <im>0.803535</im>
+      </elem>
+      <elem  row="2"  col="3">
+        <re>0.514196</re>
+        <im>0.397621</im>
+      </elem>
+      <elem  row="3"  col="0">
+        <re>0.644392</re>
+        <im>0.768908</im>
+      </elem>
+      <elem  row="3"  col="1">
+        <re>0.472918</re>
+        <im>0.343425</im>
+      </elem>
+      <elem  row="3"  col="2">
+        <re>0.0840966</re>
+        <im>0.373586</im>
+      </elem>
+      <elem  row="3"  col="3">
+        <re>0.841311</re>
+        <im>0.287112</im>
+      </elem>
+    </Matrix>
+  </spinMatrixThingy>
+  <latticeColorMatrixThingy>
+    <OLattice>
+      <elem  site="0">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.799459</re>
+            <im>0.224422</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.619029</re>
+            <im>0.436739</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.0434852</re>
+            <im>0.828555</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.544982</re>
+            <im>0.185394</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.0361977</re>
+            <im>0.715116</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.0342023</re>
+            <im>0.076662</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.942468</re>
+            <im>0.929924</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.524861</re>
+            <im>0.9126</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.664346</re>
+            <im>0.918385</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="1">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.659749</re>
+            <im>0.260201</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.692738</re>
+            <im>0.568556</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.116444</re>
+            <im>0.612383</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.934889</re>
+            <im>0.060416</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.0672585</re>
+            <im>0.747764</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.253597</re>
+            <im>0.773171</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.0944061</re>
+            <im>0.994492</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.859574</re>
+            <im>0.732299</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.128208</re>
+            <im>0.66971</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="2">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.96775</re>
+            <im>0.828766</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.945902</re>
+            <im>0.232925</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.78472</re>
+            <im>0.829663</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.525612</re>
+            <im>0.188656</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.00608254</re>
+            <im>0.424478</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.651283</re>
+            <im>0.554802</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.621707</re>
+            <im>0.37065</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.368422</re>
+            <im>0.608697</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.00884096</re>
+            <im>0.223141</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="3">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.954133</re>
+            <im>0.258972</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.126275</re>
+            <im>0.571645</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.63735</re>
+            <im>0.956928</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.0517108</re>
+            <im>0.395758</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.16824</re>
+            <im>0.478835</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.703586</re>
+            <im>0.287999</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.478669</re>
+            <im>0.26459</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.187676</re>
+            <im>0.174581</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.759044</re>
+            <im>0.0146123</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="4">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.0596074</re>
+            <im>0.509568</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.157118</re>
+            <im>0.378423</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.981068</re>
+            <im>0.850345</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.459048</re>
+            <im>0.240221</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.745949</re>
+            <im>0.938594</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.992327</re>
+            <im>0.644298</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.25697</re>
+            <im>0.355677</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.771086</re>
+            <im>0.636542</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.849204</re>
+            <im>0.880286</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="5">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.110499</re>
+            <im>0.343657</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.539209</re>
+            <im>0.0127932</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.543895</re>
+            <im>0.105521</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.365384</re>
+            <im>0.935725</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.956064</re>
+            <im>0.958698</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.162646</re>
+            <im>0.693437</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.0444565</re>
+            <im>0.40042</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.695481</re>
+            <im>0.905384</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.690358</re>
+            <im>0.348173</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="6">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.763682</re>
+            <im>0.616457</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.923363</re>
+            <im>0.400514</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.564248</re>
+            <im>0.667766</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.621994</re>
+            <im>0.0353713</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.932709</re>
+            <im>0.38581</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.579786</re>
+            <im>0.264388</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.56323</re>
+            <im>0.880463</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.457091</re>
+            <im>0.382878</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.466959</re>
+            <im>0.622036</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="7">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.0246932</re>
+            <im>0.0971466</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.821336</re>
+            <im>0.532763</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.267413</re>
+            <im>0.166195</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.096714</re>
+            <im>0.823315</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.792582</re>
+            <im>0.911012</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.881999</re>
+            <im>0.428074</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.0977932</re>
+            <im>0.292144</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.115274</re>
+            <im>0.54072</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.985711</re>
+            <im>0.835344</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="8">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.282679</re>
+            <im>0.726656</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.179056</re>
+            <im>0.576038</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.919624</re>
+            <im>0.312999</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.846052</re>
+            <im>0.936579</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.59389</re>
+            <im>0.81889</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.125642</re>
+            <im>0.00552518</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.63055</re>
+            <im>0.384804</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.699626</re>
+            <im>0.844886</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.287519</re>
+            <im>0.0701071</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="9">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.785367</re>
+            <im>0.652841</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.822665</re>
+            <im>0.837302</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.0571748</re>
+            <im>0.32398</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.304038</re>
+            <im>0.367124</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.953297</re>
+            <im>0.224141</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.267862</re>
+            <im>0.00131561</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.90192</re>
+            <im>0.375137</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.70529</re>
+            <im>0.254944</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.154685</re>
+            <im>0.17152</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="10">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.762352</re>
+            <im>0.340505</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.409713</re>
+            <im>0.966268</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.302587</re>
+            <im>0.11253</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.125292</re>
+            <im>0.0055306</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.0420774</re>
+            <im>0.805164</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.983996</re>
+            <im>0.189698</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.226678</re>
+            <im>0.926601</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.44805</re>
+            <im>0.272746</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.841044</re>
+            <im>0.867019</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="11">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.146302</re>
+            <im>0.818668</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.903361</re>
+            <im>0.134913</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.0818408</re>
+            <im>0.0528635</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.688561</re>
+            <im>0.454688</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.570814</re>
+            <im>0.721251</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.690598</re>
+            <im>0.460403</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.350994</re>
+            <im>0.445174</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.177452</re>
+            <im>0.990988</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.991398</re>
+            <im>0.865367</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="12">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.223537</re>
+            <im>0.59878</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.193134</re>
+            <im>0.208271</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.974511</re>
+            <im>0.404984</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.85028</re>
+            <im>0.386182</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.108637</re>
+            <im>0.161796</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.696298</re>
+            <im>0.919483</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.903465</re>
+            <im>0.520237</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.0816693</re>
+            <im>0.536866</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.520496</re>
+            <im>0.706703</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="13">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.751722</re>
+            <im>0.862866</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.573604</re>
+            <im>0.327995</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.771628</re>
+            <im>0.892719</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.364953</re>
+            <im>0.567903</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.140344</re>
+            <im>0.539873</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.307301</re>
+            <im>0.68924</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.0553426</re>
+            <im>0.944769</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.176845</re>
+            <im>0.414024</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.712019</re>
+            <im>0.801978</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="14">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.976424</re>
+            <im>0.219992</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.165842</re>
+            <im>0.253044</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.746323</re>
+            <im>0.458056</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.310028</re>
+            <im>0.259392</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.0147002</re>
+            <im>0.609581</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.334012</re>
+            <im>0.312618</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.495775</re>
+            <im>0.398073</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.808718</re>
+            <im>0.856468</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.415277</re>
+            <im>0.726761</im>
+          </elem>
+        </Matrix>
+      </elem>
+      <elem  site="15">
+        <Matrix>
+          <elem  row="0"  col="0">
+            <re>0.122006</re>
+            <im>0.592097</im>
+          </elem>
+          <elem  row="0"  col="1">
+            <re>0.185133</re>
+            <im>0.419401</im>
+          </elem>
+          <elem  row="0"  col="2">
+            <re>0.650444</re>
+            <im>0.994254</im>
+          </elem>
+          <elem  row="1"  col="0">
+            <re>0.196754</re>
+            <im>0.0120298</im>
+          </elem>
+          <elem  row="1"  col="1">
+            <re>0.108573</re>
+            <im>0.222456</im>
+          </elem>
+          <elem  row="1"  col="2">
+            <re>0.0198254</re>
+            <im>0.736948</im>
+          </elem>
+          <elem  row="2"  col="0">
+            <re>0.715204</re>
+            <im>0.926424</im>
+          </elem>
+          <elem  row="2"  col="1">
+            <re>0.879294</re>
+            <im>0.546952</im>
+          </elem>
+          <elem  row="2"  col="2">
+            <re>0.740366</re>
+            <im>0.18415</im>
+          </elem>
+        </Matrix>
+      </elem>
+    </OLattice>
+  </latticeColorMatrixThingy>
+</complex_xml>

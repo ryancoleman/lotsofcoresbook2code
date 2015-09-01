@@ -1,0 +1,4042 @@
+% -*-LaTeX-*- document QDP API (C++ Language Binding) version 1.43.0
+%
+\documentclass[12pt,letterpaper]{article}
+
+% Somewhat wider and taller page than in art12.sty
+\topmargin -0.4in  \headsep 0.4in  \textheight 9.0in
+\oddsidemargin 0.25in  \evensidemargin 0.25in  \textwidth 6in
+
+\footnotesep 14pt
+\floatsep 28pt plus 2pt minus 4pt      % Nominal is double what is in art12.sty
+\textfloatsep 40pt plus 2pt minus 4pt
+\intextsep 28pt plus 4pt minus 4pt
+
+\newcommand{\cpp}{C++}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math ops
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\Re}{\mathop{\rm Re}}
+\renewcommand{\Im}{\mathop{\rm Im}}
+\newcommand{\integer}{\mathop{\rm int}}
+\newcommand{\Tr}{\mathop{\rm Tr}}
+\newcommand{\diag}{\mathop{\rm diag}}
+\newcommand{\op}{\mathop{\rm op}}
+\renewcommand{\not}{\mathop{\rm not}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Names of types
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\tConstant}{constant}
+
+\newcommand{\tLatticeReal}{LatticeReal}
+\newcommand{\tLatticeComplex}{LatticeComplex}
+\newcommand{\tLatticeInt}{LatticeInt}
+\newcommand{\tLatticeBoolean}{LatticeBoolean}
+\newcommand{\tLatticeColorMatrix}{LatticeColorMatrix}
+\newcommand{\tLatticeSpinMatrix}{LatticeSpinMatrix}
+\newcommand{\tLatticeFermion}{LatticeFermion}
+\newcommand{\tLatticeHalfFermion}{LatticeHalfFermion}
+\newcommand{\tLatticeDiracFermion}{LatticeDiracFermion}
+\newcommand{\tLatticeStaggeredFermion}{LatticeStaggeredFermion}
+\newcommand{\tLatticeDiracPropagator}{LatticeDiracPropagator}
+\newcommand{\tLatticeStaggeredPropagator}{LatticeStaggeredPropagator}
+\newcommand{\tLatticeRandomState}{LatticeSeed}
+
+\newcommand{\tReal}{Real}
+\newcommand{\tDouble}{Double}
+\newcommand{\tComplex}{Complex}
+\newcommand{\tInt}{Integer}
+\newcommand{\tBoolean}{Boolean}
+\newcommand{\tColorMatrix}{ColorMatrix}
+\newcommand{\tFermion}{Fermion}
+\newcommand{\tHalfFermion}{HalfFermion}
+\newcommand{\tDiracFermion}{DiracFermion}
+\newcommand{\tStaggeredFermion}{StaggeredFermion}
+\newcommand{\tDiracPropagator}{DiracPropagator}
+\newcommand{\tStaggeredPropagator}{StaggeredPropagator}
+\newcommand{\tRandomState}{Seed}
+
+% Aliases/typedefs
+\newcommand{\tSpinMatrix}{SpinMatrix}
+\newcommand{\tSpinVector}{SpinVector}
+\newcommand{\tColorVector}{ColorVector}
+\newcommand{\tLatticeColorVector}{LatticeColorVector}
+\newcommand{\tLatticeSpinVector}{LatticeSpinVector}
+
+% Fixed precision
+\newcommand{\tRealF}{RealF}
+\newcommand{\tLatticeRealF}{LatticeRealF}
+\newcommand{\tRealD}{RealD}
+\newcommand{\tLatticeRealD}{LatticeRealD}
+\newcommand{\tLatticeComplexD}{LatticeComplexD}
+\newcommand{\tLatticeColorMatrixD}{LatticeColorMatrixD}
+\newcommand{\tLatticeHalfFermionD}{LatticeHalfFermionD}
+\newcommand{\tLatticeDiracFermionD}{LatticeDiracFermionD}
+\newcommand{\tLatticeStaggeredFermionD}{LatticeStaggeredFermionD}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Prototype elements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\namespace}{QDP}
+\newcommand{\allTypes}{{\tt R, C, I, G, H, D, V, P, M, S}}
+\newcommand{\allNumericTypes}{All numeric types}
+\newcommand{\allFloatTypes}{All floating types}
+\newcommand{\simLatticeVariants}{Also corresponding lattice variants}
+\newcommand{\ttdash}{{::}}
+\newcommand{\itt}{\it Type}
+\newcommand{\extraarg}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Patterns for prototypes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\protoUnary}{{\tt {\it Type func}(const {\it Type}\& a)}}
+\newcommand{\protoUnaryShift}{{\tt {\it Type} shift(const {\it Type}\& a, int sign, int dir)}}
+\newcommand{\protoUnaryQual}[1]{{\tt {\it Type} #1(const {\it Type}\& a)}}
+\newcommand{\protoBinaryQual}[1]{{\tt {\it Type} #1(const {\it Type1}\& a, const {\it Type2}\& b)}}
+\newcommand{\protoBBinaryQual}[1]{{\tt {\it Type} #1(const {\it Type}\& a, const {\it Type}\& b)}}
+\newcommand{\protoBoolBinaryQual}[1]{{\tt {\it Type2} #1(const {\it Type}\& a, const {\it Type1}\& b)}}
+\newcommand{\protoAssignmentQual}[1]{{\tt {\it Type} #1(const {\it Type}\& r, const {\it Type}\& a)}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% QDP macro names
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\qdpNcMacro}{{\tt \namespace}\ttdash{\tt Nc }}
+\newcommand{\qdpPrecisionMacro}{{\tt \namespace}\ttdash{\tt Precision}}
+\newcommand{\qdpColorsMacro}{{\tt \namespace}\ttdash{\tt Colors}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title{
+   QDP++ Data Parallel Interface for QCD  \\{\large Version 1.43.0}
+}
+\author{Robert G. Edwards\\
+SciDAC Software Coordinating Committee}
+
+\date{March 23, 2014}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This is a user's guide for the \cpp{} binding for the QDP Data Parallel
+Applications Programmer Interface developed under the auspices of the
+U.S. Department of Energy Scientific Discovery through Advanced
+Computing (SciDAC) program.
+
+The QDP Level 2 API has the following features:
+\begin{itemize}
+\item Provides data parallel operations (logically SIMD) on all sites
+across the lattice or subsets of these sites.
+\item Operates on lattice objects, which have an
+implementation-dependent data layout that is not visible above this
+API.
+\item Hides details of how the implementation maps onto a given
+architecture, namely how the logical problem grid (i.e. lattice) is
+mapped onto the machine architecture.
+\item Allows asynchronous (non-blocking) shifts of lattice level
+objects over any permutation map of sites onto sites. However, from
+the user's view these instructions appear blocking and in fact may be
+so in some implementation.
+\item Provides broadcast operations (filling a lattice quantity from a
+scalar value(s)), global reduction operations, and lattice-wide
+operations on various data-type primitives, such as matrices, vectors,
+and tensor products of matrices (propagators).
+\item
+Operator syntax that support complex expression constructions.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Datatypes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec.datatypes}
+
+The $N_d$ dimensional lattice consists of all the space-time sites in
+the problem space.  Lattice data are fields on these sites.  A data
+primitive describes data on a single site.  The lattice fields consist
+of the primitives over all sites.  We do not define data types
+restricted to a subset of the lattice --- rather, lattice fields occupy
+the entire lattice.
+The primitive types at
+each site are represented as the (tensor) product space of, for
+example, a vector space over color components with a vector space over
+spin components and complex valued elements.
+
+\subsection{Type Structure}
+\label{sec:typestructure}
+
+Generically objects transform under different spaces with a tensor
+product structure as shown below:
+
+\begin{displaymath}
+\begin{array}{llcccccl}
+                  & {\it Lattice} &    &  {\it Color} &     & {\it Spin}  &     & {\it Complexity}\\
+{\rm Gauge\ fields:}& {\tt Lattice} &\otimes& {\tt Matrix(Nc)}&\otimes& {\tt Scalar}    &\otimes& {\tt Complex}\\
+{\rm Fermions:}    & {\tt Lattice} &\otimes& {\tt Vector(Nc)}&\otimes& {\tt Vector(Ns)}&\otimes& {\tt Complex}\\
+{\rm Scalars:}     & {\tt Scalar}  &\otimes& {\tt Scalar}    &\otimes& {\tt Scalar}    &\otimes& {\tt Scalar} \\
+{\rm Propagators:} & {\tt Lattice} &\otimes& {\tt Matrix(Nc)}&\otimes& {\tt Matrix(Ns)}&\otimes& {\tt Complex}\\
+{\rm Gamma:}       & {\tt Scalar}  &\otimes& {\tt Scalar}    &\otimes& {\tt Matrix(Ns)}&\otimes& {\tt Complex}\\
+\end{array}
+\end{displaymath}
+
+\noindent
+\verb|Nd| is the number of space-time dimensions\\
+\noindent
+\verb|Nc| is the dimension of the color vector space\\
+\noindent
+\verb|Ns| is the dimension of the spin vector space\\
+
+Gauge fields can left-multiply fermions via color matrix times color
+vector but is diagonal in spin space (spin scalar times spin vector).
+A gamma matrix can right-multiply a propagator (spin matrix times
+spin matrix) but is diagonal in color space (color matrix times color
+scalar).
+
+Types in the QDP interface are parameterized by a variety of types including:
+\begin{itemize}
+\item {\em Word type}: 
+  int, float, double, bool. Basic machine types.
+\item {\em Reality type}: 
+  complex or scalar. This is where the idea of a complex number
+  lives.
+\item {\em Primitive type}: 
+  scalar, vector, matrix, etc. This is where the concept of a gauge or
+  spin field lives. There can be many more types here.
+\item {\em Inner grid type}: 
+  scalar or lattice. Supports vector style architectures.
+\item {\em Outer grid type}:
+  scalar or lattice. Supports super-scalar style architectures. In
+  combination with Inner grid can support a mixed mode like a
+  super-scalar architecture with short length vector instructions.
+\end{itemize}
+
+There are template classes for each of the type variants listed
+above. The interface relies heavily on templates for
+composition - there is very little inheritance. The basic objects are
+constructed (at the users choice) by compositions like the following:
+
+\begin{small}
+\begin{verbatim}
+typedef OLattice<PScalar<PColorMatrix<RComplex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<PSpinVector<PColorVector<RComplex<float>, Nc>, Ns> > LatticeFermion
+\end{verbatim}
+\end{small}
+%
+The classes PScalar, PSpinVector, PColorMatrix,
+PColorVector are all subtypes of a primitive type. The relative
+ordering of the classes is important. It is simply a user convention
+that spin is used as the second index (second level of type
+composition) and color is the third. The ordering of types can be
+changed. From looking at the types one can immediately decide what
+operations among objects makes sense.
+
+
+\subsection{Generic Names}
+
+The linear algebra portion of the QDP API is designed to resemble the
+functionality that is available in the Level 1 QLA API and the C Level
+QDP API.  Thus the datatypes and function naming conventions are
+similar.  Predefined names for some generic lattice field datatypes
+are listed in the table below. Because the API is based heavily on
+templates, the possible types allowed is much larger than listed
+below.
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+name                       & description \\
+\hline
+{\tt \tLatticeReal               } & real \\
+{\tt \tLatticeComplex            } & complex \\
+{\tt \tLatticeInt                } & integer \\
+{\tt \tLatticeColorMatrix              } & $N_c \times N_c$ complex matrix \\
+{\tt \tLatticeFermion            } & $N_s$ spin, $N_c$ color spinor \\
+{\tt \tLatticeHalfFermion        } & two-spin, $N_c$ color spinor \\
+{\tt \tLatticeDiracFermion       } & four-spin, $N_c$ color spinor \\
+{\tt \tLatticeStaggeredFermion   } & one-spin,  $N_c$ color spinor \\
+{\tt \tLatticeDiracPropagator    } & $4N_c \times 4N_c$ complex matrix \\
+{\tt \tLatticeStaggeredPropagator} & $N_c \times N_c$ complex matrix \\
+{\tt \tLatticeRandomState        } & implementation dependent \\
+\hline
+\end{tabular}
+\end{center}
+%
+Single site (lattice wide constant fields) versions of types exist
+without the {\tt Lattice} preprended.  All types and operations
+defined for QDP live within a \cpp{} namespace called \verb|QDP| thus
+ensuring no type conflicts with other namespaces.
+
+\subsection{Specific Types for Color and Precision}
+
+According to the chosen color and precision, names for specific
+floating point types are constructed from names for generic types.
+Thus {\tt \tLatticeColorMatrix} becomes {\tt LatticeColorMatrix}{\it PC},
+where the precision {\it P} is {\tt D} or {\tt F} according to the
+table below
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+abbreviation & description \\
+\hline
+{\tt D}            & double precision \\
+{\tt F}            & single precision \\
+\hline
+\end{tabular}
+\end{center}
+and {\it C} is {\tt 2}, {\tt 3}, or some arbitrary {\tt N}, if color is a
+consideration. Note, the value of {\tt N} is an arbitrary compile
+time constant.
+
+If the datatype carries no color, the color label is omitted. Also,
+if the number of color components is the same as the compile
+time constant, then the color label can be omitted.
+Integers also have no precision label. The specification of
+precision and number of colors is not needed for functions because
+of overloading.
+
+For example, the type
+%
+\begin{verbatim}
+   LatticeDiracFermionF3
+\end{verbatim}
+%
+describes a lattice quantity of single-precision four-spin, 
+three-color spinor field.
+
+\subsection{Color and Precision Uniformity}
+
+The only place that the number of color or spin components occur
+is through instance of the global constant variables $N_c$, and $N_s$. These 
+are only directly used in the typedef constructions of user defined types. Nothing
+restricts a user from constructing types for other number of colors. In fact,
+the use of $N_c$ in the construction of user defined types is simply a
+convenience for the user, and as such a user can use any integer that is
+reasonable. The API merely requires that the types used in operations are conforming.
+
+However, in standard coding practice it is assumed that a user keeps
+one of the precision, color, and spin options in force throughout the
+compilation.  So as a rule all functions in the interface take
+operands of the same precision, color, and number of spin
+components. As with data type names, function names come in generic
+color-, spin- and precision-specific forms, as described in the next
+section.  Exceptions to this rule are functions that explicitly
+convert from double to single precision and vice versa.  If the user
+choose to adopt color and precision uniformity, then all variables can
+be defined with generic types and all functions accessed through
+generic names.  The prevailing color is defined through
+the compile time constant $N_c$.  The interface automatically
+translates data type names and function names to the appropriate
+specific type names through typedefs.  With such a scheme and careful
+coding, changing only the compile time $N_c$ and the QDP library
+converts code from one color and precision choice to another.
+
+\subsection{Breaking Color and Precision Uniformity}
+
+It is permissible for a user to mix precision and color choices.  This
+is done by declaring variables with specific type names, using
+functions with specific names, and making appropriate precision
+conversions when needed. 
+
+\newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{QDP Functions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The QDP functions are grouped into the following categories:
+\begin{enumerate}
+\item Entry and exit from QDP
+\item Layout utilities
+\item Data parallel functions
+\item Data management utilities
+\item Subset definition
+\item Shift creation
+\item I/O utilities
+\item Temporary exit and reentry
+\end{enumerate}
+
+\subsection{Entry and exit from QDP}
+\label{sec:init_qdp}
+
+QDP must be initialized before any other routine can be used.
+The initialization is broken into two steps -- initializing
+the underlying hardware and initializing the layout.
+%
+\paragraph{Initialization of QDP}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void QDP_initialize(int *argc, char ***argv)|\\
+    \hline
+  Purpose        & Places the hardware into a known state. \\
+\hline
+  Example  & \verb|QDP_initialize();| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+This routine will be responsible for initializing any hardware
+like the physical layer of the message passing system. 
+For compatibility with QMP, the addresses of the main programs \verb|argc|
+and \verb|argv| must be passed. They may be modified.
+
+
+\paragraph{Shutdown of QDP}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void QDP_finalize()|\\
+    \hline
+  Purpose        & Shutdown QDP. \\
+\hline
+  Example  & \verb|QDP_finalize();| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+This call provides for an orderly shutdown of QDP.  It is called by
+all nodes. It concludes all communications, does housekeeping, if
+needed and performs a barrier wait for all nodes.  Then it returns
+control to the calling process.
+
+\paragraph{Panic exit from QDP}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void QDP_abort(int status)|\\
+    \hline
+  Purpose        & Panic shutdown of the process. \\
+\hline
+  Example  & \verb|QDP_abort(1);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+This routine may be called by one or more nodes.  It sends kill
+signals to all nodes and exits with exit status \verb|status|.
+
+\paragraph{Entry into QDP}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void Layout::create()|\\
+    \hline
+  Purpose        & Starts QDP with layout parameters in \verb|Layout|. \\
+\hline
+  Example  & \verb|Layout::create();| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+The routine \verb|Layout::create()| is called once by all nodes and
+starts QDP operations. It calls the layout routine with the
+parameters set in the namespace \verb|Layout| specifying the layout.
+The layout is discussed in Section~\ref{sec:layout}.
+
+This step is separated from the \verb|QDP_initialize()| above so
+layout parameters can be read and broadcasted to the nodes.  Otherwise
+the layout parameters have to be set from the environment or fixed in
+the compilation.
+
+
+\paragraph{Exit from QDP}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void Layout::destroy()|\\
+    \hline
+  Purpose        & Exits QDP. \\
+\hline
+  Example  & \verb|Layout::destroy();| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+This call provides for an orderly exit from QDP.  It is called by all
+nodes. It concludes all communications, does housekeeping, if needed
+and performs a barrier wait for all nodes. The communication layer is
+not finalized.
+
+\subsection{Layout utilities}
+\label{sec:layout}
+
+Routines for constructing the layout are collected in the namespace
+\verb|Layout|. The {\it set}ter and {\it get}ter routines provide
+a way to set parameters like the lattice size.
+
+The layout creation function determines which nodes get which lattice
+sites and in what linear order the sites are stored. The \verb|Layout|
+namespace has entry points that allow a user to inquire about the
+lattice layout to facilitate accessing single site data from a QDP
+lattice field. For code written entirely with other QDP calls, these
+routines may be ignored by the user, with the exception of the useful
+routine \verb|latticeCoordinate|.  However, if a user removes data
+from a QDP lattice object (see \verb|expose| or \verb|extract|) and
+wishes to manipulate the data on a site-by-site basis, the global
+entry points provided here are needed to locate the site data.
+
+Some implementations may have a built-in tightly constrained layout.
+In flexible implementations there may be several layout choices,
+thereby allowing the user the freedom to select one that works best
+with a given application.  Furthermore, such implementations may allow
+the user to create a custom layout to replace one of the standard
+layouts.  As long as the custom layout procedure provides the entry
+points and functionality described here, compatibility with the
+remainder of the QDP library is assured.
+
+\subsubsection{QDP setup}
+
+\paragraph{Layout creation}
+\mbox{}
+
+\noindent
+The layout creation routine \verb|Layout::create()| defined in
+Section~\ref{sec:init_qdp} generates predefined lattice subsets for
+specifying even, odd, and global subsets of the lattice. The \verb|rb|
+set can be dereferenced to produce the \verb|even| and \verb|odd| subsets:
+%
+\begin{verbatim}
+Subset even, odd, all,  rb[0], rb[1],  mcb[0], ..., mcb[1 << (Nd+1)]
+\end{verbatim}
+%
+It also creates the nearest-neighbor shifts for each coordinate
+direction.
+
+\paragraph{Defining the layout}
+\mbox{}
+
+\noindent
+There are set/accessor functions to specify the lattice geometry used
+in the layout. Generically, the accessors have the form:
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Generic      & \verb|void Layout::set<something>(<param>)|\\
+  \hline
+  Purpose      & Set one of the site data layout configurations. \\
+\hline
+  Example  & \verb|Layout::setLattSize(size);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+The type of input information needed by the layout is as follows:
+\begin{enumerate}
+\item	Number of dimensions $N_d$. Must be the compile time dimensions.
+\item	Lattice size  (e.g., $L_0$, $L_1$, ..., $L_{N_d-1}$)
+\item	SMP flag
+%\item	Number of nodes and processors per node
+%\item Rank of the current node or processor
+\end{enumerate}
+
+These parameters are accessed and set with the following functions:
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Generic      & \verb|void Layout::setLattSize(const multi1d<int>& size)|\\
+  \hline
+  Purpose      & Set the lattice size for the data layout. \\
+  \hline
+  Default      & No default value. Must always be set. \\
+\hline
+  Example  & \verb|Layout::setLattSize(size);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Generic      & \verb|void Layout::setSMPFlag(bool)|\\
+  \hline
+  Purpose      & Turn on using multi-processor/threading \\
+  \hline
+  Default      & Default value is false - single thread of execution. \\
+  \hline
+  Example  & \verb|Layout::setSMPFlag(true);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Generic      & \verb|void Layout::setNumProc(int N)|\\
+  \hline
+  Purpose      & In a multi-threaded implementation, use \verb|N| processors. \\
+  \hline
+  Default      & Default value is 1 - single thread of execution. \\
+  \hline
+  Example  & \verb|Layout::setNumProc(2);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+\subsubsection{Generic layout information}
+        
+The following global entry points are provided in the \verb|Layout| namespace.
+They provide generic user information.
+
+\paragraph{Returning the spacetime coordinates}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & {\tt \tLatticeInt} \verb|Layout::latticeCoordinate(int d)|\\
+  \hline
+  Purpose        & The {\tt d}th spacetime coordinate. \\
+  \hline
+  Example        & {\tt \tLatticeInt{} coord = Layout::latticeCoordinate(2);} \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+The call \verb|Layout::latticeCoordinate(d)| returns an integer lattice field with a
+value on each site equal to the integer value of the \verb|d|th
+space-time coordinate on that site.
+
+\paragraph{Lattice volume}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & {\tt int} \verb|Layout::vol()|\\
+  \hline
+  Purpose        & Return the total lattice volume\\
+  \hline
+  Example        & {\tt int vol = Layout::vol();} \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+
+\subsubsection{Entry points specific to the layout}
+        
+The additional global entry points are provided in the \verb|Layout| namespace.
+They reveal some information specific to the implementation.
+
+\paragraph{Node number of site}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|int Layout::nodeNumber(const multi1d<int>& x)|\\
+    \hline
+  Purpose        & Returns logical node number containing site \verb|x|. \\
+\hline
+  Example  & \verb|node = Layout::nodeNumber(x);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{Linear index of site}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|int Layout::linearSiteIndex(const multi1d<int>& x)|\\
+    \hline
+  Purpose        & Returns the linearized index for the lattice site \verb|x|. \\
+\hline
+  Example  & \verb|int k = Layout::linearSiteIndex(x);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{Map node and linear index to coordinate}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|multi1d<int> Layout::siteCoords(int node, int index)|\\
+    \hline
+  Purpose        & Returns site coordinate \verb|x| for the given node \\
+                 & \verb|node| and linear index \verb|index|. \\
+\hline
+  Example  & \verb|multi1d<int> lc = Layout::siteCoords(n, i);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{Number of sites on a node}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|int Layout::sitesOnNode()|\\
+  \hline
+  Purpose        & Returns number of sites assigned to a node.\\
+  \hline
+  Example        & \verb|int num = Layout::sitesOnNode();| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+The linear index returned by \verb|Layout::linearSiteIndex()| 
+ranges from 0 to \verb|Layout:sitesOnNode()|$ - 1$.
+
+\newpage
+
+\subsection{Data Parallel Functions}
+
+Data parallel functions are described in detail in
+Sec.~\ref{sec:supported}.  
+In the \cpp{} API, there are overloaded functions that can be applied
+to site or lattice wide objects. Arbitrarily complicated expressions
+can be built from these functions.  The design of the API describes
+that all operations are to be performed site-wise. The only connection
+between sites is via a map or shift function.
+
+The class of operations are generically described by site-wise
+operations (the ``linear algebra'' part of the API), and shift (or
+map) versions. The latter generically involves communications among
+processors in a parallel implementation.
+
+The operator style provided by the API thus allows operations like
+the following:
+%
+\begin{verbatim}
+  LatticeFermion A, B;
+  LatticeColorMatrix U;
+  B = U * A;
+\end{verbatim}
+%
+From the type declarations
+%
+\begin{small}
+\begin{verbatim}
+typedef OLattice<PScalar<PColorMatrix<RComplex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<PSpinVector<PColorVector<RComplex<float>, Nc>, Ns> > LatticeFermion
+\end{verbatim}
+\end{small}
+%
+one can see a {\tt OLattice} multiplies a {\tt OLattice}. At each
+site, the {\tt U} field is a scalar in spin space, thus a {\tt
+PScalar} multiplies a {\tt PSpinVector} - a vector in spin space. For
+each spin component, there is a {\tt PColorMatrix} multipling a {\tt
+PColorVector}. The multplications involve complex numbers. 
+
+Thus we see that mathematically the expression carries out the product
+%
+\begin{displaymath}
+{\rm B}_\alpha^{i}(x) = {\rm U}^{i j}(x) * {\rm A}_\alpha^{j}(x)
+\end{displaymath}
+%
+for all lattice coordinates {\tt x} belonging to the subset {\tt all}.
+Here {\tt A} and {\tt B} are objects of lattice Dirac fermion fields
+and {\tt U} is an onject of type lattice gauge field. The superscripts
+$i$, $j$ refer to the color indices and the subscript $\alpha$ refers
+to the spin index. For each spin and color component, the
+multiplication is over complex types.
+
+This tensor product factorization of types allows for potentially a
+huge variety of mathematical objects. The operations between the objects
+is determined by their tensor product structure.
+
+% As described in Section~\ref{sec:typestructure}
+
+The API allows for operations to be narrowed to a subset of sites.
+The infix notation does not allow for extra arguments to be passed to
+an operation, so the subset is fixed via the target.  
+The API mandates that there is in use in even a complex 
+operation, namely the target specifies the subset to use. 
+To narrow an operation to a specific subset, one
+specifies the subset in the target as follows:
+%
+\begin{verbatim}
+  chi[even] = u * psi;
+\end{verbatim}
+%
+which will store the result of the multiplication on only the 
+{\em even} subset.
+
+The \cpp{} API differs from the C API signficantly in the name of
+functions. In \cpp{}, there is no need for naming conventions for
+the functions since one can overload the function name on the types
+of its arguments. More significantly, the C API uses a functional
+style where the destination of an operation is part of the arguments
+for an operation, and all functions return void. The \cpp{} API uses
+an operator/infix style allowing complex expressions to be built.
+
+
+\subsubsection{Constant Arguments}
+
+In some cases it is desirable to keep an argument constant over the
+entire subset.  For example the function
+%
+\begin{verbatim}
+   Complex z;
+   LatticeFermion c, b;
+   c[s] = z * b;
+\end{verbatim}
+%
+multiplies a lattice field of color vectors by a complex constant as in
+%
+\begin{verbatim}
+   c[x] = z*b[x]
+\end{verbatim}
+%
+for {\tt x} in subset {\tt s}.
+
+\subsubsection{Functions}
+
+In the \cpp{} API all operations are functions that act on their
+argument and most functions return their results. Except for explicit
+shift functions and global reductions, these functions are point-wise.
+The \cpp{} API differs from the C API in that there are no combined
+operations like adjoint with a multiply.  Instead, one simply calls
+the adjoint function.  Thus
+%
+\begin{verbatim}
+  c = adj(u)*b
+\end{verbatim}
+%
+carries out the product
+%
+\begin{verbatim}
+  c[x] = adj(u[x])*b[x]
+\end{verbatim}
+%
+for all sites {\tt x} in subset {\tt all}.
+
+\subsubsection{Gamma matrices}
+
+Multiplication of spin vectors and matrices by $\gamma$-matrices is provided.
+%
+\begin{verbatim}
+  LatticeDiracFermion c, b;
+  int n;
+  c = Gamma(n) * b;
+\end{verbatim}
+%
+Where the multiplciation is spin matrix times a spin vector. Right multiplication
+is also supported.
+\begin{verbatim}
+  LatticePropagator q, r;
+  int n;
+  q = r * Gamma(n);
+\end{verbatim}
+
+The \verb|Gamma(n)| provides an enumeration of all possible
+$\gamma$-matrix combinations.  See the Section~\ref{sec:spin} for more
+details.
+
+\subsubsection{Shift}
+
+A shift function is a type of map that maps sites from one lattice
+site to another. In general, maps can be permutation maps but there
+are nearest neighbor shift functions provided by default.
+See the discussion of shifts below
+in Section~\ref{sec:shifts}.
+Thus
+%
+\begin{verbatim}
+  c[s] = shift(b,sign,dir)
+\end{verbatim}
+%
+shifts an object along the direction specified by \verb|dir| and 
+\verb|sign| for all sites \verb|x| in destination subset \verb|s|.
+Here ${\tt sign} = \pm 1$ and ${\tt dir} = 0,\ldots, Nd-1$.
+
+\subsubsection{Aliasing}
+
+The API does not specify the behavior when a source in a data-parallel
+expression is simultaneously used in the left-hand side of that
+expression.  An example is as follows:
+%
+\begin{verbatim}
+  // DO NOT DO THIS
+  LatticeColorMatrix a;
+  a = a * a;
+  LatticeComplex b;
+  b = shift(b,sign,dir);
+\end{verbatim}
+%
+This is an instance of the ``self-reference'' problem. 
+
+\subsection{Creating and destroying lattice fields}
+
+The declaration of an object of some type say {\tt LatticeReal} will
+call a constructor. The implementation guarantees the object is fully
+created and all memory needed for it is allocated.  Thus, there is no
+need for the user to use {\tt new} to create an object. The use of
+pointers is discouraged.  When an object goes out of scope, a
+destructor is called which will guarantee all memory associated with
+the object is released.  
+
+There is no aliasing or referencing of two objects with the same
+internal data storage. Each object a user can construct has its own
+unique storage.
+
+\subsection{Array container objects}
+\label{sec:arrays}
+
+For convenience, the API provides array container classes with much
+limited facility compared to the Standard Template Library. In
+particular, one, two, three, and four dimensional array container
+classes are available. The benefit of two and higher dimension classes
+is that they can be allocated after they are declared. This is in
+contrast to the STL technique, which builds multi-dimensional arrays
+out of nested one-dimensional array, and one must allocate a nested
+array of array classes by looping over the individual elements
+allocating each one.
+
+An array of container classes is constructed as follows:
+%
+\begin{verbatim}
+multi1d<LatticeComplex> r(Nd); // a 1-D array of LatticeComplex
+multi2d<Real> foo(2,3);        // a 2-D array of Real with first index slowest
+\end{verbatim}
+
+
+\subsection{Function objects}
+\label{sec:funcobj}
+
+Function objects are used in the constructions of Sets/subsets and
+maps/shifts. The objects created by maps are themselves function
+objects.  They serve the role as functions, but because of their class
+structure can also carry state.
+
+A function object has a struct/class declaration. The key part is
+the function call operator. A generic declaration is something like:
+%
+\begin{verbatim}
+struct MyFunction
+{
+  MyFunction(int dir) : mu(dir) {}
+  Real operator()(const int& x)
+    {\* operates on x using state held in mu and returns a Real *\}
+
+  int mu;
+}
+\end{verbatim}
+
+A user can then use an object of type MyFunction like a function:
+%
+\begin{verbatim}
+MyFunction  foo(37); // hold 37 within foo
+int x;
+Real boo = foo(x);  // applies foo via operator()
+\end{verbatim}
+
+
+\subsection{Subsets}
+
+It is sometimes convenient to partition the lattice into multiple
+disjoint subsets (e.g. time slices or checkerboards).  Such subsets
+are defined through a user-supplied function that returns a range of
+integers $0,1,2,\ldots{},n-1$, so that if $f(x) = i$, then site $x$ is
+in partition $i$.  A single subset may also be defined by limiting the
+range of return values to a single value (i.e. 0).  This procedure may
+be called more than once, and sites may be assigned to more than one
+subset.  Thus, for example an even site may also be assigned to a time
+slice subset and one of the subsets in a 32-level checkerboard scheme.
+A subset definition remains valid until is destructor is called.
+
+The layout creation routine \verb|Layout::create()| defined in
+Section~\ref{sec:init_qdp} generates predefined lattice subsets for
+specifying even, odd, and global subsets of the lattice. The \verb|rb|
+set can be dereferenced to produce the \verb|even| and \verb|odd| subsets:
+%
+\begin{verbatim}
+Subset even, odd, all,  rb[0], rb[1],  mcb[0], ..., mcb[1 << (Nd+1)]
+\end{verbatim}
+%
+
+\paragraph{Defining a set}
+
+Subsets are first defined using a function object through the
+construction of an object of type \verb|OrderedSet| and
+\verb|UnorderedSet| whose parent type is \verb|Set|. This function
+object is a derived type of \verb|SetFunc|. Function objects are
+described in Section~\ref{sec:funcobj}. Subsets are defined through
+the parent data type \verb|Subset|. There are two derived useable
+(concrete) types called \verb|UnorderedSubset| and
+\verb|OrderedSubset|. The latter type is an optimization that assumes
+(and run-time enforces) that the subset of sites for a given site
+layout must be contiguous. It is an error if they are not. Clearly,
+this assumption is layout dependent and is used mainly by the system
+wide supplied \verb|even|, \verb|odd|, etc. subsets under compile time
+flags. A general user subset should be declared to be
+\verb|UnorderedSubset|. In both ordered and unordered subsets, they
+are constructed from the corresponding \verb|OrderedSet| and
+\verb|UnorderedSet|.
+
+\begin{flushleft}
+\begin{tabular}{|l|p{5.0in}|}
+\hline
+Prototype    & \verb|UnorderedSet::make(const SetFunc& func)|\\
+             & \verb|OrderedSet::make(const SetFunc& func)|\\
+             & \verb|int SetFunc::operator()(const multi1d<int>& x)|\\
+             & \verb|int SetFunc::numSubsets()|\\
+\hline
+Purpose      & Creates a Set that holds \verb|numSubsets| subsets based on \verb|func|.\\
+\hline
+Requirements & The \verb|func| is a derived type of \verb|SetFunc| and
+               maps lattice coordinates to a partition number.\\
+             & The function in \verb|func.numSubsets()| returns number of partitions.\\
+\hline
+Example  & \verb|UnorderedSet timeslice|; \\
+         & \verb|class timesliceFunc : public SetFunc;| \\
+         & \verb|timeslice.make(timesliceFunc);| \\
+   \hline
+  \end{tabular}
+\end{flushleft}
+%
+Here is an explicit example for a timeslice:
+%
+\begin{verbatim}
+struct TimeSliceFunc : public SetFunc
+{
+  TimeSliceFunc(int dir): mu(dir) {}
+
+  // Simply return the mu'th coordinate
+  int operator()(const multi1d<int>& coord)
+  {return coord[mu];}
+
+  // The number of subsets is the length of the lattice
+  // in direction mu
+  int numSubsets() {return Layout::lattSize()[mu];}
+
+  int mu; // state
+}
+
+UnorderedSet timeslice;
+timeslice.make(TimeSliceFunc(3)) // makes timeslice in direction 3
+\end{verbatim}
+
+It is permissible to call \verb|UnorderedSet.make()| with a function object
+having only 1 subset.  In this case the partition function must return
+zero if the site is in the subset and nonzero if not.  (Note, this is
+opposite the ``true'', ``false'' convention in C).
+
+\paragraph{Extracting a subset}
+
+A subset is returned from indexing a \verb|UnorderedSet| or
+\verb|OrderedSet| object.
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype    & \verb|OrderedSubset Set::operator[](int i)| \\
+               & \verb|UnorderedSubset Set::operator[](int i)| \\
+    \hline
+Purpose        & Returns the \verb|i|-th subset from a \verb|Set| object.\\
+    \hline
+Example  & \verb|UnorderedSet timeslice|; \\
+         & \verb|Subset origin = timeslice[0];| \\
+   \hline
+  \end{tabular}
+\end{flushleft}
+
+The \verb|Set::make()| functions allocates all memory associated with
+a \verb|Set|. A \verb|Subset| holds a reference info to the original
+\verb|Set|. A destructor call on a \verb|Set| frees all memory.
+
+\paragraph{Using a subset}
+
+A subset can be used in an assignment to restrict sites involved in
+a computation:
+%
+\begin{verbatim}
+  LatticeComplex r, a, b;
+  UnorderedSubset s;
+  r[s] = 17 * a * b;
+\end{verbatim}
+%
+will multiply {\tt 17 * a * b} onto {\tt r} only on sites in the 
+subset {\tt s}.
+
+\subsection{Maps and shifts}
+\label{sec:shifts}
+
+Shifts are general communication operations specified by any
+permutation of sites.  Nearest neighbor shifts are a special case.
+Thus, for example,
+%
+\begin{verbatim}
+  LatticeHalfFermion a, r;
+  r[s] = shift(a,sign,dir);
+\end{verbatim}
+%
+shifts the half fermion field {\tt a} along direction {\tt dir},
+forward or backward according to {\tt sign}, placing the result in the
+field {\tt r}.  Nearest neighbor shifts are specified by values of
+{\tt dir} in the range $[0,N_d-1]$.  The sign is $+1$ for shifts from
+the positive direction, and $-1$ for shifts from the negative
+direction.  That is, for {\tt sign}$= +1$ and {\tt dir}$= \mu$, $r(x)
+= a(x+\hat \mu)$. For more general permutations, {\tt dir} is missing
+and {\tt sign} specifies the permutation or its inverse.
+
+The subset restriction applies to the destination field {\tt r}.  Thus
+a nearest neighbor shift operation specifying the even subset shifts
+odd site values from the source {\tt a} and places them on even site
+values on the destination field {\tt r}.
+
+\paragraph{Creating shifts for arbitrary permutations}
+
+The user must first create a function object for use in the
+map creation as described in Section~\ref{sec:funcobj}. 
+Thus to use the make a map one uses a function object in the map
+creation:
+
+\begin{flushleft}
+\begin{tabular}{|l|p{4.0in}|}
+\hline
+Prototype    & \verb|Map::make(const MapFunc& func)|\\
+\hline
+Purpose      & Creates a map specified by the permutation map function 
+               object {\tt func}. \\
+\hline
+Requirements & The \verb|func| is a derived type of \verb|MapFunc| and must
+               have a \verb|multi1d<int> operator()(const multi1d<int>& d)| 
+               member function that maps a source site to \verb|d|. \\
+\hline
+Result       & Creates an object of type map which has a function call 
+               \verb|template<class T> T Map::operator()(const T& a)| \\
+\hline
+Example      & \verb|Map naik;|\\
+             & \verb|LatticeReal r,a;| \\
+             & \verb|r = naik(a);| \\
+\hline
+  \end{tabular}
+\end{flushleft}
+%
+The coordinate
+map function object {\tt func} above that is handed to the
+map creation function \verb|Map::make()| maps lattice coordinates
+of the the destination to the source lattice coordinates.
+After construction, the function object of type \verb|Map| can be
+used like any function via the \verb|operator()|. It can be applied
+to all QDP objects in an expression.
+
+The function object has an operator that given
+a coordinate will return the source site coordinates. An example
+is as follows:
+\begin{verbatim}
+struct naikfunc : public MapFunc
+{
+  naik(int dir) : mu(dir) {}
+  multi1d<int> operator()(const multi1d<int>& x)
+    {\* maps x to x + 3*mu  where mu is direction vector *\}
+
+  int mu;
+}
+\end{verbatim}
+%
+
+For convenience, there are predefined Map functions named \verb|shift|
+that can shift by 1 unit backwards or forwards in any lattice direction.
+They have the form
+%
+\begin{verbatim}
+shift(const QDPType& source, int sign, int dir);
+\end{verbatim}
+
+The construction of a \verb|Map| object allocates all the necessary
+memory needed for a shift. Similarly, a destructor call on a \verb|Map|
+object frees memory.
+
+\subsection{Temporary entry and exit from QDP}
+
+For a variety of reasons it may be necessary to remove data from QDP
+structures.  Conversely, it may be necessary to reinsert data into QDP
+structures.  For example, a highly optimized linear solver may
+operate outside QDP.  The operands would need to be extracted from QDP
+fields and the eventual solution reinserted.  It may also be useful to
+suspend QDP communications temporarily to gain separate access to the
+communications layer.  For this purpose function calls are provided to
+put the QDP implementation and/or QDP objects into a known state,
+extract values, and reinsert them.
+
+%% \paragraph{Exposing QDP data}
+%% 
+%% \indent
+%% {\bf THIS ROUTINE IS NOT IMPLEMENTED. IT IS A LOW LEVEL AND HIGHLY PLATFORM SPECIFIC OPTIMIZATION.}
+%% 
+%% \begin{flushleft}
+%% \begin{tabular}{|l|l|}
+%% \hline
+%% Prototype    & {\tt {\it QLA\_Type *} QDP\_expose}({\tt {\it Type}\& src})\\
+%% \hline
+%% Purpose        & Deliver data values from field {\tt src}. \\
+%% \hline
+%% \itt     & \allNumericTypes \\
+%% \hline
+%% Example  & \verb|r = QDP_expose(a);| \\
+%% \hline
+%% \end{tabular}
+%% \end{flushleft}
+%% %
+%% This function grants direct access to the data values contained in the
+%% QDP field {\tt src}.  The return value is a pointer to an array of QLA
+%% data {\tt dest} of type {\it QLA\_Type}.  The order of the data is given by
+%% \verb|Layout::linearSiteIndex|.  No QDP operations except \verb|QDP_insert| are
+%% permitted on exposed data until \verb|QDP_reset| is called. (See
+%% below.)
+
+%% \paragraph{Returning control of QDP data}
+%% 
+%% {\bf\large THIS ROUTINE IS NOT IMPLEMENTED.}
+%% 
+%% \begin{flushleft}
+%% \begin{tabular}{|l|l|}
+%% \hline
+%% Prototype      & \verb|void QDP_reset|({\tt {\it Type}\& field})\\
+%% \hline
+%% Purpose        & Returns control of data values to QDP. \\
+%% \hline
+%% \itt     & \allNumericTypes \\
+%% \hline
+%% Example  & \verb|QDP_reset(r);| \\
+%% \hline
+%% \end{tabular}
+%% \end{flushleft}
+%% %
+%% This call signals to QDP that the user is ready to resume QDP
+%% operations with the data in the specified field.
+
+\paragraph{Extracting QDP data}
+
+\begin{flushleft}
+\begin{tabular}{|l|l|}
+  \hline
+  Prototype    & \verb|void QDP_extract|({\tt multi1d<{\it Type2}>\& dest}, 
+                   {\tt const {\it Type1}\& src}, \\
+               & \qquad{\tt const Subset\& s})\\
+\hline
+Purpose        & Copy data values from field {\tt src} to array {\tt dest}. \\
+\hline
+  {\it Type1} & All lattice types \\
+  {\it Type2} & All corresponding scalar lattice types \\
+\hline
+Example  & \verb|LatticeFermion a;| \\
+         & \verb|multi1d<Fermion> r(Layout::sitesOnNode());| \\
+         & \verb|QDP_extract(r,a,even);| \\
+\hline
+  \end{tabular}
+\end{flushleft}
+%
+The user must allocate the space of size \verb|Layout::sitesOnNode()| for the 
+destination array before calling this function, regardless of the size of
+the subset.
+
+This function copies the data values contained in the QDP field {\tt
+src} to the destination field.  Only values belonging to the specified
+subset are copied.  Any values in the destination array not associated
+with the subset are left unmodified.  The order of the data is given
+by \verb|Layout::linearSiteIndex|.  Since a copy is made, QDP operations
+involving the source field may proceed without disruption.
+
+\paragraph{Inserting QDP data}
+
+\begin{flushleft}
+\begin{tabular}{|l|l|}
+\hline
+Prototype      & \verb|void QDP_insert|({\tt {\it Type1}\& dest}, 
+                 {\tt const multi1d<{\it Type2}>\& src}, \\
+               & \qquad{\tt const Subset\& s})\\
+\hline
+Purpose        & Inserts data values from array {\tt src}. \\
+\hline
+  {\it Type1} & All lattice types \\
+  {\it Type2} & All corresponding scalar lattice types \\
+\hline
+Example  & \verb|multi1d<Fermion> a(Layout::sitesOnNode());|\\
+         & \verb|LatticeFermion r;| \\
+         & \verb|QDP_insert(r,a,odd);| \\
+\hline
+  \end{tabular}
+\end{flushleft}
+%
+Only data associated with the specified subset are inserted.  Other
+values are unmodified.  The data site order must conform to
+\verb|Layout::linearSiteIndex|.  This call, analogous to a fill operation, is
+permitted at any time and does not interfere with QDP operations.
+
+\paragraph{Suspending QDP communications}
+
+If a user wishes to suspend QDP communications temporarily and carry
+on communications by other means, it is first necessary to call
+\verb|QDP_suspend|.
+
+\begin{flushleft}
+\begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void QDP_suspend(void)| \\
+\hline
+Purpose        & Suspends QDP communications. \\
+\hline
+Example  & \verb|QDP_suspend();| \\
+\hline
+  \end{tabular}
+\end{flushleft}
+%
+No QDP shifts can then be initiated until \verb|QDP_resume| is called.
+However QDP linear algebra operations without shifts may proceed.
+
+\paragraph{Resuming QDP communications}
+
+To resume QDP communications one uses
+\begin{flushleft}
+\begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void QDP_resume(void)| \\
+\hline
+Purpose        & Restores QDP communications. \\
+\hline
+Example  & \verb|QDP_resume();| \\
+\hline
+  \end{tabular}
+\end{flushleft}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simple I/O utilities}
+\label{sec:simpleio}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Basic structure}
+
+There are three main types of user accessible classes for {\em simple}
+file I/O - Text, XML and Binary. For each of these classes there is a
+Reader and a Writer version. Each support I/O for {\em any}\  QDP
+defined scalar and lattice quantity as well as the standard \cpp\
+builtin types like \verb|int| and \verb|float|. These classes all
+read/write to one primary node in the computer, namely
+\verb|Layout::primaryNode()| or node 0. Lattice quantities are read/written
+lexicographically as one contiguous field with the first index in the
+lattice size \verb|Layout::lattSize()| varying the fastest.
+The XML reader functions utilize \cpp{} {\em exceptions}. 
+
+A record structure format is available to store both metadata and binary data.
+The metadata uses the XML format. The binary I/O functions support more advanced
+I/O mechanisms and is described in Section~\ref{sec:qio}.
+
+The \cpp\ standard IO streams \verb|cout|, \verb|cerr| and \verb|cin|
+are, of course, provided by the language but will not work as
+expected. Namely, the output functions will write on all nodes, and
+\verb|cin| will try to read from all nodes and fail. QDP predefined
+glbal objects \verb|QDPIO::cout|, \verb|QDPIO::cerr|, and \verb|QDPIO::cin| are
+provided as replacements, and will write/read from only the primary
+node. Output can be selected from any 1 or all nodes for debugging.
+The QDP implementation does not destroy the standard IO streams.
+
+\subsection{Text Reading and Writing}
+\label{sec:textio}
+
+\paragraph{Standard IO streams}
+
+The global predefined objects \verb|QDPIO::cout|, \verb|QDPIO::cerr|,
+and \verb|QDPIO::cin| are used like their \cpp\ standard IO streams 
+counterparts. All QDP scalar site fields (e.g., non-lattice) fields
+can be read and written with these streams. For example, one can
+read data and be assured the data is appropriately distributed to
+all nodes.
+%
+\begin{small}
+\begin{verbatim}
+multi1d<int> my_array(4);
+QDPIO::cin >> my_array;  // broadcasted to all nodes
+Real x;
+random(x);
+QDPIO::cout << "QDP is GREAT: x = " << x << std::endl; // one copy on output
+\end{verbatim}
+\end{small}
+%
+The default behavior is for only the primary node to print on output.
+Also provided are \cpp\ Standard Library-like IO manipulators that can 
+be used to change this behavior. Namely, IO can be directed from any
+node which can aid debugging.
+{\bf Implementation note: this IO manipulator for changing node output is not yet implemented}
+
+
+\paragraph{TextFileReader member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Open to read   & \verb|TextFileReader::TextFileReader(const string& filename)|\\
+                 & \verb|void TextFileReader::open(const string& filename)|\\
+  \hline
+  Close          & \verb|TextFileReader::~TextFileReader()|\\
+                 & \verb|void TextFileReader::close()|\\
+  \hline
+  Open?          & \verb|bool TextFileReader::is_open()| \\
+  \hline
+  Any IO errors? & \verb|bool TextFileReader::fail()| \\
+  \hline
+  Input a type \verb|T| & \verb|TextFileReader& operator>>(TextFileReader&, T&)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{TextFileWriter member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Open to write  & \verb|TextFileWriter::TextFileWriter(const string& filename)|\\
+                 & \verb|void TextFileWriter::open(const string& filename)|\\
+  \hline
+  Close          & \verb|TextFileWriter::~TextFileWriter()|\\
+                 & \verb|void TextFileWriter::close()|\\
+  \hline
+  Open?          & \verb|bool TextFileWriter::is_open()| \\
+  \hline
+  Any IO errors? & \verb|bool TextFileWriter::fail()| \\
+  \hline
+  Output a type \verb|T| & \verb|TextFileWriter& operator<<(TextFileWriter&, const T&)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+To read and write ascii text from the file, use the standard operators
+familiar in the \cpp\ Standard Library. An example is as follows:
+%
+\begin{small}
+\begin{verbatim}
+TextFileWriter out("foo");
+Real a = 1.2;
+Complex b = cmplx(Real(-1.1), Real(2.2));
+out << a << endl << b << endl;
+close(out);
+
+TextFileReader in("foo");
+Real a;
+Complex b;
+in >> a >> b;
+close(in);
+\end{verbatim}
+\end{small}
+%
+The \verb|TextFileWriter| functions would produce a file ``foo'' that looks
+like
+\begin{verbatim}
+1.2
+-1.1 2.2
+\end{verbatim}
+
+\subsection{XML Reading and Writing}
+\label{sec:xmlio}
+
+XML is intended as the standard format for user produced human
+readable data as well as metadata. The XML format is always a tree of
+key/value pairs with arbitrarily deep nesting. Here, the keys are
+variable names. The semantics imposed by QDP is that no key can be
+repeated twice at the same nesting level. Also, the values are considered
+one of three types -- a simple type, a structure, or an array of one of these
+three types including array.
+
+The XML reader functions utilize \cpp{} {\em exceptions}. 
+
+The path specification for the XML reader functions is XPath. Namely,
+QDP only {\em requires} a simple unix like path to reference a
+tag. With a simple path and nested reading, all data can be read from
+a document.  However, more complicated queries are possible
+allowing the user to read individual pieces of a document - e.g., a
+single array element. See the XPath language specification for
+additional information: http://www.w3.org/TR/xpath.html .
+
+Further details on the document format of various types is given in
+Section~\ref{sec:xmldoc}.
+
+\paragraph{XMLReader member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Read file      & \verb|XMLReader::XMLReader(const string& filename)|\\
+                 & \verb|void XMLReader::open(const string& filename)|\\
+  \hline
+  Read stream    & \verb|XMLReader::XMLReader(std::istream&)|\\
+                 & \verb|void XMLReader::open(std::istream&)|\\
+  \hline
+  Read buffer    & \verb|XMLReader::XMLReader(const XMLBufferWriter&)|\\
+                 & \verb|void XMLReader::open(const XMLBufferWriter&)|\\
+  \hline
+  Close          & \verb|XMLReader::~XMLReader()|\\
+                 & \verb|void XMLReader::close()|\\
+  \hline
+  Open?          & \verb|bool XMLReader::is_open()| \\
+  \hline
+  Any IO errors? & \verb|bool XMLReader::fail()| \\
+  \hline
+  Input a type \verb|T| & \verb|void read(XMLReader&, const string& path, T&)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+An example of reading a file is
+\begin{verbatim}
+XMLReader xml_in("foo");
+int a;
+Complex b;
+multi1d<Real> c;
+multi1d<Complex> d;
+read(xml_in, "/bar/a", a);  // primitive type reader
+read(xml_in, "/bar/b", b);  // QDP defined struct reader
+read(xml_in, "/bar/c", d);  // array of primitive type reader
+try {   // try to do the following code, if an exception catch it
+  read(xml_in, "/bar/d", d);  // calls read(XMLReader, string, Complex) 
+} catch( const string& error) { 
+  cerr << "Error reading /bar/d : " << error << endl;
+}
+\end{verbatim}
+%
+The file ``foo'' might look like the following:
+%
+\begin{verbatim}
+<?xml version="1.0"?>
+<bar>
+ <!-- A simple primitive type -->
+ <a>17</d>
+
+ <!-- Considered a structure -->
+ <b>
+   <re>1.0</re>
+   <im>2.0</im>
+ </b>
+
+ <!-- A length 3 array of primitive types -->
+ <c>1 5.6 7.2</c>
+
+ <!-- A length 2 array of non-simple types -->
+ <d>
+   <elem>
+     <re>1.0</re>
+     <im>2.0</im>
+   </elem>
+   <elem>
+     <re>3.0</re>
+     <im>4.0</im>
+   </elem>
+ </d>
+</bar>
+\end{verbatim}
+%
+
+The user can defined their own reader functions following the same
+overloaded syntax as the predefined ones. This allows one to nest
+readers.
+%
+\begin{verbatim}
+struct MyStruct {int a; Real b;};
+
+void read(XMLReader& xml_in, const string path&, MyStruct& input)
+{
+  read(xml_in, path + "/a", input.a);
+  read(xml_in, path + "/b", input.b);
+}
+
+XMLReader xml_in;  // user should initialize here
+multi1d<MyStruct> foo;  // array size will be allocated in array reader
+read(xml_in, "/root", foo); // will call user defined read above for each element
+\end{verbatim}
+
+As stated before, the path specification for a read is actually an
+XPath query. For example, the user can read only one array element in the file
+``foo'' above via an XPath query:
+%
+\begin{verbatim}
+XMLReader xml_in("foo");
+Complex dd;
+read(xml_in, "/bar/d/elem[2]", dd);  // read second array elem of d, e.g. d[1]
+\end{verbatim}
+
+
+
+\paragraph{XMLWriter base class global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Start a group  & \verb|void push(XMLWriter&, const string& name)|\\
+  End a group    & \verb|void pop(XMLWriter&, const string& name)|\\
+  \hline
+  Output a \verb|T| & \verb|void write(XMLWriter&, const string& path, const T&)| \\
+  Output  & \verb|void write(XMLWriter&, const string& path, const XMLBufferWriter&)| \\
+          & \verb|XMLWriter& operator<<(XMLWriter&, const XMLBufferWriter&)| \\
+          & \verb|void write(XMLWriter&, const string& path, const XMLReader&)| \\
+          & \verb|XMLWriter& operator<<(XMLWriter&, const XMLReader&)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+The \verb|XMLWriter| is an abstract base class for three concrete
+classes which allow to write into a memory buffer, a file, or write an
+array of objects in a series of steps.
+
+\paragraph{XMLBufferWriter derived class member functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Return entire buffer  & \verb|string XMLBufferWriter::str()|\\
+  Return only root element & \verb|string XMLBufferWriter::printRoot()|\\
+  \hline
+ \end{tabular}
+\end{flushleft}
+
+
+\paragraph{XMLFileWriter derived class member functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  File to write  & \verb|XMLFileWriter::XMLFileWriter(const string& filename)|\\
+                 & \verb|void XMLFileWriter::open(const string& filename)|\\
+  \hline
+  Close          & \verb|XMLFileWriter::~XMLFileWriter()|\\
+                 & \verb|void XMLFileWriter::close()|\\
+  \hline
+  Open?          & \verb|bool XMLFileWriter::is_open()| \\
+  \hline
+  Any IO errors? & \verb|bool XMLFileWriter::fail()| \\
+  \hline
+  Flush          & \verb|void XMLFileWriter::flush()| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+Similar to the read case, the user can also create a tower of writer functions.
+In addition, the user can create memory held buffered output that can be
+used for metadata. Similarly, a user can go back and forth from readers to
+writers.
+%
+\begin{verbatim}
+XMLBufferWriter xml_buf;
+push(xml_buf, "bar");
+write(xml_buf, "a", 1);  // write /bar/a = 1
+pop(xml_buf);
+
+XMLReader xml_in(xml_buf);  // re-parse the xml_buf
+int a;
+read(xml_in, "/bar/a", a); // now have 1 in a
+
+XMLFileWriter xml_out("foo");
+xml_out << xml_in;     // will have ``bar'' as the root tag
+xml_out.close();
+\end{verbatim}
+
+
+\paragraph{XMLArrayWriter derived class member and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Constructor    & \verb|XMLArrayWriter::XMLArrayWriter(XMLWriter&, int size=-1)|\\
+  \hline
+  Close          & \verb|XMLArrayWriter::~XMLArrayWriter()|\\
+                 & \verb|void XMLArrayWriter::close()|\\
+  \hline
+  Size           & \verb|int XMLArrayWriter::size()| \\
+  \hline
+  Start an array  & \verb|void push(XMLArrayWriter&)|\\
+  End an array    & \verb|void pop(XMLArrayWriter&)|\\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+The Array class allows one to break writing an array into multiple pieces.
+%
+\begin{verbatim}
+XMLFileWriter xml_out("foo");
+XMLArrayWriter xml_array(xml_out, 350000);  // Note: a big array size here
+push(xml_array, "the_name_of_my_array");
+for(int i=0; i < xml_array.size(); ++i)
+{
+  push(xml_array);  // start next array element - name of tag already defined
+  Real foo = i;
+  write(xml_array, "foo", foo);
+  pop(xml_array);   // finish this array element
+}
+\end{verbatim}
+
+\subsubsection{Using Array Containers in Reading and Writing}
+
+Array sizes present a special problem in IO. However, within XML
+the \verb|read(XMLReader&, string path, multi1d<T>&)| function can
+deduce the number of elements an array is expected to hold and will
+always \verb|resize| the array to the appropriate size. 
+Hence, there is no need to record the array size in the output
+of a \verb|write(XMLWriter&, string path, const multi1d<T>&)| function
+call since the corresponding \verb|read| can deduce the size.
+
+This behavior is unlike the \verb|BinaryReader| and
+\verb|BinaryWriter| functions \verb|read| and \verb|write| of
+\verb|multi1d|. There, the length of the array is always read/written
+unless the C-like behavior varieties are used.
+
+
+\subsection{XML document structure}
+\label{sec:xmldoc}
+
+QDP regards the structure of a document as composed of structures,
+simple types, or arrays of structures or simple types. Simple types
+are the usual builtin type of C and C++, namely \verb|int|,
+\verb|float|, \verb|double|, \verb|bool|, etc. In addition, the QDP
+scalar equivalents \verb|Integer|, \verb|Real|, \verb|Double|,
+\verb|Boolean|, etc.  are also consider simple types. For instance, the
+code snippet
+%
+\begin{verbatim}
+int a = 3;
+write(xml_out, "a", a);
+\end{verbatim}
+%
+would produce
+\begin{verbatim}
+<a>3</a>
+\end{verbatim}
+%
+indentities the name of a variable of a type with some values.
+Following the XML Schema specifications, arrays of these simple types
+have a simple form
+\begin{verbatim}
+<!-- produced from writing a multid<int> -->
+<a>3 3 4 5</a>
+\end{verbatim}
+
+Again, following the XML Schema specifications all other objects are
+considered complex (e.g., complicated) types. Hence, the document snippet
+%
+\begin{verbatim}
+<?xml version="1.0"?>
+<!-- Considered a structure of simple types, arrays and other structures -->
+<bar>
+ <!-- A simple primitive type -->
+ <a>17</d>
+
+ <!-- Considered a structure -->
+ <b>
+   <re>1.0</re>
+   <im>2.0</im>
+ </b>
+
+ <!-- A length 3 array of primitive types -->
+ <c>1 5.6 7.2</c>
+\end{verbatim}
+%
+is viewed as a structure of other types:
+\begin{verbatim}
+struct bar_t
+{
+  int a;
+  Complex b;
+  multi1d<Real> c;
+} bar;
+\end{verbatim}
+%
+Hence, one views the \verb|push|/\verb|pop| semantics as a way of
+dynamically constructing structures. 
+
+% \newpage
+\paragraph{XML document format}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  \tInt,\tReal,\tRealD    & 
+\mbox{\tt 
+<a>3</a>
+}
+\\
+\hline
+  \tBoolean    & 
+\mbox{\tt 
+<a>yes</a>
+}
+\\
+\hline
+  string    & 
+\mbox{\tt 
+<a>hello world</a>
+}
+\\
+\hline
+  multi1d$<$int$>$    & 
+\mbox{\tt 
+<a>1 2 3</a>
+}
+\\
+\hline
+  \tComplex    & 
+\mbox{\tt 
+<a>
+  <re>1.2</re>
+  <im>2.0</im>
+</a>
+}
+\\
+\hline
+  multi1d$<${\em Type}$>$    & 
+\parbox{5in}{\tt 
+<a>
+  <elem>{\em Type}
+  </elem>
+  <elem>{\em Type}
+  </elem>
+</a>
+}
+\\
+\hline
+  multi1d$<$\tComplex$>$    & 
+\parbox{5in}{\tt 
+<a>
+  <elem>
+    <re>1.2</re>
+    <im>2.0</im>
+  </elem>
+  <elem>
+    <re>3</re>
+    <im>5.0</im>
+  </elem>
+</a>
+}
+\\
+\hline
+  \tColorVector    & 
+\parbox{5in}{\tt 
+<a>
+  <ColorVector>
+    <elem row="0">
+      <re>0</re>
+      <im>1</im>
+    </elem>
+    <elem row="1">
+      <re>2</re>
+      <im>3</im>
+    </elem>
+  ...
+  </ColorVector>
+</a>
+}
+\\
+\hline
+  \tColorMatrix    & 
+\parbox{5in}{\tt 
+<a>
+  <ColorMatrix>
+    <elem row="0" col="0">
+      <re>0</re>
+      <im>1</im>
+    </elem>
+    <elem row="1" col="0">
+      <re>2</re>
+      <im>3</im>
+    </elem>
+  ...
+  </ColorMatrix>
+</a>
+}
+\\
+\hline
+  \tDiracPropagator    & 
+\parbox{5in}{\tt 
+<a>
+  <SpinMatrix>
+    <elem row="0" col="0">
+      <ColorMatrix>
+        <elem row="0" col="0">
+          <re>0</re>
+          <im>1</im>
+        </elem>
+  ...
+      </ColorMatrix>
+    </elem>
+  </SpinMatrix>
+</a>
+}
+\\
+\hline
+  Lattice{\em Type}    & 
+\parbox{5in}{\tt 
+<a>
+  <OLattice>
+    <elem site="0">{\em Type}
+    </elem>
+    <elem site="1">{\em Type}
+    </elem>
+  ...
+  </OLattice>
+</a>
+}
+\\
+\hline
+  \tLatticeReal    & 
+\parbox{5in}{\tt 
+<a>
+  <OLattice>
+    <elem site="0">1
+    </elem>
+    <elem site="1">2
+    </elem>
+  ...
+  </OLattice>
+</a>
+}
+\\
+\hline
+  \tLatticeColorVector    & 
+\parbox{5in}{\tt 
+<a>
+  <OLattice>
+    <elem site="0">
+      <ColorVector>
+        <elem row="0">
+           <re>1</re>
+           <im>2</im>
+        </elem>
+  ...
+      </ColorVector>
+    </elem>
+  </OLattice>
+</a>
+}
+\\
+
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+A table of the document format for a variable ``a'' of various
+types.
+
+\newpage
+
+
+\subsection{Binary Reading and Writing}
+\label{sec:binaryio}
+
+\paragraph{BinaryReader base class member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Any IO errors? & \verb|bool BinaryReader::fail()| \\
+  \hline
+  Checksum       & \verb|BinaryReader::getChecksum()|\\
+  \hline
+  Input a type \verb|T| & \verb|BinaryReader& operator>>(BinaryReader&, T&)| \\
+                 & \verb|void read(BinaryReader&, T&)| \\
+                 & \verb|void read(BinaryReader&, multi1d<T>&)| \\
+                 & \verb|void read(BinaryReader&, multi1d<T>&, int num)| \\
+                 & \verb|void read(BinaryReader&, multi2d<T>&)| \\
+                 & \verb|void read(BinaryReader&, multi2d<T>&, int num1, int num2)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{BinaryBufferReader member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Constructors   & \verb|BinaryBufferReader::BinaryBufferReader(const string& input)|\\
+                 & \verb|void BinaryBufferReader::open(const string& input)|\\
+  \hline
+  Contents       & \verb|string BinaryBufferReader::str()|\\
+  \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{BinaryFileReader member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Open to read   & \verb|BinaryFileReader::BinaryFileReader(const string& filename)|\\
+                 & \verb|void BinaryFileReader::open(const string& filename)|\\
+  \hline
+  Close          & \verb|BinaryFileReader::~BinaryFileReader()|\\
+                 & \verb|void BinaryFileReader::close()|\\
+  \hline
+  Open?          & \verb|bool BinaryFileReader::is_open()| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+
+\paragraph{BinaryWriter base class member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Any IO errors? & \verb|bool BinaryWriter::fail()| \\
+  \hline
+  Flush          & \verb|bool BinaryWriter::flush()| \\
+  \hline
+  Checksum       & \verb|BinaryWriter::getChecksum()|\\
+  \hline
+  Output a type \verb|T| & \verb|BinaryWriter& operator<<(BinaryWriter&, const T&)| \\
+                 & \verb|void write(BinaryWriter&, const T&)| \\
+                 & \verb|void write(BinaryWriter&, const multi1d<T>&)| \\
+                 & \verb|void write(BinaryWriter&, const multi1d<T>&, int num)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+\paragraph{BinaryBufferWriter member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Construct      & \verb|BinaryBufferWriter::BinaryBufferWriter(const string& input)|\\
+                 & \verb|void BinaryBufferWriter::open(const string& input)|\\
+  \hline
+  Contents       & \verb|string BinaryBufferWriter::str()| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+\paragraph{BinaryFileWriter member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Open to write  & \verb|BinaryFileWriter::BinaryFileWriter(const string& filename)|\\
+                 & \verb|void BinaryFileWriter::open(const string& filename)|\\
+  \hline
+  Close          & \verb|BinaryFileWriter::~BinaryFileWriter()|\\
+                 & \verb|void BinaryFileWriter::close()|\\
+  \hline
+  Open?          & \verb|bool BinaryFileWriter::is_open()| \\
+  \hline
+  Output a type \verb|T| & \verb|BinaryFileWriter& operator<<(BinaryFileWriter&, const T&)| \\
+                 & \verb|void write(BinaryFileWriter&, const T&)| \\
+                 & \verb|void write(BinaryFileWriter&, const multi1d<T>&)| \\
+                 & \verb|void write(BinaryFileWriter&, const multi1d<T>&, int num)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+To read and write ascii text from the file, use the standard operators
+familiar in the \cpp\ Standard Library. E.g.,
+%
+\begin{small}
+\begin{verbatim}
+BinaryFileWriter out("foo");
+Real a;
+LatticeColorMatrix b
+write(out, a);  // can write this way
+out << b;       // or can write this way - have choice of style
+close(out);
+
+BinaryFileReader in("foo");
+Real a;
+LatticeColorMatrix b;
+read(in, a);
+in >> b;
+close(in);
+\end{verbatim}
+\end{small}
+
+\subsubsection{Using Arrays Containers in Reading and Writing}
+
+The \verb|read| and \verb|write| functions using \verb|BinaryReader|
+and \verb|BinaryWriter| are special since {\em metadata} (in this case
+the length of the array) is read/written along with an object of type
+\verb|multi1d|. 
+
+The standard C behavior is when writing an array, only write whatever
+number of elements is desired. The problem occurs when reading since
+number of elements is not known beforehand. The default \verb|write| behavior
+is to also write the number of elements, and the \verb|read| expects
+to find this length. The standard C behavior (reading/writing a fixed
+number of elements) is obtained through an an explicit argument to the call.
+Specifically:
+%
+\begin{small}
+\begin{verbatim}
+BinaryFileWriter out("foo");
+multi1d<Real> a(17);
+write(out, a);     // will write an int=a.size() along with a.size() Real elements
+write(out, a, 4);  // only writes 4  Real  elements 
+close(out);
+
+BinaryFileReader in("foo");
+multi1d<Real> a;
+read(in, a);  // reads an int=a.size(), a is resized, and reads a.size() elements
+read(in, a, 4);  // reads precisely 4 elements, no resizing.
+in >> b;
+close(in);
+\end{verbatim}
+\end{small}
+
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{QDP Record I/O utilities}
+\label{sec:qio}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overview of File Format}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec.fileformat}
+
+\subsubsection{Binary QDP Files}
+
+The binary file format has been designed with flexibility in mind. For
+archiving purposes, the allowable file organization may be further
+restricted.  Here we described the unrestricted format.
+
+Two classes of file volumes are supported: single-file volumes and
+multiple-file volumes.  In the latter case lattice data is scattered
+among several files for distributed reading and writing.  In the
+former case all the lattice data is contained in a single file.
+
+\paragraph{Single file format}
+
+Single binary QDP files are composed of a series of one or more
+application records.  A single application record encodes a single QDP
+field or an array of QDP fields of the same data type.  Physics
+metadata, managed at the convenience of the applications programmer,
+is associated with the file itself and with each application record as
+well. Above the API the QDP file is viewed as follows:
+%
+\begin{itemize}
+  \item File physics metadata
+  \item Record 1 physics metadata and data
+  \item Record 2 physics metadata and data
+  \item etc.
+\end{itemize}
+%
+For example, a file might record a series of staggered fermion
+eigenvectors for a gauge field configuration.  Each record would map
+to a single field of type \verb|LatticeColorVector|.  The file metadata
+might include information about the gauge field configuration and the
+record metadata might encode the eigenvalue and an index for the
+eigenvector.
+
+For another example, the gauge field configuration in four dimensions
+is represented in QDP as an array of four color matrix fields.  The
+configuration is conventionally written so that the four color matrices
+associated with each site appear together.  A file containing a single
+gauge field configuration would then consist of a single record
+containing the array of four color matrices.
+
+The API permits mixing records of different datatypes in the same
+file.  While this practice may be convenient for managing projects, it
+may be forbidden for archival files.
+
+Additional metadata is automatically managed by QIO (without requiring
+intervention by the applications programmer) to facilitate the
+implementation and to check data integrity.  Thus the file actually
+begins with QIO metadata and physics metadata and each application
+record consists of five logical records.  Within QIO the file is
+viewed as a series of logical records as follows:
+%
+\begin{itemize}
+  \item Private file QIO metadata
+  \item User file physics metadata
+  \item Record 1 private QIO metadata
+  \item Record 1 user physics metadata
+  \item Record 1 binary data
+  \item Record 1 private checksum
+  \item Record 2 private QIO metadata
+  \item Record 2 user physics metadata
+  \item Record 2 binary data
+  \item Record 2 private checksum
+  \item etc.
+\end{itemize}
+%
+The site order of the binary data is lexicographic according to the
+site coordinate $r_i$ with the first coordinate $r_0$ varying most
+rapidly.
+
+A new format called LIME (Lattice-QCD Interchange Message Encapsulation)
+is used for packaging the logical records. A feature of this format is
+the maximum record size is quite - $2^{64}-1$ bytes. However,
+file system limitations may require splitting a single file into 
+multiple physical files. No provision is provided for such splitting.
+It is expected that in time file systems will evolve to allow much
+larger file sizes. In the interim, facilities like \verb|cpio| and
+\verb|tar| can be used for file splitting.
+
+\paragraph{Multifile format}
+
+The API provides for rapid temporary writing of data to scratch disks
+and reading from scratch disks.  This same format may be used for
+staging files for access by many compute nodes.  In this case it is
+assumed that the files are not intended for longer term storage.  Thus
+the file format in this case is implementation-dependent and not
+standardized.  A specific choice of format is described in the
+Appendix.
+
+\subsubsection{ASCII Metadata Files}
+
+The API also provides for reading and writing global values in a
+standard metadata format from or to a file or a stream buffer.
+Startup parameters for controlling a simulation could be read in this
+way.  Results of a computation could be written in this way for post
+processing and analysis.
+
+The XML I/O facilities described in Section~\ref{sec:xmlio} are used
+for manipulating the metadata.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{QDP/C++ Record API}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As with standard Unix, a file must be opened before reading or
+writing.  However, we distinguish file handles for both cases.  If the
+system provides a parallel file system, it is possible for several
+processors to read and write a single file. We call this mode
+``parallel''.  Otherwise the file is read by a single processor and
+the data delivered according to the distributed memory layout.  The
+reverse occurs upon writing. We call this mode ``serial''. To allow
+user choice where the architecture permits, we provide for requesting
+either mode.  However, the request may be overridden if the system
+permits only one mode.  Upon writing, we allow appending to an
+existing file.
+
+\paragraph{QDPFileWriter class member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Open           & \verb|QDPFileWriter::QDPFileWriter(|\\
+                 & \qquad\verb|const XMLBufferWriter& file_xml, const string& path,)|\\
+                 & \qquad\verb|QDP_volfmt_t volfmt, QDPIO_serialparallel_t serpar,|\\
+		 & \qquad\verb|QDP_filemode_t mode)|\\
+
+                 & \verb|void QDPFileWriter::open(const XMLBufferWriter& file_xml, |\\
+                 & \qquad\verb|const string& path,|\\
+                 & \qquad\verb|QDP_volfmt_t volfmt, QDPIO_serialparallel_t serpar,|\\
+		 & \qquad\verb|QDP_filemode_t mode)|\\
+  \hline
+  Close          & \verb|QDPFileWriter::~QDPFileWriter()|\\
+                 & \verb|void QDPFileWriter::close()|\\
+  \hline
+  Open?          & \verb|bool QDPFileWriter::is_open()| \\
+  \hline
+  Errors?        & \verb|bool QDPFileReader::bad()| \\
+  \hline
+  Write a \verb|T| & \verb|void write(QDPFileWriter&, XMLBufferWriter& rec_xml, const T&)| \\
+  Array of \verb|T| & \verb|void write(QDPFileWriter&, XMLBufferWriter& rec_xml, |\\
+                 & \qquad\verb|const multi1d<T>&)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+Concrete class for all QDPIO write operations. Here, \verb|write|
+writes the sites as the slowest varying index and the array indices
+(muli1d) inside of them. \verb|bad| states if any fatal errors have
+occurred. The \verb|volfmt| argument is one of
+%
+\begin{verbatim}
+  QDPIO_SINGLEFILE, QDPIO_MULTIFILE
+\end{verbatim}
+%
+The \verb|serpar| argument is one of
+%
+\begin{verbatim}
+  QDPIO_SERIAL, QDPIO_PARALLEL
+\end{verbatim}
+%
+and the \verb|mode| argument is one of
+%
+\begin{verbatim}
+  QDPIO_CREATE, QDPIO_OPEN, QDPIO_APPEND
+\end{verbatim}
+%
+where \verb|QDPIO_CREATE| fails if the file already exists,
+\verb|QDPIO_OPEN| overwrites the file if it already exists and creates
+it if not, and \verb|QDPIO_APPEND| fails if the file does not exist and
+otherwise appends at the end of the file.  When appending, the file
+metadata argument is ignored, since it should already exist.
+
+
+\paragraph{QDPFileReader class member functions and global functions}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Open           & \verb|QDPFileReader::QDPFileReader(XMLReader& file_xml, |\\
+                 & \qquad\verb|const string& path, QDP_serialparallel_t serpar)|\\
+                 & \verb|void QDPFileReader::open(XMLReader& file_xml, |\\
+                 & \qquad\verb|const string& path, QDP_serialparallel_t serpar)|\\
+  \hline
+  Close          & \verb|QDPFileReader::~QDPFileReader()|\\
+                 & \verb|void QDPFileReader::close()|\\
+  \hline
+  Open?          & \verb|bool QDPFileReader::is_open()| \\
+  \hline
+  EOF?           & \verb|bool QDPFileReader::eof()| \\
+  \hline
+  Errors?        & \verb|bool QDPFileReader::bad()| \\
+  \hline
+  Read a \verb|T| & \verb|void read(QDPFileReader&, XMLReader& rec_xml, T&)| \\
+  Array of \verb|T| & \verb|void read(QDPFileReader&, XMLReader& rec_xml, multi1d<T>&)| \\
+  \hline
+  Only xml & \verb|void peek(QDPFileReader&, XMLReader& rec_xml)| \\
+  \hline
+  Next record & \verb|void skip(QDPFileReader&)| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+Concrete class for all QDPIO read operations.  Here,
+\verb|read(\ldots,multi1d<T>)| expects in the binary file that the
+sites are the slowest varying index and the array indices (muli1d)
+inside of them. The \verb|QDP_volfmt_t volfmt| argument is not needed -
+a file in either \verb|QDPIO_SINGLEFILE| or \verb|QDPIO_MULTIFILE|
+format will be automatically detected and read appropriately.
+\verb|peek| returns only the metadata and repositions
+back to the beginning of the record.  \verb|skip| skips to the next
+logical record - it may read the data and discard it. \verb|bad|
+states if any fatal errors have occurred. There are no user functions
+that position within a logical record.
+
+
+Here is an example of how to use the record I/O facility.
+%
+\begin{small}
+\begin{verbatim}
+XMLBufferWriter file_xml;
+QDPFileWriter out(file_xml, "foo", QDPIO_SINGLEFILE, 
+                  QDPIO_SERIAL, QDPIO_OPEN);
+XMLBufferWriter rec_xml;
+LatticeColorMatrix a;
+write(out, rec_xml, a);
+write(out, rec_xml, a);  // for fun, write field twice
+close(out);
+
+QDPFileReader in(file_xml, "foo", QDPIO_SERIAL);
+read(in, rec_xml, a);
+skip(in);
+close(in);
+\end{verbatim}
+\end{small}
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Compilation with QDP}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Generic header and macros}
+
+The compilation parameters:\\
+\noindent
+$Nd$ -- the number of space-time dimensions\\
+\noindent
+$Nc$ -- the dimension of the color vector space\\
+\noindent
+$Ns$ -- the dimension of the spin vector space\\
+\noindent
+are defined in {\tt qdp++/include/params.h} . 
+There are macros {\tt ND}, {\tt NC},
+{\tt NS} that are used to set the above parameters via
+\begin{verbatim}
+const int Nd = ND;
+const int Nc = NC;
+const int Ns = NS;
+\end{verbatim}
+%
+\noindent
+They are set in the build directories file {\tt include/qdp\_config.h} 
+during configuration.
+
+\subsection{How to configure QDP++}
+
+QDP++ uses the GNU autoconf and automake systems for builds. Help on
+configuration parameters can be found with
+\begin{verbatim}
+% cd qdp++
+% configure --help
+\end{verbatim}
+%
+The most important flag is the \verb|--enable-parallel-arch=<some arch>|
+with the architectural choices \verb|scalar|, \verb|parscalar|, \verb|scalarvec|,
+\verb|parscalarvec|.
+
+\subsection{Nonuniform color and precision}
+
+Users wishing to vary color and precision within a single calculation
+must use specific type names whenever these types
+and names differ from the prevailing precision and color. 
+Type declarations can be found in {\tt qdp++/include/defs.h} . A convenient
+definition of a \tLatticeColorMatrix and \tLatticeDiracFermion is as follows:
+
+\begin{verbatim}
+typedef OLattice<PScalar<ColorMatrix<Complex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<SpinVector<ColorVector<Complex<float>, Nc>, Ns> > LatticeFermion
+\end{verbatim}
+
+However, for the user to choose a specific number of colors:
+
+\begin{verbatim}
+const int NN = 17  // work in SU(17)
+typedef OLattice<PScalar<ColorMatrix<Complex<float>, NN> > > LatticeColorMatrix17
+\end{verbatim}
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Spin Conventions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:spin}
+
+The following set of $\gamma$-matrices are used in four dimensions:
+\[
+\begin{array}{lccc}
+\gamma_0\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&0&i\\
+   0&0&i&0\\
+   0&-i&0&0\\
+   -i&0&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&i\sigma^1\\
+   -i\sigma^1&0
+ \end{array}\right)\quad\quad &
+ -\sigma^2\!\otimes\!\sigma^1\\
+\gamma_1\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&0&-1\\
+   0&0&1&0\\
+   0&1&0&0\\
+   -1&0&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&-i\sigma^2\\
+   i\sigma^2&0
+ \end{array}\right)\quad\quad &
+ \sigma^2\!\otimes\!\sigma^2\\
+\gamma_2\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&i&0\\
+   0&0&0&-i\\
+   -i&0&0&0\\
+   0&i&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&i\sigma^3\\
+   -i\sigma^3&0
+ \end{array}\right)\quad\quad &
+ -\sigma^2\!\otimes\!\sigma^3\\
+\gamma_3\quad\quad&
+ \left(\begin{array}{rrrr}
+   0&0&1&0\\
+   0&0&0&1\\
+   1&0&0&0\\
+   0&1&0&0\\
+ \end{array}\right)\quad &
+ \left(\begin{array}{rr}
+   0&\mathbf{1}\\
+   \mathbf{1}&0
+ \end{array}\right)\quad\quad &
+ \sigma^1\!\otimes\!1\\
+\end{array}
+\]
+%
+The basis is chiral. All the possible gamma matrix products are
+represented via
+\[
+\Gamma(n) = \gamma_0^{n_0} \gamma_1^{n_1} \gamma_2^{n_2} \gamma_3^{n_3}
+\]
+%
+where $n_i$ are single bit fields.  Since $\gamma_0$ comes first the
+bit for it must come first. %
+So, $\gamma_5 = \gamma_0\gamma_1\gamma_2\gamma_3$ 
+is represented as 1111b = 15d, and 
+$\gamma_0\gamma_1\gamma_3$ is represented as 1011b = 11d
+(note the ordering). The conventional $\gamma$-matrices are
+\begin{eqnarray}
+\Gamma(1) &=& \gamma_0\nonumber\\
+\Gamma(2) &=& \gamma_1\nonumber\\
+\Gamma(4) &=& \gamma_2\nonumber\\
+\Gamma(8) &=& \gamma_3\nonumber
+\end{eqnarray}
+
+This enumeration is $\gamma$-basis independent.
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementation Details}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:implementation}
+
+The following table lists some of the QDP headers.
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+ name & purpose \\
+\hline
+ {\tt qdp.h        } & Master header and QDP utilities     \\
+ {\tt qdptype.h    } & Main class definition               \\
+ {\tt qdpexpr.h    } & Expression class definition         \\
+ {\tt primitive.h  } & Main header for all primitive types \\
+ {\tt primscalar.h } & Scalar primitive class and operations \\
+ {\tt primmatrix.h } & Matrix primitive and operations \\
+ {\tt primvector.h } & Vector primitive and operations \\
+ {\tt primseed.h   } & Seed (random number) primitive  \\
+ {\tt reality.h    } & Complex number internal class  \\
+ {\tt simpleword.h } & Machine word-type operations  \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Supported Operations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:supported}
+
+This section describes in some detail the names and functionality for
+all functions in the interface involving linear algebra with and
+without shifts.  
+
+All QDP objects are of type QDPType, and QDP functions act on objects
+of this base class type. Unless otherwise indicated, operations occur
+on all sites in the specified subset of the target, often an
+assignment statement or object definition. The indexing of a QDPType
+returns an lvalue suitable for assignment (but not object
+definition). It is also used to narrow the lattice sites participating
+in a global reduction since the result of such a reduction is a
+lattice scalar, hence are independent of lattice sites.
+
+Supported operations are listed below.
+Convention: protoyypes are basically of the form:
+
+\begin{verbatim}
+QDPType  unary_function(const QDPType&)
+QDPType  binary_function(const QDPType&, const QDPType&)
+\end{verbatim}
+
+\medskip
+
+\subsection{Subsets and Maps}
+\label{sec:subsets}
+
+\begin{flushleft}
+\begin{tabular}{lp{4.0in}}
+{\tt Set::make(const SetFunc\&)} & Set construction of ordinality num subsets.
+                               func maps coordinates to a coloring in [0,num)\\
+
+{\tt Map::make(const MapFunc\&)} & Construct a map function from source sites to the dest site.\\
+\end{tabular}
+\end{flushleft}
+
+\medskip
+
+\subsection{Infix operators}
+\label{sec:infix}
+
+\noindent
+{\em Unary infix (e.g., {\tt operator-}):}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|-| &: & negation\\
+\verb|+| &: & unary plus\\
+\verb|~| &: & bitwise not\\
+\verb|!| &: & boolean not\\
+\end{tabular}
+\end{flushleft}
+
+\noindent
+{\em Binary infix (e.g., {\tt operator+}):}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|+|  &:& addition\\
+\verb|-|  &:& subtraction\\
+\verb|*|  &:& multiplication\\
+\verb|/|  &:& division\\
+\verb|%|  &:& mod\\
+\verb|&|  &:& bitwise and\\
+{\tt |}  &:& bitwise or\\
+\verb|^|  &:& bitwise exclusive or\\
+\verb|<<| &:& left-shift\\
+\verb|>>| &:& right-shift\\
+\end{tabular}
+\end{flushleft}
+
+\noindent
+{\em Comparisons (returning booleans, e.g., {\tt operator<}):}
+
+\begin{verbatim}
+<, <=, >, >=, ==, !=
+&& : and of 2 booleans
+|| : or of 2 boolean
+\end{verbatim}
+
+
+\noindent
+{\em Assignments (e.g., {\tt operator+=}):}
+
+\begin{verbatim}
+=, +=, -=, *=, /=, %=, |=, &=, ^=, <<=, >>=
+\end{verbatim}
+
+\noindent
+{\em Trinary:}
+
+\begin{verbatim}
+where(bool,arg1,arg2) : the C trinary "?" operator -> (bool) ? arg1 : arg2
+\end{verbatim}
+
+\medskip
+
+
+\subsection{Functions (standard C math lib)}
+\label{sec:cfuncs}
+
+\noindent
+{\em Unary:}
+
+\begin{verbatim}
+cos, sin, tan, acos, asin, atan, cosh, sinh, tanh,
+exp, log, log10, sqrt,
+ceil, floor, fabs
+\end{verbatim}
+
+\noindent
+{\em Binary:}
+
+\begin{verbatim}
+ldexp, pow, fmod, atan2
+\end{verbatim}
+
+\medskip
+
+
+\subsection{Additional functions (specific to QDP)}
+\label{sec:funcs}
+
+\noindent
+{\em Unary:}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|adj|              &:& hermitian conjugate (adjoint)\\
+\verb|conj|             &:& complex conjugate\\
+\verb|transpose|        &:& matrix tranpose, on a scalar it is a nop\\
+\verb|transposeColor|   &:& color matrix tranpose, on a scalar it is a nop\\
+\verb|transposeSpin|    &:& spin matrix tranpose, on a scalar it is a nop\\
+\verb|trace|            &:& matrix trace\\
+\verb|real|             &:& real part\\
+\verb|imag|             &:& imaginary part\\
+\verb|traceColor|       &:& trace over color indices\\
+\verb|traceSpin|        &:& trace over spin indices\\
+\verb|timesI|           &:& multiplies argument by imag "i"\\
+\verb|localNorm2|       &:& on fibers computes trace(adj(source)*source)\\
+\end{tabular}
+\end{flushleft}
+
+\noindent
+{\em Binary}:
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|cmplx|              &:& returns complex object   arg1 + i*arg2\\
+\verb|localInnerProduct|  &:& at each site computes trace(adj(arg1)*arg2)\\
+\verb|outerProduct|       &:& at each site constructs $({\rm arg1}_i * {\rm arg2}_j^*)_{ij}$\\
+\end{tabular}
+\end{flushleft}
+
+\subsection{In place functions}
+\label{sec:inplace}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|random(dest)|            &:& uniform random numbers - all components\\
+\verb|gaussian(dest)|          &:& uniform random numbers - all components\\
+\verb|copymask(dest,mask,src)| &:& copy src to dest under boolean mask\\
+\end{tabular}
+\end{flushleft}
+
+%zero(dest)              : zero out all elements
+
+\medskip
+
+\subsection{Broadcasts}
+\label{sec:broadcasts}
+
+{\em Broadcasts via assignments (via, {\tt operator=}):}
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|<LHS> = <constant>| &:& globally set conforming LHS to constant\\
+\verb|<LHS> = zero|       &:& global always set LHS to zero\\
+\end{tabular}
+\end{flushleft}
+
+\medskip
+
+\subsection{Global reductions}
+\label{sec:reductions}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|sum(arg1)|              &:& sum over lattice indices returning 
+                                  object of same fiber type\\
+\verb|norm2(arg1)|            &:& sum(localNorm2(arg1))\\
+\verb|innerProduct(arg1,arg2)|&:& sum(localInnerProduct(arg1,arg2))\\
+\verb|sumMulti(arg1,Set)|     &:& sum over each subset of Set returning \#subset
+                                  objects of same fiber type\\
+\end{tabular}
+\end{flushleft}
+
+\subsection{Global comparisons}
+\label{sec:comparisons}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|globalMax(arg1)|        &:& maximum across the lattice (simple scalars)\\
+\verb|globalMin(arg1)|        &:& minimum across the lattice (simple scalars)\\
+\end{tabular}
+\end{flushleft}
+
+\medskip
+
+\subsection{Global checks}
+\label{sec:checks}
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|isnan(arg1)|        &:& true if any value in source is NaN\\
+\verb|isinf(arg1)|        &:& true if any value in source is an Inf\\
+\verb|isfinite(arg1)|   &:& true if all values in source are finite\\
+\verb|isnormal(arg1)|    &:& true if all values in source are normal \\
+\end{tabular}
+\end{flushleft}
+
+\medskip
+
+\subsection{Accessors}
+\label{sec:peek}
+
+Peeking and poking (accessors) into various component indices of objects.
+
+\begin{flushleft}
+\begin{tabular}{lcp{4.0in}}
+\verb|peekSite(arg1,multi1d<int> coords)|&:& return object located at lattice coords\\
+\verb|peekColor(arg1,int row,int col)|   &:& return color matrix elem row and col\\
+\verb|peekColor(arg1,int row)|           &:& return color vector elem row\\
+\verb|peekSpin(arg1,int row,int col)|   &:& return spin matrix elem row and col\\
+\verb|peekSpin(arg1,int row)|            &:& return spin vector elem row\\
+&&\\
+\verb|pokeSite(dest,src,multi1d<int> coords)|&:& insert into site given by coords\\
+\verb|pokeColor(dest,src,int row,int col)|   &:& insert into color matrix elem row and col\\
+\verb|pokeColor(dest,src,int row)|           &:& insert into color vector elem row\\
+\verb|pokeSpin(dest,src,int row,int col)|   &:& insert into spin matrix elem row and col\\
+\verb|pokeSpin(dest,src,int row)|            &:& insert into spin vector elem row\\
+\end{tabular}
+\end{flushleft}
+
+
+\medskip
+
+\subsection{More exotic functions:}
+\label{sec:otherfuncs}
+
+\begin{itemize}
+\item
+\verb|spinProject(QDPType psi, int dir, int isign)|\\
+Applies spin projection $(1 + isign*\gamma_\mu)$*\verb|psi|
+returning a half spin vector or matrix
+
+\item
+\verb|spinReconstruct(QDPType psi, int dir, int isign)|\\
+Applies spin reconstruction of $(1 + isign*\gamma_\mu)$*\verb|psi|
+returning a full spin vector or matrix
+
+\item
+\verb|quarkContract13(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+This is used for diquark constructions. Eventually, it could handle larger
+Nc. 
+The numbers represent which spin index to sum over.
+   
+The sources and targets must all be propagators but not
+necessarily of the same lattice type. Effectively, one can use
+this to construct an anti-quark from a di-quark contraction. In
+explicit index form, the operation  \verb|quarkContract13| does
+
+$$target^{k' k}_{\alpha\beta} =
+ \epsilon^{i j k}\epsilon^{i' j' k'}* source1^{i i'}_{\rho\alpha}* source2^{j j'}_{\rho\beta}$$
+   
+and is (currently) only appropriate for Nc=3  (or SU(3)).
+
+\item
+\verb|quarkContract14(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+   
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\alpha}*source2^{j j'}_{\beta\rho}$$
+
+\item
+\verb|quarkContract23(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+   
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\alpha\rho}*source2^{j j'}_{\rho\beta}$$
+
+\item
+\verb|quarkContract24(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+   
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\alpha}*source2^{j j'}_{\beta\rho}$$
+
+\item
+\verb|quarkContract12(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\rho}*source2^{j j'}_{\alpha\beta}$$
+
+\item
+\verb|quarkContract34(a,b)|\\
+Epsilon contract 2 quark propagators and return a quark propagator.
+$$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\alpha\beta}*source2^{j j'}_{\rho\rho}$$
+
+\item
+\verb|colorContract(a,b,c)|\\
+Epsilon contract 3 color primitives and return a primitive scalar.
+The sources and targets must all be of the same primitive type (a matrix or vector)
+but not necessarily of the same lattice type. In
+explicit index form, the operation  colorContract does
+$$
+target =
+  \epsilon^{i j k}\epsilon^{i' j' k'}* source1^{i i'}* source2^{j j'}*source3^{k k'}
+$$
+or
+$$
+target =
+ \epsilon^{i j k}* source1^{i}* source2^{j}*source3^{k}
+$$
+and is (currently) only appropriate for Nc=3  (or SU(3)).
+
+\end{itemize}
+
+
+\bigskip
+
+\subsection{Operations on subtypes}
+
+Types in the QDP interface are parameterized by a variety of types, and
+can look like the following:
+
+\begin{small}
+\begin{verbatim}
+typedef OLattice<PScalar<PColorMatrix<RComplex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<PSpinVector<PColorVector<RComplex<float>, Nc>, Ns> > LatticeFermion
+\end{verbatim}
+\end{small}
+
+\begin{itemize}
+\item {\em Word type}: 
+  int, float, double, bool. Basic machine types.
+\item {\em Reality type}: 
+  RComplex or RScalar. 
+\item {\em Primitive type}: 
+  PScalar, PVector, PMatrix, PSeed. 
+\item {\em Inner grid type}: 
+  IScalar or ILattice. 
+\item {\em Outer grid type}:
+  OScalar or OLattice. 
+\end{itemize}
+
+\noindent
+Supported operations for each type level as follows:
+
+\paragraph{\bf\em Grid type:} {\em OScalar, OLattice, IScalar, ILattice}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}
+
+\paragraph{\bf\em Primitive type:}
+%\begin{itemize}
+%\item
+\paragraph{\bf\em PScalar:}
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}
+
+%\item
+\paragraph{\bf\em PMatrix$<$N$>$:}
+\begin{flushleft}
+  \begin{tabular}{lp{5.0in}}
+  {\em Unary}:& {\tt -(PMatrix)}, {\tt +(PMatrix)}\\
+  {\em Binary}:& {\tt -(PMatrix,PMatrix)}, {\tt +(PMatrix,PMatrix)}, 
+       {\tt *(PMatrix,PScalar)}, {\tt *(PScalar,PMatrix)}, {\tt *(PMatrix,PMatrix)}\\
+  {\em Comparisons}:& none\\
+  {\em Assignments}:& {\tt =(PMatrix)}, {\tt =(PScalar)}, {\tt -=(PMatrix)}, 
+       {\tt +=(PMatrix)}, {\tt *=(PScalar)}\\
+  {\em Trinary}:& {\tt where}\\
+  {\em C-lib funcs}:& none\\
+  {\em QDP funcs}:& all\\
+  {\em In place funcs}:& all\\
+  {\em Reductions}:& all\\
+  \end{tabular}
+\end{flushleft}
+
+%\item
+\paragraph{\bf\em PVector$<$N$>$:}
+\begin{flushleft}
+  \begin{tabular}{lp{5.0in}}
+  {\em Unary}:& {\tt -(PVector)}, {\tt +(PVector)}\\
+  {\em Binary}:& {\tt -(PVector,PVector)}, {\tt +(PVector,PVector)}, 
+       {\tt *(PVector,PScalar)}, {\tt *(PScalar,PVector)}, {\tt *(PMatrix,PVector)}\\
+  {\em Comparisons}:& none\\
+  {\em Assignments}:& {\tt =(PVector)}, {\tt -=(PVector)}, {\tt +=(PVector)}, 
+       {\tt *=(PScalar)}\\
+  {\em Trinary}:& {\tt where}\\
+  {\em C-lib funcs}:& none\\
+  {\em QDP funcs}:& {\tt real}, {\tt imag}, {\tt timesI}, 
+        {\tt localNorm2}, {\tt cmplx}, {\tt localInnerProduct}, {\tt outerProduct}\\
+  {\em In place funcs}:& all\\
+  {\em Broadcasts}:& {\tt =(Zero)}\\
+  {\em Reductions}:& all\\
+  \end{tabular}
+\end{flushleft}
+
+%\item
+\paragraph{\bf\em PSpinMatrix$<$N$>$:}
+  Inherits same operations as PMatrix
+\begin{flushleft}
+  \begin{tabular}{lp{5.0in}}
+  {\em Unary}:& {\tt traceSpin}, {\tt transposeSpin}\\
+  {\em Binary}:& {\tt *(PSpinMatrix,Gamma)}, {\tt *(Gamma,PSpinMatrix)}\\
+  {\em Exotic}:& {\tt peekSpin}, {\tt pokeSpin}, {\tt spinProjection}, 
+      {\tt spinReconstruction}\\
+  \end{tabular}
+\end{flushleft}
+
+%\item
+\paragraph{\bf\em PSpinVector$<$N$>$:}
+  Inherits same operations as PVector
+\begin{flushleft}
+  \begin{tabular}{lp{5.0in}}
+  {\em Binary}:& {\tt *(Gamma,PSpinVector)}\\
+  {\em Exotic}:& {\tt peekSpin}, {\tt pokeSpin}, {\tt spinProjection}, 
+      {\tt spinReconstruction}\\
+  \end{tabular}
+\end{flushleft}
+
+%\item
+\paragraph{\bf\em PColorMatrix$<$N$>$:}
+  Inherits same operations as PMatrix
+\begin{flushleft}
+  \begin{tabular}{lp{5.0in}}
+  {\em Unary}:& {\tt traceColor}, {\tt transposeColor}\\
+  {\em Binary}:& {\tt *(PColorMatrix,Gamma)}, {\tt *(Gamma,PColorMatrix)}\\
+  {\em Exotic}:& {\tt peekColor}, {\tt pokeColor}\\
+  \end{tabular}
+\end{flushleft}
+
+%\item
+\paragraph{\bf\em PColorVector$<$N$>$:}
+  Inherits same operations as PVector
+\begin{flushleft}
+  \begin{tabular}{lp{5.0in}}
+  {\em Binary}:& {\tt *(Gamma,PColorVector)}\\
+  {\em Exotic}:& {\tt peekColor}, {\tt pokeColor}\\
+  \end{tabular}
+\end{flushleft}
+
+%\end{itemize}  % end primitive
+
+\paragraph{\bf\em Reality:} {\em RScalar, RComplex}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}
+
+\paragraph{\bf\em Word:} {\em int, float, double, bool}\\
+All operations listed in Sections~\ref{sec:infix}--\ref{sec:otherfuncs}.
+Only boolean ops allowed on bool.
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Detailed function description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:details}
+
+The purpose of this section is to show some explicit prototypes and
+usages for the functions described in Section~\ref{sec:supported}.
+In that section, all the functions are shown with complete information
+on which operations and their meaning are supported on some combination
+of types. The purpose of this section is something like the inverse -
+namely show all the functions and what are some (selected) usages.
+
+\subsection{Unary Operations}
+
+\paragraph{Elementary unary functions on reals}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnary  \\
+  \hline
+  Meaning     & $r = {\rm func}(a)$ \\
+  \hline
+  {\it func}  & cos, sin, tan, acos, asin, atan,
+		sqrt, abs, exp, log, sign \\
+  \hline
+  \itt        & \tReal, \tLatticeReal \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+%\end{document}
+
+\paragraph{Elementary unary functions on complex values}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnary  \\
+  \hline
+  Meaning     & $r = {\rm func}(a)$ \\
+  \hline
+  {\it func}  & exp, sqrt, log \\
+  \hline
+  \itt        & \tComplex, \tLatticeComplex \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Assignment operations}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoAssignmentQual{operator=} \\
+  \hline
+  Meaning     & $r = a$ \\
+  \hline
+  \itt     & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Shifting}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryShift  \\
+  \hline
+  Meaning     & $r = a$ \\
+  \hline
+  \itt     & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\paragraph{Hermitian conjugate}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt adj}  \\
+  \hline
+  Meaning     & $r = a^\dagger$ \\
+  \hline
+  \itt        & \tReal, \tComplex, \tColorMatrix, \tDiracPropagator \\
+              & \simLatticeVariants \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Transpose}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt transpose}  \\
+  \hline
+  Meaning     & $r = {\rm transpose}(a)$ \\
+  \hline
+  \itt        & \tReal, \tComplex, \tColorMatrix, \tDiracPropagator \\
+              & \simLatticeVariants \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Transpose of a color matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt transposeColor}  \\
+  \hline
+  Meaning     & $r^{ij} = a^{ji}$ \\
+  \hline
+  \itt        & \tReal, \tComplex, \tColorMatrix, \tDiracPropagator \\
+              & \simLatticeVariants \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Transpose of a spin matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt transposeSpin}  \\
+  \hline
+  Meaning     & $r_{\alpha\beta} = a_{\beta\alpha}$ \\
+  \hline
+  \itt        & \tReal, \tComplex, \tSpinMatrix, \tDiracPropagator \\
+              & \simLatticeVariants \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Complex conjugate}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt conj}  \\
+  \hline
+  Meaning     & $r = a^*$ \\
+  \hline
+  \itt        & \tReal, \tComplex, \tColorMatrix, \tDiracFermion, \tDiracPropagator \\
+              & \simLatticeVariants \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\subsection{Type conversion}
+
+Types can be precision converted via a conversion function of the destination
+class.
+
+\paragraph{Convert integer or float to double}
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2 Type2}({\tt const {\it Type1}\& a}) \\
+  \hline
+  Example     & {\tt \tLatticeReal{} a; \tLatticeRealD{} r = \tLatticeRealD(a)} \\
+              & {\tt \tLatticeColorMatrix{} a; \tLatticeColorMatrixD{} r = \tLatticeColorMatrixD(a)} \\
+  \hline
+  {\it Type1} & All single precision numeric types \\
+  {\it Type2} & All conforming double precision numeric types \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Convert double to float}
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2 Type2}({\tt const {\it Type1}\& a})\\
+  \hline
+  Example     & {\tt \tLatticeRealD{} a; \tLatticeReal{} r = \tLatticeReal(a)} \\
+              & {\tt \tLatticeColorMatrixD{} a; \tLatticeColorMatrix{} r = \tLatticeColorMatrix(a)} \\
+  \hline
+  {\it Type1} & All double precision numeric types \\
+  {\it Type2} & All conforming single precision numeric types \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Integer to real}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2 Type2}({\tt const {\it Type1}\& a})\\
+  \hline
+  Example     & {\tt \tLatticeInt{} a; \tLatticeReal{} r = \tLatticeReal(a)} \\
+  \hline
+  {\it Type1} & All integer precision numeric types \\
+  {\it Type2} & All conforming real precision numeric types \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Real to integer}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2 Type2}({\tt const {\it Type1}\& a})\\
+  \hline
+  Example     & {\tt \tLatticeReal{} a; \tLatticeInt{} r = \tLatticeInt(a)} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{QDP Type to underlying wordtype} 
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2 Type2}({\tt const {\it Type1}\& a})\\
+  \hline
+  Meaning     & \verb|r = bool(a);|\\
+  \hline
+  Example     & {\tt \tInt{} a; int r = toWordType(a);} \\
+              & {\tt \tBoolean{} a; bool r = toWordType(a);} \\
+              & {\tt \tReal32{} a; float r = toWordType(a);} \\
+              & {\tt \tReal64{} a; double r = toWordType(a);} \\
+              & {\tt \tReal{} a; float r = toWordType(a);} {\em for single precision build} \\
+              & {\tt \tReal{} a; double r = toWordType(a);} {\em for double precision build} \\
+  \hline
+  {\it Type1} & All QDP simple scalar types, like \tReal \\
+  {\it Type2} & The underlying word type.  \\
+              & In the case of floating point types, the underlying base precision. \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+QDP types like \tReal{}, \tDouble{}, \tInt, \tBoolean{} are not primitive types, 
+so an explicit conversion is provided.
+
+\paragraph{Real to float} 
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt float toFloat(const \tReal\& a)} \\
+  \hline
+  Meaning     & \verb|r = float(a);|\\
+  \hline
+  Example     & {\tt \tReal{} a; float r = toFloat(a);} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+The QDP type \tReal{} is not a primitive type, so an explicit conversion is provided.
+
+\paragraph{Double to double} 
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt double toDouble(const \tRealD\& a)} \\
+  \hline
+  Meaning     & \verb|r = double(a);|\\
+  \hline
+  Example     & {\tt \tRealD{} a; double r = toDouble(a);} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+The QDP type \tRealD{} is not a primitive type, so an explicit conversion is provided.
+
+\paragraph{Bool to bool} 
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt bool toBool(const \tBoolean\& a)} \\
+  \hline
+  Meaning     & \verb|r = bool(a);|\\
+  \hline
+  Example     & {\tt \tBoolean{} a; bool r = toBool(a);} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+The QDP type \tBoolean{} is not a primitive type, so an explicit conversion is provided.
+
+\subsection{Operations on complex arguments}
+
+\paragraph{Convert real and imaginary to complex}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBinaryQual{cmplx} \\
+  \hline
+  Meaning     & $\Re r = a$, $\Im r = b$ \\
+  \hline
+  {\it Type1} & \tConstant, \tReal, \simLatticeVariants\\
+  {\it Type2} & \tConstant, \tReal, \simLatticeVariants\\
+  \hline
+  {\it Type}  & \tComplex, \simLatticeVariants\\
+  \hline
+  Example     & {\tt \tReal a;}\\
+              & {\tt \tComplex{} = cmplx(a, 0);}\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Real part of complex}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt real}  \\
+  \hline
+  Meaning     & $r = \Re a$ \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Imaginary part of complex}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{\tt imag}  \\
+  \hline
+  Meaning     & $r = \Im a$ \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\subsection{Component extraction and insertion}
+\paragraph{Accessing a site object}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|peekSite|({\tt const Lattice{\it Type}\& a, const multi1d<int>\& c})\\
+  \hline
+  Meaning     & $r = a[x]$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Accessing a color matrix element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeComplex} \verb|peekColor|({\tt const \tLatticeColorMatrix\& a},\\
+              &\quad         {\tt int i, int j})\\
+              & {\tt \tLatticeSpinMatrix} \verb|peekColor|({\tt const \tLatticeDiracPropagator\& a},\\
+              &\quad         {\tt int i, int j})\\
+  \hline
+  Meaning     & $r = a_{i,j}$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Inserting a color matrix element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt LatticeColorMatrix\&} \verb|pokeColor|({\tt \tLatticeColorMatrix\& r,}\\
+              &   \quad{\tt const \tLatticeComplex\& a, int i, int j})\\
+  \hline
+  Meaning     & $r_{i,j} = a$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Accessing a color vector element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeComplex} \verb|peekColor|({\tt const \tLatticeColorVector\& a},\\
+              &\quad         {\tt int i})\\
+              & {\tt \tLatticeSpinVector} \verb|peekColor|({\tt const \tLatticeDiracFermion\& a},\\
+              &\quad         {\tt int i})\\
+  \hline
+  Meaning     & $r = a_{i}$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+This function will extract the desired color component with all the
+other indices unchanged.
+
+A lattice color vector is another name (typedef) for a
+\tLatticeStaggeredFermion. Namely, an object that is vector in color
+spin and a scalar in spin space.  Together with spin accessors, one
+can build a \tLatticeDiracFermion.
+
+\paragraph{Inserting a color vector element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeColorVector\&} \verb|pokeColor|({\tt \tLatticeColorVector\& r},\\
+              &   \qquad{\tt const \tLatticeComplex\& a, int i})\\
+  \hline
+  Meaning     & $r_{i} = a$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+This function will extract the desired color component with all the
+other indices unchanged.
+
+A lattice color vector is another name (typedef) for a
+\tLatticeStaggeredFermion. Namely, an object that is vector in color
+spin and a scalar in spin space.  Together with spin accessors, one
+can build a \tLatticeDiracFermion{} or a \tLatticeDiracPropagator.
+
+\paragraph{Accessing a spin matrix element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeComplex} \verb|peekSpin|({\tt const \tLatticeSpinMatrix\& a},\\
+              &\quad         {\tt int i, int j})\\
+              & {\tt \tLatticeColorMatrix} \verb|peekSpin|({\tt const \tLatticeDiracPropagator\& a},\\
+              &\quad         {\tt int i, int j})\\
+  \hline
+  Meaning     & $r = a_{i,j}$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Inserting a spin matrix element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeSpinMatrix\&} \verb|pokeSpin|({\tt \tLatticeSpinMatrix\& r},\\
+              &   \quad{\tt const \tLatticeComplex\& a, int i, int j})\\
+  \hline
+  Meaning     & $r_{i,j} = a$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Accessing a spin vector element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeComplex} \verb|peekSpin|({\tt const \tLatticeSpinVector\& a},\\
+              &\quad         {\tt int i})\\
+              & {\tt \tLatticeColorVector} \verb|peekSpin|({\tt const \tLatticeDiracFermion\& a},\\
+              &\quad         {\tt int i})\\
+  \hline
+  Meaning     & $r = a_{i}$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+This function will extract the desired spin component with all the
+other indices unchanged.
+
+A lattice spin vector is an object that is a vector in spin space and
+a scalar in color space.  Together with color accessors, one can build
+a \tLatticeDiracFermion{} or a \tLatticeDiracPropagator.
+
+\paragraph{Inserting a spin vector element}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeSpinVector\&} \verb|pokeSpin|({\tt \tLatticeSpinVector\& r},\\
+              &   \quad{\tt const \tLatticeComplex\& a, int i})\\
+  \hline
+  Meaning     & $r_{i} = a$\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+This function will extract the desired spin component with all the
+other indices unchanged.
+
+A lattice spin vector is an object that is a vector in spin space and
+a scalar in color space.  Together with color accessors, one can build
+a \tLatticeDiracFermion{} or a \tLatticeDiracPropagator.
+
+\paragraph{Trace of matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2} \verb|trace|({\tt const {\it Type1}\& a})\\
+  \hline
+  Meaning     & $r = \Tr a$ \\
+  \hline
+  {\it Type1} & \tColorMatrix, \tDiracPropagator, \simLatticeVariants\\
+  {\it Type2} & \tComplex, \tComplex, \simLatticeVariants\\
+  \hline
+  Example     & {\tt \tLatticeColorMatrix{} a;}\\
+              & {\tt \tLatticeComplex{} r = trace(a);} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+Traces over all matrix indices. It is an error to trace over a vector index.
+It will trivially trace a scalar variable.
+
+\paragraph{Color trace of matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2} \verb|traceColor|({\tt const {\it Type1}\& a})\\
+  \hline
+  Meaning     & $r = \Tr a$ \\
+  \hline
+  {\it Type1} & \tSpinMatrix, \simLatticeVariants\\
+  {\it Type2} & \tComplex, \simLatticeVariants\\
+  \hline
+  \hline
+  Example     & {\tt \tLatticeDiracPropagator{} a;}\\
+              & {\tt \tLatticeSpinMatrix{} r = traceColor(a);} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+Traces only over color matrix indices. It is an error to trace over a color vector index.
+All other indices are left untouched.
+It will trivially trace a scalar variable.
+
+\paragraph{Spin trace of matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2} \verb|traceSpin|({\tt const {\it Type1}\& a})\\
+  \hline
+  Meaning     & $r = \Tr a$ \\
+  \hline
+  {\it Type1} & \tDiracPropagator, \simLatticeVariants\\
+  {\it Type2} & \tColorMatrix, \simLatticeVariants\\
+  \hline
+  \hline
+  Example     & {\tt \tLatticeDiracPropagator{} a;}\\
+              & {\tt \tLatticeColorMatrix{} r = traceSpin(a);} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+Traces only over spin matrix indices. It is an error to trace over a
+spin vector index.  All other indices are left untouched.  It will
+trivially trace a scalar variable.
+
+\paragraph{Dirac spin projection}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline 
+  Syntax      & {\it Type2} \verb|spinProject|({\tt const {\it Type1}\& a, int d, int p})\\
+  \hline
+  Meaning     & $r = (1 + p\gamma_d)a$\\
+  \hline
+  {\it Type1} & \tDiracFermion, \simLatticeVariants\\
+  {\it Type2} & \tHalfFermion, \simLatticeVariants\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Dirac spin reconstruction}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type2} \verb|spinReconstruct|({\tt const {\it Type1}\& a, int d, int p})\\
+  \hline
+  Meaning     & $r = {\rm recon\,}(p,d,a)$\\
+  \hline
+  {\it Type1} & \tHalfFermion, \simLatticeVariants\\
+  {\it Type2} & \tDiracFermion, \simLatticeVariants\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\subsection{Binary Operations with Constants}
+
+\paragraph{Multiplication by real constant}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator*|({\tt const \tReal\& a, const {\it Type}\& b})\\
+              & {\it Type} \verb|operator*|({\tt const {\it Type}\& b, const \tReal\& a})\\
+  \hline
+  Meaning     & $r = a*b$ ($a$ real, constant)\\
+  \hline
+  \itt     & \allFloatTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Multiplication by complex constant}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator*|({\tt const \tReal\& a, const {\it Type}\& b})\\
+              & {\it Type} \verb|operator*|({\tt const {\it Type}\& b, const \tReal\& a})\\
+  \hline
+  Meaning     & $r = a*b$ ($a$ complex, constant)\\
+  \hline
+  \itt     & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Left multiplication by gamma matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator*|({\tt const {\it Gamma}\& a, const {\it Type}\& b})\\
+  \hline
+  Meaning     & $r = \gamma_d * a$ \\
+  \hline
+  {\it Gamma} & Gamma constructed from an explicit integer in $[0,N_s^2-1]$\\
+  \itt        & \tSpinVector, \tSpinMatrix, \tHalfFermion, \tDiracFermion, \tDiracPropagator, \\
+              & and similar lattice variants \\
+  \hline
+  Example     & \verb|r = Gamma(7) * b;|\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+See Section~\ref{sec:spin} for details on $\gamma$-matrix conventions.
+
+
+\paragraph{Right multiplication by gamma matrix}
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator*|({\tt const {\it Type}\& a, const {\it Gamma}\& b})\\
+  \hline
+  Meaning     & $r = a * \gamma_d$ \\
+  \hline
+  {\it Gamma} & Gamma constructed from an explicit integer in $[0,N_s^2-1]$\\
+  \itt        & \tSpinMatrix, \tDiracPropagator, and similar lattice variants \\
+  \hline
+  Example     & \verb|r = a * Gamma(15);|\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+See Section~\ref{sec:spin} for details on $\gamma$-matrix conventions.
+
+\subsection{Binary Operations with Fields}
+
+\paragraph{Division of real fields}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBBinaryQual{operator/} \\
+  \hline
+  Meaning     & $r = a/b$ \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Addition}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBBinaryQual{operator+} \\
+  \hline
+  Meaning     & $r = a + b$ \\
+  \hline
+  \itt        & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Subtraction}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBBinaryQual{operator-} \\
+  \hline
+  Meaning     & $r = a - b$ \\
+  \hline
+  \itt        & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Multiplication: uniform types}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBBinaryQual{operator*} \\
+  \hline
+  Meaning     & $r = a * b$ \\
+  \hline
+  \itt        & \tConstant, \tReal, \tComplex, \tInt, \tColorMatrix, \tSpinMatrix, \tDiracPropagator\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{ColorMatrix matrix from outer product}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBinaryQual{outerProduct} \\
+  \hline
+  Meaning     & $r_{i,j} = a_i * b_j^*$ \\
+  \hline
+  {\it Type1,2} & \tColorVector, \tLatticeColorVector\\
+  \itt        & \tColorMatrix, \tLatticeColorMatrix\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Left multiplication by gauge matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator*|({\tt const {\it Type1}\& a, const {\it Type}\& b})\\
+  \hline
+  Meaning     & $r = a * b$ \\
+  \hline
+  {\it Type1} & \tColorMatrix, \tLatticeColorMatrix\\
+  \itt        & \tConstant, \tComplex, \tColorMatrix, \tColorVector, \\
+              & \tSpinVector, \tDiracPropagator,
+                and similar lattice variants\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\paragraph{Right multiplication by gauge matrix}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator*|({\tt const {\it Type}\& a, const {\it Type1}\& b})\\
+  \hline
+  Meaning     & $r = a * b$ \\
+  \hline
+  {\it Type1} & \tColorMatrix, \tLatticeColorMatrix\\
+  \itt        & \tColorMatrix, \tSpinMatrix, \tDiracPropagator,
+                and similar lattice variants\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\subsection{Boolean and Bit Operations}
+\paragraph{Comparisons}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline 
+  Syntax      & \protoBoolBinaryQual{op} \\
+  \hline
+  Meaning     & $r = a \op b$ or $r = \op(a,b)$ \\
+  \hline
+  $\op$       & \verb|<|, \verb|>|, \verb|!=|, \verb|<=|, \verb|>=|, \verb|==| \\
+  \hline
+  {\it Type1} & \tInt, \tReal, \tRealD, and similar lattice variants \\
+  {\it Type2} & \tBoolean\ or \tLatticeBoolean\ (result is lattice if any arg is lattice)\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Elementary binary operations on integers}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline 
+  Syntax      & \protoBoolBinaryQual{op} \\
+  \hline
+  Meaning     & $r = a \op b$ or $r = \op(a,b)$\\
+  \hline
+  $\op$       & \verb|<<|, \verb|>>|, \verb|&| (and), {\tt |} (or), \verb|^| (xor), 
+                {\tt mod, max, min} \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Elementary binary operations on reals}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBinaryQual{op} \\
+  \hline
+  Meaning     & $r = a \op b$ or $r = \op(a,b)$ \\
+  \hline
+  $\op$       & {\tt mod, max, min} \\
+  \hline
+  \itt        & \tReal, \tRealD, and similar lattice variants \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Boolean Operations}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoBBinaryQual{op} \\
+  \hline
+  Meaning     & $r = a \op b$\\
+  \hline
+  $\op$       & {\tt |} (or), \verb|&| (and), \verb|^| (xor) \\
+  \hline
+  \itt        & \tBoolean, \tLatticeBoolean\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & \protoUnaryQual{op} \\
+  \hline
+  Meaning     & $r = \not a$\\
+  \hline
+  $\op$       & \verb|!| (not) \\
+  \hline
+  \itt        & \tBoolean, \tLatticeBoolean\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Copymask}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt void} \verb|copymask|({\tt const {\it Type2}\&  r, const {\it Type1}\& a, const {\it Type1}\& b})\\
+  \hline
+  Meaning     & $r = b$ if $a$ is true\\
+  \hline
+  \itt        & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\subsection{Reductions}
+
+Global reductions sum over all lattice sites in the subset specified by 
+the left hand side of the assignment.
+
+\paragraph{Norms}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tReal} \verb|norm2|({\tt {\it Type}\& a})\\
+  \hline
+  Meaning     & $r = \sum |a|^2$ \\
+  \hline
+  \itt        & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Inner products}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tComplex} \verb|innerProduct|({\tt {\it Type}\& a, const {\it Type}\& b})\\
+  \hline
+  Meaning     & $r = \sum a^\dagger \cdot b$ \\
+  \hline
+  \itt        & \allNumericTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\paragraph{Global sums}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|sum|({\tt const Lattice{\it Type}\& a})\\
+  \hline
+  Meaning     & $r = \sum a$\\
+  \hline
+  \itt     & All numeric non-lattice scalar types \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\subsection{Global comparisons}
+
+Find the maximum or minimum of a quantity across the lattice. These
+operations do not have subset variants.
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|globalMax|({\tt const Lattice{\it Type}\& a})\\
+  \hline
+  Meaning     & $r = max_{lattice} a(x)$ \\
+  \hline
+  \itt        & \tLatticeRealF, \tLatticeRealD \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|globalMin|({\tt const Lattice{\it Type}\& a})\\
+  \hline
+  Meaning     & $r = min_{lattice} a(x)$ \\
+  \hline
+  \itt        & \tLatticeRealF, \tLatticeRealD \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+
+\subsection{Fills}
+
+\paragraph{Coordinate function fills}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt \tLatticeInt} \verb|Layout::latticeCoordinate|({\tt int d})\\
+  \hline
+  Meaning     & $r = f(d)$ for direction \verb|d|.\\
+  \hline
+  Purpose     & Return the lattice coordinates in direction \verb|d|\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+%
+The call \verb|Layout::latticeCoordinate(d)| returns an integer lattice field with a
+value on each site equal to the integer value of the \verb|d|th
+space-time coordinate on that site.
+
+\paragraph{Constant fills}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt Lattice{\it Type}} \verb|operator=|({\tt Lattice{\it Type}\& r, const {\it Type}\& a})\\
+  \hline
+  Meaning     & $r = a$ for all sites\\
+  \hline
+  \itt        & All non-lattice objects \\
+  \hline
+  Example     & {\tt \tReal{} a = 2.0;}\\
+              & {\tt \tLatticeReal{} r = a;}\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+Constant (or lattice global) fills are always defined for lattice scalar objects broadcasting to
+all lattice sites. These are broadcasts of a lattice scalar type to a conforming lattice type.
+
+NOTE, one can not fill a \tLatticeColorVector{} with a \tReal.
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt Lattice{\it Type}} \verb|operator=|({\tt Lattice{\it Type}\& r, const {\it Type}\& a})\\
+  \hline
+  Meaning     & $r = \diag(a,a,\ldots{})$ (constant $a$)\\
+  \hline
+  \itt        & \tComplex, \tColorMatrix, \tSpinMatrix \\
+  \hline
+  Example     & {\tt \tReal{} a = 2.0;}\\
+              & {\tt \tLatticeColorMatrix{} r = a;}\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+Only sets the diagonal part of a field to a constant \verb|a| times
+the identity.
+
+This fill can only be used on primitive types that are scalars or
+matrices. E.g., it can not be used for a {\it vector} field since
+there is no meaning of diagonal.  NOTE, a zero cannot be distinguished
+from a constant like 1. To initialize to zero the \verb|zero| argument
+must be used.
+
+\paragraph{Zero fills}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\it Type} \verb|operator=|({\tt {\it Type}\& r, const Zero\& zero})\\
+  \hline
+  Meaning     & $r = 0$\\
+  \hline
+  \itt        & \allNumericTypes \\
+  \hline
+  Example     & {\tt \tLatticeDiracFermion{} r = zero;}\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+This is the only way to fill a vector field with a constant (like zero).
+
+\paragraph{Uniform random number fills}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt void} \verb|random|({\tt {\it Type}\& r}) \\
+  \hline
+  Meaning     & $r$ random, uniform on $[0,1]$ \\
+  \hline
+  \itt        & \allFloatTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Gaussian random number fills}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt void} \verb|gaussian|({\tt {\it Type}\& r}) \\
+  \hline
+  Meaning     & $r$ normal Gaussian \\
+  \hline
+  \itt        & \allFloatTypes \\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+\paragraph{Seeding the random number generator}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt void} \verb|RNG::setrn|({\tt const \tRandomState\& a}) \\
+  \hline
+  Meaning     & Initialize the random number generator with seed state \verb|a|\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+For details see the discussion of the corresponding scalar function
+{\tt random.h}.
+
+\paragraph{Extracting the random number generator seed}
+
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Syntax      & {\tt void} \verb|RNG::savern|({\tt \tRandomState\& r}) \\
+  \hline
+  Meaning     & Extract the random number generator into seed state \verb|r|\\
+  \hline
+  \end{tabular}
+\end{flushleft}
+
+For details see the discussion of the corresponding scalar function
+{\tt random.h}.
+
+\end{document}
+

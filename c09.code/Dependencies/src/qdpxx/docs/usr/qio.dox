@@ -1,0 +1,237 @@
+//$Id: qio.dox,v 1.3 2005-08-22 16:09:05 zbigniew Exp $
+/*!
+\page qiopage  QDP Record I/O utilities}
+
+\section secqio QDP Record I/O utilities
+
+The record IO code in %QDP is a C++ wrapper of QIO, QIO is a C library
+independent of %QDP. It is designed to write SciDAC   
+format data files, which means a mixture of binary data and XML
+metadata bundled together in the same file according to a scheme
+called Lime. QIO itself is discussed in more detail in the \ref
+qiodetailpage section.
+
+
+The %QDP code described in this section is documented in the \ref qio
+section of the %Reference Manual.
+
+  -# \ref  secfileformat
+  -# \ref qioapi 
+
+\subsection secfileformat Overview of File Format
+
+\subsubsection binaryqdp Binary QDP Files
+
+The binary file format has been designed with flexibility in mind. For
+archiving purposes, the allowable file organization may be further
+restricted.  Here we described the unrestricted format.
+
+Two classes of file volumes are supported: single-file volumes and
+multiple-file volumes.  In the latter case lattice data is scattered
+among several files for distributed reading and writing.  In the
+former case all the lattice data is contained in a single file.
+
+\par Single file format
+
+Single binary %QDP files are composed of a series of one or more
+application records.  A single application record encodes a single QDP
+field or an array of %QDP fields of the same data type.  Physics
+metadata, managed at the convenience of the applications programmer,
+is associated with the file itself and with each application record as
+well. Above the API the %QDP file is viewed as follows:
+
+  - File physics metadata
+  - Record 1 physics metadata and data
+  - Record 2 physics metadata and data
+  - etc.
+
+For example, a file might record a series of staggered fermion
+eigenvectors for a gauge field configuration.  Each record would map
+to a single field of type LatticeColorVector.  The file metadata
+might include information about the gauge field configuration and the
+record metadata might encode the eigenvalue and an index for the
+eigenvector.
+
+For another example, the gauge field configuration in four dimensions
+is represented in %QDP as an array of four color matrix fields.  The
+configuration is conventionally written so that the four color matrices
+associated with each site appear together.  A file containing a single
+gauge field configuration would then consist of a single record
+containing the array of four color matrices.
+
+The API permits mixing records of different datatypes in the same
+file.  While this practice may be convenient for managing projects, it
+may be forbidden for archival files.
+
+Additional metadata is automatically managed by QIO (without requiring
+intervention by the applications programmer) to facilitate the
+implementation and to check data integrity.  Thus the file actually
+begins with QIO metadata and physics metadata and each application
+record consists of five logical records.  Within QIO the file is
+viewed as a series of logical records as follows:
+
+  - Private file QIO metadata
+  - User file physics metadata
+  - Record 1 private QIO metadata
+  - Record 1 user physics metadata
+  - Record 1 binary data
+  - Record 1 private checksum
+  - Record 2 private QIO metadata
+  - Record 2 user physics metadata
+  - Record 2 binary data
+  - Record 2 private checksum
+  - etc.
+
+The site order of the binary data is lexicographic according to the
+site coordinate <em>r<sub>i</sub></em> with the first coordinate 
+<em>r<sub>0</sub></em> varying most
+rapidly.
+
+A format called LIME (Lattice-QCD Interchange Message Encapsulation)
+is used for packaging the logical records. A feature of this format is
+the maximum record size is quite large - <em>2<sup>64</sup>-1</em> bytes. However,
+file system limitations may require splitting a single file into 
+multiple physical files. No provision is provided for such splitting.
+It is expected that in time file systems will evolve to allow much
+larger file sizes. In the interim, facilities like \e cpio and
+\e tar can be used for file splitting.
+
+\par Multifile format
+
+The API provides for rapid temporary writing of data to scratch disks
+and reading from scratch disks.  This same format may be used for
+staging files for access by many compute nodes.  In this case it is
+assumed that the files are not intended for longer term storage.  Thus
+the file format in this case is implementation-dependent and not
+standardized.  A specific choice of format is described in the
+Appendix.
+
+\subsubsection metadata ASCII Metadata Files
+
+The API also provides for reading and writing global values in a
+standard metadata format from or to a file or a stream buffer.
+Startup parameters for controlling a simulation could be read in this
+way.  Results of a computation could be written in this way for post
+processing and analysis.
+
+The XML I/O facilities described in Section \ref secxmlio are used
+for manipulating the metadata.
+
+\subsection qioapi QDP/C++ Record API
+
+As with standard Unix, a file must be opened before reading or
+writing.  However, we distinguish file handles for both cases.  If the
+system provides a parallel file system, it is possible for several
+processors to read and write a single file. We call this mode
+&quot;parallel&quot;.  Otherwise the file is read by a single processor and
+the data delivered according to the distributed memory layout.  The
+reverse occurs upon writing. We call this mode &quot;serial&quot;. To allow
+user choice where the architecture permits, we provide for requesting
+either mode.  However, the request may be overridden if the system
+permits only one mode.  Upon writing, we allow appending to an
+existing file.
+
+\par QDPFileWriter class member functions and global functions
+
+ QDPFileWriter ia a concrete class for all QDPIO write operations.
+
+-  Open           
+   - QDPFileWriter::QDPFileWriter(const XMLBufferWriter& file_xml,
+   const std::string& path, QDP::QDP_volfmt_t volfmt, QDP::QDP_serialparallel_t serpar,
+   QDP::QDP_filemode_t mode)
+   - void QDPFileWriter::open(const XMLBufferWriter& file_xml, const std::string& path,
+   - void QDPFileWriter::open(const XMLBufferWriter& file_xml,
+   QDP::QDP_volfmt_t volfmt, QDP::QDP_serialparallel_t serpar, QDP::QDP_filemode_t mode) 
+-  Close          
+   - QDPFileWriter::~QDPFileWriter()
+   - void QDPFileWriter::close()
+-  Open?          
+   - bool QDPFileWriter::is_open() 
+-  Errors?        
+   - bool QDPFileReader::bad() 
+-  Write a T 
+   - void write(QDPFileWriter&, XMLBufferWriter& rec_xml, const T&) 
+-  Array of T 
+   - void write(QDPFileWriter&, XMLBufferWriter& rec_xml, const multi1d<T>&) 
+
+ Here, QDP::write
+writes the sites as the slowest varying index and the array 
+(multi1d) indices inside of them. QDPFileReader::bad states if any fatal errors have
+occurred. The \a volfmt argument is one of
+
+\verbatim
+  QDPIO_SINGLEFILE, QDPIO_MULTIFILE, QDPIO_PARTFILE
+\endverbatim
+
+The serpar argument is one of
+\verbatim
+  QDPIO_SERIAL, QDPIO_PARALLEL
+\endverbatim
+
+and the mode argument is one of
+
+\verbatim
+  QDPIO_CREATE, QDPIO_OPEN, QDPIO_APPEND
+\endverbatim
+
+where QDP::QDPIO_CREATE fails if the file already exists,
+QDP::QDPIO_OPEN overwrites the file if it already exists and creates
+it if not, and QDP::QDPIO_APPEND fails if the file does not exist and
+otherwise appends at the end of the file.  When appending, the file
+metadata argument is ignored, since it should already exist.
+
+\par QDPFileReader class member functions and global functions
+
+QDPFileReader is a concrete class for all QDPIO read operations.  
+
+-  Open           
+   - QDPFileReader::QDPFileReader(XMLReader& file_xml, 
+                 const std::string& path, QDP::QDP_serialparallel_t serpar)
+   - void QDPFileReader::open(XMLReader& file_xml, 
+                 const std::string& path, QDP::QDP_serialparallel_t serpar)
+-  Close          
+   - QDPFileReader::~QDPFileReader()
+   - void QDPFileReader::close()
+-  Open?          
+   - bool QDPFileReader::is_open() 
+-  EOF?           
+   - bool QDPFileReader::eof() 
+-  Errors?        
+   - bool QDPFileReader::bad() 
+-  Read a T 
+   - void read(QDPFileReader&, XMLReader& rec_xml, T&) 
+-  Array of T 
+   - void read(QDPFileReader&, XMLReader& rec_xml, multi1d<T>&) 
+
+Here,
+read(QDPFileReader&, XMLReader&, multi1d<T>&) expects in the
+binary file that the 
+sites are the slowest varying index and the array indices (multi1d)
+inside of them. The QDP::QDP_volfmt_t \a volfmt argument is not needed -
+a file in either QDP::QDPIO_SINGLEFILE or 
+QDP::QDPIO_MULTIFILE
+format will be automatically detected and read appropriately.
+There are no user functions
+that position within a logical record.
+
+Here is an example of how to use the record I/O facility.
+
+\verbatim
+XMLBufferWriter file_xml;
+QDPFileWriter out(file_xml, "foo", QDPIO_SINGLEFILE, 
+                  QDPIO_SERIAL, QDPIO_OPEN);
+XMLBufferWriter rec_xml;
+LatticeColorMatrix a;
+write(out, rec_xml, a);
+write(out, rec_xml, a);  // for fun, write field twice
+close(out);
+
+QDPFileReader in(file_xml, "foo", QDPIO_SERIAL);
+read(in, rec_xml, a);
+skip(in);
+close(in);
+\endverbatim
+
+
+
+*/

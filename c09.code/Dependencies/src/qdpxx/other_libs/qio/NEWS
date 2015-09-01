@@ -1,0 +1,192 @@
+03/06/2015 -- James Osborn
+
+        Version 2.4.2 - when opening for write, only one node creates file.
+
+05/04/2014 -- Carleton DeTar
+
+        Version 2.4.1 - Support color and color/spin tags in source record XML.
+        Thus the caller may require XML reparsing for backward compatibility.
+
+04/23/2014 -- James Osborn
+
+        Version 2.4.0 - export CC to c-lime if not already set,
+	added barrier after writing field, added some diagnostic output.
+
+07/28/2011 -- James Osborn
+
+        Version 2.3.9 - Allowed singlefile format to use parallel I/O with
+                        only a subset of the nodes doing I/O.
+
+03/03/2009 -- James Osborn
+
+        Version 2.3.8 - Made it so that the "clear to send" messages are still
+        sent when HAVE_BGL is defined.
+
+11/05/2008 -- Carleton DeTar
+
+        Version 2.3.7 corrects a bug that affected splitting
+        of subset records.  It also now supports the XML empty
+        tag </tag>.
+
+06/25/2008 -- Carleton DeTar
+
+        Version 2.3.6 corrects a memory corruption bug in the single-processor
+        file splitting and flattening utility that caused an occasional 
+        seg fault in libc/malloc.
+
+05/25/2008 -- Carleton DeTar
+
+        Version 2.3.5 Corrects the record tag for the USQCD propagator
+        records, increases the size limit for the record XML,
+        adds some file conversion utilities, and fixes some minor bugs.
+
+02/24/2008 -- Carleton DeTar
+
+        Version 2.3.4 Corrected file splitting/joining for hypercube records.
+
+02/05/2008 -- Carleton DeTar
+
+        Version 2.3.3 Added support for USQCD staggered propagator format
+
+08/30/2007 -- Robert Edwards
+
+	Version 2.3.2 Added some more diagnostic output.
+
+08/23/2007 -- Robert Edwards
+
+	Version 2.3.1 Added a hack to allow Bluegenes to use switch mode
+        in DML_route_bytes when QMP is put into mesh mode.
+
+08/21/2007 -- Robert Edwards
+
+	Version 2.3.0 Added --enable-dml-output-buffering which turns on the
+        DML_partition_out routine that buffers sites to send to master-io-node.
+        Changed --enable-slow-route to --enable-fast-route. Now, by default the
+        slow but safe code is used and the enable option turns on the faster
+        but problematic code. These two changes now allow a build out-of-the-box
+        to work on JLab grid machines plus potentially other grid machines as
+        well, as well as QMP/MPI in mesh mode.
+
+08/14/2007 -- Robert Edwards
+
+	Version 2.2.1 Patched byterevn and QIO_write. The latter now supports
+        global data living on only the master_io_node.
+
+06/16/2007 -- Carleton DeTar
+
+        Version 2.2.0 Added support for USQCD propagator file formats.  
+                      Added hypercube record type.  (Breaks previous API.)
+                      Add support for user-defined I/O nodes. (Breaks 
+                      previous API.)
+                      Rearranged QIO_info*.c and qioxml*.h for clarity.
+                      Updated documentation.
+
+05/13/2007 -- Carleton DeTar
+
+        Version 2.1.9 Added support for dache/dcap.  Added file splitting for 
+                      I/O partitions.  Add Enno Scholz's support for
+                      constructing and parsing USQCD XML for lattice files.
+
+02/12/2007 -- James Osborn
+
+        Version 2.1.8 Eliminated compiler warnings and now save configure
+                      options in qio-config.
+
+11/24/2006 -- Carleton DeTar
+
+        Version 2.1.7 Introduced buffered message passing for serial writes.
+
+05/21/2006 -- Robert Edwards
+
+	Version 2.1.6. Compilation bug fixes.
+
+03/24/2006 -- Robert Edwards
+
+	Version 2.1.5. Tagged Carleton's fix in QIO_open_write.c (grrhh).
+
+05/29/2005 -- James Osborn
+
+	Version 2.0.3. Changed the num_sites functions to return int instead
+	of size_t, since this is what QDP will support.  Also minor cleanups
+	and fixes.
+
+05/18/2005 -- Robert Edwards
+
+	Version 2.0.2. Small cleanups in Makefile.am's - removed VPATH
+
+01/07/2005 -- Carleton DeTar
+
+	Version 1.1.5. Change LIME file byte counter types to off_t and
+	change QIO/LRL to conform. Update QIO documentation. 
+        A little housekeeping.
+
+11/30/2004 -- James Osborn
+
+	Version 1.1.0. Attempt to fix int types on QCDOC.
+
+11/01/2004 -- Robert Edwards
+
+	Version 1.1.beta2. Small fixes in compilation.
+
+11/01/2004 -- Carleton Detar
+
+	Version 1.1.beta1. Added host-to-node conversion implementation
+        and interface.
+
+10/29/2004 -- Robert Edwards
+
+	Version 1.0.beta5. Turned back on DML_route_bytes. This allows
+        optimized QMP calls on gigE boxes.
+
+10/18/2004 -- Robert Edwards
+
+	Version 1.0.beta4. Improvements on autoconf-isms.
+
+08/03/2004 -- Robert Edwards
+
+	Version 1.0.beta3. Added back in scalar and parscalar builds.
+        Default is to always build for parallel environment requiring
+        QMP.
+
+08/01/2004 -- Carleton DeTar
+
+        Version 1.0 supports partitioned I/O.
+        Parallel I/O capability has been abandoned.
+        Open write "mode" has been abandoned.
+        Added some examples.
+        Requires QMP-2.0
+
+05/11/2004 -- Robert Edwards
+
+	Version 0.9.5. Last minor changes. Will split off c-lime to
+        its own module.
+
+03/19/2004 -- Robert Edwards
+
+	Version 0.9.4. Added back in tests for QMP_route to supplant
+        the native/correct DML_grid_route() IFF QMP_route is available.
+
+03/11/2004 -- Robert Edwards
+
+	Version 0.9.3. Bug fixes in multifile lime headers.
+
+03/07/2004 -- Robert Edwards
+
+	Version 0.9.2. Cleanups. Changed XML_string to QIO_String.
+
+02/28/2004 -- Robert Edwards
+
+	Version 0.9.1. Fixed some mem leaks with record_info.
+        Config file now fully autoconf-iscated.
+
+02/27/2004 -- Robert Edwards
+
+	Version 0.9.0. Functionality extended to SINGLEFILE/MULTIFILE.
+        The PARALLEL file-system version not implemented yet. Various
+        bug fixes and code improvements. Tested/working on large 
+        cluster sizes.
+
+11/01/2003 -- Robert Edwards
+
+	Version 0.8.1. Changed cpp BIG_ENDIAN to QIO_BIG_ENDIAN to avoid name 
+        collisions under linux.

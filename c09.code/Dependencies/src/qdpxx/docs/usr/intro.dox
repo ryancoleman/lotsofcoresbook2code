@@ -1,0 +1,41 @@
+//$Id: intro.dox,v 1.1 2005-04-22 16:08:20 zbigniew Exp $
+/*!
+
+\page intropage Introduction 
+
+\section whatitis Introduction 
+
+This is a user's guide for the C++ binding for the %QDP Data Parallel
+Applications Programmer Interface developed under the auspices of the
+U.S. Department of Energy Scientific Discovery through Advanced
+Computing (SciDAC) program.
+
+The %QDP Level 2 API has the following features:
+
+- Provides data parallel operations (logically SIMD) on all sites
+across the lattice or subsets of these sites.
+- Operates on lattice objects, which have an
+implementation-dependent data layout that is not visible above this
+API.
+- Hides details of how the implementation maps onto a given
+architecture, namely how the logical problem grid (i.e. lattice) is
+mapped onto the machine architecture.
+- Allows asynchronous (non-blocking) shifts of lattice level
+objects over any permutation map of sites onto sites. However, from
+the user's view these instructions appear blocking and in fact may be
+so in some implementation.
+- Provides broadcast operations (filling a lattice quantity from a
+scalar value(s)), global reduction operations, and lattice-wide
+operations on various data-type primitives, such as matrices, vectors,
+and tensor products of matrices (propagators).
+- Operator syntax that support complex expression constructions. 
+
+
+\section itwasntme Disclaimer
+
+No claim is made as to the completeness of this User Guide.
+While every attempt has been made to present information accurately,
+all of the wording is subject to revision, and suggestions for
+improvements, corrections or additions will be gratefully received.
+
+*/

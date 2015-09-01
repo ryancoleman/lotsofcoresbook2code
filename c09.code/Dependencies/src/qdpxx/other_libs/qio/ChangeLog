@@ -1,0 +1,3312 @@
+2011-07-29 00:47  osborn
+
+	* NEWS, configure.ac: updated version
+
+2011-07-29 00:46  osborn
+
+	* lib/: dml/DML_utils.c, lrl/LRL_main.c: fixed partfile reads
+	  broken by previous changes
+
+2011-04-20 01:49  osborn
+
+	* include/dml.h, lib/dml/DML_utils.c: now buffers parallel reads
+
+2011-04-19 00:54  osborn
+
+	* lib/qio/QIO_read_record_info.c: fixed reference to unset memory
+
+2011-04-18 23:58  osborn
+
+	* lib/qio/QIO_utils.c: fixed hang in parallel write
+
+2011-04-18 21:53  osborn
+
+	* lib/: dml/DML_parscalar.c, dml/DML_utils.c, lrl/LRL_main.c,
+	  qio/QIO_open_write.c: enabled singlefile parallel writes with
+	  fewer than all nodes
+
+2011-04-17 18:35  osborn
+
+	* lib/qio/QIO_open_read.c: exit immediately if open read fails
+
+2011-04-14 14:38  osborn
+
+	* include/dml.h, include/qio_config_internal.h.in,
+	  lib/dml/DML_utils.c, lib/lrl/LRL_main.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_utils.c, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure,
+	  other_libs/c-lime/include/lime_config_internal.h.in: made
+	  SINGLEFILE PARALLEL mode use only specified io nodes
+
+2009-04-20 10:57  tag adat2-12-4
+
+2009-04-20 10:57  tag adat2-13-0
+
+2009-04-20 10:57  tag adat2-14-0
+
+2009-04-20 10:57  tag adat2-15-0
+
+2009-04-20 10:57  tag adat2-16-0
+
+2009-04-20 10:57  tag adat2-17-0
+
+2009-04-20 10:57  tag adat2-17-1
+
+2009-04-20 10:57  tag adat2-17-2
+
+2009-04-20 10:57  tag adat2-17-3
+
+2009-04-20 10:57  tag adat2-17-4
+
+2009-04-20 10:57  tag adat2-18-0
+
+2009-04-20 10:57  tag adat2-18-1
+
+2009-04-20 10:57  tag adat2-18-2
+
+2009-04-20 10:57  tag adat2-18-3
+
+2009-04-20 10:57  tag adat2-18-4
+
+2009-04-20 10:57  tag adat2-18-5
+
+2009-04-20 10:57  tag adat2-18-6
+
+2009-04-20 10:57  tag adat2-18-7
+
+2009-04-20 10:57  tag adat2-19-0
+
+2009-04-20 10:57  tag adat2-19-1
+
+2009-04-20 10:57  tag c-lime1-3-2
+
+2009-04-20 10:57  tag pre-adat2-14
+
+2009-04-20 10:57  tag qdp1-32-1
+
+2009-04-20 10:57  tag qdp1-32-2
+
+2009-04-20 10:57  tag qdp1-33-0
+
+2009-04-20 10:57  tag qdp1-33-1
+
+2009-04-20 10:57  tag qdp1-34-0
+
+2009-04-20 10:57  detar
+
+	* other_libs/c-lime/: aclocal.m4, configure: tag c-lime1-3-2
+
+2009-04-20 10:47  detar
+
+	* other_libs/c-lime/configure.ac: Tag c-lime 1.3.2
+
+2009-03-04 01:11  tag qdp1-30-1
+
+2009-03-04 01:11  tag qdp1-31-0
+
+2009-03-04 01:11  tag qdp1-31-1
+
+2009-03-04 01:11  tag qdp1-32-0
+
+2009-03-04 01:11  tag qdp1_31_2
+
+2009-03-04 01:11  tag qio2-3-8
+
+2009-03-04 01:11  osborn
+
+	* configure.ac, aclocal.m4, configure: prepare for 2.3.8
+
+2009-03-04 01:02  osborn
+
+	* NEWS: updated NEWS
+
+2009-03-04 00:56  tag adat2-10-0
+
+2009-03-04 00:56  tag adat2-10-1
+
+2009-03-04 00:56  tag adat2-10-2
+
+2009-03-04 00:56  tag adat2-11-0
+
+2009-03-04 00:56  tag adat2-12-0
+
+2009-03-04 00:56  tag adat2-12-1
+
+2009-03-04 00:56  tag adat2-12-2
+
+2009-03-04 00:56  tag adat2-12-3
+
+2009-03-04 00:56  tag adat2-8-0
+
+2009-03-04 00:56  tag adat2-9-0
+
+2009-03-04 00:56  tag adat2-9-1
+
+2009-03-04 00:56  tag adat2-9-2
+
+2009-03-04 00:56  osborn
+
+	* lib/dml/DML_parscalar.c, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure: Made it so that the "clear to send"
+	  messages are still sent when HAVE_BGL is defined.
+
+2008-11-07 15:25  tag qdp-pre-threads
+
+2008-11-07 15:25  tag qdp1-30-0
+
+2008-11-07 15:25  detar
+
+	* NEWS: Update for version 2.3.7
+
+2008-11-06 13:18  tag adat1-44-0
+
+2008-11-06 13:18  tag adat2-0-0
+
+2008-11-06 13:18  tag adat2-1-0
+
+2008-11-06 13:18  tag adat2-2-0
+
+2008-11-06 13:18  tag adat2-3-0
+
+2008-11-06 13:18  tag adat2-4-0
+
+2008-11-06 13:18  tag adat2-5-0
+
+2008-11-06 13:18  tag adat2-6-0
+
+2008-11-06 13:18  tag adat2-7-0
+
+2008-11-06 13:18  tag pre-adat2-0
+
+2008-11-06 13:18  tag qio2-3-7
+
+2008-11-06 13:18  detar
+
+	* NEWS, aclocal.m4, configure, configure.ac,
+	  examples/qio-convert-mesh.c, examples/qio-test.c, include/dml.h,
+	  include/qioxml_internal.h, include/qioxml_private.h,
+	  lib/dml/DML_utils.c, lib/qio/QIO_info.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure,
+	  other_libs/c-lime/examples/lime_pack.c: Support </tag> in XML
+	  strings.  Bug fix for file splitting/joining with subset records
+
+2008-06-19 17:18  tag bjoo_debug_tag
+
+2008-06-19 17:18  tag qdp1-28-0
+
+2008-06-19 17:18  tag qio2-3-6
+
+2008-06-19 17:18  detar
+
+	* lib/qio/QIO_host_file_conversion.c: Correct filename malloc.
+	  Fixes malloc segfault for certain filenames.
+
+2008-06-13 17:20  bjoo
+
+	* aclocal.m4, configure: Makefileins
+
+2008-05-26 00:26  tag qio2-3-5
+
+2008-05-26 00:26  detar
+
+	* NEWS: Add 2.3.5 news.
+
+2008-05-26 00:04  detar
+
+	* aclocal.m4, configure, configure.ac: Bump version numbers.
+	  Correct AC_HELP_STRING error in configure.ac.  Rerun automake
+
+2008-05-26 00:02  detar
+
+	* doc/qio_2p3.tex: Add description of single-processor utilities
+	  and QIO_string_append.
+
+2008-05-26 00:01  detar
+
+	* examples/: Makefile.am, qio-convert-mesh-ppfs.c,
+	  qio-convert-mesh.c, qio-convert-nersc.c, qio-copy-mesh-ppfs.c,
+	  qio-mesh-utilities.c: Add NERSC conversion utility
+	  qio-convert-nersc.  Add copy-mesh-ppfs utility.  Add long missing
+	  qio-mesh-utilities.  Remove extraneous defs.
+
+2008-05-25 23:58  detar
+
+	* include/qio.h: Add QIO_insert_reader_hypercube_data
+
+2008-05-25 23:26  detar
+
+	* include/qio_string.h, lib/qio/QIO_string.c: Add an append
+	  function to the QIO_string "class".
+
+2008-05-25 23:23  detar
+
+	* include/qioxml_internal.h: Increase size limit for record XML
+	  string
+
+2008-05-25 23:22  detar
+
+	* include/qioxml_usqcd_ksprop.h: Fix KS propagator record tag.
+
+2008-05-25 23:21  detar
+
+	* lib/qio/QIO_host_file_conversion.c: Fix bug that caused stray
+	  record size mismatch errors on hypercube records.
+
+2008-05-25 23:19  detar
+
+	* lib/qio/QIO_info_usqcd_prop.c: Polish Balint's fix for propagator
+	  record XML tag
+
+2008-05-25 23:17  detar
+
+	* lib/lrl/LRL_main.c: Remove extraneous print statement
+
+2008-05-02 14:52  tag qdp1-26-0
+
+2008-05-02 14:52  tag qdp1-27-0
+
+2008-05-02 14:52  bjoo
+
+	* configure, include/qioxml_usqcd_prop.h,
+	  lib/qio/QIO_info_usqcd_prop.c: everything else
+
+2008-03-04 16:53  tag qdp1-25-2
+
+2008-03-04 16:53  bjoo
+
+	* configure, aclocal.m4: Induced changes
+
+2008-02-27 00:20  tag qio2-3-4
+
+2008-02-27 00:20  detar
+
+	* include/dml.h, lib/dml/DML_utils.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_open_write.c, lib/qio/QIO_utils.c: Fix algorithm for
+	  splitting hypercube records.
+
+2008-02-24 15:09  tag adat1-37-0
+
+2008-02-24 15:09  tag adat1-38-0
+
+2008-02-24 15:09  tag adat1-39-0
+
+2008-02-24 15:09  tag adat1-40-0
+
+2008-02-24 15:09  tag adat1-41-0
+
+2008-02-24 15:09  tag adat1-42-0
+
+2008-02-24 15:09  tag adat1-43-0
+
+2008-02-24 15:09  detar
+
+	* NEWS, configure, configure.ac, include/dml.h, include/qio.h,
+	  lib/dml/DML_utils.c, lib/qio/QIO_host_file_conversion.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/examples/lime_extract_record.c: Correct file
+	  splitting/joining for hypercube records
+
+2008-02-05 17:32  tag qio2-3-3
+
+2008-02-05 17:32  detar
+
+	* doc/qio_2p3.tex: Fix typos
+
+2008-02-05 17:28  detar
+
+	* NEWS: version 2.3.3
+
+2008-02-05 17:27  detar
+
+	* doc/: Makefile.am, qio_2p2.tex, qio_2p3.tex: Add USQCD staggered
+	  format to documentation and change to version 2p3
+
+2008-02-05 17:00  detar
+
+	* aclocal.m4, configure, configure.ac: Add USQCD staggered
+	  propagator support.  Change to 2.3.3
+
+2008-02-05 16:58  detar
+
+	* lib/qio/QIO_info.c, lib/qio/QIO_info_usqcd_ksprop.c,
+	  lib/qio/QIO_info_usqcd_prop.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c, lib/Makefile.am, include/Makefile.am,
+	  include/qioxml.h, include/qioxml_usqcd_ksprop.h,
+	  include/qioxml_usqcd_prop.h: Add USQCD staggered propagator
+	  support
+
+2008-02-05 16:57  detar
+
+	* lib/dml/DML_utils.c: Free outbuf on one of the error exits.
+
+2008-02-05 16:55  detar
+
+	* other_libs/c-lime/examples/lime_extract_record.c: Bug fix.
+
+2008-02-05 16:51  detar
+
+	* other_libs/c-lime/lib/lime_reader.c: Complain about premature EOF
+
+2007-10-27 17:19  tag adat1-35-0
+
+2007-10-27 17:19  tag adat1-36-0
+
+2007-10-27 17:19  edwards
+
+	* include/qio_config_internal.h.in,
+	  other_libs/c-lime/include/lime_config_internal.h.in: Induced
+	  changes.
+
+2007-10-27 17:17  edwards
+
+	* other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  aclocal.m4, configure: Induced changes
+
+2007-10-06 00:04  tag qdp1-25-1
+
+2007-10-06 00:04  kostas
+
+	* other_libs/c-lime/aclocal.m4: added a jack_fit util to make
+	  ensemble files of masses.
+
+2007-08-30 00:20  tag qdp1-24-6
+
+2007-08-30 00:20  tag qdp1-25-0
+
+2007-08-30 00:20  edwards
+
+	* NEWS: Info on 2.3.2
+
+2007-08-30 00:18  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-08-30 00:18  edwards
+
+	* configure.ac: Changed to 2.3.2
+
+2007-08-30 00:17  tag adat1-34-0
+
+2007-08-30 00:17  tag c-lime1-3-1
+
+2007-08-30 00:17  edwards
+
+	* other_libs/c-lime/NEWS: Info on 1.3.1
+
+2007-08-30 00:14  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes
+
+2007-08-30 00:13  edwards
+
+	* other_libs/c-lime/configure.ac: Changed to 1.3.1
+
+2007-08-29 23:44  edwards
+
+	* lib/: dml/DML_route.c, lrl/LRL_main.c,
+	  qio/QIO_host_file_conversion.c, qio/QIO_string.c: Added some
+	  function names for the print statements.
+
+2007-08-29 23:20  uid3790
+
+	* other_libs/c-lime/lib/: lime_reader.c, lime_utils.c,
+	  lime_writer.c: Changed all printf's to also write the name of the
+	  encompassing function.
+
+2007-08-23 11:47  tag qdp1-24-5
+
+2007-08-23 11:47  tag qio2-3-1
+
+2007-08-23 11:47  edwards
+
+	* NEWS: Info on 2.3.1
+
+2007-08-23 11:44  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-08-23 11:43  edwards
+
+	* configure.ac: Changed to 2.3.1
+
+2007-08-22 00:50  edwards
+
+	* lib/dml/DML_parscalar.c: A hack in DML_route_bytes allows a
+	  Bluegene to run this part in switch mode even though QMP was
+	  forced into "mesh" mode.
+
+2007-08-21 23:15  tag qio2-3-0
+
+2007-08-21 23:15  edwards
+
+	* NEWS: Info on 2.3.0
+
+2007-08-21 22:14  edwards
+
+	* include/qio_config_internal.h.in, lib/dml/DML_route.c: Slow route
+	  enable option changed to fast routine option.
+
+2007-08-21 22:14  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-08-21 22:13  edwards
+
+	* configure.ac: Changed to version 3.3.0.  Added new option
+	  --enable-dml-output-buffering and changed --enable-slow-route to
+	  instead be  --enable-fast-route. The DML_partition_out route that
+	  allows multiple sites to be ganged together for performance
+	  improvement is problematic on some platforms, no now it must be
+	  enabled with the first option. The "fast-route" is problematic on
+	  some platforms, so now it must be enabled. The "slow-route" as
+	  fast, but apparently safe.
+
+2007-08-21 19:03  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-08-21 15:24  edwards
+
+	* include/qio_config_internal.h.in: Now has
+	  QIO_DML_USE_OUT_BUFFERING.
+
+2007-08-21 15:22  edwards
+
+	* lib/dml/DML_utils.c: Ooops, changed "if defined" to "#if defined"
+
+2007-08-21 15:20  edwards
+
+	* lib/dml/DML_utils.c: Added ifdef's of QIO_DML_USE_OUT_BUFFERING
+	  around  DML_partition_out.
+
+2007-08-21 15:19  edwards
+
+	* configure.ac: Added new  --enable-dml-output-buffering to allow
+	  the usage of buffering of output in DML_partition_out. Otherwise,
+	  this code busts gigE and QMP/MPI in mesh mode. Changed to 2.3.0.
+
+2007-08-21 14:17  edwards
+
+	* aclocal.m4: Induced changes
+
+2007-08-21 14:16  edwards
+
+	* configure.ac: Changed to 2.2.2
+
+2007-08-14 12:02  tag qdp1-24-4
+
+2007-08-14 12:02  tag qio2-2-1
+
+2007-08-14 12:02  edwards
+
+	* aclocal.m4, include/qio_config_internal.h.in, configure: Induced
+	  changes
+
+2007-08-14 12:01  edwards
+
+	* NEWS: Info on 2.2.1
+
+2007-08-14 00:15  edwards
+
+	* lib/qio/QIO_write.c: Put in a patch to allow global data to only
+	  live on the master_io_node.
+
+2007-08-13 22:42  edwards
+
+	* lib/dml/DML_utils.c: Now allow word_size=1 for DML_byterevn. This
+	  is actually a NOP.
+
+2007-07-08 14:17  tag qdp1-24-2
+
+2007-07-08 14:17  tag qdp1-24-3
+
+2007-07-08 14:17  kostas
+
+	* other_libs/c-lime/: aclocal.m4, configure,
+	  include/lime_config_internal.h.in: added staticlight stripper
+
+2007-06-22 19:16  tag qio2-2-0
+
+2007-06-22 19:16  detar
+
+	* doc/qio_2p2.tex: Corrected a couple of errors.
+
+2007-06-18 11:32  detar
+
+	* configure: Continuing to fix configure, Makefile.in
+
+2007-06-18 11:25  detar
+
+	* aclocal.m4, configure, include/qio_config_internal.h.in,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  other_libs/c-lime/include/lime_config_internal.h.in: Redo aclocal
+	  and automake to fix configure and Makefile.in
+
+2007-06-18 11:09  bjoo
+
+	* aclocal.m4, configure, configure.ac: Patched for QIO version 2.2
+
+2007-06-17 09:18  detar
+
+	* NEWS, configure, configure.ac, doc/Makefile.am, doc/qio_2p1.tex,
+	  doc/qio_2p2.tex, examples/layout_test_ppfs,
+	  examples/qio-test-util.c, examples/qio-test.c,
+	  include/Makefile.am, include/dml.h, include/qio.h,
+	  include/qioxml.h, include/qioxml_ildg_record.h,
+	  include/qioxml_internal.h, include/qioxml_private.h,
+	  include/qioxml_usqcd_gauge.h, include/qioxml_usqcd_prop.h,
+	  lib/Makefile.am, lib/dml/DML_parscalar.c, lib/dml/DML_scalar.c,
+	  lib/dml/DML_utils.c, lib/qio/QIO_close_read.c,
+	  lib/qio/QIO_close_write.c, lib/qio/QIO_host_file_conversion.c,
+	  lib/qio/QIO_info.c, lib/qio/QIO_info_ildg_record.c,
+	  lib/qio/QIO_info_private.c, lib/qio/QIO_info_usqcd_gauge.c,
+	  lib/qio/QIO_info_usqcd_prop.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_open_write.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c: Support USQCD propagator formats, hypercube
+	  record type, user-defined I/O nodes. Rearrange qioxml.h and
+	  QIO_info.c for clarity. Update documentation.  Breaks previous
+	  API slightly.
+
+2007-06-10 10:32  tag qdp1-24-0
+
+2007-06-10 10:32  tag qdp1-24-1
+
+2007-06-10 10:32  edwards
+
+	* include/qio_config_internal.h.in: Reorganized BinaryReader/Writer
+	  and TextReader. Now, these classes are abstract classes (just
+	  like XMLWriter) for BinaryBufferReader/Writer and
+	  BinaryFileReader/Writer .  Also, removed the old
+	  QDP_BEGIN/END_NAMESPACE macro and now simply use "namespace QDP".
+
+2007-06-09 18:15  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-06-09 18:13  tag c-lime1-3-0
+
+2007-06-09 18:13  edwards
+
+	* other_libs/c-lime/include/lime_config_internal.h.in: Induced
+	  changes.
+
+2007-06-09 18:12  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes
+
+2007-06-09 18:11  edwards
+
+	* other_libs/c-lime/configure.ac: Changed to 1.3.0
+
+2007-06-09 18:08  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes
+
+2007-05-13 16:47  tag qio2-1-9
+
+2007-05-13 16:47  detar
+
+	* NEWS, aclocal.m4, configure, configure.ac, examples/Makefile.am,
+	  examples/layout_test, examples/qio-convert-mesh-pfs.c,
+	  examples/qio-convert-mesh-ppfs.c,
+	  examples/qio-convert-mesh-singlefs.c,
+	  examples/qio-convert-mesh.c, examples/qio-convert-mesh.h,
+	  examples/qio-host-test.sh, include/qio.h, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_main.c, lib/qio/QIO_host_file_conversion.c: Support
+	  file splitting for I/O with fewer I/O nodes than compute nodes.
+
+2007-05-13 16:46  detar
+
+	* include/qioxml.h, lib/qio/QIO_info.c: Convenience functions for
+	  building and parsing USQCD lattice file XML (E. Scholz)
+
+2007-05-13 16:45  detar
+
+	* include/qio_config_internal.h.in: Edit comment
+
+2007-05-13 16:43  detar
+
+	* lib/qio/QIO_utils.c: Add timing function.
+
+2007-05-13 16:42  detar
+
+	* lib/qio/QIO_read_record_data.c: Add some debug statements
+
+2007-05-13 16:41  detar
+
+	* lib/qio/QIO_open_read.c: Avoid a null malloc.  Add a debug
+	  statement.
+
+2007-05-13 16:36  tag adat1-32-0
+
+2007-05-13 16:36  tag adat1-33-0
+
+2007-05-13 16:36  detar
+
+	* other_libs/c-lime/: aclocal.m4, configure, configure.ac,
+	  examples/lime_contents.c, examples/lime_extract_record.c,
+	  examples/lime_extract_type.c, examples/lime_pack.c,
+	  examples/lime_unpack.c, examples/lime_writer_test1.c,
+	  include/Makefile.am, include/dcap-overload.h, include/lime.h,
+	  include/lime_config_internal.h.in, lib/lime_fseeko.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Add support for dcache/DCAP
+	  from Jim Simone
+
+2007-03-18 18:08  tag adat1-31-0
+
+2007-03-18 18:08  tag qdp1-23-1
+
+2007-03-18 18:08  tag qdp1-23-2
+
+2007-03-18 18:08  edwards
+
+	* other_libs/c-lime/examples/lime_unpack.c: Removed what I think is
+	  a dcache closing of a file.
+
+2007-03-17 08:55  detar
+
+	* other_libs/c-lime/examples/lime_unpack.c: Correct premature use
+	  of DCAP macro
+
+2007-03-16 20:14  detar
+
+	* other_libs/c-lime/examples/lime_unpack.c: Fix print statement
+
+2007-03-05 14:40  tag qdp1-22-1
+
+2007-03-05 14:40  tag qdp1-23-0
+
+2007-03-05 14:40  bjoo
+
+	* aclocal.m4, configure: Configure.ac version bump
+
+2007-02-12 20:32  tag qdp1-22-0
+
+2007-02-12 20:32  tag qdp_pre_subset_cleanup
+
+2007-02-12 20:32  tag qio2-1-8
+
+2007-02-12 20:32  osborn
+
+	* configure, configure.ac, examples/layout_hyper.c,
+	  other_libs/c-lime/examples/lime_writer_test1.c: fixed
+	  --enable-dml-bufsize option and more warning eliminations
+
+2007-02-12 19:49  osborn
+
+	* NEWS, configure, configure.ac, bin/qio-config.in,
+	  lib/dml/DML_crc32.c, lib/dml/DML_utils.c, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_utils.c, other_libs/c-lime/configure,
+	  other_libs/c-lime/examples/lime_contents.c,
+	  other_libs/c-lime/examples/lime_extract_type.c,
+	  other_libs/c-lime/examples/lime_pack.c,
+	  other_libs/c-lime/examples/lime_unpack.c,
+	  other_libs/c-lime/include/lime_config_internal.h.in: Eliminated
+	  compiler warnings and now save configure options in qio-config.
+
+2007-02-06 10:01  tag qdp1-21-7
+
+2007-02-06 10:01  tag qdp1-21-8
+
+2007-02-06 10:01  bjoo
+
+	* include/qio_config_internal.h.in: Added more spin ops and hooks.
+	  Next step to do the projections in SSE
+
+2007-01-26 14:32  bjoo
+
+	* configure: Added spin projections over ordered subsets as C
+	  generics
+
+2006-11-24 17:22  tag qio2-1-7
+
+2006-11-24 17:22  detar
+
+	* NEWS: New version comment
+
+2006-11-24 16:44  detar
+
+	* aclocal.m4, configure: New version number
+
+2006-11-24 15:54  detar
+
+	* configure.ac: Increment version number
+
+2006-11-24 15:50  detar
+
+	* include/: dml.h, qio_config_internal.h.in: Buffer messages in
+	  serial output.
+
+2006-11-24 13:15  detar
+
+	* examples/: Makefile.am, binary_host_test, layout_hyper.c,
+	  layout_test, qio-host-test.c, qio-host-test.sh, qio-host-test1.c,
+	  qio-host-test2.c, qio-test.c, qio-test.h: Remove nonworking
+	  qio-host-test? tests and replace with a script that exercises
+	  file splitting through the actual utilities, qio-convert-mesh-*
+
+2006-11-24 13:12  detar
+
+	* lib/dml/DML_utils.c: Buffer message passing during serial output.
+
+2006-11-24 13:10  detar
+
+	* lib/qio/: QIO_open_read.c, QIO_read_record_info.c, QIO_utils.c,
+	  QIO_host_file_conversion.c: Trivia
+
+2006-06-13 13:52  tag qdp1-20-7
+
+2006-06-13 13:52  tag qdp1-20-8
+
+2006-06-13 13:52  tag qdp1-20-8-pre1
+
+2006-06-13 13:52  tag qdp1-20-8-pre2
+
+2006-06-13 13:52  tag qdp1-20-9
+
+2006-06-13 13:52  tag qdp1-21-0
+
+2006-06-13 13:52  tag qdp1-21-1
+
+2006-06-13 13:52  tag qdp1-21-2
+
+2006-06-13 13:52  tag qdp1-21-3
+
+2006-06-13 13:52  tag qdp1-21-4
+
+2006-06-13 13:52  tag qdp1-21-5
+
+2006-06-13 13:52  tag qdp1-21-6
+
+2006-06-13 13:52  bjoo
+
+	* lib/dml/DML_parscalar.c: Replaced Cplusplus style comment
+
+2006-06-13 13:48  bjoo
+
+	* examples/layout_hyper_mesh.c: Changed some Cplusplus style
+	  comments to C comments. Removed a gnuism
+
+2006-05-23 00:18  tag qdp1-20-6
+
+2006-05-23 00:18  tag qio2-1-6
+
+2006-05-23 00:18  edwards
+
+	* NEWS: More new info on 2.1.6
+
+2006-05-22 22:20  edwards
+
+	* examples/layout_hyper.c: Reinstated sites_on_node. Carleton's fix
+	  broke my fix.
+
+2006-05-22 13:24  detar
+
+	* examples/: qio-host-test.c, qio-test-util.c, qio-test.c,
+	  qio-test.h: C++ compiler complained about clash between static
+	  and global "sites_on_node".  Fix.
+
+2006-05-22 11:52  edwards
+
+	* NEWS: Info on 2.1.6
+
+2006-05-22 11:50  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2006-05-22 11:49  edwards
+
+	* configure.ac: Changed to 2.1.6.
+
+2006-05-22 11:49  edwards
+
+	* examples/layout_hyper.c: Fix - commented out redecl of
+	  sites_on_node.
+
+2006-05-17 15:04  tag qdp1-20-4
+
+2006-05-17 15:04  tag qdp1-20-5
+
+2006-05-17 15:04  bjoo
+
+	* bin/qio-config.in: added ranlib and ar flags to the config
+	  scripts in qdp and qio
+
+2006-03-24 13:59  tag qdp1-20-2
+
+2006-03-24 13:59  tag qdp1-20-3
+
+2006-03-24 13:59  tag qdp1-20-3-pre3
+
+2006-03-24 13:59  tag qdp1-20-3pre1
+
+2006-03-24 13:59  tag qdp1-20-3pre2
+
+2006-03-24 13:59  tag qio2-1-5
+
+2006-03-24 13:59  edwards
+
+	* aclocal.m4, include/qio_config_internal.h.in, configure: Induced
+	  changes.
+
+2006-03-24 13:59  edwards
+
+	* NEWS: Info on 2.1.5
+
+2006-03-24 13:57  edwards
+
+	* configure.ac: Uodated to 2.1.5
+
+2006-03-17 01:00  detar
+
+	* lib/qio/QIO_open_write.c: Fix bug.  Initialize discover_dims_mode
+	  correctly.
+
+2006-02-18 16:05  tag qdp1-20-0
+
+2006-02-18 16:05  tag qdp1-20-1
+
+2006-02-18 16:05  tag qio2-1-4
+
+2006-02-18 16:05  detar
+
+	* configure.ac: Bump version number
+
+2006-02-18 16:02  detar
+
+	* include/dml.h, include/qio_config_internal.h.in,
+	  lib/dml/DML_utils.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_utils.c: Add a discover_dims_mode flag to the
+	  DML_Layout structure.  Make it possible to read a partfile volume
+	  in discovery mode withou tripping over the sitelist verification.
+	  Plus some inevitable configure tweaks.
+
+2006-01-13 11:41  tag qdp1-18-3
+
+2006-01-13 11:41  tag qdp1-19-0
+
+2006-01-13 11:41  bjoo
+
+	* include/qioxml.h, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_read_record_info.c: Can now read Dirks ILDG Lattices
+
+2006-01-06 14:15  tag qio2-1-3
+
+2006-01-06 14:15  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2006-01-06 11:34  detar
+
+	* configure.ac: Increment version number
+
+2006-01-06 11:00  detar
+
+	* lib/qio/QIO_info.c: Add message explaining handling of missing
+	  tag.
+
+2006-01-06 10:36  detar
+
+	* lib/qio/QIO_open_write.c: Do global sync only for parallel I/O
+
+2006-01-06 10:35  detar
+
+	* lib/qio/QIO_info.c: If globaldata tag is missing from record
+	  info, default to QIO_FIELD
+
+2005-11-30 13:52  tag qdp1-18-1
+
+2005-11-30 13:52  tag qdp1-18-2
+
+2005-11-30 13:52  osborn
+
+	* doc/qio_2p0.tex, include/qio.h: Changed QIO_next_field to
+	  QIO_next_record in qio.h.
+
+2005-11-29 16:07  bjoo
+
+	* lib/: dml/DML_parscalar.c, dml/DML_utils.c,
+	  qio/QIO_read_record_data.c: Single and Multifile reads now work
+
+2005-11-29 14:34  bjoo
+
+	* lib/: lrl/LRL_main.c, qio/QIO_read_record_info.c,
+	  qio/QIO_write.c: Fixed Oops-es in qdp++ and some memory leaks in
+	  QIO
+
+2005-11-11 16:51  tag qdp1-17-2
+
+2005-11-11 16:51  tag qdp1-18-0
+
+2005-11-11 16:51  bjoo
+
+	* include/qioxml.h: Fixed dodgy schemaLocation
+
+2005-11-11 16:16  bjoo
+
+	* include/qioxml.h, lib/qio/QIO_close_write.c, lib/qio/QIO_info.c,
+	  lib/qio/QIO_open_write.c: Fixed some minor ILDG Problems -- added
+	  in field and a missing quotation mark
+
+2005-08-23 08:43  tag LIVTAG_1
+
+2005-08-23 08:43  tag LIVTAG_2
+
+2005-08-23 08:43  tag qdp1-15-2
+
+2005-08-23 08:43  tag qdp1-15-3
+
+2005-08-23 08:43  tag qdp1-15-4
+
+2005-08-23 08:43  tag qdp1-16-0
+
+2005-08-23 08:43  tag qdp1-16-1
+
+2005-08-23 08:43  tag qdp1-16-2
+
+2005-08-23 08:43  tag qdp1-16-3
+
+2005-08-23 08:43  tag qdp1-17-0
+
+2005-08-23 08:43  tag qdp1-17-1
+
+2005-08-23 08:43  bjoo
+
+	* aclocal.m4, configure, include/qio_config_internal.h.in: Added a
+	  guard against gethostname in qdp_iogauge.cc for targets that dont
+	  have gethostname like the QCDOC
+
+2005-08-22 11:49  zbigniew
+
+	* doc/qiodoc: Updated config tags with doxygen -u for doxygen
+	  verions 1.4.1 Gave the tagfile a unique name; doxygen cannot
+	  handle two tag files with the same name.
+
+2005-08-17 19:42  tag qdp1-15-1
+
+2005-08-17 19:42  tag qio2-1-2
+
+2005-08-17 19:42  detar
+
+	* examples/Makefile.am, examples/qio-convert-mesh-pfs.c,
+	  examples/qio-convert-mesh.c, include/qio_config_internal.h.in:
+	  Add pfs file splitter and flattener examples/qio-convert-mesh-pfs
+	  and modify examples/qio-convert-mesh.c to support it.
+
+2005-08-17 19:41  detar
+
+	* configure.ac: Force configure.ac
+
+2005-07-26 08:41  zbigniew
+
+	* doc/qiodoc: Switched on the doxygen 'optimise for C' flag, since
+	  QIO is written in C.
+
+2005-07-21 14:59  tag qdp1-15-0
+
+2005-07-21 14:59  tag qio2-1-1
+
+2005-07-21 14:59  detar
+
+	* aclocal.m4, configure: Reconfiguring
+
+2005-07-21 14:43  tag adat1-13-14
+
+2005-07-21 14:43  tag adat1-14-0
+
+2005-07-21 14:43  tag adat1-14-1
+
+2005-07-21 14:43  tag adat1-15-0
+
+2005-07-21 14:43  tag adat1-15-1
+
+2005-07-21 14:43  tag adat1-15-2
+
+2005-07-21 14:43  tag adat1-16-0
+
+2005-07-21 14:43  tag adat1-16-1
+
+2005-07-21 14:43  tag adat1-16-2
+
+2005-07-21 14:43  tag adat1-16-3
+
+2005-07-21 14:43  tag adat1-17-0
+
+2005-07-21 14:43  tag adat1-18-0
+
+2005-07-21 14:43  tag adat1-19-0
+
+2005-07-21 14:43  tag adat1-20-0
+
+2005-07-21 14:43  tag adat1-21-0
+
+2005-07-21 14:43  tag adat1-22-0
+
+2005-07-21 14:43  tag adat1-23-0
+
+2005-07-21 14:43  tag adat1-24-0
+
+2005-07-21 14:43  tag adat1-25-0
+
+2005-07-21 14:43  tag adat1-26-0
+
+2005-07-21 14:43  tag adat1-27-0
+
+2005-07-21 14:43  tag adat1-28-0
+
+2005-07-21 14:43  tag adat1-29-0
+
+2005-07-21 14:43  tag adat1-30-0
+
+2005-07-21 14:43  tag c-lime1-2-3
+
+2005-07-21 14:43  detar
+
+	* examples/layout_hyper_mesh.c, include/lrl.h, include/qio.h,
+	  lib/dml/DML_utils.c, lib/lrl/LRL_main.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c, other_libs/c-lime/examples/lime_contents.c,
+	  other_libs/c-lime/examples/lime_extract_record.c,
+	  other_libs/c-lime/examples/lime_extract_type.c,
+	  other_libs/c-lime/examples/lime_pack.c,
+	  other_libs/c-lime/examples/lime_unpack.c,
+	  other_libs/c-lime/include/lime_header.h,
+	  other_libs/c-lime/include/lime_reader.h,
+	  other_libs/c-lime/include/lime_writer.h,
+	  other_libs/c-lime/lib/lime_header.c,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_writer.c: Further changes to support
+	  large files.
+
+2005-07-20 09:52  tag qdp1-14-5
+
+2005-07-20 09:52  zbigniew
+
+	* configure.ac, examples/Makefile.am: Added conditional check so
+	  that
+
+2005-07-20 07:06  tag qdp-1-14-4
+
+2005-07-20 07:06  tag qdp1-14-4
+
+2005-07-20 07:06  bjoo
+
+	* aclocal.m4, configure, include/qio_config_internal.h.in: Various
+	  fixes
+
+2005-07-19 19:22  tag qdp-1-14-4_pre1
+
+2005-07-19 19:22  detar
+
+	* lib/qio/QIO_read_record_data.c: Correcting integer size
+
+2005-07-18 18:13  tag adat1-13-13
+
+2005-07-18 18:13  detar
+
+	* examples/layout_hyper.c, examples/qio-convert-mesh-singlefs.c,
+	  examples/qio-convert-mesh.c, examples/qio-host-test.c,
+	  examples/qio-host-test1.c, examples/qio-host-test2.c,
+	  examples/qio-test-util.c, examples/qio-test.c, include/dml.h,
+	  include/lrl.h, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_host_file_conversion.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c, other_libs/c-lime/examples/lime_contents.c,
+	  other_libs/c-lime/examples/lime_extract_record.c,
+	  other_libs/c-lime/examples/lime_extract_type.c,
+	  other_libs/c-lime/examples/lime_pack.c,
+	  other_libs/c-lime/examples/lime_unpack.c,
+	  other_libs/c-lime/examples/lime_writer_test1.c,
+	  other_libs/c-lime/lib/lime_fseeko.c,
+	  other_libs/c-lime/lib/lime_header.c,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_utils.c,
+	  other_libs/c-lime/lib/lime_writer.c: Further corrections to
+	  support files > 2 GB.  Correct bug in QIO_read_record_info.c that
+	  failed with ILDG partitioned files.
+
+2005-07-17 09:08  tag qdp1-14-3
+
+2005-07-17 09:08  detar
+
+	* aclocal.m4, configure, configure.ac, examples/Makefile.am,
+	  include/qio_config_internal.h.in, lib/dml/DML_utils.c,
+	  lib/qio/QIO_host_file_conversion.c, lib/qio/QIO_utils.c,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  other_libs/c-lime/configure.ac, other_libs/c-lime/include/lime.h,
+	  other_libs/c-lime/include/lime_config_internal.h.in,
+	  other_libs/c-lime/lib/lime_writer.c: Large file support.  See
+	  --enable-largefile
+
+2005-07-14 08:06  bjoo
+
+	* examples/qio-host-test.c: Added NULL ildgLFN parameter to call to
+	  QIO_part_to_single with QIO_ILDGNO, so that call obeys interface
+	  and compiles
+
+2005-07-12 12:03  tag qdp1-14-2
+
+2005-07-12 12:03  detar
+
+	* lib/qio/QIO_open_read.c: Fix seg fault on attempt to open a
+	  non-LIME file
+
+2005-07-11 14:37  tag adat1-13-12
+
+2005-07-11 14:37  tag c-lime1-2-2
+
+2005-07-11 14:37  tag qio2-1-0
+
+2005-07-11 14:37  detar
+
+	* examples/qio-convert-mesh-singlefs.c,
+	  examples/qio-convert-mesh.c, include/qio.h,
+	  lib/qio/QIO_host_file_conversion.c,
+	  other_libs/c-lime/examples/Makefile.am,
+	  other_libs/c-lime/examples/lime_extract_type.c: Add capability
+	  for inserting an ILDG LFN during partfile to singlefile
+	  conversion.  Add another LIME extraction utility.  Useful for
+	  extracting the LFN.
+
+2005-07-10 14:30  tag adat1-13-11
+
+2005-07-10 14:30  detar
+
+	* include/qio.h, include/qioxml.h, lib/qio/QIO_info.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/examples/lime_contents.c: Fixing some compiler
+	  trivia.
+
+2005-07-08 18:15  detar
+
+	* examples/: qio-test4.c, qio-test5.c, qio-test6.c, qio-test7.c,
+	  qio-test8.c: Add new test modules
+
+2005-07-08 18:03  detar
+
+	* lib/Makefile.am: Deleting DML_stream_in.c and DML_stream_out.c
+
+2005-07-08 17:50  tag adat1-13-10
+
+2005-07-08 17:50  detar
+
+	* examples/layout_hyper.c, examples/qio-convert-mesh-singlefs.c,
+	  examples/qio-convert-mesh.c, examples/qio-host-test.c,
+	  examples/qio-host-test1.c, examples/qio-host-test2.c,
+	  examples/qio-test.c, examples/qio-test.h, examples/qio-test1.c,
+	  examples/qio-test2.c, examples/qio-test3.c, include/dml.h,
+	  include/lrl.h, include/qio.h, include/qio_config_internal.h.in,
+	  include/qio_stdint.h, include/qioxml.h, lib/dml/DML_stream_in.c,
+	  lib/dml/DML_stream_out.c, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_main.c, lib/qio/QIO_close_read.c,
+	  lib/qio/QIO_host_file_conversion.c, lib/qio/QIO_info.c,
+	  lib/qio/QIO_next_record.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_open_write.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure,
+	  other_libs/c-lime/examples/lime_contents.c,
+	  other_libs/c-lime/examples/lime_pack.c,
+	  other_libs/c-lime/include/lime_config_internal.h.in,
+	  other_libs/c-lime/lib/lime_header.c,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_writer.c: Major changes to support
+	  ILDG formats and parallel I/O - ced
+
+2005-07-08 17:49  detar
+
+	* configure: Committing stubborn files
+
+2005-07-08 17:30  detar
+
+	* aclocal.m4: Continuing with Robert's prescription for commits.
+	  Forcing aclocal.m4
+
+2005-07-08 17:28  detar
+
+	* configure.ac, examples/Makefile.am,
+	  other_libs/c-lime/configure.ac: Preparing to commit qio-2.1.0 and
+	  lime-1.2.2
+
+2005-06-16 07:57  tag adat1-13-5
+
+2005-06-16 07:57  tag adat1-13-6
+
+2005-06-16 07:57  tag adat1-13-7
+
+2005-06-16 07:57  tag adat1-13-8
+
+2005-06-16 07:57  tag adat1-13-9
+
+2005-06-16 07:57  tag qdp1-13-1
+
+2005-06-16 07:57  tag qdp1-14-0
+
+2005-06-16 07:57  tag qdp1-14-1
+
+2005-06-16 07:57  bjoo
+
+	* doc/Makefile.am, other_libs/Makefile.am,
+	  other_libs/c-lime/doc/Makefile.am, other_libs/c-lime/Makefile.am,
+	  other_libs/c-lime/lib/Makefile.am,
+	  other_libs/c-lime/include/Makefile.am,
+	  other_libs/c-lime/examples/Makefile.am, Makefile.am,
+	  lib/Makefile.am, include/Makefile.am, examples/Makefile.am,
+	  bin/Makefile.am: flopcounts Makefile.ams first
+
+2005-06-07 07:35  bjoo
+
+	* aclocal.m4: Added AC_CHECK_TOOL to look for AR in QDP++ and
+	  XPathReader
+
+2005-05-29 18:19  osborn
+
+	* examples/layout_hyper.c, examples/layout_hyper_mesh.c,
+	  examples/qio-convert-mesh.h, examples/qio-test.c,
+	  examples/qio-test.h,
+	  other_libs/c-lime/examples/lime_writer_test1.c: Small fixes in
+	  examples.
+
+2005-05-29 18:01  osborn
+
+	* INSTALL, NEWS, aclocal.m4, configure, configure.ac,
+	  config/depcomp, config/install-sh, config/missing,
+	  config/mkinstalldirs, include/dml.h, include/qio.h,
+	  lib/dml/DML_utils.c, lib/qio/QIO_host_file_conversion.c,
+	  lib/qio/QIO_host_utils.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_string.c, lib/qio/QIO_utils.c,
+	  other_libs/c-lime/INSTALL, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure, other_libs/c-lime/configure.ac,
+	  other_libs/c-lime/config/depcomp,
+	  other_libs/c-lime/config/install-sh,
+	  other_libs/c-lime/config/missing,
+	  other_libs/c-lime/config/mkinstalldirs,
+	  other_libs/c-lime/examples/lime_contents.c,
+	  other_libs/c-lime/examples/lime_pack.c,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_writer.c: Changed the num_sites
+	  functions to return int instead of size_t, since this is what QDP
+	  will support.  Also minor cleanups and fixes.
+
+2005-05-18 18:26  tag qdp1-12-3
+
+2005-05-18 18:26  tag qdp1-12-4
+
+2005-05-18 18:26  tag qdp1-12-5
+
+2005-05-18 18:26  tag qdp1-13-0
+
+2005-05-18 18:26  tag qio2-0-2
+
+2005-05-18 18:26  edwards
+
+	* NEWS: INfo on 2.0.2
+
+2005-05-18 18:24  tag c-lime1-2-1
+
+2005-05-18 18:24  edwards
+
+	* other_libs/c-lime/NEWS: Info on 1.2.1
+
+2005-05-18 18:23  edwards
+
+	* configure: Induced changes.
+
+2005-05-18 18:22  edwards
+
+	* doc/Makefile.am, examples/Makefile.am, include/Makefile.am,
+	  lib/Makefile.am: Removed VPATH's
+
+2005-05-18 18:22  edwards
+
+	* configure.ac: Changed from 2.0.1 to 2.0.2
+
+2005-05-18 18:20  edwards
+
+	* other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  aclocal.m4, configure: Induced changes.
+
+2005-05-18 18:20  edwards
+
+	* other_libs/c-lime/configure.ac: Changed to version 1.2.1
+
+2005-05-18 18:19  edwards
+
+	* other_libs/c-lime/: doc/Makefile.am, examples/Makefile.am,
+	  lib/Makefile.am: Removed VPATH's.
+
+2005-05-10 20:20  tag qio2-0-1
+
+2005-05-10 20:20  detar
+
+	* lib/qio/QIO_read_record_info.c: Fix bug causing QDP to report bad
+	  record info comparison.
+
+2005-05-06 16:44  tag adat1-13-2
+
+2005-05-06 16:44  tag adat1-13-3
+
+2005-05-06 16:44  tag adat1-13-4
+
+2005-05-06 16:44  osborn
+
+	* aclocal.m4, lib/Makefile.am, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/lib/Makefile.am: Fixed problem with VPATH
+	  builds (always use += when setting VPATH).
+
+2005-04-28 15:32  tag qdp1-12-1
+
+2005-04-28 15:32  tag qdp1-12-2
+
+2005-04-28 15:32  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-04-28 15:32  edwards
+
+	* include/qio_config_internal.h.in: Apparently comment changes.
+
+2005-04-28 15:31  tag adat1-12-1
+
+2005-04-28 15:31  tag adat1-12-2
+
+2005-04-28 15:31  tag adat1-13-0
+
+2005-04-28 15:31  tag adat1-13-1
+
+2005-04-28 15:31  tag c-lime1-2
+
+2005-04-28 15:31  edwards
+
+	* other_libs/c-lime/NEWS: Info on 1.2
+
+2005-04-28 15:29  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes.
+
+2005-04-28 15:28  edwards
+
+	* other_libs/c-lime/include/lime_config_internal.h.in: Apparently
+	  comment changes.
+
+2005-04-28 12:48  detar
+
+	* README, aclocal.m4, configure, doc/Makefile.am, doc/qio_1p1.tex,
+	  doc/qio_2p0.tex, examples/layout_hyper.c,
+	  examples/layout_hyper_mesh.c,
+	  examples/qio-convert-mesh-singlefs.c,
+	  examples/qio-convert-mesh.c, examples/qio-convert-mesh.h,
+	  examples/qio-host-test.c, examples/qio-host-test1.c,
+	  examples/qio-host-test2.c, examples/qio-test-util.c,
+	  examples/qio-test.c, examples/qio-test.h, include/dml.h,
+	  include/lrl.h, include/qio.h, include/qio_config_internal.h.in,
+	  lib/dml/DML_stream_in.c, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_dummy.c, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_host_file_conversion.c,
+	  lib/qio/QIO_host_utils.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_open_write.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  other_libs/c-lime/doc/Makefile.am,
+	  other_libs/c-lime/doc/lime_1p1.tex,
+	  other_libs/c-lime/doc/lime_1p2.tex,
+	  other_libs/c-lime/examples/lime_contents.c,
+	  other_libs/c-lime/examples/lime_extract_record.c,
+	  other_libs/c-lime/examples/lime_unpack.c,
+	  other_libs/c-lime/examples/lime_writer_test1.c,
+	  other_libs/c-lime/include/lime_config_internal.h.in,
+	  other_libs/c-lime/include/lime_reader.h,
+	  other_libs/c-lime/include/lime_writer.h,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_writer.c: Significant changes support
+	  random access reads and writes More efficient file format
+	  conversion Updated documentation
+
+2005-04-28 12:46  detar
+
+	* configure.ac, other_libs/c-lime/configure.ac: New version number
+
+2005-04-27 05:28  tag adat1-11-1
+
+2005-04-27 05:28  tag adat1-12-0
+
+2005-04-27 05:28  tag qio1-1-6
+
+2005-04-27 05:28  bjoo
+
+	* other_libs/c-lime/include/Makefile.am: Added
+	  lime-config-internal.h.in to EXTRA_DIST
+
+2005-04-27 05:20  bjoo
+
+	* other_libs/c-lime/include/Makefile.am: Fixed including of
+	  lime_config_internal.h in dist
+
+2005-04-19 12:45  tag adat1-11-0
+
+2005-04-19 12:45  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes.
+
+2005-04-19 12:44  edwards
+
+	* other_libs/c-lime/examples/Makefile.am: Moved programs to
+	  bin_PROGRAMS
+
+2005-04-04 18:45  detar
+
+	* lib/qio/QIO_open_read.c: Do proper initialization of xml_record
+	  and site members of reader structure
+
+2005-02-28 11:46  tag adat1-10-0
+
+2005-02-28 11:46  tag adat1-8-0
+
+2005-02-28 11:46  tag adat1-9-0
+
+2005-02-28 11:46  tag adat1-9-1
+
+2005-02-28 11:46  tag pre-qdp1-12-0
+
+2005-02-28 11:46  tag qdp1-12-0
+
+2005-02-28 11:46  bjoo
+
+	* configure, configure.ac, include/dml.h,
+	  include/qio_config_internal.h.in, lib/dml/DML_route.c,
+	  lib/dml/DML_utils.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_string.c,
+	  other_libs/c-lime/include/lime_defs.h: t_qio now much more stable
+	  on QCDOC after QIO string handling fixes
+
+2005-02-22 11:09  bjoo
+
+	* lib/dml/DML_route.c: Removed some frees in DML_route that are not
+	  supposed to free
+
+2005-02-16 08:47  bjoo
+
+	* configure, configure.ac: Made QIO configure print some more info
+
+2005-02-16 07:23  bjoo
+
+	* configure, configure.ac, include/qio_config_internal.h.in,
+	  lib/dml/DML_route.c: Added --enable-slow-route option to QIO so
+	  that I can switch James optimisation of DML route in and out as
+	  needed
+
+2005-02-04 13:44  tag adat1-6-1
+
+2005-02-04 13:44  tag adat1-7-0
+
+2005-02-04 13:44  tag qdp1-11-8
+
+2005-02-04 13:44  dgr
+
+	* other_libs/c-lime/: aclocal.m4, configure: Updated baryons code
+	  - still some problems with file I/O
+
+2005-02-02 13:41  tag qdp1-11-7
+
+2005-02-02 13:41  osborn
+
+	* configure.ac, lib/qio/QIO_info.c, lib/qio/QIO_utils.c: Made
+	  QIO_VERB_OFF default and fixed printing of checksum.
+
+2005-01-29 23:34  tag qdp1-11-5
+
+2005-01-29 23:34  tag qdp1-11-6
+
+2005-01-29 23:34  detar
+
+	* doc/qio_0p8.tex, examples/Makefile.am,
+	  other_libs/c-lime/examples/lime_reader_test1.c: Fix errors in
+	  examples/Makefile.am
+
+2005-01-29 23:05  detar
+
+	* examples/: Makefile.am, layout_hyper_mesh.c,
+	  qio-convert-mesh-singlefs.c, qio-convert-mesh.c,
+	  qio-convert-mesh.h: Add conversion routines for mesh architecture
+	  to examples directory
+
+2005-01-26 09:21  tag ante-IO-dox
+
+2005-01-26 09:21  tag qdp1-11-4
+
+2005-01-26 09:21  zbigniew
+
+	* include/qio_config.h, other_libs/c-lime/include/lime_config.h:
+	  Changed the redefinitions of the macros generated by autoconf.
+	  Previously, the macro redefinitions didn't work, so now this info
+	  is stored in C-strings.
+
+2005-01-22 06:32  tag qdp1-11-2
+
+2005-01-22 06:32  tag qdp1-11-3
+
+2005-01-22 06:32  bjoo
+
+	* configure, configure.ac, include/qio_config_internal.h.in,
+	  include/qio_stdint.h,
+	  other_libs/c-lime/include/lime_fixed_types.h: Autoconfiscated
+	  uint_t type checking
+
+2005-01-22 06:21  bjoo
+
+	* other_libs/c-lime/: include/lime_fseeko.h, lib/lime_utils.c:
+	  Fixed a bug in lime_fseeko.h
+
+2005-01-22 05:51  bjoo
+
+	* other_libs/c-lime/: configure, configure.ac, include/Makefile.am,
+	  include/lime_config_internal.h.in, include/lime_fixed_types.h,
+	  include/lime_fseeko.h, lib/Makefile.am, lib/lime_fseeko.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Added fseeko stubs for
+	  qcdoc. Made the type checking system more sophisticated. Untested
+	  on QCDOC as yet
+
+2005-01-19 22:03  edwards
+
+	* other_libs/c-lime/configure, configure: Induced changes.
+
+2005-01-07 01:13  tag qio1-1-5
+
+2005-01-07 01:13  edwards
+
+	* NEWS: Info on 1.1.5
+
+2005-01-07 01:12  edwards
+
+	* README, config/compile, doc/README, doc/qio_1p1.tex,
+	  include/lrl.h, lib/dml/DML_route.c, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_main.c, lib/qio/QIO_host_file_conversion.c,
+	  lib/qio/QIO_host_utils.c, lib/qio/QIO_utils.c: Change LIME file
+	  byte counter types to off_t and change QIO/LRL to conform.
+	  Update QIO documentation.  A little housekeeping.
+
+2005-01-07 01:09  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-01-07 01:09  edwards
+
+	* Makefile.am: Added doc to subdirs
+
+2005-01-07 01:08  edwards
+
+	* doc/Makefile.am: New version
+
+2005-01-07 01:07  edwards
+
+	* configure.ac: Changed to 1.1.5
+
+2005-01-07 01:04  tag c-lime1-1-new
+
+2005-01-07 01:04  edwards
+
+	* other_libs/c-lime/NEWS: Info on 1.1
+
+2005-01-07 01:02  tag c-lime1-1
+
+2005-01-07 01:02  edwards
+
+	* other_libs/c-lime/: README, doc/README, doc/lime_1p1.tex,
+	  examples/lime_contents.c, examples/lime_extract_record.c,
+	  examples/lime_pack.c, examples/lime_unpack.c,
+	  examples/lime_writer_test1.c, include/lime_defs.h,
+	  include/lime_header.h, include/lime_reader.h,
+	  include/lime_writer.h, lib/lime_header.c, lib/lime_reader.c,
+	  lib/lime_writer.c: Add a variety of LIME utilities Add LIME
+	  documentation Change LIME file byte counter types to off_t and
+	  change QIO/LRL to conform Update QIO documentation A little
+	  housekeeping
+
+2005-01-07 01:02  edwards
+
+	* other_libs/c-lime/configure: Induced changes.
+
+2005-01-07 00:59  edwards
+
+	* other_libs/c-lime/examples/Makefile.am: Added more test files.
+
+2005-01-07 00:59  edwards
+
+	* other_libs/c-lime/doc/Makefile.am: First version
+
+2005-01-07 00:57  edwards
+
+	* other_libs/c-lime/Makefile.am: Added doc to SUBDIRS
+
+2005-01-07 00:56  edwards
+
+	* other_libs/c-lime/: aclocal.m4: Induced changes.
+
+2005-01-07 00:56  edwards
+
+	* other_libs/c-lime/configure.ac: Changed to version 1.1 . Added
+	  configure of doc/Makefile
+
+2004-12-17 16:55  tag pre_qio1-1-5
+
+2004-12-17 16:55  tag qio1-1-4
+
+2004-12-17 16:55  osborn
+
+	* configure.ac, include/qio_stdint.h, lib/dml/DML_route.c,
+	  other_libs/c-lime/configure,
+	  other_libs/c-lime/include/lime_config_internal.h.in,
+	  other_libs/c-lime/include/lime_fixed_types.h: Made sure
+	  qio_config.h and lime_config.h are included where stdint.h is
+	  used.
+
+2004-12-17 16:40  osborn
+
+	* other_libs/c-lime/configure.ac: Fixed c-lime configure.ac to
+	  check for stdint.h.
+
+2004-12-16 19:40  osborn
+
+	* aclocal.m4, configure, configure.ac, examples/layout_hyper.c,
+	  examples/qio-test.c, lib/dml/DML_route.c, lib/dml/DML_utils.c,
+	  lib/qio/QIO_host_file_conversion.c, lib/qio/QIO_utils.c,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure: Made
+	  DML_grid_route more efficient.
+
+2004-12-15 06:37  bjoo
+
+	* aclocal.m4, configure, include/Makefile.am: Putting qio_config as
+	  an EXTRA_DIST broke the installation as qio_config.h was not
+	  installed. I put qio_config.h back in as a nobase_include_HEADERS
+	  and put qio_config_internal.h as a nodist_INCLUDE_HEADERS as it
+	  should be recreated every time.
+
+2004-12-14 23:26  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-12-14 17:37  edwards
+
+	* include/qio.h: Added inclusion of  qio_config.h . This is
+	  required because types like  uint32_t  are used in qio.h . To use
+	  these requires inclusion of qio_stdint.h which can only include
+	  stdint.h if the HAVE_STDINT_H flag is enabled, which is only
+	  defined in the  qio_config.h file.
+
+2004-12-13 08:02  bjoo
+
+	* aclocal.m4, configure: Added DDR Build instructions
+
+2004-12-12 23:07  osborn
+
+	* configure.ac: Bumped version up to 1.1.2.
+
+2004-12-10 17:57  detar
+
+	* aclocal.m4, configure, include/qio_config_internal.h.in,
+	  lib/qio/QIO_read_record_data.c: Declare memcpy via <string.h> in
+	  QIO_read_record_data.c.
+
+2004-12-10 17:37  detar
+
+	* include/qio_stdint.h, lib/dml/DML_parscalar.c,
+	  lib/qio/QIO_host_file_conversion.c, lib/qio/QIO_string.c: Make
+	  implicit casts explicit, according to Kostya.
+
+2004-12-10 13:23  bjoo
+
+	* aclocal.m4, configure, configure.ac,
+	  include/qio_config_internal.h.in, lib/dml/DML_route.c: Added
+	  facility to disable QIO
+
+2004-12-10 07:45  bjoo
+
+	* lib/dml/DML_route.c: Changed all aligned memory allocations to
+	  use flags QMP_MEM_DEFAULT
+
+2004-12-10 07:02  tag bj_QIO_fixes
+
+2004-12-10 07:02  bjoo
+
+	* configure, lib/dml/DML_route.c: Fixed a bug in DML_route_bytes
+
+2004-12-09 19:17  osborn
+
+	* configure.ac, lib/qio/QIO_read_record_data.c: Changed copy of
+	  DML_Checksum types to use memcpy.
+
+2004-11-30 14:59  osborn
+
+	* include/qio_stdint.h: More minor fixes.
+
+2004-11-30 14:58  osborn
+
+	* NEWS, TODOLIST, aclocal.m4, configure, include/Makefile.am,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure: Minor
+	  fixes.
+
+2004-11-30 14:52  osborn
+
+	* configure.ac, include/crc32.h, include/dml.h, include/qioxml.h,
+	  include/type32.h, lib/dml/DML_crc32.c, lib/dml/DML_parscalar.c,
+	  lib/dml/DML_scalar.c, lib/dml/DML_utils.c, lib/qio/QIO_info.c,
+	  other_libs/c-lime/include/lime_fixed_types.h: Attempt to fix int
+	  types to work on QCDOC.  May need better fix later.
+
+2004-11-13 11:18  tag qdp1-11-0
+
+2004-11-13 11:18  bjoo
+
+	* aclocal.m4, configure: reran aclocal autoconf automake in qio ..
+	  was stale somehow
+
+2004-11-09 12:24  detar
+
+	* examples/qio-test-util.c, examples/qio-test.c,
+	  examples/qio-test.h, include/qio.h, lib/qio/QIO_info.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_write.c: Cosmetic
+	  changes. -CD
+
+2004-11-09 01:56  osborn
+
+	* lib/qio/QIO_string.c: Included stdlib.h in lib/qio/QIO_string.c.
+
+2004-11-03 23:56  detar
+
+	* aclocal.m4, configure, configure.ac: Update package number.
+
+2004-11-02 15:24  tag qdp1-10-6
+
+2004-11-02 15:24  edwards
+
+	* lib/dml/DML_utils.c: Turned back on DML_route_bytes on read.
+
+2004-11-02 15:12  edwards
+
+	* lib/dml/DML_utils.c: Ooops. Turned back off call of
+	  DML_route_bytes for the moment.
+
+2004-11-02 15:09  edwards
+
+	* lib/dml/DML_utils.c: Turned on usage of DML_route_bytes in
+	  output.
+
+2004-11-02 15:01  edwards
+
+	* lib/qio/QIO_read_record_data.c: Added an if(master_io_node)
+	  around diagnostic output to  decrease verbosity.
+
+2004-11-02 14:34  edwards
+
+	* aclocal.m4, include/qio_config_internal.h.in, configure: Induced
+	  changes.
+
+2004-11-02 14:31  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes.
+
+2004-11-01 20:47  osborn
+
+	* include/: dml.h, lrl.h, qio.h: Fixed header includes.
+
+2004-11-01 19:49  osborn
+
+	* other_libs/c-lime/include/Makefile.am: Don't install c-lime's
+	  lime_config.h and lime_config_internal.h.
+
+2004-11-01 19:46  osborn
+
+	* bin/qio-config.in, include/Makefile.am: Don't install
+	  qio_config.h and qio_config_internal.h.
+
+2004-11-01 19:32  osborn
+
+	* examples/: qio-host-test.c, qio-test.h: Really add missing files
+	  in examples.
+
+2004-11-01 19:29  osborn
+
+	* bin/: Makefile.am, qio-config.in: Added missing files in bin.
+
+2004-11-01 19:26  osborn
+
+	* Makefile.am, aclocal.m4, configure, configure.ac, include/qio.h,
+	  lib/dml/DML_route.c, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_close_write.c,
+	  lib/qio/QIO_host_utils.c, lib/qio/QIO_info.c,
+	  lib/qio/QIO_next_record.c, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_open_write.c, lib/qio/QIO_read.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure: Added
+	  missing files in examples, created qio-configure, other build
+	  fixes.
+
+2004-11-01 13:14  edwards
+
+	* include/qio_config_internal.h.in: Induced changes.
+
+2004-11-01 12:58  tag c-lime1-1-0
+
+2004-11-01 12:58  edwards
+
+	* other_libs/c-lime/NEWS: Info on 1.1.0
+
+2004-11-01 12:56  tag qio1-1-beta2
+
+2004-11-01 12:56  edwards
+
+	* NEWS: Info on 1.1.beta2
+
+2004-11-01 12:55  edwards
+
+	* NEWS: Info on 1.1.beta1
+
+2004-11-01 12:53  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-11-01 12:53  edwards
+
+	* configure.ac: Changed to version 1.1.beta2
+
+2004-11-01 12:50  edwards
+
+	* other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  aclocal.m4, configure: Induced changes.
+
+2004-11-01 12:49  edwards
+
+	* include/qio.h, lib/qio/QIO_host_file_conversion.c: Bug fix -
+	  removed extraneous const that fouls C++.
+
+2004-10-31 16:37  detar
+
+	* configure, include/qio.h, lib/qio/QIO_host_file_conversion.c:
+	  Update documentation.  Suppress part to single conversion if
+	  output file already exists. -CD
+
+2004-10-29 23:12  detar
+
+	* aclocal.m4, configure.ac, examples/Makefile.am,
+	  examples/layout_hyper.c, examples/qio-host-test1.c,
+	  examples/qio-host-test2.c, examples/qio-test-util.c,
+	  examples/qio-test.c, examples/qio-test1.c, examples/qio-test2.c,
+	  examples/qio-test3.c, examples/qio-test4.c, examples/qio-test5.c,
+	  examples/qio-test6.c, examples/qio-test7.c, include/dml.h,
+	  include/lrl.h, include/qio.h, lib/Makefile.am,
+	  lib/dml/DML_stream_in.c, lib/dml/DML_utils.c, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_host_file_conversion.c, lib/qio/QIO_host_utils.c,
+	  lib/qio/QIO_info.c, lib/qio/QIO_next_record.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_string.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/examples/lime_reader_test1.c,
+	  other_libs/c-lime/examples/lime_writer_test1.c,
+	  other_libs/c-lime/include/lime_reader.h,
+	  other_libs/c-lime/lib/lime_reader.c: Support host file conversion
+	  from singlefile to partfile.	Revision to example test code.
+	  Verbosity level added.  -CD
+
+2004-10-29 17:24  tag qdp1-10-5
+
+2004-10-29 17:24  tag qio1-0-beta5
+
+2004-10-29 17:24  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-10-29 17:24  edwards
+
+	* configure.ac: Changed to version 1.0.beta5
+
+2004-10-29 17:17  edwards
+
+	* NEWS: Info on 1.0.beta5
+
+2004-10-29 17:10  edwards
+
+	* lib/dml/DML_utils.c: Turned on usage of DML_route_bytes.
+
+2004-10-29 16:07  edwards
+
+	* lib/dml/DML_route.c: Turned on debugging warning about using
+	  native QMP_route.
+
+2004-10-18 15:57  tag qdp1-10-2
+
+2004-10-18 15:57  tag qdp1-10-3
+
+2004-10-18 15:57  tag qdp1-10-4
+
+2004-10-18 15:57  tag qio1-0-beta4
+
+2004-10-18 15:57  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_utils.c: Put some if-node=0 guards
+	  to decrease verbosity.
+
+2004-10-18 15:35  tag c-lime1-0-0
+
+2004-10-18 15:35  edwards
+
+	* other_libs/c-lime/NEWS: Info on 1.0.0
+
+2004-10-18 15:33  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-10-18 15:31  edwards
+
+	* include/Makefile.am: Added nodist for qio_config_internal
+
+2004-10-18 15:29  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes.
+
+2004-10-18 15:28  edwards
+
+	* other_libs/c-lime/include/Makefile.am: Added hooks for
+	  lime_config files.
+
+2004-10-18 15:25  edwards
+
+	* other_libs/c-lime/include/lime_config_internal.h.in: New header
+	  file.
+
+2004-10-18 15:25  edwards
+
+	* other_libs/c-lime/include/lime_config.h: New config file.
+
+2004-10-18 15:24  edwards
+
+	* other_libs/c-lime/configure.ac: Added config headers.
+
+2004-10-18 15:22  edwards
+
+	* include/: qio_config.h, qio_config.h.in,
+	  qio_config_internal.h.in: Use new internal config file.
+
+2004-10-18 15:22  edwards
+
+	* configure.ac: Changed to use new internal file
+
+2004-10-18 15:16  edwards
+
+	* other_libs/c-lime/configure.ac: Added config header info.
+
+2004-10-18 15:05  edwards
+
+	* NEWS: Info on 1.0.beta4
+
+2004-10-18 14:57  edwards
+
+	* aclocal.m4, other_libs/c-lime/aclocal.m4, configure,
+	  other_libs/c-lime/configure: Induced changes.
+
+2004-10-16 14:13  osborn
+
+	* Makefile.am, configure, configure.ac, examples/Makefile.am,
+	  other_libs/c-lime/examples/lime_writer_test1.c: Fixed distcheck
+	  target.
+
+2004-10-16 13:23  osborn
+
+	* configure, configure.ac: [no log message]
+
+2004-10-16 13:17  osborn
+
+	* aclocal.m4, configure, configure.ac, examples/Makefile.am,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure: Made
+	  configure use the QMP CC if known unless CC is explicitly
+	  specified.  Also fixed typo on examples/Makefile.am.
+
+2004-10-14 10:37  edwards
+
+	* other_libs/c-lime/configure, configure: Induced changes.
+
+2004-10-14 10:36  edwards
+
+	* lib/qio/QIO_open_write.c: Corrected diagnostic comment field -
+	  SINGLEFILE was stating "multifile".
+
+2004-09-16 16:20  osborn
+
+	* configure.ac: Removed other_libs/c-lime/Makefile from
+	  AC_CONFIG_FILES in configure.ac.  The configure.ac in c-lime will
+	  take care of it.
+
+2004-09-03 01:31  tag qdp1-10-0
+
+2004-09-03 01:31  tag qdp1-10-1
+
+2004-09-03 01:31  tag qio1-0-beta3
+
+2004-09-03 01:31  edwards
+
+	* configure: Induced changes.
+
+2004-09-03 01:30  edwards
+
+	* lib/dml/DML_scalar.c: Added back in.
+
+2004-09-03 01:30  edwards
+
+	* lib/dml/DML_route.c: Added back in possible test/branch for a
+	  native QMP_route.
+
+2004-09-03 01:29  edwards
+
+	* include/qio_config.h.in: Induced to check for HAVE_QMP_ROUTE.
+
+2004-09-03 01:28  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-09-03 01:27  edwards
+
+	* lib/Makefile.am: Added back in parscalar and scalar conditional
+	  compilations.
+
+2004-09-03 01:26  edwards
+
+	* configure.ac: Added back in scalar and parscalar build
+	  possibilities. The default now is to assume a parscalar
+	  (parallel) build and thus always look for QMP.
+
+2004-09-03 01:25  edwards
+
+	* Makefile.am: Removed BUILD_QIO conditional.
+
+2004-09-03 01:25  edwards
+
+	* NEWS: Info on 1.0.beta3
+
+2004-09-03 00:36  edwards
+
+	* lib/dml/DML_scalar.c: Reinserted and updated the scalar version.
+
+2004-09-01 08:56  tag adat1-5-0
+
+2004-09-01 08:56  tag adat1-6-0
+
+2004-09-01 08:56  tag pre_qdp1-10-0
+
+2004-09-01 08:56  edwards
+
+	* other_libs/c-lime/configure, configure: Induced changes.
+
+2004-09-01 08:52  edwards
+
+	* aclocal.m4, other_libs/c-lime/aclocal.m4: Induced changes.
+
+2004-09-01 01:22  tag qio1-0-beta2
+
+2004-09-01 01:22  osborn
+
+	* configure, configure.ac, include/qio_config.h.in,
+	  lib/Makefile.am: Removed --enable-parallel-arch since we always
+	  use QMP now.
+
+2004-08-31 19:48  osborn
+
+	* configure, configure.ac, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure: Removed ':' from path in
+	  AC_PATH_PROG in configure.ac
+
+2004-08-26 17:34  tag qio1-0-beta
+
+2004-08-26 17:34  detar
+
+	* INSTALL, lib/dml/DML_parscalar.c, other_libs/c-lime/acinclude.m4:
+	  support change of QMP_io_master_node to function  -CD
+
+2004-08-26 15:02  detar
+
+	* INSTALL, Makefile.am, NEWS, TODOLIST, acinclude.m4, aclocal.m4,
+	  configure, configure.ac, examples/Makefile.am,
+	  examples/qio-test.c, examples/qio-test2.c, examples/qio-test3.c,
+	  examples/qio-test4.c, examples/qio-test5.c, examples/qio-test6.c,
+	  examples/qio-test7.c, include/Makefile.am, include/crc32.h,
+	  include/dml.h, include/lrl.h, include/qio.h,
+	  include/qio_string.h, include/qioxml.h, lib/dml/DML_crc32.c,
+	  lib/dml/DML_parscalar.c, lib/dml/DML_route.c,
+	  lib/dml/DML_scalar.c, lib/dml/DML_stream_in.c,
+	  lib/dml/DML_stream_out.c, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_main.c, lib/qio/QIO_close_read.c,
+	  lib/qio/QIO_close_write.c, lib/qio/QIO_info.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_string.c, lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/include/lime_fixed_types.h,
+	  other_libs/c-lime/include/lime_reader.h,
+	  other_libs/c-lime/include/lime_writer.h,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_utils.c,
+	  other_libs/c-lime/lib/lime_writer.c: Added partitioned I/O
+	  support.  Made string functionality same as QDP.  Standardized
+	  fixed numeric types.	No support for parallel I/O or file
+	  appending yet, but included placeholders.  -CD
+
+2004-08-06 11:47  tag qdp1-9-3
+
+2004-08-06 11:47  tag qdp1-9-4
+
+2004-08-06 11:47  kostas
+
+	* lib/qio/QIO_open_write.c: added missing HAVE_MALLOC_H
+
+2004-05-23 16:43  tag qdp1-8-5
+
+2004-05-23 16:43  tag qdp1-8-6
+
+2004-05-23 16:43  tag qdp1-9-0
+
+2004-05-23 16:43  tag qdp1-9-1
+
+2004-05-23 16:43  tag qdp1-9-2
+
+2004-05-23 16:43  tag qio0_9_6
+
+2004-05-23 16:43  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-05-11 16:23  tag adat1-4-2
+
+2004-05-11 16:23  tag adat1-4-3
+
+2004-05-11 16:23  tag adat1-4-4
+
+2004-05-11 16:23  tag c-lime0-9-0
+
+2004-05-11 16:23  edwards
+
+	* other_libs/c-lime/NEWS: Info on 0.9.0
+
+2004-05-11 10:26  tag qio0-9-5
+
+2004-05-11 10:26  edwards
+
+	* configure: Induced changes.
+
+2004-05-11 10:26  edwards
+
+	* configure.ac: Changed to 0.9.5.
+
+2004-05-11 10:26  edwards
+
+	* NEWS: Info on 0.9.5
+
+2004-04-05 21:20  tag adat1-4-1
+
+2004-04-05 21:20  tag qdp1-8-1
+
+2004-04-05 21:20  tag qdp1-8-2
+
+2004-04-05 21:20  tag qdp1-8-3
+
+2004-04-05 21:20  tag qdp1-8-4
+
+2004-04-05 21:20  edwards
+
+	* other_libs/c-lime/examples/lime_extract_record.c: Added record
+	  increment.
+
+2004-04-05 20:59  edwards
+
+	* other_libs/c-lime/examples/lime_extract_record.c: New program.
+
+2004-04-05 20:58  edwards
+
+	* other_libs/c-lime/examples/Makefile.am: Added lime_extract_record
+
+2004-04-02 08:54  bjoo
+
+	* aclocal.m4, configure, include/qio_config.h.in: Added undefs to
+	  qdp_config.h before it includes the internals -- seems to shut
+	  chroma up for me
+
+2004-03-21 22:28  tag qdp1-8-0
+
+2004-03-21 22:28  edwards
+
+	* lib/lrl/LRL_main.c: Changed error message to something more
+	  descriptive.
+
+2004-03-19 23:31  tag qdp1-7-9
+
+2004-03-19 23:31  tag qio0-9-4
+
+2004-03-19 23:31  edwards
+
+	* NEWS: Info on 0.9.4
+
+2004-03-19 23:29  tag qdp1-7-8
+
+2004-03-19 23:29  edwards
+
+	* lib/dml/DML_route.c: Added ifdef check of QMP_route back in. Now,
+	  the idea is if a native version just happens to be available, it
+	  is assumed faster than the supplied and kosher  DML_grid_route
+	  function.
+
+2004-03-19 23:12  edwards
+
+	* include/qio_config.h.in: Added back in test of QMP_route. Bummer.
+	  Commented out package critters.
+
+2004-03-19 23:10  edwards
+
+	* aclocal.m4, configure, other_libs/c-lime/configure: Induced
+	  changes.
+
+2004-03-19 23:10  edwards
+
+	* configure.ac: Bummer. Added back in test of QMP_route. The
+	  default QMP version of QMP_route is much slower than the native
+	  gigE version.
+
+2004-03-16 17:08  detar
+
+	* doc/qio_0p8.tex: Updated documentation.
+
+2004-03-15 15:40  tag qdp1-7-7
+
+2004-03-15 15:40  edwards
+
+	* lib/dml/: DML_parscalar.c, DML_route.c, DML_scalar.c,
+	  DML_utils.c: Changed to remove check of HAVE_QMP_ROUTE. Now,
+	  switch on QMP_msg_pass_type to a GRID or non-GRID arch. The grid
+	  arch always uses DML_grid_route and does not use clear-to-send. A
+	  non-grid arch always uses non-local comms and uses a
+	  clear-to-send.
+
+2004-03-15 15:39  edwards
+
+	* configure, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure: Induced changes.
+
+2004-03-15 15:38  edwards
+
+	* include/dml.h: Added clear_to_send and DML_grid_route.
+
+2004-03-15 15:38  edwards
+
+	* include/qio_config.h.in: Removed QMP_route flags.
+
+2004-03-15 15:36  edwards
+
+	* aclocal.m4: Induced changes.
+
+2004-03-15 15:35  edwards
+
+	* configure.ac: Removed check of QMP_route.
+
+2004-03-11 12:12  tag pre_qdp1-7-7
+
+2004-03-11 12:12  tag qio0-9-3
+
+2004-03-11 12:12  edwards
+
+	* NEWS: Info on 0.9.3
+
+2004-03-11 11:40  tag qdp1-7-6
+
+2004-03-11 11:40  edwards
+
+	* doc/qiodoc: Fixed exclusion paths
+
+2004-03-10 23:54  detar
+
+	* lib/qio/QIO_utils.c, other_libs/c-lime/aclocal.m4,
+	  other_libs/c-lime/configure,
+	  other_libs/c-lime/include/Makefile.am: Correct multifile lime
+	  header bug.
+
+2004-03-08 15:54  edwards
+
+	* other_libs/c-lime/configure: Induced changes.
+
+2004-03-08 15:18  edwards
+
+	* other_libs/c-lime/aclocal.m4: Induced changes.
+
+2004-03-08 15:18  edwards
+
+	* other_libs/c-lime/: Makefile.am, examples/Makefile.am: Added
+	  examples generation.
+
+2004-03-08 15:18  edwards
+
+	* other_libs/c-lime/configure.ac: Added generation of examples.
+
+2004-03-07 17:44  detar
+
+	* other_libs/c-lime/examples/: lime_reader_test1.c,
+	  lime_writer_test1.c: Converted dime test utilities to lime.
+	  lime_reader_test1 can also be used to dump a file.
+
+2004-03-07 14:56  tag qio0-9-2
+
+2004-03-07 14:56  edwards
+
+	* NEWS: Info on 1.9.2
+
+2004-03-07 14:28  edwards
+
+	* include/xml_string.h: Removed - moved to qio_string.h
+
+2004-03-06 16:26  tag qdp1-7-5
+
+2004-03-06 16:26  detar
+
+	* TODOLIST, include/Makefile.am, include/dml.h, include/lrl.h,
+	  include/qio.h, include/qio_string.h, include/qioxml.h,
+	  lib/Makefile.am, lib/dml/DML_stream_in.c,
+	  lib/dml/DML_stream_out.c, lib/dml/DML_utils.c,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_info.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_string.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  other_libs/c-lime/include/lime_defs.h,
+	  other_libs/c-lime/lib/lime_header.c,
+	  other_libs/c-lime/lib/lime_reader.c: Added reads and writes for
+	  global data.	Added reads and writes for arrays of fields.
+	  Renamed XML_String type QIO_String.  Renamed XML_string.c
+	  QIO_string.c and moved it from xml to qio.  Corrected bug that
+	  suppressed the lime header in secondary multifile data records
+
+2004-03-03 17:34  tag qdp1-7-4
+
+2004-03-03 17:34  edwards
+
+	* include/qio_config.h.in: Commented out the package critters.
+
+2004-02-29 20:33  edwards
+
+	* other_libs/c-lime/lib/: lime_reader.c, lime_writer.c: Changed
+	  DEBUG to LIME_DEBUG to avoid name collisions.  Commented out
+	  limeCloseRecord debugging comment.
+
+2004-02-29 20:28  edwards
+
+	* lib/qio/QIO_utils.c: Put and ifdef QIO_DEBUG guard around a print
+	  statement.
+
+2004-02-29 18:14  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes.
+
+2004-02-29 14:49  detar
+
+	* aclocal.m4, configure, include/lrl.h, include/qio.h,
+	  include/qio_config.h.in, lib/lrl/LRL_dummy.c, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_close_write.c,
+	  lib/qio/QIO_info.c, lib/qio/QIO_next_record.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_read.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c: Systematized return
+	  codes in qio and lrl.
+
+2004-02-28 22:45  edwards
+
+	* lib/: dml/DML_stream_in.c, dml/DML_stream_out.c,
+	  qio/QIO_close_read.c, qio/QIO_close_write.c, qio/QIO_info.c,
+	  qio/QIO_next_record.c, qio/QIO_read_record_data.c,
+	  qio/QIO_read_record_info.c: Removed dos-isms from the files.
+
+2004-02-28 20:34  tag qdp1-7-3
+
+2004-02-28 20:34  tag qio0-9-1
+
+2004-02-28 20:34  edwards
+
+	* lib/qio/QIO_open_write.c: Added ifdef QIO_DEBUG guards around
+	  debugging comments.
+
+2004-02-28 20:30  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_open_write.c: Technically a bug
+	  fix, but in reality no effect. The DML_Layout structs were malloc
+	  with the sizeof(QIO_Layout) instead of sizeof(DML_Layout).
+	  However, the 2 structs are identical in bit layout so no problem
+	  in practice.
+
+2004-02-28 18:07  edwards
+
+	* lib/qio/QIO_open_read.c: Put ifdef guard around debugging
+	  comment.
+
+2004-02-28 17:58  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-28 17:57  edwards
+
+	* NEWS: Info on 0.9.1 .
+
+2004-02-28 17:56  edwards
+
+	* TODOLIST: Removed General comment about autoconf-iscation. It's
+	  done!
+
+2004-02-28 17:54  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_read.c, QIO_read_record_data.c,
+	  QIO_read_record_info.c, QIO_write.c: Changed DEBUG to QIO_DEBUG
+	  to avoid name collisions.
+
+2004-02-28 17:52  edwards
+
+	* lib/: dml/DML_utils.c, qio/QIO_utils.c: Removed use of
+	  QIO_BIG_ENDIAN. Now have a DML_big_endian() like in LIME.  That's
+	  okay - the two are separate.
+
+2004-02-28 17:50  edwards
+
+	* include/: dml.h, qio.h: Changed config.h to qio_config.h
+
+2004-02-28 17:49  edwards
+
+	* include/config.h: Removed.
+
+2004-02-28 17:49  edwards
+
+	* include/Makefile.am, lib/Makefile.am: Removed config.h
+
+2004-02-28 17:24  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_open_write.c: Fixed to use correct
+	  PARALLEL_READ/WRITE flags.
+
+2004-02-28 16:59  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_open_write.c: Changed
+	  PARALLEL_READ/WRITE flags to QIO_USE_PARALLEL_READ/WRITE from
+	  qio_config.h
+
+2004-02-28 16:58  edwards
+
+	* include/config.h: Removed PARALLEL_READ/WRITE flags.
+
+2004-02-28 16:56  edwards
+
+	* include/qio_config.h.in: Induced QIO_USE_PARALLEL_READ/WRITE
+	  flags.
+
+2004-02-28 16:54  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-28 16:54  edwards
+
+	* configure.ac: Added a enable-parallel-io flag.
+
+2004-02-28 16:12  edwards
+
+	* other_libs/c-lime/aclocal.m4: Induced changes
+
+2004-02-28 16:12  edwards
+
+	* aclocal.m4, configure, other_libs/c-lime/configure: Induced
+	  changes.
+
+2004-02-28 13:07  detar
+
+	* TODOLIST, aclocal.m4, configure, include/dml.h, include/qio.h,
+	  lib/dml/DML_utils.c, lib/qio/QIO_close_read.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_read_record_info.c,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure:
+	  Correct record_info mem leak.  Remove (size_t)(-1).
+
+2004-02-27 20:38  edwards
+
+	* lib/dml/DML_utils.c: Added an ifdef DEBUG guard.
+
+2004-02-27 20:27  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_read.c, QIO_read_record_data.c,
+	  QIO_read_record_info.c, QIO_utils.c, QIO_write.c: Turned off
+	  debugging.
+
+2004-02-27 17:56  tag qio0-9-0
+
+2004-02-27 17:56  edwards
+
+	* NEWS: Info on 0.9.0 .
+
+2004-02-27 17:16  tag qcd1-7-2
+
+2004-02-27 17:16  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_read_record_info.c: Bug fix.
+	  Changed the length+1 to length in the broadcasts because this
+	  stomps on memory (the last byte).
+
+2004-02-27 17:10  edwards
+
+	* lib/xml/XML_string.c: Changed semantics of XML_string_set.
+
+2004-02-27 17:10  edwards
+
+	* include/xml_string.h: Changed call semantics of XML_string_set.
+
+2004-02-26 17:42  edwards
+
+	* other_libs/c-lime/lib/: lime_reader.c, lime_writer.c: Fixed some
+	  casts.
+
+2004-02-26 17:34  edwards
+
+	* other_libs/c-lime/include/lime_binary_header.h: Changed type of
+	  lime_hdr_rec_type to unsigned char*.
+
+2004-02-26 17:13  edwards
+
+	* lib/xml/XML_string.c: Added qio_config.h include.
+
+2004-02-26 17:12  edwards
+
+	* lib/dml/DML_utils.c: Added appropriate casts.
+
+2004-02-26 17:12  edwards
+
+	* lib/dml/DML_route.c: Changed config.h to qio_config.h
+
+2004-02-26 17:12  edwards
+
+	* lib/qio/QIO_open_read.c: Added stdlib.h include guard.
+
+2004-02-26 17:11  edwards
+
+	* lib/qio/QIO_info.c: Changed "template" to templ, since "template"
+	  is a keyword in C++.
+
+2004-02-26 17:11  edwards
+
+	* lib/qio/QIO_close_read.c: Added stdlib.h and malloc.h include.
+
+2004-02-26 17:10  edwards
+
+	* lib/qio/QIO_read_record_info.c: Added malloc.h include.
+
+2004-02-26 17:10  edwards
+
+	* lib/qio/: QIO_utils.c, QIO_close_write.c: Added stdlib.h include.
+
+2004-02-26 17:09  edwards
+
+	* include/qioxml.h: Added missing compare_file_info.
+
+2004-02-26 17:08  edwards
+
+	* include/qio.h: Added missing read_sitelist and read_field.
+
+2004-02-26 17:07  edwards
+
+	* include/config.h: Removed obsolete comments.
+
+2004-02-22 23:53  edwards
+
+	* configure: Induced changes.
+
+2004-02-19 07:14  bjoo
+
+	* lib/lrl/LRL_main.c: Fixed typo here
+
+2004-02-18 21:47  tag qdp1-7-1
+
+2004-02-18 21:47  edwards
+
+	* aclocal.m4, other_libs/c-lime/aclocal.m4, configure,
+	  other_libs/c-lime/configure: Induced changes.
+
+2004-02-18 20:49  edwards
+
+	* other_libs/c-lime/Makefile.am: Removed building examples.
+
+2004-02-18 20:48  edwards
+
+	* other_libs/c-lime/: configure, configure.ac: Removed building
+	  examples for now.
+
+2004-02-18 20:47  edwards
+
+	* other_libs/c-lime/: aclocal.m4, configure: Induced changes.
+
+2004-02-18 20:47  edwards
+
+	* other_libs/c-lime/examples/: Makefile.am, lime_reader_test1.c,
+	  lime_writer_test1.c: Removed broken test codes - CD says they
+	  have not been used.
+
+2004-02-18 17:02  edwards
+
+	* include/qio_config.h.in: Commented out the package critters.
+
+2004-02-18 15:27  detar
+
+	* include/qioxml.h, lib/qio/QIO_info.c, lib/qio/QIO_read.c,
+	  other_libs/c-lime/lib/lime_reader.c: Added root tags and xml info
+	  field to private file and record xml strings.
+
+2004-02-18 04:23  bjoo
+
+	* configure, configure.ac, lib/Makefile.am: Moved the QMP_route
+	  check into an if case
+
+2004-02-17 10:39  edwards
+
+	* lib/dml/DML_utils.c: Changed #if defined(HAVE_QMP_ROUTE) to #if 1
+	  - we ALWAYS need route to make it work on the QCDOC.
+
+2004-02-17 08:35  bjoo
+
+	* include/Makefile.am: QIO stuff should now build and install on
+	  QCDOC
+
+2004-02-17 08:12  bjoo
+
+	* aclocal.m4, configure, configure.ac, include/config.h,
+	  include/qio_config.h.in, lib/Makefile.am,
+	  lib/dml/DML_parscalar.c, lib/dml/DML_route.c: Added qio_config.h
+	  for autoconfed haves and havenots. Added DML_route as QMP_route
+	  replacement temporarily. Hopefully my QCDOC build should no
+	  longer fail
+
+2004-02-17 00:22  tag qdp1-7-0
+
+2004-02-17 00:22  edwards
+
+	* include/config.h, include/dml.h, lib/dml/DML_parscalar.c,
+	  lib/dml/DML_scalar.c, lib/dml/DML_utils.c: Added support for
+	  DML_route_bytes which is a wrapper over QMP_route. This new
+	  function could/should be optimized for grid based machines.
+	  However, replacing the whole DML layer for something like a grid
+	  machine doesn't seem necessary, so this DML_route_bytes is viewed
+	  as the first step in supporting more specific hardware.
+
+2004-02-16 22:15  detar
+
+	* other_libs/c-lime/include/lime_binary_header.h: . fix comment
+	  describing header length
+
+2004-02-11 16:06  tag qcd1-6-14
+
+2004-02-11 16:06  dru
+
+	* lib/dml/DML_stream_in.c:
+	  While building qdp++ on the MIT alphas with gcc 3.3.2, there was
+	  an error due to different function prototypes for DML_strean_in
+	  between two files: qdp++/other_libs/qio/lib/dml/DML_stream_in.c
+	  qdp++/other_libs/qio/include/dml.h I changed size_t to
+	  DML_SiteRank in the appropriate argument to remove the conflict.
+
+2004-02-07 12:22  tag qdp-1-6-12-prestrip
+
+2004-02-07 12:22  tag qdp-1-6-13
+
+2004-02-07 12:22  detar
+
+	* lib/: lrl/LRL_main.c, qio/QIO_utils.c: Fixed
+	  LRL_close_write_record bug and QIO_filename_edit bug.  C. DeTar
+
+2004-02-06 18:45  detar
+
+	* aclocal.m4, configure, configure.ac, include/lrl.h,
+	  include/qio.h, lib/Makefile.am, lib/lrl/LRL_dummy.c,
+	  lib/lrl/LRL_main.c, lib/qio/QIO_next_record.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read_record_data.c, lib/qio/QIO_read_record_info.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c, other_libs/Makefile.am,
+	  other_libs/c-lime/AUTHORS, other_libs/c-lime/COPYING,
+	  other_libs/c-lime/INSTALL, other_libs/c-lime/Makefile.am,
+	  other_libs/c-lime/NEWS, other_libs/c-lime/README,
+	  other_libs/c-lime/aclocal.m4, other_libs/c-lime/configure,
+	  other_libs/c-lime/configure.ac, other_libs/c-lime/config/depcomp,
+	  other_libs/c-lime/config/install-sh,
+	  other_libs/c-lime/config/missing,
+	  other_libs/c-lime/config/mkinstalldirs,
+	  other_libs/c-lime/examples/Makefile.am,
+	  other_libs/c-lime/examples/lime_reader_test1.c,
+	  other_libs/c-lime/examples/lime_writer_test1.c,
+	  other_libs/c-lime/include/Makefile.am,
+	  other_libs/c-lime/include/lime.h,
+	  other_libs/c-lime/include/lime_binary_header.h,
+	  other_libs/c-lime/include/lime_defs.h,
+	  other_libs/c-lime/include/lime_fixed_types.h,
+	  other_libs/c-lime/include/lime_header.h,
+	  other_libs/c-lime/include/lime_reader.h,
+	  other_libs/c-lime/include/lime_utils.h,
+	  other_libs/c-lime/include/lime_writer.h,
+	  other_libs/c-lime/lib/Makefile.am,
+	  other_libs/c-lime/lib/lime_header.c,
+	  other_libs/c-lime/lib/lime_reader.c,
+	  other_libs/c-lime/lib/lime_utils.c,
+	  other_libs/c-lime/lib/lime_writer.c: Insert LIME and modify code
+	  to support it.  C. DeTar
+
+2004-01-29 12:54  bjoo
+
+	* lib/Makefile.am: Munged makefile.am-s to stop repeating compiler
+	  flags all the time
+
+2003-12-12 14:03  tag qdp1-6-11
+
+2003-12-12 14:03  tag qdp1-6-12
+
+2003-12-12 14:03  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-11-21 07:20  tag pre_qdp1-6-10
+
+2003-11-21 07:20  tag qdp1-6-10
+
+2003-11-21 07:20  bjoo
+
+	* Makefile.am, aclocal.m4, configure, configure.ac: Added
+	  --disable-qio
+
+2003-11-04 17:26  tag qdp1-6-9
+
+2003-11-04 17:26  detar
+
+	* include/: dml.h, type32.h, xml_string.h: Stripped DOS Ctrl-M's
+	  from files.
+
+2003-11-04 15:56  detar
+
+	* lib/qio/: QIO_read_record_data.c, QIO_write.c: Added consistency
+	  check for byte count
+
+2003-11-04 15:53  detar
+
+	* doc/qio_0p8.tex: Updated documentation
+
+2003-11-01 16:27  tag qdp1-6-8
+
+2003-11-01 16:27  edwards
+
+	* lib/dml/DML_crc32.c: Made get_crc_table static to avoid name
+	  collisions with libz.a .
+
+2003-11-01 15:25  tag qio0-8-1
+
+2003-11-01 15:25  edwards
+
+	* NEWS: News on 0.8.1
+
+2003-11-01 15:21  edwards
+
+	* include/config.h, lib/dml/DML_utils.c, lib/qio/QIO_utils.c:
+	  Renamed the CPP BIG_ENDIAN to QIO_BIG_ENDIAN to avoid name
+	  collision under linux.
+
+2003-10-31 11:11  detar
+
+	* doc/qio_0p8.tex: Added documentation
+
+2003-10-23 14:48  tag qdp1-6-7
+
+2003-10-23 14:48  detar
+
+	* TODOLIST, aclocal.m4, configure, include/Makefile.am,
+	  include/config.h, include/crc32.h, include/dml.h, include/lrl.h,
+	  include/qio.h, include/qioxml.h, include/type32.h, include/xml.h,
+	  include/xml_string.h, lib/Makefile.am, lib/dml/DML_crc32.c,
+	  lib/dml/DML_get_sitelist.c, lib/dml/DML_parscalar.c,
+	  lib/dml/DML_scalar.c, lib/dml/DML_stream_in.c,
+	  lib/dml/DML_stream_out.c, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_dummy.c, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_close_write.c,
+	  lib/qio/QIO_info.c, lib/qio/QIO_next_record.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_read_record_data.c,
+	  lib/qio/QIO_read_record_info.c, lib/qio/QIO_utils.c,
+	  lib/qio/QIO_write.c, lib/xml/XML_string.c: Major update by CD
+
+	  File formatting is now complete and includes private file and
+	  record XML and checksums.
+
+	  Multifile capability has been added.	Parallel read and write
+	  capability has been added, but not debugged.
+
+	  A TODOLIST file has been added for notes on what remains to be
+	  done.
+
+2003-10-20 16:11  tag pre_qio0-8
+
+2003-10-20 16:11  tag qdp1-6-5
+
+2003-10-20 16:11  tag qdp1-6-6
+
+2003-10-20 16:11  tag qio0-8
+
+2003-10-20 16:11  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-10-17 12:07  tag qdp1-6-4
+
+2003-10-17 12:07  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-10-16 17:25  flemingg
+
+	* aclocal.m4, configure, configure.ac, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_main.c, lib/qio/QIO_open_write.c,
+	  lib/xml/XML_string.c: The committed .c files #include <malloc.h>.
+	  Added AC_CHECK_HEADERS([malloc.h]) to configure.ac.	Wrapped
+	  #include <malloc.h> in #ifdef HAVE_MALLOC_H ... #endif reran
+	  'aclocal && automake && autoconf'
+
+2003-09-26 11:26  tag qdp1-5-13
+
+2003-09-26 11:26  tag qdp1-5-14
+
+2003-09-26 11:26  tag qdp1-5-15
+
+2003-09-26 11:26  tag qdp1-6-0
+
+2003-09-26 11:26  tag qdp1-6-1
+
+2003-09-26 11:26  tag qdp1-6-2
+
+2003-09-26 11:26  tag qdp1-6-3
+
+2003-09-26 11:26  bjoo
+
+	* include/lrl.h, include/qio.h, lib/lrl/LRL_main.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_utils.c, lib/qio/QIO_write.c: QDP
+	  IO now puts proper DimeTypes
+
+2003-09-24 11:50  bjoo
+
+	* lib/: lrl/LRL_main.c, qio/QIO_open_write.c, qio/QIO_utils.c:
+	  Fixed things so that t_qio now works
+
+2003-08-28 13:59  tag qdp1-5-10
+
+2003-08-28 13:59  tag qdp1-5-11
+
+2003-08-28 13:59  tag qdp1-5-12
+
+2003-08-28 13:59  tag qdp1-5-6
+
+2003-08-28 13:59  tag qdp1-5-7
+
+2003-08-28 13:59  tag qdp1-5-8
+
+2003-08-28 13:59  tag qdp1-5-9
+
+2003-08-28 13:59  edwards
+
+	* lib/qio/QIO_open_write.c: Removed max string length stuff.
+
+2003-08-28 13:59  edwards
+
+	* lib/qio/QIO_utils.c: Changed diagnostic output.
+
+2003-08-28 13:58  edwards
+
+	* lib/qio/QIO_write.c: Removed MAX_STRING length stuff.
+
+2003-08-28 13:57  edwards
+
+	* include/xml.h, lib/xml/XML_string.c: Added some consts.
+
+2003-08-28 13:57  edwards
+
+	* include/qio.h: Removed MAX_STRING_LEN.
+
+2003-08-19 21:55  tag qdp1-5-1
+
+2003-08-19 21:55  tag qdp1-5-2
+
+2003-08-19 21:55  tag qdp1-5-3
+
+2003-08-19 21:55  tag qdp1-5-4
+
+2003-08-19 21:55  tag qdp1-5-5
+
+2003-08-19 21:55  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-08-19 21:44  edwards
+
+	* configure.ac: Added some more tests fo PARALLEL_ARCH.
+
+2003-08-19 21:39  edwards
+
+	* configure.ac: Added some diagnostics.
+
+2003-08-19 21:36  edwards
+
+	* configure.ac: Added hooks for other archs.
+
+2003-07-21 16:41  tag qdp1-4-12
+
+2003-07-21 16:41  tag qdp1-4-13
+
+2003-07-21 16:41  tag qdp1-5-0
+
+2003-07-21 16:41  edwards
+
+	* lib/xml/XML_string.c: Moved a char *tmp to top of block.
+
+2003-06-04 12:47  tag qdp-1-4-11
+
+2003-06-04 12:47  tag qdp1-4-0
+
+2003-06-04 12:47  tag qdp1-4-0beta
+
+2003-06-04 12:47  tag qdp1-4-1
+
+2003-06-04 12:47  tag qdp1-4-10
+
+2003-06-04 12:47  tag qdp1-4-2
+
+2003-06-04 12:47  tag qdp1-4-3
+
+2003-06-04 12:47  tag qdp1-4-4
+
+2003-06-04 12:47  tag qdp1-4-5
+
+2003-06-04 12:47  tag qdp1-4-6
+
+2003-06-04 12:47  tag qdp1-4-7
+
+2003-06-04 12:47  tag qdp1-4-8
+
+2003-06-04 12:47  tag qdp1-4-9
+
+2003-06-04 12:47  edwards
+
+	* lib/xml/XML_string.c: Small bug fix. Only free if length space is
+	  > 0.
+
+2003-05-12 02:03  tag pre_qdp1-3-0
+
+2003-05-12 02:03  tag qdp1-3-0
+
+2003-05-12 02:03  tag qdp1-3-1
+
+2003-05-12 02:03  tag qdp1-3-2
+
+2003-05-12 02:03  tag qdp1-3-3
+
+2003-05-12 02:03  edwards
+
+	* configure: Induced changes.
+
+2003-05-12 02:02  edwards
+
+	* include/qio.h, include/xml.h, lib/qio/QIO_open_read.c,
+	  lib/qio/QIO_open_write.c, lib/qio/QIO_read.c,
+	  lib/qio/QIO_utils.c, lib/qio/QIO_write.c, lib/xml/XML_dummy.c,
+	  lib/xml/XML_string.c: Changed interface. Now, strings allocated
+	  and returned by QIO. XML is now just a string interface. BinX now
+	  passed in/out.
+
+2003-05-12 01:59  edwards
+
+	* lib/dml/DML_utils.c: Removed unused variable.
+
+2003-05-12 01:57  edwards
+
+	* lib/Makefile.am: Replaced XML_dummy.c with XML_string.c
+
+2003-05-10 18:46  tag qdp1-2-5
+
+2003-05-10 18:46  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-05-08 14:55  edwards
+
+	* include/xml.h, lib/xml/XML_dummy.c: Changed char* in string to
+	  const char*.
+
+2003-04-23 00:52  tag qdp1-2-1
+
+2003-04-23 00:52  tag qdp1-2-2
+
+2003-04-23 00:52  tag qdp1-2-3
+
+2003-04-23 00:52  tag qdp1-2-4
+
+2003-04-23 00:52  edwards
+
+	* configure: Induced changes.
+
+2003-04-23 00:50  edwards
+
+	* configure.ac: Comment out bunches of include searches for now.
+
+2003-04-18 16:04  tag qdp1-2-0
+
+2003-04-18 16:04  tag qio0-1
+
+2003-04-18 16:04  edwards
+
+	* configure: Induced changes.
+
+2003-04-18 16:03  edwards
+
+	* include/lrl.h: Changed member name.
+
+2003-04-18 16:02  edwards
+
+	* lib/lrl/LRL_main.c: Now includes dime operations.
+
+2003-04-18 16:02  edwards
+
+	* lib/Makefile.am: Stopped using LRL_dummy.c and use instead new
+	  LRL_main.c
+
+2003-04-17 22:30  detar
+
+	* lib/qio/: QIO_open_read.c, QIO_open_write.c: Improved a comment
+	  line and practicing CVS - CD.
+
+2003-04-17 15:02  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-04-17 15:01  edwards
+
+	* lib/Makefile.am: Added QMP_CFLAGS.
+
+2003-04-17 14:40  edwards
+
+	* lib/qio/QIO_open_read.c: Bug fix. Copy latsize pointer instead of
+	  layout->latsize.
+
+2003-04-17 14:34  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_open_write.c: Bug fix. Latsize
+	  pointer copied instead of value. Now malloc space and free in
+	  close routines.  Initialize volfmt to QIO_SINGLEFILE - was not
+	  initialized.
+
+2003-04-17 14:33  edwards
+
+	* lib/qio/: QIO_close_read.c, QIO_close_write.c: Added free of
+	  layout->latsize.
+
+2003-04-17 14:30  edwards
+
+	* include/qio.h: Changed PARALLEL_READ to 0.
+
+2003-04-17 13:08  edwards
+
+	* include/: dml.h, qio.h: Changed (not-very consistent) use of
+	  enums with #defines
+
+2003-04-17 12:47  edwards
+
+	* include/dml.h, lib/dml/DML_get_sitelist.c, lib/dml/DML_scalar.c,
+	  lib/dml/DML_utils.c, lib/lrl/LRL_dummy.c,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_close_write.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  lib/xml/XML_dummy.c: Added include files and some prototypes.
+
+2003-04-17 11:45  edwards
+
+	* include/dml.h, include/lrl.h, lib/dml/DML_stream_in.c,
+	  lib/dml/DML_stream_out.c, lib/dml/DML_utils.c,
+	  lib/lrl/LRL_dummy.c: Added const's around int coords to make
+	  compilers happy.
+
+2003-04-16 23:45  edwards
+
+	* include/qio.h: Added const int coords[] to factor functions to
+	  make C++ happy.
+
+2003-04-16 23:44  edwards
+
+	* lib/qio/: QIO_read.c, QIO_utils.c, QIO_write.c: Added const int
+	  coords[] to factory functions to make C++ happy.
+
+2003-04-16 20:36  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-04-16 01:06  edwards
+
+	* include/xml.h: Added C++ include guards.
+
+2003-04-15 21:14  edwards
+
+	* configure: Induced changes.
+
+2003-04-15 21:12  edwards
+
+	* lib/Makefile.am: Changed vpath and lrl paths
+
+2003-04-15 21:11  edwards
+
+	* Makefile.am: Added configure of other_libs
+
+2003-04-15 21:08  edwards
+
+	* other_libs/Makefile.am: Builds other_libs
+
+2003-04-15 21:08  edwards
+
+	* configure.ac: Moved around other_libs again.
+
+2003-04-15 21:06  edwards
+
+	* configure.ac: Moved around c-dime.
+
+2003-04-15 17:10  edwards
+
+	* lib/qio/: QIO_open_read.c, QIO_open_write.c: Small fixes.
+
+2003-04-15 17:09  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-04-15 17:09  edwards
+
+	* include/: dml.h, lrl.h, qio.h: Fixes.
+
+2003-04-15 01:25  edwards
+
+	* configure: Induced changes.
+
+2003-04-15 01:24  edwards
+
+	* lib/lrl/LRL_main.c: Added some dime stuff.
+
+2003-04-15 01:23  edwards
+
+	* include/lrl.h: Turn on dime.
+
+2003-04-15 01:22  edwards
+
+	* lib/Makefile.am: Added INC path for dime.
+
+2003-04-15 00:21  edwards
+
+	* aclocal.m4: Induced changes.
+
+2003-04-15 00:20  edwards
+
+	* lib/Makefile.am: Added vpath for dime includes.
+
+2003-04-14 11:49  tag qdp1-1-9
+
+2003-04-14 11:49  edwards
+
+	* lib/Makefile.am: Tried to add in paths to dime.
+
+2003-04-14 11:49  edwards
+
+	* include/lrl.h: Commented out dime stuff for now.
+
+2003-04-13 01:29  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-04-13 01:29  edwards
+
+	* configure.ac: Added Makefile generation.
+
+2003-04-13 01:28  edwards
+
+	* AUTHORS, COPYING, INSTALL, NEWS: Autotools required files.
+
+2003-04-13 01:23  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-04-13 01:22  edwards
+
+	* Makefile.am: Fixes.
+
+2003-04-13 01:22  edwards
+
+	* configure.ac: More changes.
+
+2003-04-13 00:49  edwards
+
+	* acinclude.m4: Changed to use C instead of C++.
+
+2003-04-13 00:48  edwards
+
+	* config/depcomp: Install script.
+
+2003-04-13 00:34  edwards
+
+	* include/Makefile.am: Include file support.
+
+2003-04-13 00:34  edwards
+
+	* lib/: Makefile.am, dml/Makefile.am, lrl/Makefile.am,
+	  qio/Makefile.am, xml/Makefile.am: Moved makefile support into
+	  qio/lib/Makefile.am
+
+2003-04-13 00:27  edwards
+
+	* config/: install-sh, missing, mkinstalldirs: Added install
+	  scripts.
+
+2003-04-13 00:26  edwards
+
+	* acinclude.m4: Carried over from qdp++.
+
+2003-04-13 00:24  edwards
+
+	* lib/dml/: DML_parscalar.c, DML_qmp.c, DML_scalar.c,
+	  DML_vanilla.c: Renamed files.
+
+2003-04-12 21:55  edwards
+
+	* Makefile.am, lib/Makefile.am, lib/dml/Makefile.am: Still working
+	  on these.
+
+2003-04-12 11:45  edwards
+
+	* README, configure.ac, lib/dml/Makefile, lib/dml/Makefile.am,
+	  lib/lrl/Makefile, lib/lrl/Makefile.am, lib/qio/Makefile,
+	  lib/qio/Makefile.am, lib/xml/Makefile, lib/xml/Makefile.am: Start
+	  of autotools support. Not working yet.
+
+2003-04-07 23:53  edwards
+
+	* include/lrl.h: Changes to support DIME.
+
+2003-04-07 23:53  edwards
+
+	* lib/lrl/LRL_main.c: Start of LRL program.
+
+2003-04-01 15:01  edwards
+
+	* include/dml.h, include/lrl.h, include/qio.h, include/xml.h,
+	  lib/dml/DML_get_sitelist.c, lib/dml/DML_qmp.c,
+	  lib/dml/DML_stream_in.c, lib/dml/DML_stream_out.c,
+	  lib/dml/DML_utils.c, lib/dml/DML_vanilla.c, lib/dml/Makefile,
+	  lib/lrl/LRL_dummy.c, lib/lrl/Makefile, lib/qio/Makefile,
+	  lib/qio/QIO_close_read.c, lib/qio/QIO_close_write.c,
+	  lib/qio/QIO_open_read.c, lib/qio/QIO_open_write.c,
+	  lib/qio/QIO_read.c, lib/qio/QIO_utils.c, lib/qio/QIO_write.c,
+	  lib/xml/Makefile, lib/xml/XML_dummy.c: Initial version.
+

@@ -1,0 +1,108 @@
+Miscellany
+==========
+  It appears that one now needs autoconf-2.58 and automake-1.7.8 to 
+compile QDP++. I have placed these into
+
+/home/bj/QDP++_dependency_sources
+
+on qcdochost0.
+
+Building and installing libxml2
+===============================
+
+In order to compile QDP++ you need to compile libxml2.
+I have placed a source tarball for libxml2 (v2.6.6) in 
+
+/home/bj/QDP++_dependency_sources/libxml2-2.6.6.tar.gz
+
+You can configure it with  the configure_libxml.sh in this 
+directory. You may wish to edit this script to change the 
+value of the --prefix argument to ./configure to specify
+your own installation directory. Configure with:
+
+./configure_libxml.sh
+
+Then to build you need to set up the QOS environment using 
+for bash:
+
+. /qcdoc/sfw/qos/devel/QMP_v2/scripts/setup.sh
+
+or for tcsh:
+
+source /qcdoc/sfw/qos/devel/QMP_v2/scripts/setup.csh
+
+Build the library with:
+
+gmake
+
+The build should fail after the library and test executables are built, 
+when trying to build the documentation. This is because libxml tries to use
+itself to build the documentation.  This failure is because in building 
+the documentation examples, libxml tries to link against features I have
+disabled during configuration. This failure is harmless from the point
+of view of building.
+
+Next install the library with:
+
+gmake install
+
+The installation will also fail for the same reason as above. However,
+the library will have already been installed. 
+
+Congratulations. You have now built and installed the libxml2 library.
+
+Building and installing QDP++
+=============================
+
+Obtain the source for QDP++ and untar it. I usually prefer to build
+out of the source tree, so parallel with the source directory I do
+
+mkdir -p build_qdp++/single
+cd build_qdp++/single
+
+Configure by running the configure_qdp++.sh script in this directory.
+This configures for single precision... To do double you need
+to change the --enable-precision flag to be --enable-precision=double
+You may also want to change the location of the --prefix specified installation
+directory, and the location of the source tree.
+Once done editing run:
+
+./configure_qdp++.sh
+
+Then build with:
+
+gmake
+
+Note I see lots of warnings to do with the redefinition of assert (which
+Pete no doubt redefined from its original incarnation)
+
+Once the code is built, go to 
+
+examples 
+
+and build some apps. I have tried:
+
+	t_mesplq   --  Works fine
+        t_blas     --  Works fine but BLAS is slow
+        t_qio      --  Works Fine
+
+The configure_qdp++.sh script for the now puts everything into EDRAM.
+This can cause problems by failing if the local lattice volumes are too big.
+If you want to build a version that goes into DDR use the configure_qdp++_ddr.sh
+script (slower but should work)
+
+The configure_qdp++_bagelblas_edram.sh script configures for EDRAM and
+BAGEL routines for real (ie non-complex) BLAS (vaxpy-s etc) for LatticeDiracFermions.
+
+The configure_qdp++_bagelblas_ddr.sh script configures for DDR and 
+BAGEL routines for real BLAS for LatticeDiracFermions
+
+	
+
+
+
+
+
+
+
+

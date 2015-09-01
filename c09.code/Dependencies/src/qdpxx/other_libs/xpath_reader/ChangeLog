@@ -1,0 +1,930 @@
+2006-06-23 16:15  tag adat1-25-0
+
+2006-06-23 16:15  tag qdp1-20-8
+
+2006-06-23 16:15  tag qdp1-20-8-pre1
+
+2006-06-23 16:15  tag qdp1-20-8-pre2
+
+2006-06-23 16:15  bjoo
+
+	* include/xml_simplewriter.h, lib/xml_simplewriter.cc: Patched
+	  xm_simplewriter to write longer floats and even longer doubles
+
+2006-03-15 14:17  tag adat1-19-0
+
+2006-03-15 14:17  tag adat1-20-0
+
+2006-03-15 14:17  tag adat1-21-0
+
+2006-03-15 14:17  tag adat1-22-0
+
+2006-03-15 14:17  tag adat1-23-0
+
+2006-03-15 14:17  tag adat1-24-0
+
+2006-03-15 14:17  tag qdp1-20-2
+
+2006-03-15 14:17  tag qdp1-20-3
+
+2006-03-15 14:17  tag qdp1-20-3-pre3
+
+2006-03-15 14:17  tag qdp1-20-3pre1
+
+2006-03-15 14:17  tag qdp1-20-3pre2
+
+2006-03-15 14:17  tag qdp1-20-4
+
+2006-03-15 14:17  tag qdp1-20-5
+
+2006-03-15 14:17  tag qdp1-20-6
+
+2006-03-15 14:17  tag qdp1-20-7
+
+2006-03-15 14:17  kostas
+
+	* include/xml_array.h: added some math funcs
+
+2006-02-23 19:00  tag adat1-18-0
+
+2006-02-23 19:00  tag qdp1-20-1
+
+2006-02-23 19:00  tag xpath-reader-1-4-0
+
+2006-02-23 19:00  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2006-02-23 18:59  edwards
+
+	* NEWS, configure.ac: Changed to 1.4.0
+
+2006-02-23 10:53  bjoo
+
+	* examples/replace_xpath.cc: replace_xpath.cc
+
+2006-02-23 10:41  tag qdp1-20-0
+
+2006-02-23 10:41  bjoo
+
+	* examples/Makefile.am, include/basic_xpath_reader.h,
+	  lib/basic_xpath_reader.cc: Added set function to XML Readers to
+	  allow replacement of expression at a given Xpath
+
+2005-10-17 00:30  tag adat1-15-2
+
+2005-10-17 00:30  tag adat1-16-0
+
+2005-10-17 00:30  tag adat1-16-1
+
+2005-10-17 00:30  tag adat1-16-2
+
+2005-10-17 00:30  tag adat1-16-3
+
+2005-10-17 00:30  tag adat1-17-0
+
+2005-10-17 00:30  tag qdp1-16-2
+
+2005-10-17 00:30  tag qdp1-16-3
+
+2005-10-17 00:30  tag qdp1-17-0
+
+2005-10-17 00:30  tag qdp1-17-1
+
+2005-10-17 00:30  tag qdp1-17-2
+
+2005-10-17 00:30  tag qdp1-18-0
+
+2005-10-17 00:30  tag qdp1-18-1
+
+2005-10-17 00:30  tag qdp1-18-2
+
+2005-10-17 00:30  tag qdp1-18-3
+
+2005-10-17 00:30  tag qdp1-19-0
+
+2005-10-17 00:30  tag xpath-reader-1-3-2
+
+2005-10-17 00:30  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-10-17 00:30  edwards
+
+	* include/basic_xpath_reader.h, lib/basic_xpath_reader.cc: Moved
+	  inline functions to lib file.
+
+2005-10-17 00:29  edwards
+
+	* NEWS, configure.ac: Changed to version 1.3.2
+
+2005-06-29 15:24  tag LIVTAG_1
+
+2005-06-29 15:24  tag LIVTAG_2
+
+2005-06-29 15:24  tag adat1-13-0
+
+2005-06-29 15:24  tag adat1-13-10
+
+2005-06-29 15:24  tag adat1-13-11
+
+2005-06-29 15:24  tag adat1-13-12
+
+2005-06-29 15:24  tag adat1-13-13
+
+2005-06-29 15:24  tag adat1-13-14
+
+2005-06-29 15:24  tag adat1-13-9
+
+2005-06-29 15:24  tag adat1-14-0
+
+2005-06-29 15:24  tag adat1-14-1
+
+2005-06-29 15:24  tag adat1-15-0
+
+2005-06-29 15:24  tag adat1-15-1
+
+2005-06-29 15:24  tag qdp-1-14-4
+
+2005-06-29 15:24  tag qdp-1-14-4_pre1
+
+2005-06-29 15:24  tag qdp1-14-1
+
+2005-06-29 15:24  tag qdp1-14-2
+
+2005-06-29 15:24  tag qdp1-14-3
+
+2005-06-29 15:24  tag qdp1-14-4
+
+2005-06-29 15:24  tag qdp1-14-5
+
+2005-06-29 15:24  tag qdp1-15-0
+
+2005-06-29 15:24  tag qdp1-15-1
+
+2005-06-29 15:24  tag qdp1-15-2
+
+2005-06-29 15:24  tag qdp1-15-3
+
+2005-06-29 15:24  tag qdp1-15-4
+
+2005-06-29 15:24  tag qdp1-16-0
+
+2005-06-29 15:24  tag qdp1-16-1
+
+2005-06-29 15:24  edwards
+
+	* examples/: print_nodeset.cc, print_xpath.cc: Split into two.
+
+2005-06-29 15:23  edwards
+
+	* examples/Makefile.am: Added print_nodeset.cc
+
+2005-06-16 07:58  tag adat1-13-5
+
+2005-06-16 07:58  tag adat1-13-6
+
+2005-06-16 07:58  tag adat1-13-7
+
+2005-06-16 07:58  tag adat1-13-8
+
+2005-06-16 07:58  tag qdp1-13-1
+
+2005-06-16 07:58  tag qdp1-14-0
+
+2005-06-16 07:58  bjoo
+
+	* Makefile.am, lib/Makefile.am, include/Makefile.am,
+	  examples/Makefile.am: flopcounts Makefile.ams first
+
+2005-06-13 04:37  bjoo
+
+	* configure: AR in xpath_reader
+
+2005-06-07 07:35  bjoo
+
+	* configure.ac: Added AC_CHECK_TOOL to look for AR in QDP++ and
+	  XPathReader
+
+2005-05-16 20:46  tag adat1-13-3
+
+2005-05-16 20:46  tag adat1-13-4
+
+2005-05-16 20:46  tag qdp1-12-3
+
+2005-05-16 20:46  tag qdp1-12-4
+
+2005-05-16 20:46  tag qdp1-12-5
+
+2005-05-16 20:46  tag qdp1-13-0
+
+2005-05-16 20:46  tag xpath-reader-1-3-1
+
+2005-05-16 20:46  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-05-16 20:42  edwards
+
+	* NEWS: Info on 1.3.1
+
+2005-05-16 20:41  edwards
+
+	* include/xml_array.h: New comparisons of arrays.
+
+2005-05-15 17:43  edwards
+
+	* examples/print_xpath.cc: Changed to fall back to Basic xpath
+	  reader.
+
+2005-04-27 15:50  tag adat1-12-0
+
+2005-04-27 15:50  tag adat1-12-1
+
+2005-04-27 15:50  tag adat1-12-2
+
+2005-04-27 15:50  tag adat1-13-1
+
+2005-04-27 15:50  tag adat1-13-2
+
+2005-04-27 15:50  tag qdp1-12-1
+
+2005-04-27 15:50  tag qdp1-12-2
+
+2005-04-27 15:50  tag xpath-reader-1-3-0
+
+2005-04-27 15:50  edwards
+
+	* NEWS: Info on 1.3.0
+
+2005-04-27 15:49  edwards
+
+	* include/: array.h, array_type.h, attribute.h, document.h,
+	  tcomplex.h: Renamed files to have unique xml prefix.
+
+2005-04-27 15:48  edwards
+
+	* examples/print_xpath.cc, examples/xpath_reader_test.cc,
+	  include/Makefile.am, include/basic_xpath_reader.h,
+	  include/xml_array.h, include/xml_array_type.h,
+	  include/xml_array_writer.h, include/xml_attribute.h,
+	  include/xml_document.h, include/xml_schemawriter.h,
+	  include/xml_simpleschemawriter.h, include/xml_simplewriter.h,
+	  include/xml_struct_writer.h, include/xml_tcomplex.h,
+	  include/xml_writer.h, include/xpath_reader.h, lib/attribute.cc,
+	  lib/xml_struct_writer.cc: Renamed files to have unique xml
+	  prefix. Put namespaces around Array and TComplex.
+
+2005-04-27 11:05  tag adat1-11-1
+
+2005-04-27 11:05  tag xpath-reader-1-2-3
+
+2005-04-27 11:05  edwards
+
+	* NEWS: Info on 1.2.3.
+
+2005-04-19 12:43  tag adat1-11-0
+
+2005-04-19 12:43  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-04-19 12:43  edwards
+
+	* examples/Makefile.am: Make new print_xpath a bin_PROGRAMS
+
+2005-04-19 12:42  edwards
+
+	* examples/print_xpath.cc: Simple program to print xpath's
+
+2005-03-29 08:26  bjoo
+
+	* include/attribute.h, lib/xml_simplewriter.cc: Removed using
+	  namespace std from simplewriter and  headers in some places as it
+	  conflicted with something on a sun. Replaced with suitable std::
+	  prefixes
+
+2005-02-28 11:46  tag adat1-10-0
+
+2005-02-28 11:46  tag adat1-8-0
+
+2005-02-28 11:46  tag adat1-9-0
+
+2005-02-28 11:46  tag adat1-9-1
+
+2005-02-28 11:46  tag pre-qdp1-12-0
+
+2005-02-28 11:46  tag qdp1-12-0
+
+2005-02-28 11:46  bjoo
+
+	* include/array.h, include/basic_xpath_reader.h,
+	  include/xml_array_writer.h, include/xml_struct_writer.h,
+	  lib/xml_struct_writer.cc: t_qio now much more stable on QCDOC
+	  after QIO string handling fixes
+
+2005-02-04 13:44  tag adat1-6-1
+
+2005-02-04 13:44  tag adat1-7-0
+
+2005-02-04 13:44  tag qdp1-11-8
+
+2005-02-04 13:44  dgr
+
+	* aclocal.m4, configure: Updated baryons code  - still some
+	  problems with file I/O
+
+2005-01-22 08:21  tag qdp1-11-2
+
+2005-01-22 08:21  tag qdp1-11-3
+
+2005-01-22 08:21  tag qdp1-11-4
+
+2005-01-22 08:21  tag qdp1-11-5
+
+2005-01-22 08:21  tag qdp1-11-6
+
+2005-01-22 08:21  tag qdp1-11-7
+
+2005-01-22 08:21  bjoo
+
+	* aclocal.m4, configure: Hopefully makefiles are all in order
+
+2004-12-09 08:18  tag ante-IO-dox
+
+2004-12-09 08:18  tag bj_QIO_fixes
+
+2004-12-09 08:18  bjoo
+
+	* aclocal.m4, configure: Added some const cast-aways in
+	  qdp_parscalar_layout.cc to make QCDOC compilation happy. Added
+	  QCDOC installation instructions
+
+2004-11-21 23:09  tag qdp1-11-0
+
+2004-11-21 23:09  edwards
+
+	* configure.ac: Changed to version 1.3
+
+2004-11-21 23:09  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-11-21 23:08  edwards
+
+	* include/Makefile.am, lib/Makefile.am: Removed VPATH's and
+	  explicit dependencies on .h files. Now make distcheck works.
+
+2004-11-01 12:40  tag qdp1-10-6
+
+2004-11-01 12:40  tag xpath-reader-1-2-2
+
+2004-11-01 12:40  edwards
+
+	* include/basic_xpath_reader.h: Switched from direct write of
+	  strings to write of char* in internal primitive debug.
+
+2004-05-05 10:37  tag adat1-4-0
+
+2004-05-05 10:37  tag adat1-4-1
+
+2004-05-05 10:37  tag adat1-4-2
+
+2004-05-05 10:37  tag adat1-4-3
+
+2004-05-05 10:37  tag adat1-4-4
+
+2004-05-05 10:37  tag adat1-5-0
+
+2004-05-05 10:37  tag adat1-6-0
+
+2004-05-05 10:37  tag pre_qdp1-10-0
+
+2004-05-05 10:37  tag qdp1-10-0
+
+2004-05-05 10:37  tag qdp1-10-1
+
+2004-05-05 10:37  tag qdp1-10-2
+
+2004-05-05 10:37  tag qdp1-10-3
+
+2004-05-05 10:37  tag qdp1-10-4
+
+2004-05-05 10:37  tag qdp1-10-5
+
+2004-05-05 10:37  tag qdp1-8-4
+
+2004-05-05 10:37  tag qdp1-8-5
+
+2004-05-05 10:37  tag qdp1-8-6
+
+2004-05-05 10:37  tag qdp1-9-0
+
+2004-05-05 10:37  tag qdp1-9-1
+
+2004-05-05 10:37  tag qdp1-9-2
+
+2004-05-05 10:37  tag qdp1-9-3
+
+2004-05-05 10:37  tag qdp1-9-4
+
+2004-05-05 10:37  bjoo
+
+	* include/: xml_array_writer.h, xml_simplewriter.h,
+	  xml_struct_writer.h: Eliminated GCC warnings that arose with the
+	  \-Wall option, except in QIO...
+
+2004-04-27 15:29  tag qdp1-8-2
+
+2004-04-27 15:29  tag qdp1-8-3
+
+2004-04-27 15:29  tag xpath-reader-1-2-1
+
+2004-04-27 15:29  edwards
+
+	* NEWS: Info.
+
+2004-04-27 07:22  bjoo
+
+	* examples/Makefile.am, examples/basic_xpath_reader_test3.cc,
+	  examples/edwards.xml, include/basic_xpath_reader.h,
+	  lib/basic_xpath_reader.cc: Added features for Robert
+
+2004-02-22 23:42  tag pre_qdp1-7-7
+
+2004-02-22 23:42  tag qcd1-7-2
+
+2004-02-22 23:42  tag qdp1-7-3
+
+2004-02-22 23:42  tag qdp1-7-4
+
+2004-02-22 23:42  tag qdp1-7-5
+
+2004-02-22 23:42  tag qdp1-7-6
+
+2004-02-22 23:42  tag qdp1-7-7
+
+2004-02-22 23:42  tag qdp1-7-8
+
+2004-02-22 23:42  tag qdp1-7-9
+
+2004-02-22 23:42  tag qdp1-8-0
+
+2004-02-22 23:42  tag qdp1-8-1
+
+2004-02-22 23:42  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-18 21:47  tag adat1-2-1
+
+2004-02-18 21:47  tag adat1-3-0
+
+2004-02-18 21:47  tag pre_adat1-2-1
+
+2004-02-18 21:47  tag qdp1-7-1
+
+2004-02-18 21:47  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-18 21:40  edwards
+
+	* examples/xpath_reader_test.cc: Yikes. With all the inlining this
+	  code can take a LONG time to compile with my favorite compiler
+	  options. Just ifdef out some stuff to get it under control.
+
+2004-02-10 17:21  tag adat1-2-0
+
+2004-02-10 17:21  tag qcd1-6-14
+
+2004-02-10 17:21  tag qdp-1-6-12-prestrip
+
+2004-02-10 17:21  tag qdp-1-6-13
+
+2004-02-10 17:21  tag qdp1-7-0
+
+2004-02-10 17:21  kostas
+
+	* include/array.h: Added some statistics routines an mres
+	  computation and some operators for the Array class
+
+2004-01-29 12:54  bjoo
+
+	* examples/Makefile.am, lib/Makefile.am: Munged makefile.am-s to
+	  stop repeating compiler flags all the time
+
+2003-12-12 07:40  tag qdp1-6-11
+
+2003-12-12 07:40  tag qdp1-6-12
+
+2003-12-12 07:40  bjoo
+
+	* aclocal.m4, configure: Autoheader keeps f***ing up the
+	  qdp_config.h.in file and removes my nice ifdef guards...
+
+2003-10-20 09:14  tag adat1-1-0
+
+2003-10-20 09:14  tag pre_qdp1-6-10
+
+2003-10-20 09:14  tag qdp1-6-10
+
+2003-10-20 09:14  tag qdp1-6-5
+
+2003-10-20 09:14  tag qdp1-6-6
+
+2003-10-20 09:14  tag qdp1-6-7
+
+2003-10-20 09:14  tag qdp1-6-8
+
+2003-10-20 09:14  tag qdp1-6-9
+
+2003-10-20 09:14  bjoo
+
+	* include/document.h: now has call to xmlFreeDoc in Destructor
+
+2003-10-13 12:24  tag adat1-0-1
+
+2003-10-13 12:24  tag qdp1-6-0
+
+2003-10-13 12:24  tag qdp1-6-1
+
+2003-10-13 12:24  tag qdp1-6-2
+
+2003-10-13 12:24  tag qdp1-6-3
+
+2003-10-13 12:24  tag qdp1-6-4
+
+2003-10-13 12:24  edwards
+
+	* include/array.h: Small change. Make sure to resize in operator=
+	  if sizes do not agree, not just when the orig. size =0.
+
+2003-09-10 08:07  tag adat1-0-0
+
+2003-09-10 08:07  tag qdp1-5-12
+
+2003-09-10 08:07  tag qdp1-5-13
+
+2003-09-10 08:07  tag qdp1-5-14
+
+2003-09-10 08:07  tag qdp1-5-15
+
+2003-09-10 08:07  bjoo
+
+	* examples/basic_xpath_reader_test.cc,
+	  examples/basic_xpath_reader_test2.cc, examples/foo.xml,
+	  examples/xpath_reader_test.cc, include/basic_xpath_reader.h,
+	  include/xpath_reader.h: Fixed Namespaces I think -- at least
+	  temporarily. No more namespace snarfing
+
+2003-09-10 05:25  bjoo
+
+	* include/: basic_xpath_reader.h, xpath_reader.h: Basic XPath
+	  Reader now clones via an open() call
+
+2003-09-09 16:29  tag qdp1-5-11
+
+2003-09-09 16:29  bjoo
+
+	* examples/foo.xml, examples/xpath_reader_test.cc,
+	  include/basic_xpath_reader.h, include/document.h,
+	  lib/Makefile.am, lib/basic_xpath_reader.cc, lib/document.cc:
+	  Phew-- that was a messy merge for no good reason
+
+2003-09-08 16:49  edwards
+
+	* examples/: basic_xpath_reader_test.cc,
+	  basic_xpath_reader_test2.cc, xpath_reader_test.cc: Removed
+	  initXPath().
+
+2003-09-08 16:49  edwards
+
+	* include/basic_xpath_reader.h: Moved off initXPath to
+	  basic_xpath_reader.cc .
+
+2003-09-08 16:48  edwards
+
+	* include/document.h: Moved off guts to document.cc
+
+2003-09-08 16:48  edwards
+
+	* lib/basic_xpath_reader.cc: Moved in initXPath to only live here.
+
+2003-09-08 16:48  edwards
+
+	* lib/document.cc: Moved off guts of document.h to here.
+
+2003-09-08 16:47  edwards
+
+	* lib/Makefile.am: Added document.cc .
+
+2003-09-08 11:56  bjoo
+
+	* lib/basic_xpath_reader.cc: spelling mistake correction
+
+2003-09-08 11:56  bjoo
+
+	* include/document.h, lib/basic_xpath_reader.cc: Added some debug
+	  ifdefs
+
+2003-09-08 11:45  bjoo
+
+	* aclocal.m4, configure, examples/basic_xpath_reader_test.cc,
+	  examples/basic_xpath_reader_test2.cc,
+	  examples/xpath_reader_test.cc, include/Makefile.am,
+	  include/basic_xpath_reader.h, include/document.h,
+	  include/xpath_reader.h, lib/basic_xpath_reader.cc: Mucked about
+	  with this again
+
+2003-09-05 11:43  tag xpath-reader-1-2-0
+
+2003-09-05 11:43  bjoo
+
+	* examples/basic_xpath_reader_test.cc,
+	  examples/basic_xpath_reader_test2.cc,
+	  examples/xpath_reader_test.cc, include/basic_xpath_reader.h,
+	  include/xpath_reader.h, lib/basic_xpath_reader.cc: Added side
+	  effect free version
+
+2003-08-28 13:00  tag qdp1-5-10
+
+2003-08-28 13:00  tag qdp1-5-6
+
+2003-08-28 13:00  tag qdp1-5-7
+
+2003-08-28 13:00  tag qdp1-5-8
+
+2003-08-28 13:00  tag qdp1-5-9
+
+2003-08-28 13:00  tag xpath-reader-1-0-0
+
+2003-08-28 13:00  edwards
+
+	* lib/basic_xpath_reader.cc: Fixes, rather work arounds, for why
+	  the open(istream) sometimes doesn't work. Fixed/avoided here by
+	  using a single char reader.  Definitely not preferable!
+
+2003-08-27 15:33  edwards
+
+	* lib/basic_xpath_reader.cc: Added some missing "e"'s to "throw".
+
+2003-08-25 06:48  tag qdp1-5-3
+
+2003-08-25 06:48  tag qdp1-5-4
+
+2003-08-25 06:48  tag qdp1-5-5
+
+2003-08-25 06:48  bjoo
+
+	* examples/basic_xpath_reader_test.cc,
+	  include/basic_xpath_reader.h, include/xpath_reader.h,
+	  lib/basic_xpath_reader.cc: Addex getCurrentContextNode
+	  setCurrentContextNode and setCurrentXPath
+
+2003-08-20 05:39  tag qdp1-5-1
+
+2003-08-20 05:39  tag qdp1-5-2
+
+2003-08-20 05:39  bjoo
+
+	* aclocal.m4, configure:
+	  The modifications on aclocal, Makefile.in etc are all due to me
+	  running into automake versioning problems. Last 'creation' of
+	  these files was with automake-1.7.2 (by me)
+
+2003-07-16 21:42  tag qdp1-4-12
+
+2003-07-16 21:42  tag qdp1-4-13
+
+2003-07-16 21:42  tag qdp1-5-0
+
+2003-07-16 21:42  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-07-16 00:33  tag qdp-1-4-11
+
+2003-07-16 00:33  edwards
+
+	* include/array.h: Small cleanups.
+
+2003-07-03 08:42  edwards
+
+	* include/array.h: Removed unneed copymem stuff.
+
+2003-07-02 12:06  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-07-02 12:05  edwards
+
+	* include/array.h: Added include of iostream and made cerr
+	  std::cerr
+
+2003-06-24 05:02  bjoo
+
+	* lib/xml_struct_writer.cc: Oops -- forgot to add this.
+
+		  B
+
+2003-06-23 16:39  edwards
+
+	* lib/xml_simplewriter.cc: Commented out writing of root comment
+	  tag!
+
+2003-06-23 13:01  bjoo
+
+	* examples/Makefile.am, examples/struct_writer_test.cc,
+	  include/Makefile.am, include/array_type.h,
+	  include/xml_array_writer.h, include/xml_struct_writer.h,
+	  lib/Makefile.am: Added struct and array writers
+
+2003-06-22 18:06  edwards
+
+	* lib/xml_simplewriter.cc: Added writing tagname as diagnostic in
+	  dumpTag.
+
+2003-06-18 14:11  tag qdp1-4-10
+
+2003-06-18 14:11  tag qdp1-4-8
+
+2003-06-18 14:11  tag qdp1-4-9
+
+2003-06-18 14:11  bjoo
+
+	* include/xml_simpleschemawriter.h: Oops forgot to add this
+
+2003-06-18 14:07  bjoo
+
+	* examples/Makefile.am, examples/foo.xml,
+	  examples/schema_writer_test.cc,
+	  examples/simple_schema_writer_test.cc, include/Makefile.am,
+	  include/xml_schemawriter.h: Simple Schema Writer
+
+2003-06-02 07:35  tag qdp1-4-0
+
+2003-06-02 07:35  tag qdp1-4-0beta
+
+2003-06-02 07:35  tag qdp1-4-1
+
+2003-06-02 07:35  tag qdp1-4-2
+
+2003-06-02 07:35  tag qdp1-4-3
+
+2003-06-02 07:35  tag qdp1-4-4
+
+2003-06-02 07:35  tag qdp1-4-5
+
+2003-06-02 07:35  tag qdp1-4-6
+
+2003-06-02 07:35  tag qdp1-4-7
+
+2003-06-02 07:35  tag xpath1-0-0
+
+2003-06-02 07:35  bjoo
+
+	* aclocal.m4, configure, examples/Makefile.am,
+	  examples/schema_writer_test.cc: First attempt at inserting a
+	  schema_writer
+
+2003-06-02 07:35  bjoo
+
+	* include/: Makefile.am, xml_schemawriter.h, xml_simplewriter.h,
+	  xml_writer.h: Added xml_schemawriter Makefile*
+
+2003-05-13 00:21  tag pre_qdp1-3-0
+
+2003-05-13 00:21  tag qdp1-3-0
+
+2003-05-13 00:21  tag qdp1-3-1
+
+2003-05-13 00:21  tag qdp1-3-2
+
+2003-05-13 00:21  tag qdp1-3-3
+
+2003-05-13 00:21  edwards
+
+	* lib/basic_xpath_reader.cc: Apparent fixes. Version of libxml not
+	  quite in agreement with docs? Changed around handling of
+	  xmlNodeDump and xmlBufferOutput.
+
+2003-05-12 07:30  bjoo
+
+	* examples/basic_xpath_reader_test2.cc,
+	  include/basic_xpath_reader.h, include/xpath_reader.h,
+	  lib/basic_xpath_reader.cc: Added Functions to dump contents of
+	  reader into ostreams for Robert
+
+2003-05-12 02:05  edwards
+
+	* include/xml_simplewriter.h, lib/xml_simplewriter.cc: Prologue
+	  function now is const on object.
+
+2003-05-12 02:05  edwards
+
+	* include/basic_xpath_reader.h, lib/basic_xpath_reader.cc: Added
+	  printRoot functions.
+
+2003-05-10 18:44  tag qdp1-2-5
+
+2003-05-10 18:44  edwards
+
+	* include/basic_xpath_reader.h, lib/basic_xpath_reader.cc: Added
+	  (currently empty) printRoot function.
+
+2003-05-10 18:43  edwards
+
+	* include/xml_simplewriter.h, lib/xml_simplewriter.cc: Added
+	  (currently empty) writeXML function.
+
+2003-05-09 02:03  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-05-09 02:01  edwards
+
+	* configure.ac, examples/Makefile.am, lib/Makefile.am,
+	  acinclude.m4: Removed QDP-isms.
+
+2003-05-08 20:58  edwards
+
+	* include/qdp_xpath_reader.h: Not needed.
+
+2003-05-08 14:51  edwards
+
+	* include/xml_simplewriter.h, include/xml_writer.h,
+	  lib/xml_simplewriter.cc, lib/xml_writer.cc: Split xml_writer.h
+	  into xml_simplewriter.h with xml_writer.h a derived class. Moved
+	  code from xml_writer.cc to xml_simplewriter.cc
+
+2003-05-08 14:51  edwards
+
+	* configure: Induced changes.
+
+2003-05-08 14:49  edwards
+
+	* aclocal.m4: Induced version.
+
+2003-05-08 14:49  edwards
+
+	* include/Makefile.am: Added  xml_simplewriter.h
+
+2003-05-08 14:48  edwards
+
+	* lib/Makefile.am: Added xml_simplewriter.cc
+
+2003-05-05 13:59  bjoo
+
+	* examples/simple_writer_test.cc: String normalization improved
+
+2003-05-05 13:52  bjoo
+
+	* examples/simple_writer_test.cc, include/xml_writer.h,
+	  lib/xml_writer.cc: Indentation is better now
+
+2003-05-05 12:22  bjoo
+
+	* examples/Makefile.am, examples/foo.xml,
+	  examples/simple_writer_test.cc, include/Makefile.am,
+	  include/array.h, include/tcomplex.h, include/xml_writer.h,
+	  lib/Makefile.am, lib/basic_xpath_reader.cc, lib/xml_writer.cc:
+	  Added writer class
+
+2003-04-29 07:58  bjoo
+
+	* aclocal.m4, configure, examples/Makefile.am: Something about
+	  AM_LDFLAGS my automake at home didnae like
+
+2003-04-29 07:45  bjoo
+
+	* aclocal.m4, configure, examples/Makefile.am, include/Makefile.am,
+	  include/attribute.h, lib/Makefile.am, lib/attribute.cc: Atted
+	  attribute -- attribute.h & attribute.cc
+
+2003-04-27 23:02  edwards
+
+	* include/qdp_xpath_reader.h: Temporary file.
+
+2003-04-26 23:33  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2003-04-26 23:28  edwards
+
+	* AUTHORS, COPYING, INSTALL, Makefile.am, README, ToDoList,
+	  acinclude.m4, aclocal.m4, configure, configure.ac, NEWS: Version
+	  1.0
+
+2003-04-26 23:26  edwards
+
+	* config/depcomp, config/install-sh, config/missing,
+	  config/mkinstalldirs, examples/Makefile.am,
+	  examples/basic_xpath_reader_test.cc,
+	  examples/basic_xpath_reader_test2.cc, examples/foo.xml,
+	  examples/schema_test-v0.5.xml, examples/xpath_reader_test.cc,
+	  include/Makefile.am, include/array.h,
+	  include/basic_xpath_reader.h, include/tcomplex.h,
+	  include/xpath_reader.h, lib/Makefile.am,
+	  lib/basic_xpath_reader.cc: Version 1.0 of xpath reader.
+

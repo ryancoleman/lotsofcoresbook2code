@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+
+<t_exotic>
+  <lattis>
+    <Nd>4</Nd>
+    <Nc>3</Nc>
+    <nrow>2 2 2 2</nrow>
+  </lattis>
+</t_exotic>

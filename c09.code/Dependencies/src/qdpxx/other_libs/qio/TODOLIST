@@ -1,0 +1,15 @@
+QIO package
+
+int types:
+-- fix headers so that public ones do not need or include fixed integer
+   types so we can safely redefine these if necessary.
+
+DML wish list
+-- Strip mine or vectorize the multifile in/out so groups
+   of contiguous data can be "put" or "get" in one call.
+
+Additions needed
+-- stdin, stdout, stderr: Global broadcast scanf and printf 
+-- Pure XML I/O  (same as global string scanf or printf?)
+
+

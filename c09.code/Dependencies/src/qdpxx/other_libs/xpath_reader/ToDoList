@@ -1,0 +1,12 @@
+Things to do:
+
+1) Generic:
+========
+
+iv)  Schema validation -- when libxml can handle it -- or never
+	we'll see.
+
+2) Writer API
+=============
+	This will need doing eventually.
+

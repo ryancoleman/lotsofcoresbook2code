@@ -1,0 +1,7 @@
+9/28/2009	Robert Edwards
+	Version 1.1: Added some fileExists functions. Jie fixed some critical bugs
+        in V1.0. Also added a multiple DB wrapper over one DB - used only in RDONLY.
+
+2/19/2009	Jie Chen
+	Version 0.95 (Beta): First beta release
+

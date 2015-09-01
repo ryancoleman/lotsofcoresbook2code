@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+
+<root_for_output3>
+  <this_is_an_array>
+    <elem>
+      <x>-42</x>
+    </elem>
+    <elem>
+      <x>-42</x>
+    </elem>
+    <elem>
+      <x>-42</x>
+    </elem>
+  </this_is_an_array>
+</root_for_output3>

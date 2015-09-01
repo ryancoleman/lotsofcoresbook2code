@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<foo>
+   <bar>
+      <fred>5</fred>
+      <jim>hello</jim>
+      <george>5.e-5</george>
+   </bar>
+</foo>
+

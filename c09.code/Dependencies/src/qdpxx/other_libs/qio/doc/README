@@ -1,0 +1,4 @@
+Postscript documentation can be made by typing 'make' in this directory.
+You may need to edit Makefile to set the LATEX variable properly.
+
+Html documentation can be built with 'make html'.

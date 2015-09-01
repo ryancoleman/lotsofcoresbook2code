@@ -1,0 +1,8 @@
+1) Test non-byte swaping if possible (works: byte order are stored on page)
+2) test replace code (done)
+3) test memory (ok, valgrind complains non-initialized memories on all pages)
+4) sequential read (ok)
+5) multiple threaded read
+6) user info and configuration information (done)
+7) Check get with user supplied memory (good)
+

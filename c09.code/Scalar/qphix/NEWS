@@ -1,0 +1,12 @@
+3/5/2015 (Balint Joo): Changed the interface to solvers, to accept isign parameter. For CG this lets one choose the operator either as M^\dagger M or M M^\dagger. This will allow CGNE vs CGNR implementations later. For BiCG it enables one to perform either the M or the M^\dagger solve without creating a new solver object, Also added checkerboard only spinor packers. Solvers which work only on one checkerboard can now just allocate cb-s worth of spinors in the calling wrappers.
+
+2/4/2015 (Balint Joo, Diptorup Deb): Added BlueGene/Q intrinsics (QPX) and the ability to build without QDP++ (but still need QMP)
+
+9/11/2014 (Balint Joo): Initial public release
+9/25/2014 (Diptorup Deb, Balint Joo): 
+	 *)  Added scalar code from qphix-codegen (FIXME: errant prefetches currently ignored via macro)
+         *)  Added fixes to compile with GCC toolchain, compiles on BG/Q with BGClang (clang 3.6.0(trunk)) at ALCF:
+             --enable-cean configur option: Enable Cilk Array Notation (enable for use with ICC and GCC-4.9, default: disabled )
+             --enable-mm-malloc :  Enable _mm_malloc for allocating aligned memory (default enabled) 
+             - clang doesn't like restrict keyword: Make this better with -Drestrict=__restrict__ in CXXFLAGS
+         

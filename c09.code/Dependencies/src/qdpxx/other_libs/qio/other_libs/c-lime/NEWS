@@ -1,0 +1,26 @@
+08/30/2007 -- Robert Edwards
+
+	Version 1.3.1. Added some more diagnostic output.
+
+05/18/2005 -- Carleton Detar
+
+	Version 1.2.1. Small cleanups in Makefile.am's - removed VPATH.
+
+04/28/2005 -- Carleton Detar
+
+	Version 1.2. Updates for partfile format.
+
+01/07/2005 -- Carleton Detar
+
+	Version 1.1. Add a variety of LIME utilities. Add LIME
+	documentation. Change LIME file byte counter types to off_t and
+	change QIO/LRL to conform. Update QIO documentation. A little
+	housekeeping.
+
+11/01/2004 -- Carleton Detar
+
+	Version 1.1.0. New support for QIO.
+
+10/18/2004 -- Robert Edwards
+
+	Version 1.0.0. Stable version

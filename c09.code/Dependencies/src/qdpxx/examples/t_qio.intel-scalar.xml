@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+
+
+<t_qio>
+  <Singlefile>
+    <Writing>
+      <file_xml>
+<file_fred>
+  <d>17</d>
+  <file_sally>
+    <rob>-5</rob>
+  </file_sally>
+</file_fred>
+
+      </file_xml>
+      <open_to.bad>false</open_to.bad>
+      <second_to.bad>false</second_to.bad>
+      <Record2>
+        <record_xml>
+<record_fred>
+  <d>17</d>
+  <record_sally>
+    <rob>-5</rob>
+  </record_sally>
+</record_fred>
+
+        </record_xml>
+        <atest>272.746</atest>
+      </Record2>
+      <third_to.bad>false</third_to.bad>
+      <Record3>
+        <record_xml>
+<record_fred>
+  <d>17</d>
+  <record_sally>
+    <rob>-5</rob>
+  </record_sally>
+</record_fred>
+
+        </record_xml>
+        <btest>2338.39</btest>
+      </Record3>
+      <fourth_to.bad>false</fourth_to.bad>
+      <Record4>
+        <record_xml>
+<record_fred>
+  <d>17</d>
+  <record_sally>
+    <rob>-5</rob>
+  </record_sally>
+</record_fred>
+
+        </record_xml>
+        <fsum>9197.15</fsum>
+      </Record4>
+    </Writing>
+    <Reading>
+      <file_xml><file_fred>
+  <d>17</d>
+  <file_sally>
+    <rob>-5</rob>
+  </file_sally>
+</file_fred>
+
+      </file_xml>
+      <open_from.bad>false</open_from.bad>
+      <second_from.bad>false</second_from.bad>
+      <Record2>
+        <record_xml><record_fred>
+      <d>17</d>
+      <record_sally>
+        <rob>-5</rob>
+      </record_sally>
+    </record_fred>
+
+        </record_xml>
+        <atest>272.746</atest>
+      </Record2>
+      <third_from.bad>false</third_from.bad>
+      <Record3>
+        <record_xml><record_fred>
+      <d>17</d>
+      <record_sally>
+        <rob>-5</rob>
+      </record_sally>
+    </record_fred>
+
+        </record_xml>
+        <btest>2338.39</btest>
+      </Record3>
+      <fourth_from.bad>false</fourth_from.bad>
+      <Record4>
+        <record_xml><record_fred>
+      <d>17</d>
+      <record_sally>
+        <rob>-5</rob>
+      </record_sally>
+    </record_fred>
+
+        </record_xml>
+        <fsum>9197.15</fsum>
+      </Record4>
+    </Reading>
+  </Singlefile>
+  <Multifile>
+    <Writing>
+      <file_xml>
+<file_fred>
+  <d>17</d>
+  <file_sally>
+    <rob>-5</rob>
+  </file_sally>
+</file_fred>
+
+      </file_xml>
+      <open_to.bad>false</open_to.bad>
+      <second_to.bad>false</second_to.bad>
+      <Record2>
+        <record_xml>
+<record_fred>
+  <d>17</d>
+  <record_sally>
+    <rob>-5</rob>
+  </record_sally>
+</record_fred>
+
+        </record_xml>
+        <atest>267.865</atest>
+      </Record2>
+      <third_to.bad>false</third_to.bad>
+      <Record3>
+        <record_xml>
+<record_fred>
+  <d>17</d>
+  <record_sally>
+    <rob>-5</rob>
+  </record_sally>
+</record_fred>
+
+        </record_xml>
+        <btest>2292.56</btest>
+      </Record3>
+      <fourth_to.bad>false</fourth_to.bad>
+      <Record4>
+        <record_xml>
+<record_fred>
+  <d>17</d>
+  <record_sally>
+    <rob>-5</rob>
+  </record_sally>
+</record_fred>
+
+        </record_xml>
+        <fsum>9280.24</fsum>
+      </Record4>
+    </Writing>
+    <Reading>
+      <file_xml><file_fred>
+      <d>17</d>
+      <file_sally>
+        <rob>-5</rob>
+      </file_sally>
+    </file_fred>
+
+      </file_xml>
+      <open_from.bad>false</open_from.bad>
+      <second_from.bad>false</second_from.bad>
+      <Record2>
+        <record_xml><record_fred>
+      <d>17</d>
+      <record_sally>
+        <rob>-5</rob>
+      </record_sally>
+    </record_fred>
+
+        </record_xml>
+        <atest>267.865</atest>
+      </Record2>
+      <third_from.bad>false</third_from.bad>
+      <Record3>
+        <record_xml><record_fred>
+      <d>17</d>
+      <record_sally>
+        <rob>-5</rob>
+      </record_sally>
+    </record_fred>
+
+        </record_xml>
+        <btest>2292.56</btest>
+      </Record3>
+      <fourth_from.bad>false</fourth_from.bad>
+      <Record4>
+        <record_xml><record_fred>
+      <d>17</d>
+      <record_sally>
+        <rob>-5</rob>
+      </record_sally>
+    </record_fred>
+
+        </record_xml>
+        <fsum>9280.24</fsum>
+      </Record4>
+    </Reading>
+  </Multifile>
+</t_qio>

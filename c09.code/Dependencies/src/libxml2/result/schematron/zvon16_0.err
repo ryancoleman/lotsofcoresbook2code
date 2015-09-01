@@ -1,0 +1,3 @@
+./test/schematron/zvon16.sct:17: element rule: Schemas parser error : Failed to compile context expression catowner[@pet]
+./test/schematron/zvon16.sct:24: element rule: Schemas parser error : Failed to compile context expression catowner[@pet]
+Schematron schema ./test/schematron/zvon16.sct failed to compile

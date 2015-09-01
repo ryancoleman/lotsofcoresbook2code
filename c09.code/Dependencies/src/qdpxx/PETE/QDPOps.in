@@ -1,0 +1,531 @@
+unaryOps
+-----
+  TAG = "FnAdjoint"
+  FUNCTION = "adj"
+  EXPR = "return (adj(a));"
+  COMMENTA = "//! Hermitian adjoint"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnConjugate"
+  FUNCTION = "conj"
+  EXPR = "return (conj(a));"
+  COMMENTA = "//! Complex conjugate"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTranspose"
+  FUNCTION = "transpose"
+  EXPR = "return (transpose(a));"
+  COMMENTA = "//! Transpose"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTransposeColor"
+  FUNCTION = "transposeColor"
+  EXPR = "return (transposeColor(a));"
+  COMMENTA = "//! Transpose in Color Space Only"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTransposeSpin"
+  FUNCTION = "transposeSpin"
+  EXPR = "return (transposeSpin(a));"
+  COMMENTA = "//! Transpose in Spin Space Only"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTrace"
+  FUNCTION = "trace"
+  EXPR = "return (trace(a));"
+  COMMENTA = "//! Trace on all fiber indices"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnRealTrace"
+  FUNCTION = "realTrace"
+  EXPR = "return (realTrace(a));"
+  COMMENTA = "//! Real part of the trace on all fiber indices"
+  COMMENTB = "/*! @ingroup group1
+  @sa real()
+  @relates QDPType */"
+-----
+  TAG = "FnImagTrace"
+  FUNCTION = "imagTrace"
+  EXPR = "return (imagTrace(a));"
+  COMMENTA = "//! Imag part of the trace on all fiber indices"
+  COMMENTB = "/*! @ingroup group1
+  @sa imag()
+  @relates QDPType */"
+-----
+  TAG = "FnTraceColor"
+  FUNCTION = "traceColor"
+  EXPR = "return (traceColor(a));"
+  COMMENTA = "//! Trace on only color indices"
+  COMMENTB = "/*! @ingroup group1
+  @sa trace(), TraceColor()
+  @relates QDPType */"
+-----
+  TAG = "FnTraceSpin"
+  FUNCTION = "traceSpin"
+  EXPR = "return (traceSpin(a));"
+  COMMENTA = "//! Trace on only spin indices"
+  COMMENTB = "/*! @ingroup group1
+  @sa trace()
+  @relates QDPType */"
+-----
+  TAG = "FnReal"
+  FUNCTION = "real"
+  EXPR = "return (real(a));"
+  COMMENTA = "//! Real part"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnImag"
+  FUNCTION = "imag"
+  EXPR = "return (imag(a));"
+  COMMENTA = "//! Imag part"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnLocalNorm2"
+  FUNCTION = "localNorm2"
+  EXPR = "return (localNorm2(a));"
+  COMMENTA = "//! InnerProduct on only fiber indices"
+  COMMENTB = "/*! L2 norm only fiber indices
+  @sa adj(), trace()
+  @return (trace(adj(l)*l)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTimesI"
+  FUNCTION = "timesI"
+  EXPR = "return (timesI(a));"
+  COMMENTA = "//! Multiply by imaginary i"
+  COMMENTB = "/*! @sa operator*()
+  @return (i * a)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTimesMinusI"
+  FUNCTION = "timesMinusI"
+  EXPR = "return (timesMinusI(a));"
+  COMMENTA = "//! Multiply by minus imaginary i"
+  COMMENTB = "/*! @sa operator*()
+  @return (-i * a)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSeedToFloat"
+  FUNCTION = "seedToFloat"
+  EXPR = "return (seedToFloat(a));"
+  COMMENTA = "//! Convert a seed (big int) to a float"
+  COMMENTB = "/*! Used only by random number generator
+  @return a float in [0,1] from a seed (big int)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir0Plus"
+  FUNCTION = "spinProjectDir0Plus"
+  EXPR = "return (spinProjectDir0Plus(a));"
+  COMMENTA = "//! Spin projection in direction 0"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 + gamma[0])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir1Plus"
+  FUNCTION = "spinProjectDir1Plus"
+  EXPR = "return (spinProjectDir1Plus(a));"
+  COMMENTA = "//! Spin projection in direction 1"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 + gamma[1])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir2Plus"
+  FUNCTION = "spinProjectDir2Plus"
+  EXPR = "return (spinProjectDir2Plus(a));"
+  COMMENTA = "//! Spin projection in direction 2"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 + gamma[2])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir3Plus"
+  FUNCTION = "spinProjectDir3Plus"
+  EXPR = "return (spinProjectDir3Plus(a));"
+  COMMENTA = "//! Spin projection in direction 3"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 + gamma[3])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir0Minus"
+  FUNCTION = "spinProjectDir0Minus"
+  EXPR = "return (spinProjectDir0Minus(a));"
+  COMMENTA = "//! Spin projection in direction 0"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 - gamma[0])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir1Minus"
+  FUNCTION = "spinProjectDir1Minus"
+  EXPR = "return (spinProjectDir1Minus(a));"
+  COMMENTA = "//! Spin projection in direction 1"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 - gamma[1])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir2Minus"
+  FUNCTION = "spinProjectDir2Minus"
+  EXPR = "return (spinProjectDir2Minus(a));"
+  COMMENTA = "//! Spin projection in direction 2"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 - gamma[2])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinProjectDir3Minus"
+  FUNCTION = "spinProjectDir3Minus"
+  EXPR = "return (spinProjectDir3Minus(a));"
+  COMMENTA = "//! Spin projection in direction 3"
+  COMMENTB = "/*! Returns half-spin vector from a full spin vector source
+  @param l  full spin vector
+  @return (1 - gamma[3])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir0Plus"
+  FUNCTION = "spinReconstructDir0Plus"
+  EXPR = "return (spinReconstructDir0Plus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 3"
+  COMMENTB = "/*! Returns full spin vector from a half spin vector source
+  @param l  half-spin vector
+  @return (1 + gamma[0])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir1Plus"
+  FUNCTION = "spinReconstructDir1Plus"
+  EXPR = "return (spinReconstructDir1Plus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 1"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 + gamma[1])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir2Plus"
+  FUNCTION = "spinReconstructDir2Plus"
+  EXPR = "return (spinReconstructDir2Plus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 2"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 + gamma[2])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir3Plus"
+  FUNCTION = "spinReconstructDir3Plus"
+  EXPR = "return (spinReconstructDir3Plus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 3"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 + gamma[3])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir0Minus"
+  FUNCTION = "spinReconstructDir0Minus"
+  EXPR = "return (spinReconstructDir0Minus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 0"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 - gamma[0])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir1Minus"
+  FUNCTION = "spinReconstructDir1Minus"
+  EXPR = "return (spinReconstructDir1Minus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 1"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 - gamma[1])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir2Minus"
+  FUNCTION = "spinReconstructDir2Minus"
+  EXPR = "return (spinReconstructDir2Minus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 2"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 - gamma[2])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSpinReconstructDir3Minus"
+  FUNCTION = "spinReconstructDir3Minus"
+  EXPR = "return (spinReconstructDir3Minus(a));"
+  COMMENTA = "//! Spin reconstruct in direction 3"
+  COMMENTB = "/*! Returns full-spin vector from a half-spin vector source
+  @param l  half-spin vector
+  @return (1 - gamma[3])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnChiralProjectPlus"
+  FUNCTION = "chiralProjectPlus"
+  EXPR = "return (chiralProjectPlus(a));"
+  COMMENTA = "//! Apply P_+ = 0.5*(1+gamma_5)"
+  COMMENTB = "/*! Returns full-spin vector 
+  @param l  full-spin vector
+  @return 0.5*(1 + gamma[5])*l
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnChiralProjectMinus"
+  FUNCTION = "chiralProjectMinus"
+  EXPR = "return (chiralProjectMinus(a));"
+  COMMENTA = "//! Apply P_ = -0.5*(1-gamma_5)"
+  COMMENTB = "/*! Returns full-spin vector 
+  @param l  full-spin vector
+  @return 0.5*(1 - gamma[5])*l
+  @ingroup group1
+  @relates QDPType */"
+
+binaryOps
+-----
+  TAG = "FnCmplx"
+  FUNCTION = "cmplx"
+  EXPR = "return (cmplx(a,b));"
+  COMMENTA = "//! Build a complex from two reals"
+  COMMENTB = "/*! Returns a complex value
+  @param l  real (a reality scalar)
+  @param r  real (a reality scalar)
+  @return (l + i*r)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnOuterProduct"
+  FUNCTION = "outerProduct"
+  EXPR = "return (outerProduct(a,b));"
+  COMMENTA = "//! Construct the outer product of two vectors"
+  COMMENTB = "/*! 
+  Constructs the outer product of two vectors within the same vector space
+  @param l  vector
+  @param r  vector
+  @return \f$(l_i * r_j^*)_{ij}\f$
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnColorVectorContract"
+  FUNCTION = "colorVectorContract"
+  EXPR = "return (colorVectorContract(a,b));"
+  COMMENTA = "//! Sum over colorvector indices"
+  COMMENTB = "/*! 
+  Contract two colorvectors with no conjugation
+  @param l  vector
+  @param r  vector
+  @return \f$\sum_i l_i * r_i\f$
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnColorCrossProduct"
+  FUNCTION = "colorCrossProduct"
+  EXPR = "return (colorCrossProduct(a,b));"
+  COMMENTA = "//! Cross product of two Nc=3 color vectors"
+  COMMENTB = "/*! 
+  Antisymmetric combination of two Nc=3 color vectors
+  @param l  vector
+  @param r  vector
+  @return \f$target^{i} = \sum_{jk}\epsilon^{i j k}*source1^{j}*source2^{k}\f$
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnLocalInnerProduct"
+  FUNCTION = "localInnerProduct"
+  EXPR = "return (localInnerProduct(a,b));"
+  COMMENTA = "//! InnerProduct on only fiber indices"
+  COMMENTB = "/*! L2 norm only fiber indices
+  @sa adj(), trace()
+  @return (trace(adj(l)*r)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnLocalInnerProductReal"
+  FUNCTION = "localInnerProductReal"
+  EXPR = "return (localInnerProductReal(a,b));"
+  COMMENTA = "//! Real part of innerproduct on only fiber indices"
+  COMMENTB = "/*! L2 norm only fiber indices
+  @sa adj(), trace(), real()
+  @return (real(trace(adj(l)*r))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnQuarkContract13"
+  FUNCTION = "quarkContract13"
+  EXPR = "return (quarkContract13(a,b));"
+  COMMENTA = "//! Contraction for quark propagators"
+  COMMENTB = "/*! 
+   epsilon contract 2 quark propagators and return a quark propagator.
+   This is used for diquark constructions. Eventually, it could handle larger
+   Nc. 
+   The numbers represent which spin index to sum over.
+   
+   The sources and targets must all be propagators but not
+   necessarily of the same lattice type. Effectively, one can use
+   this to construct an anti-quark from a di-quark contraction. In
+   explicit index form, the operation  QuarkContract13 does
+   
+   \f$target^{k' k}_{\alpha\beta} =
+     \epsilon^{i j k}\epsilon^{i' j' k'}* source1^{i i'}_{\rho\alpha}* source2^{j j'}_{\rho\beta}\f$
+   
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnQuarkContract14"
+  FUNCTION = "quarkContract14"
+  EXPR = "return (quarkContract14(a,b));"
+  COMMENTA = "//! Contraction for quark propagators"
+  COMMENTB = "/*! 
+   epsilon contract 2 quark propagators and return a quark propagator.
+   This is used for diquark constructions. Eventually, it could handle larger
+   Nc. 
+   The numbers represent which spin index to sum over.
+   
+   The sources and targets must all be propagators but not
+   necessarily of the same lattice type. Effectively, one can use
+   this to construct an anti-quark from a di-quark contraction. In
+   explicit index form, the operation  QuarkContract14 does
+   
+  \f$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\alpha}*source2^{j j'}_{\beta\rho}\f$
+
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnQuarkContract23"
+  FUNCTION = "quarkContract23"
+  EXPR = "return (quarkContract23(a,b));"
+  COMMENTA = "//! Contraction for quark propagators"
+  COMMENTB = "/*! 
+   epsilon contract 2 quark propagators and return a quark propagator.
+   This is used for diquark constructions. Eventually, it could handle larger
+   Nc. 
+   The numbers represent which spin index to sum over.
+   
+   The sources and targets must all be propagators but not
+   necessarily of the same lattice type. Effectively, one can use
+   this to construct an anti-quark from a di-quark contraction. In
+   explicit index form, the operation  QuarkContract23 does
+   
+  \f$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\alpha\rho}*source2^{j j'}_{\rho\beta}\f$
+
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnQuarkContract24"
+  FUNCTION = "quarkContract24"
+  EXPR = "return (quarkContract24(a,b));"
+  COMMENTA = "//! Contraction for quark propagators"
+  COMMENTB = "/*! 
+   epsilon contract 2 quark propagators and return a quark propagator.
+   This is used for diquark constructions. Eventually, it could handle larger
+   Nc. 
+   The numbers represent which spin index to sum over.
+   
+   The sources and targets must all be propagators but not
+   necessarily of the same lattice type. Effectively, one can use
+   this to construct an anti-quark from a di-quark contraction. In
+   explicit index form, the operation  QuarkContract24 does
+   
+  \f$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\alpha}*source2^{j j'}_{\beta\rho}\f$
+
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnQuarkContract12"
+  FUNCTION = "quarkContract12"
+  EXPR = "return (quarkContract12(a,b));"
+  COMMENTA = "//! Contraction for quark propagators"
+  COMMENTB = "/*! 
+   epsilon contract 2 quark propagators and return a quark propagator.
+   This is used for diquark constructions. Eventually, it could handle larger
+   Nc. 
+   The numbers represent which spin index to sum over.
+   
+   The sources and targets must all be propagators but not
+   necessarily of the same lattice type. Effectively, one can use
+   this to construct an anti-quark from a di-quark contraction. In
+   explicit index form, the operation  QuarkContract12 does
+   
+  \f$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\rho\rho}*source2^{j j'}_{\alpha\beta}\f$
+
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnQuarkContract34"
+  FUNCTION = "quarkContract34"
+  EXPR = "return (quarkContract34(a,b));"
+  COMMENTA = "//! Contraction for quark propagators"
+  COMMENTB = "/*! 
+   epsilon contract 2 quark propagators and return a quark propagator.
+   This is used for diquark constructions. Eventually, it could handle larger
+   Nc. 
+   The numbers represent which spin index to sum over.
+   
+   The sources and targets must all be propagators but not
+   necessarily of the same lattice type. Effectively, one can use
+   this to construct an anti-quark from a di-quark contraction. In
+   explicit index form, the operation  QuarkContract34 does
+   
+  \f$target^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*source1^{i i'}_{\alpha\beta}*source2^{j j'}_{\rho\rho}\f$
+
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"
+
+trinaryOps
+-----
+  TAG = "FnColorContract"
+  FUNCTION = "colorContract"
+  EXPR = "return (colorContract(a,b,c));"
+  COMMENTA = "//! Contraction for color objects"
+  COMMENTB = "/*! 
+   epsilon contract 3 color primitives and return a primitive scalar.
+   Eventually, it could handle larger Nc. 
+   
+   The sources and targets must all be of the same primitive type (a matrix or vector)
+   but not necessarily of the same lattice type. In
+   explicit index form, the operation  colorContract does
+   
+   \f$target =
+     \epsilon^{i j k}\epsilon^{i' j' k'}* source1^{i i'}* source2^{j j'}*source3^{k k'}\f$
+   or
+   \f$target =
+     \epsilon^{i j k}* source1^{i}* source2^{j}*source3^{k}\f$
+   
+   and is (currently) only appropriate for Nc=3  (or SU(3)).
+  @ingroup group1
+  @relates QDPType */"

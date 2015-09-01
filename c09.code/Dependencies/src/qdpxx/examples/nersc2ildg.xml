@@ -1,0 +1,8 @@
+<?xml version='1.0'?>
+<nersc2ildg>
+  <NERSC_file>./t_nersc.cfg</NERSC_file>
+  <ILDG_file>./t_ildg.lime</ILDG_file>
+  <dataLFN>lfn://foo.bar/jimmy</dataLFN>
+  <nrow>4 4 4 4</nrow>
+  <output_size>64</output_size>
+</nersc2ildg>

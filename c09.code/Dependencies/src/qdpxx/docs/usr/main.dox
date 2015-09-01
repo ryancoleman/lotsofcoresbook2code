@@ -1,0 +1,76 @@
+//$Id: main.dox,v 1.3 2005-11-19 15:00:29 edwards Exp $
+
+/*!
+  \mainpage 
+<center>
+<h1>User Guide</h1>
+</center>
+\anchor usrguidemain
+This is the User Guide for the QDP++ data parallel interface for QCD.
+
+
+- \ref whatitis 
+ - \ref itwasntme
+
+- \ref datatypes
+ - \ref typestructure
+ - \ref genericnames
+ - \ref colorprecisiontypes
+ - \ref colorprecisionuniform
+ - \ref colorprecbreak
+
+- \ref qdpfuncs
+ - \ref secinit_qdp
+ - \ref layout
+ - \ref dataparfuncs	 
+ - \ref createdestroy
+ - \ref secarrays 
+ - \ref secfuncobj
+ - \ref subsets
+ - \ref  secshifts
+ - \ref  tempentryexit
+
+- \ref secsimpleio
+  - \ref basicio
+  - \ref textio
+  - \ref secxmlio
+  - \ref secxmldoc
+  - \ref secbinaryio
+
+- \ref secqio
+  - \ref  secfileformat
+  - \ref qioapi 
+
+- \ref build
+  - \ref headers
+  - \ref configure 
+  - \ref  nonuni
+
+- \ref secspin
+
+- \ref secimplementation
+
+- \ref secsupported
+  - \ref secsubsets
+  - \ref secinfix
+  - \ref seccfuncs
+  - \ref secfuncs
+  - \ref secinplace
+  - \ref secbroadcasts 
+  - \ref secreductions 
+  - \ref secpeek
+  - \ref secotherfuncs	
+  - \ref subtypeops 
+
+- \ref secdetails
+  - \ref headerfiles
+  - \ref unaryops
+  - \ref typeconv 
+  - \ref complexops 
+  - \ref compextrins
+  - \ref binopconst 
+  - \ref binopfield
+  - \ref boolbit 
+  - \ref reductions 
+  - \ref fills 
+*/

@@ -1,0 +1,10 @@
+aclocal.m4
+configure
+filehash/Makefile.in
+Makefile.in
+src/Makefile.in
+autom4te.cache
+src/filedb_config_internal.h.in~
+src/filedb_config_internal.h.in
+
+

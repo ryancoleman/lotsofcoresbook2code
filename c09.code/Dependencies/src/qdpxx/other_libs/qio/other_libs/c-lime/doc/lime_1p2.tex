@@ -1,0 +1,640 @@
+% -*-LaTeX-*- document LIME API (C Language Binding) version 1.1
+%
+\documentclass{article}
+\begin{document}
+\title{
+   LIME \\{\large Version 1.2}
+}
+\author{ SciDAC Software Coordinating Committee}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This document describes the LIME file format, LIME API, and some LIME
+utilities.
+
+LIME (which can stand for ``Lattice QCD Interchange Message
+Encapsulation'' or more generally, ``Large Internet Message
+Encapsulation'') is a simple packaging scheme for combining records
+containing ASCII and/or binary data.  Its ancestors are the Unix {\tt
+cpio} and {\tt tar} formats and the Microsoft Corporation DIME (Direct
+Internet Message Encapsulation) format.  It is simpler and allows
+record sizes up to $2^{63}$ bytes, making chunking unnecessary for the
+foreseeable future.  Unlike {\tt tar} and {\tt cpio}, the records are
+not associated with Unix files.  They are identified only by a
+record-type (LIME type) character string, analogous to the familiar
+MIME application type.
+
+The LIME software package consists of a C-language API for creating,
+reading, writing, and manipulating LIME files and a small set of
+utilities for examining, packing and unpacking LIME files.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{LIME format}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A LIME file consists of one or more LIME messages.  Each message
+consists of one or more LIME records.  The grouping of records into
+messages is at the discretion of the user.  For example, a message
+might contain a binary numeric record and some associated ASCII
+metadata records for describing it.  Several such messages could
+appear in a single file.
+
+Details of the LIME format are given in the Appendix.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{LIME API}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Here is an example code that creates a LIME file called {\tt
+test\_file} with a single record.  The message is just an ASCII
+string.
+
+\begin{verbatim}
+#include <stdio.h>
+#include <lime.h>
+#include <string.h>
+
+int main(){
+  FILE *fp;
+  LimeWriter *w;
+  LimeRecordHeader *h;
+  char message[] = "LIME test message";
+  off_t bytes = strlen( message );
+  int MB_flag, ME_flag;
+
+  fp = fopen( "test_file", "w" );
+  w = limeCreateWriter( fp );
+  MB_flag = 1; ME_flag = 1;
+  h = limeCreateHeader( MB_flag, ME_flag, "lime-test-text", bytes );
+  limeWriteRecordHeader( h, w );
+  limeDestroyHeader( h );
+  limeWriteRecordData( message, &bytes, w );
+  limeDestroyWriter( w );
+  fclose( fp );
+  return 0;  
+}
+\end{verbatim}
+
+As shown above, the user is responsible for opening the LIME file with
+ANSI {\tt fopen} and closing it, if necessary, with ANSI {\tt fclose}.
+Next, it is necessary to call for creating the LIME writer structure
+for the output stream.  The pointer to the writer structure is a
+handle that is required for all LIME operations on this stream.  For
+each record, the user then calls to create and write the LIME header
+before calling for writing the record data.  The data may be written
+piecemeal.  Each successive call to write record data appends to the
+record.  After all records are written, the user must destroy the
+writer to complete the file.
+
+Reading proceeds in a similar manner.  Unlike the ANSI {\tt FILE}
+structure, the reader and writer structures are different.
+
+\paragraph{Create a LIME reader}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|LimeReader* limeCreateReader(FILE *fp);| \\
+\hline
+  Example  & \verb|r = limeCreateReader(fp);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+A NULL return value signals an error.
+
+
+\paragraph{Destroy a LIME reader}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|void limeDestroyReader(LimeReader *r);| \\
+\hline
+  Example  & \verb|limeDestroyReader(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+
+\paragraph{Go to the next LIME record and read the header}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototype      & \verb|int limeReaderNextRecord(LimeReader *r);| \\
+\hline
+  Example  & \verb|limeReaderNextRecord(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Returns status codes {\tt LIME\_SUCCESS}, {\tt LIME\_ERR\_PARAM}, {\tt LIME\_EOF},
+{\tt LIME\_ERR\_READ}, and {\tt LIME\_ERR\_SEEK}.  (See table below).
+
+\paragraph{Accessor for the MB flag in the input header}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeReaderMBFlag(LimeReader *r);| \\
+\hline
+  Example  & \verb|MB_flag = limeReaderMBFlag(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Returns $-1$ if {\tt r} is null.
+
+\paragraph{Accessor for the ME flag in the input header}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeReaderMEFlag(LimeReader *r);| \\
+\hline
+  Example  & \verb|ME_flag = limeReaderMEFlag(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Returns $-1$ if {\tt r} is null.
+
+\paragraph{Accessor for the LIME type string in the input header}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|char *limeReaderType(LimeReader *r);| \\
+\hline
+  Example  & \verb|lime_type = limeReaderType(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Returns NULL if {\tt r} is null.
+
+\paragraph{Accessor for the number of data bytes specified in the input header}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|off_t limeReaderBytes(LimeReader *r);| \\
+\hline
+  Example  & \verb|tot_bytes = limeReaderBytes(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Returns $-1$ if {\tt r} is null.
+
+\paragraph{Accessor for the number of padding bytes in the input record}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|size_t limeReaderPadBytes(LimeReader *r);| \\
+\hline
+  Example  & \verb|pad_bytes = limeReaderBytes(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+It is unlikely that a user will ever need this accessor, since padding
+is done internally.  Returns $-1$ if {\tt r} is null.
+
+\paragraph{Read data from the current LIME record}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeReaderReadData(void *dest, off_t *n, LimeReader *r);| \\
+\hline
+  Example  & \verb|status = limeReaderReadData(dest, &n, r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+The next {\tt n} bytes of data are read to memory starting from the
+address {\tt dest}.  The byte count {\tt n} is set to the number
+of bytes actually read.  Return status codes are {\tt LIME\_SUCCESS},
+{\tt LIME\_EOR}, {\tt LIME\_ERR\_READ}, and {\tt LIME\_ERR\_SEEK}.
+
+\paragraph{Create a LIME writer}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|LimeWriter* limeCreateWriter(FILE *fp);| \\
+\hline
+  Example  & \verb|w = limeCreateWriter(fp);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Returns NULL if an error occurs.
+
+\paragraph{Destroy a LIME writer}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|LimeWriter* limeDestroyWriter(FILE *fp);| \\
+\hline
+  Example  & \verb|w = limeDestroyWriter(fp);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Closes the file.  If the last record was not marked as the end of a
+message, writes a terminal null record.  Return codes are {\tt
+LIME\_SUCCESS} and {\tt LIME\_ERR\_CLOSE}.
+
+\paragraph{Destroy a LIME writer}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|LimeWriter* limeDestroyWriter(FILE *fp);| \\
+\hline
+  Example  & \verb|status = limeDestroyWriter(fp);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Closes the file.  In the present version, if the last record was not
+marked as the end of a message, writes a terminal null record.  Return
+codes are {\tt LIME\_SUCCESS} and {\tt LIME\_ERR\_CLOSE}.
+
+\paragraph{Create a LIME header for writing}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|LimeRecordHeader *limeCreateHeader(int MB_flag,| \\
+                 & \verb|int ME_flag, char *type, off_t rec_len);| \\
+\hline
+  Example  & \verb|h = limeCreateHeader(MB_flag, ME_flag, lime_type, n);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Creates a header for writing.  The LIME type string is copied to the
+header blindly by LIME, so is entirely at the user's discretion.  The
+record length \verb|rec_len| is the total byte count of the record to
+be written, exclusive of any padding.  On error, a NULL value is
+returned.
+
+\paragraph{Destroy a LIME header}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|void limeDestroyHeader(LimeRecordHeader *h);| \\
+\hline
+  Example  & \verb|limeDestroyHeader(h);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+
+\paragraph{Write the header for a LIME record}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeWriteRecordHeader( LimeRecordHeader *h, LimeWriter* w);| \\
+\hline
+  Example  & \verb|status = limeWriteRecordHeader(h, w);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+The header structure pointed to by {\bf h} must first be created by
+{\tt limeCreateHeader}.  Return codes are {\tt LIME\_SUCCESS}, {\tt
+LIME\_ERR\_PARAM}, {\tt LIME\_ERR\_HEADER\_NEXT}, {\tt LIME\_ERR\_MBME} and
+{\tt LIME\_ERR\_WRITE}.
+
+\paragraph{Write data}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeWriteRecordData( void *source, off_t *nbytes,  LimeWriter* w);| \\
+\hline
+  Example  & \verb|status = limeWriteRecordData(source, &nbytes, w);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Writes {\tt nbytes} of data from the buffer pointed to by {\tt
+source}.  The actual number of bytes written is returned in {\tt
+nbytes}.  Return codes are {\tt LIME\_SUCCESS}, {\tt LIME\_ERR\_PARAM},
+and {\tt LIME\_ERR\_WRITE}.
+
+\paragraph{Support for random access reading}
+
+Several utilities are provided for making it possible to do random
+access reading from a LIME file.
+
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|off_t limeGetReaderPointer(LimeReader *r);| \\
+\hline
+  Example  & \verb|offset = limeGetReaderPointer(r);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Get the ANSI file pointer to the next LIME record (current pointer if
+no record header has been read).
+
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeSetReaderPointer(LimeReader *r, off_t offset);| \\
+\hline
+  Example  & \verb|status = limeSetReaderPointer(r, offset);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+The offset must point to the beginning of a LIME record, or the next
+read operation will result in an error.  Sets the ANSI file pointer to
+the specified absolute byte position and resets the reader state
+accordingly.
+
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeReaderSeek(LimeReader *r, off_t offset, int whence);| \\
+\hline
+  Example  & \verb|status = limeReaderSeek(r, offset, whence);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Set the record payload pointer as specified by |verb|offset| within
+the current LIME record payload.  Possible values of \verb|whence| are
+\verb|SEEK_SET| or \verb|SEEK_CUR| with a behavior analogous to the
+corresponding \verb|fseeko| parameters.  With \verb|SEEK_SET| the byte
+position is specified relative to the start of the payload (offset 0).
+Seeks to a position before the beginning of the payload result in
+setting the pointer to zero.  Seeks beyond the end of the payload
+result in setting the pointer to the byte following the last byte in
+the payload.  When a record is opened the record payload pointer is
+set to zero, as would be expected.
+
+
+\paragraph{Support for random access writing}
+
+At the level of a whole LIME record, written additions to an existing
+file are done only by appending to the file.  So there are no writer
+counterparts to the set/get reader pointer calls. Since the user is
+responsible for opening the file with an ANSI \verb|fopen| call, the
+user is free to open the file for appending, in which case LIME
+records are appended to the existing file.
+
+However, random access writing is supported inside an open LIME record
+with the following function.
+
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeWriterSeek(LimeWriter *w, off_t offset, int whence);| \\
+\hline
+  Example  & \verb|status = limeWriterSeek(w, offset, whence);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+Set the record payload pointer as specified by |verb|offset| within
+the current LIME record payload.  Possible values of \verb|whence| are
+\verb|SEEK_SET| or \verb|SEEK_CUR| with a behavior analogous to the
+corresponding \verb|fseeko| parameters.  With \verb|SEEK_SET| the byte
+position is specified relative to the start of the payload (offset 0).
+Seeks to a position before the beginning of the payload result in
+setting the pointer to zero.  Seeks beyond the end of the payload
+result in setting the pointer to the byte following the last byte in
+the payload.  When a record is opened the record payload pointer is
+set to zero, as would be expected.
+
+
+\paragraph{Support for multi-threaded read and write access to a file}
+
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeReaderSetState(LimeReader *rdest, LimeReader *rsrc );| \\
+\hline
+  Example  & \verb|status = limeReaderSetState(&rdest, &rsrc);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+The reader state \verb|rdest| is copied from \verb|rsrc|.  Both
+structures must have been created by the caller.  
+
+This call makes it possible for two or more processes to open the same
+LIME file for reading.  The primary and secondary processes first open
+the file and create LIME readers.  The primary process positions the
+file according to user needs.  It then broadcasts its reader structure
+to the secondary processes.  They use this call to synchronize their
+LIME readers to the primary reader.
+
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Prototypes     & \verb|int limeWriterSetState(LimeWriter *wdest, LimeWriter *wsrc );| \\
+\hline
+  Example  & \verb|status = limeWriterSetState(&wdest, &wsrc);| \\
+   \hline
+ \end{tabular}
+\end{flushleft}
+%
+The writer state \verb|wdest| is copied from \verb|wsrc|.  Both
+structures must have been created by the caller.  
+
+The anticipated use case is analogous to that of the LIME reader.
+
+\paragraph{LIME return status codes}
+
+The following table lists return codes.  The macros are defined by the LIME
+header {\tt lime\_defs.h}.
+
+\begin{center}
+  \begin{tabular}{ll}
+LIME\_SUCCESS              &  Success status code \\
+LIME\_ERR\_PARAM            &  Bad input argument \\
+LIME\_ERR\_HEADER\_NEXT      &  A header should not be written here \\
+LIME\_ERR\_WRITE            &  A write error occurred \\
+LIME\_EOR                  &  End of Record \\
+LIME\_EOF                  &  End of File  \\
+LIME\_ERR\_READ             &  A read error occurred \\
+LIME\_ERR\_SEEK             &  A seek error occurred \\
+LIME\_ERR\_MBME             &  MB/ME flags incorrect \\
+LIME\_ERR\_CLOSE            &  Error closing file \\
+  \end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{LIME Utilities}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The {\bf examples} directory contains the following utilities:
+
+\paragraph{List the contents of a LIME file}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Usage     & \verb|lime_contents <lime_file>| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+Shows details of each record in a LIME file.  Prints the contents of
+each ASCII message.
+
+\paragraph{Create a LIME file from a list of files, one file per record}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Usage     & \verb|lime_pack <list_file> <lime_file>| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+The file with the list of files to be packed has one line for each file.
+The line gives the name (Unix path) of the file and the LIME type string.
+One record is created for each file in the order listed.  A blank line
+signifies a break between messages.  Thus the list
+%
+\begin{verbatim}
+      file1 type1
+      file2 type2
+
+      file3 type3
+\end{verbatim}
+%
+generates two LIME messages, the first containing two records with
+payloads {\tt file1} and {\tt file2} and the second consisting of a
+single record with payload {\tt file3}.
+
+\paragraph{Unpack a LIME file, creating one file for each record}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Usage     & \verb|lime_unpack <lime_file>| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+Files are created in a directory with a name constructed by appending
+{\tt .contents} to the end of the name of the LIME file.  Within that
+directory, files are given names that encode the message number,
+record number, and LIME type, as in {\tt msgnn.recnn.lime\_type},
+where {\tt nn} is a (one-based) decimal integer that counts the
+messages and records within a message in the order of occurrence.
+
+\paragraph{Extract a single LIME record}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Usage     & \verb|lime_extract_record <lime_file> <msgno> <recno>| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+Extracts the specified LIME record to standard output.  The message
+and record numbers are one-based and are counted in the order of
+occurrence.
+
+\paragraph{Create a small test LIME file}
+%
+\begin{flushleft}
+  \begin{tabular}{|l|l|}
+  \hline
+  Usage     & \verb|lime_writer_test1 <lime_file>| \\
+  \hline
+ \end{tabular}
+\end{flushleft}
+%
+
+\appendix
+\section{Binary LIME format (version 1)}
+
+A LIME file consists of any number of concatenated LIME records.  Here
+we give a detailed description of the LIME record format.
+
+The record consists of a header followed by the data with trailing
+null padding to an integer multiple of eight bytes.
+
+\begin{center}
+  \begin{tabular}{|l|}
+  \hline
+   header (144 bytes) \\
+   data (maximum $2^{63}$ bytes) \\
+   null padding (0 to 7 bytes as needed) \\
+  \hline
+  \end{tabular}
+\end{center}
+
+The 144-byte header is organized into 18 64-bit words as follows:
+
+\begin{center}
+  \begin{tabular}{|rcr|l|}
+    \hline
+    \multicolumn{3}{|c|}{words} & content \\
+    \hline
+    0 & $-$ &  0  & (see below) \\
+    1 & $-$ &  1  & data length in bytes \\
+    2 & $-$ & 17  & 128 byte LIME type (ASCII) \\
+    \hline
+  \end{tabular}
+\end{center}
+%
+The data length is the true length, exclusive of any LIME padding.
+
+The first 64-bit header word has the following content
+%
+\begin{center}
+  \begin{tabular}{|rcr|l|}
+    \hline
+    \multicolumn{3}{|c|}{bits}  & content \\
+    \hline
+       0 & $-$ &  31 & LIME magic number \\
+      32 & $-$ &  47 & LIME file version number \\
+      48 & $-$ &  48 & Message begin bit \\
+      49 & $-$ &  49 & Message end bit \\
+      50 & $-$ &  63 & Reserved \\
+    \hline
+  \end{tabular}
+\end{center}
+
+The {\tt long} integer LIME magic number ($1164413355_{10} =
+456789ab_{16}$) is used to identify a record in LIME format.  The LIME
+file version number is a {\tt short} integer.
+
+The three integer numeric values in the header, namely magic number,
+version number, and data length, are written in IEEE big-endian byte
+order for the respective data types, namely long, short, and long
+long.  The LIME package treats all user data blindly as a stream of
+bytes and writes and reads them in exactly the order given.  Thus if
+the data has numeric content for which byte ordering is important, the
+user must put it in the appropriate order.
+
+\end{document}

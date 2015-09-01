@@ -1,0 +1,9 @@
+FIXME: Configuration/Building
+	Is there a better way to configure than with customMake? Can we use autoconf or are there simply too many options?
+
+Code Generator for other actions: STAGGERED For MILC, Twisted Mass 
+
+Better testing: 
+	Currently tested through a muBench, and most rigorously through the QPhiX library
+	Test SSE, AVX2, AVX512 
+

@@ -1,0 +1,28 @@
+
+News 13/Jun/2005
+
+  If we have the bagel_qdp library, we can now use it.
+  Substitute the build_all.sh and build_functions.sh scripts
+  with build_all_bagel_qdp.sh and build_functions_bagel_qdp.sh 
+
+###
+
+To compile on the QCDOC front end:
+
+i) Compile Libxml (this is not quite turnkey since the getcwd 
+                   syscall seems to have disappeared)
+
+ii) Locate a QMP2 capable QOS (harder than you may think)
+
+iii) Edit the setup.sh script so that you wire in the right values
+for the CROSSCOMPILE_TOOLS directory (something like 
+/qcdoc/sfw/packages/v1.1/local/bin)
+
+Then edit the QOS and LIBXML directories
+
+iv) In the toplevel directory of your build 
+	source setup.sh
+	
+v) Then run configure_qdp++_ddr.sh
+
+vi) gmake; gmake install

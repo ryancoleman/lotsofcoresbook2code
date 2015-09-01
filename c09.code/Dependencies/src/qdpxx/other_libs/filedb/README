@@ -1,0 +1,44 @@
+	FFDB File Implementation on top of file hash
+	     	   Feb. 19, 2009
+
+FFDB file is a part of FFDB. It can be used without other packages such as
+ADAT. The purpose of this package is allow applications to store pair of
+data into a hash DB database. A pair of data contains a key and a datum.
+The key has to be a subclass of DBKey and the datum has to be a subclass of
+DBData. Applications should use ConfDataStoreDB class to store keys and 
+associated data.  The ConfDataStoreDB is a template class. It should be
+intantiated using one DBKey subclass and one DBData subclass. This class
+assumes that the a key template paramter has following functions defined:
+
+writeObject(),
+readObject(),
+sizeOfObject(),
+objectBuffer(),
+serialID()
+hasHashFunc()
+hasCompareFunc()
+
+In addition, two static functions with names of hash and compare. These two 
+functions serves as database hash and compare functions if applications
+have better idea how to handle their keys. If a DBKey subclass decides to
+use Berkeley DB default hash or compare functions, the class should have 
+hasHashFunc() or hasCompareFunc() return 0 respectively and should have
+empty hash and compare functions. Finally, a DBKey subclass should also
+implement '=' and '==' operators which are used inside the DBCursor class.
+
+Fortunately, a subclass of DBData has fewer functions to implement. The
+functions are:
+
+writeObject(),
+readObject(),
+sizeOfObject(),
+objectBuffer(),
+serialID()
+
+These two classes assumes there is an internal buffer converting C++ object
+into a binary form which is network byte ordered.
+
+
+See INSTALL file for installtion instructions.
+
+Send bugs and comments to chen@jlab.org

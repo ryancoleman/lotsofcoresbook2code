@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+
+<imbed_some_more>
+<imbed_some_xml>
+  <this_is_my_xml><fred>
+      <d>17</d>
+      <my_life>
+        <rob>-5</rob>
+      </my_life>
+    </fred>
+
+  </this_is_my_xml>
+</imbed_some_xml>
+
+</imbed_some_more>

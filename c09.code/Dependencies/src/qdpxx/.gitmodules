@@ -1,0 +1,12 @@
+[submodule "other_libs/libintrin"]
+	path = other_libs/libintrin
+	url = git@github.com:usqcd-software/libintrin.git
+[submodule "other_libs/xpath_reader"]
+	path = other_libs/xpath_reader
+	url = git@github.com:usqcd-software/xpath_reader.git
+[submodule "other_libs/qio"]
+	path = other_libs/qio
+	url = git@github.com:usqcd-software/qio.git
+[submodule "other_libs/filedb"]
+	path = other_libs/filedb
+	url = git@github.com:usqcd-software/filedb.git

@@ -1,0 +1,6 @@
+aclocal.m4
+config.h.in
+configure
+include/Makefile.in
+lib/Makefile.in
+Makefile.in

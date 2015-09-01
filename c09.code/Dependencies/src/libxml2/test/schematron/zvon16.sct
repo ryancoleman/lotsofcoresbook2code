@@ -1,0 +1,30 @@
+<schema xmlns="http://www.ascc.net/xml/schematron" >
+     <pattern name="Required ID">
+          <rule context="cat | dog">
+               <assert test="@id">An element of type
+                    <name/> should have an id attribute that is a unique identifier for that animal.
+               </assert>
+          </rule>
+     </pattern>
+     <pattern name="Required IDREF">
+          <rule context="catowner">
+               <assert test="@pet">An element of type
+                    <name/> should have a pet attribute.
+               </assert>
+          </rule>
+     </pattern>
+     <pattern name="IDREF should reference an ID used in the same document">
+          <rule context="catowner[@pet]">
+               <assert test="id(@pet)">An element of type
+                    <name/> should have a pet attribute that should contain a unique identifier.
+               </assert>
+          </rule>
+     </pattern>
+     <pattern name="IDREF should reference an ID of a certain element type only">
+          <rule context="catowner[@pet]">
+               <assert test="(name(id(@pet)) ='cat')">An element of type
+                    <name/> should have a pet attribute that should contain the unique identifier for a cat.
+               </assert>
+          </rule>
+     </pattern>
+</schema>

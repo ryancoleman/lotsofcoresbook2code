@@ -1,0 +1,638 @@
+//$Id: io.dox,v 1.3 2005-08-11 00:29:54 zbigniew Exp $
+/*!
+\page simpleiopage  I/O utilities
+
+\section secsimpleio Simple I/O utilities
+
+  -# \ref basicio
+  -# \ref textio
+  -# \ref secxmlio
+  -# \ref secxmldoc
+  -# \ref secbinaryio
+
+
+\subsection basicio Basic structure
+
+There are three main types of user accessible classes for simple
+file I/O - Text, XML and Binary. For each of these classes there is a
+Reader and a Writer version. Each support I/O for <em>any</em>  %QDP
+defined scalar and lattice quantity as well as the standard C++
+builtin types like \c int and \c float. These classes all
+read/write to/from one primary node in the computer, namely
+Layout::primaryNode() or node 0. Lattice quantities are read/written
+lexicographically as one contiguous field with the first index in the
+lattice size Layout::lattSize() varying the fastest.
+The XML reader functions utilize C++ exceptions 
+
+See \ref io in the %Reference Manual for the complete listing. 
+
+A record structure format is available to store both metadata and binary data.
+The metadata uses the XML format. The binary I/O functions support more advanced
+I/O mechanisms and is described in \ref secqio.
+
+The C++ standard IO streams \c cout, \c cerr and \c cin
+are, of course, provided by the language but may not work as
+expected. Namely, the output functions will write on all nodes, and
+\c cin will try to read from all nodes and fail. QDP predefined
+global objects QDPIO::cout, QDPIO::cerr, and QDPIO::cin are
+provided as replacements and will wbrite/read from only the primary
+node. Output can be selected from any 1 or all nodes for debugging.
+The %QDP implementation does not destroy the standard IO streams.
+
+\subsection textio Text Reading and Writing
+
+The global predefined objects QDPIO::cout, 
+QDPIO::cerr,
+and QDPIO::cin are used like their C++ standard IO streams 
+counterparts. All %QDP scalar site fields (e.g., non-lattice) fields
+can be read and written with these streams. For example, one can
+read data and be assured the data is appropriately distributed to
+all nodes.
+
+For example:
+
+\verbatim
+multi1d<int> my_array(4);                            
+QDPIO::cin >> my_array;  // broadcasted to all nodes 
+QDP::Real x;                                         
+random(x); 
+QDPIO::cout << "QDP is GREAT: x = " << x << std::endl; // one copy on output
+\endverbatim
+
+The default behavior is for only the primary node to print on output.
+Also provided are C++ Standard Library-like IO manipulators that can 
+be used to change this behavior. Namely, IO can be directed from any
+node which can aid debugging.
+\note 
+IO manipulators for changing node output are not yet implemented.
+
+\par TextReader member functions and global functions
+
+-  Open to read   
+   -  TextReader::TextReader(const std::string& filename)
+   -  void TextReader::open(const std::string& filename)
+-  Close 
+   - TextReader::~TextReader()
+   - void TextReader::close()
+-  Open? 
+   - bool TextReader::is_open()
+-  Any IO errors? 
+   -  bool TextReader::fail()
+-  Input a type \a T 
+   -  TextReader& operator>>(TextReader&, T&)
+
+\par TextWriter member functions and global functions
+
+-  Open to write  
+   - TextWriter::TextWriter(const std::string& filename)
+   - void TextWriter::open(const std::string& filename)
+-  Close 
+   - TextWriter::~TextWriter()
+   - void TextWriter::close()
+-  Open?          
+   - bool TextWriter::is_open() 
+-  Any IO errors? 
+   - bool TextWriter::fail() 
+-  Output a type \a T 
+   - TextWriter& operator<<(TextWriter&, const T&) 
+
+To read and write ASCII text from the file, use the standard operators
+familiar in the C++ Standard Library. An example is as follows:
+
+\verbatim
+TextWriter out("foo");
+Real a = 1.2;
+Complex b = cmplx(Real(-1.1), Real(2.2));
+out << a << endl << b << endl;
+close(out);
+
+TextReader in("foo");
+Real a;
+Complex b;
+in >> a >> b;
+close(in);
+\endverbatim
+
+The TextWriter functions would produce a file &quot;foo&quot; that looks
+like
+\verbatim
+1.2
+-1.1 2.2
+\endverbatim
+
+
+\subsection secxmlio XML Reading and Writing
+
+XML is intended as the standard format for user produced human
+readable data as well as metadata. The XML format is always a tree of
+tag/value pairs with arbitrarily deep nesting. Here, the tags are
+variable names. The values are considered
+one of three types -- a simple type, a structure, or an array of one of these
+types, including an array of arrays.
+
+The XML reader functions utilize C++  exceptions. 
+
+The path specification for the XML reader functions is XPath. Namely,
+%QDP only requires a simple UNIX-like path to reference a
+tag. With a simple path and nested reading, all data can be read from
+a document.  However, more complicated queries are possible
+allowing the user to read individual pieces of a document - e.g., a
+single array element. See the XPath language specification at
+http://www.w3.org/TR/xpath.html for
+additional information.
+
+Further details on the document format of various types is given in
+\ref secxmldoc.
+
+\par XMLReader member functions and global functions
+
+-  Read file      
+   - XMLReader::XMLReader(const std::string&)
+   - void XMLReader::open(const std::string&)
+-  Read stream    
+   - XMLReader::XMLReader(std::istream&)
+   - void XMLReader::open(std::istream&)
+-  Read buffer    
+   - XMLReader::XMLReader(const XMLBufferWriter&)
+   - void XMLReader::open(const XMLBufferWriter&)
+-  Close          
+   - XMLReader::~XMLReader()
+   - void X LReader::close()
+-  Open?          
+   - bool XMLReader::is_open() 
+-  Input a type T 
+   - void QDP::read (XMLReader&, const std::string&, T&) 
+
+An example of reading a file is
+
+\verbatim
+XMLReader xml_in("foo");
+int a;
+Complex b;
+multi1d<Real> c;
+multi1d<Complex> d;
+read(xml_in, "/bar/a", a);  // primitive type reader
+read(xml_in, "/bar/b", b);  // QDP defined struct reader
+read(xml_in, "/bar/c", d);  // array of primitive type reader
+try {   // try to do the following code, if an exception catch it
+  read(xml_in, "/bar/d", d);  // calls read(XMLReader, string, Complex) 
+} catch( const string& error) { 
+  cerr << "Error reading /bar/d : " << error << endl;
+}
+\endverbatim
+
+
+The file &quot;foo&quot; might look like the following:
+
+\verbatim
+<?xml version="1.0"?>
+<bar>
+ <!-- A simple primitive type -->
+ <a>17</d>
+
+ <!-- Considered a structure -->
+ <b>
+   <re>1.0</re>
+   <im>2.0</im>
+ </b>
+
+ <!-- A length 3 array of primitive types -->
+ <c>1 5.6 7.2</c>
+
+ <!-- A length 2 array of non-simple types -->
+ <d>
+   <elem>
+     <re>1.0</re>
+     <im>2.0</im>
+   </elem>
+   <elem>
+     <re>3.0</re>
+     <im>4.0</im>
+   </elem>
+ </d>
+</bar>
+\endverbatim
+
+Users can define their own reader functions following the same
+overloaded syntax as the predefined ones. This allows one to nest
+readers.
+
+\verbatim
+struct MyStruct {int a; Real b;};
+
+void read(XMLReader& xml_in, const string path&, MyStruct& input)
+{
+  read(xml_in, path + "/a", input.a);
+  read(xml_in, path + "/b", input.b);
+}
+
+XMLReader xml_in;  // user should initialize here
+multi1d<MyStruct> foo;  // array size will be allocated in array reader
+read(xml_in, "/root", foo); // will call user defined read above for each element
+\endverbatim
+
+As stated before, the path specification for a read is actually an
+XPath query. For example, the user can read only one array element in the file
+&quot;foo&quot; above via an XPath query:
+
+\verbatim
+XMLReader xml_in("foo");
+Complex dd;
+read(xml_in, "/bar/d/elem[2]", dd);  // read second array elem of d, e.g. d[1]
+\endverbatim
+
+
+\par XMLWriter base class global functions
+
+-  Start a group  
+   - void push(XMLWriter&, const std::string& name)
+-  End a group    
+   - void pop(XMLWriter&)
+-  Output a T 
+   - void write(XMLWriter&, const std::string& path, const T&) 
+-  Output  
+   - void write(XMLWriter&, const std::string& path, const XMLBufferWriter&) 
+   - XMLWriter& operator<<(XMLWriter&, const XMLBufferWriter&) 
+   - void write(XMLWriter&, const std::string& path, const XMLReader&) 
+   - XMLWriter& operator<<(XMLWriter&, const XMLReader&) 
+
+The XMLWriter is an abstract base class for three concrete
+classes which allow to write into a memory buffer, a file, or write an
+array of objects in a series of steps.
+
+\par XMLBufferWriter derived class member functions
+
+-  Return entire buffer  
+   - std::string XMLBufferWriter::str()
+
+\par XMLFileWriter derived class member functions
+
+-  File to write  
+   - XMLFileWriter::XMLFileWriter(const std::string& filename)
+   - void XMLFileWriter::open(const string& std::filename)
+-  Close          
+   - XMLFileWriter::~XMLFileWriter()
+   - void XMLFileWriter::close()
+-  Open?          
+   - bool XMLFileWriter::is_open() 
+-  Any IO errors? 
+   - bool XMLFileWriter::fail() 
+-  Flush          
+   - void XMLFileWriter::flush() 
+
+Similar to the read case, the user can also create a tower of writer functions.
+In addition, the user can create memory held buffered output that can be
+used for metadata. Similarly, a user can go back and forth from readers to
+writers.
+
+\verbatim
+XMLBufferWriter xml_buf;
+push(xml_buf, "bar");
+write(xml_buf, "a", 1);  // write /bar/a = 1
+pop(xml_buf);
+
+XMLReader xml_in(xml_buf);  // re-parse the xml_buf
+int a;
+read(xml_in, "/bar/a", a); // now have 1 in a
+
+XMLFileWriter xml_out("foo");
+xml_out << xml_in;     // will have ``bar'' as the root tag
+xml_out.close();
+\endverbatim
+
+\par XMLArrayWriter derived class member and global functions
+
+-  Constructor    
+   - XMLArrayWriter::XMLArrayWriter(XMLWriter&, int size=-1)
+-  Close          
+   - XMLArrayWriter::~XMLArrayWriter()
+   - void XMLArrayWriter::close()
+-  Size           
+   - int XMLArrayWriter::size() 
+-  Start an array  
+   - void push(XMLArrayWriter&)
+-  End an array    
+   - void pop(XMLArrayWriter&)
+
+The Array class allows one to break writing an array into multiple pieces:
+
+\verbatim
+XMLFileWriter xml_out("foo");
+XMLArrayWriter xml_array(xml_out, 350000);  // Note: a big array size here
+push(xml_array, "the_name_of_my_array");
+for(int i=0; i < xml_array.size(); ++i)
+{
+  push(xml_array);  // start next array element - name of tag already defined
+  Real foo = i;
+  write(xml_array, "foo", foo);
+  pop(xml_array);   // finish this array element
+}
+\endverbatim
+
+\subsubsection arrayio Using Array Containers in Reading and Writing}
+
+Array sizes present a special problem in IO. However, within XML
+the QDP::read (XMLReader&, std::string path, multi1d<T>&) function can
+deduce the number of elements an array is expected to hold and will
+always resize the array to the appropriate size. 
+Hence, there is no need to record the array size in the output
+of a QDP::write (XMLWriter&, std::string path, const multi1d<T>&) function
+call since the corresponding read can deduce the size.
+
+This behavior is unlike the BinaryReader and
+BinaryWriter functions
+QDP::read and
+ QDP::write of
+multi1d. There, the length of the array is always read/written
+unless the C-like behavior varieties are used.
+
+\subsection secxmldoc XML document structure
+
+%QDP regards the structure of a document as composed of structures,
+simple types, or arrays of structures or simple types. Simple types
+are the usual built-in type of C and C++, namely \c int,
+\c float, 
+\c double, 
+\c bool, etc. In addition, the QDP
+scalar equivalents QDP::Integer, 
+QDP::Real, 
+QDP::Double,
+QDP::Boolean, etc.  are also consider simple types. For instance, the
+code snippet
+
+\verbatim
+int a = 3;
+write(xml_out, "a", a);
+\endverbatim
+would produce
+\verbatim
+<a>3</a>
+\endverbatim
+indentities the name of a variable of a type with some values.
+Following the XML Schema specifications, arrays of these simple types
+have a simple form
+\verbatim
+<!-- produced from writing a multid<int> -->
+<a>3 3 4 5</a>
+\endverbatim
+
+Again, following the XML Schema specifications all other objects are
+considered complex (e.g., complicated) types. Hence, the document snippet
+%
+\verbatim
+<?xml version="1.0"?>
+<!-- Considered a structure of simple types, arrays and other structures -->
+<bar>
+ <!-- A simple primitive type -->
+ <a>17</d>
+
+ <!-- Considered a structure -->
+ <b>
+   <re>1.0</re>
+   <im>2.0</im>
+ </b>
+
+ <!-- A length 3 array of primitive types -->
+ <c>1 5.6 7.2</c>
+\endverbatim
+
+is viewed as a structure of other types:
+\verbatim
+struct bar_t
+{
+  int a;
+  Complex b;
+  multi1d<Real> c;
+} bar;
+\endverbatim
+
+Hence, one views the QDP::push /
+QDP::pop semantics as a way of
+dynamically constructing structures. 
+
+\par XML document format
+
+- QDP::Int, QDP::Real, QDP::Double    
+  - \verbatim <a>3</a> \endverbatim
+- QDP::Boolean
+  - \verbatim <a>yes</a> \endverbatim
+-   string
+  - \verbatim <a>hello world</a> \endverbatim
+- multi1d<int>
+  - \verbatim <a>1 2 3</a> \endverbatim  
+- QDP::Complex
+  - 
+\verbatim
+<a>  
+   <re>1.2</re>  
+   <im>2.0</im>  
+</a> \endverbatim
+- multi1d<Type> 
+  -
+\verbatim
+<a>
+  <elem> Type </elem>
+  <elem> Type </elem>
+</a>
+\endverbatim
+- multi1d<Complex>
+  -
+\verbatim
+<a>
+  <elem>
+    <re>1.2</re>
+    <im>2.0</im>
+  </elem>
+  <elem>
+    <re>3</re>
+    <im>5.0</im>
+  </elem>
+</a>
+\endverbatim
+- QDP::ColorVector
+  -
+\verbatim
+<a>
+  <ColorVector>
+    <elem row="0">
+      <re>0</re>
+      <im>1</im>
+    </elem>
+    <elem row="1">
+      <re>2</re>
+      <im>3</im>
+    </elem>
+  ...
+  </ColorVector>
+</a>
+\endverbatim
+- QDP::ColorMatrix
+  -
+\verbatim
+<a>
+  <ColorMatrix>
+    <elem row="0" col="0">
+      <re>0</re>
+      <im>1</im>
+    </elem>
+    <elem row="1" col="0">
+      <re>2</re>
+      <im>3</im>
+    </elem>
+  ...
+  </ColorMatrix>
+</a>
+\endverbatim
+- QDP::DiracPropagatorD, QDP::DiracPropagatorF, \e etc.
+  -
+\verbatim
+<a>
+  <SpinMatrix>
+    <elem row="0" col="0">
+      <ColorMatrix>
+        <elem row="0" col="0">
+          <re>0</re>
+          <im>1</im>
+        </elem>
+  ...
+      </ColorMatrix>
+    </elem>
+  </SpinMatrix>
+</a>
+\endverbatim
+- OLattice, QDP::OLattice<Type>
+\verbatim
+<a>
+  <OLattice>
+    <elem site="0"> Type </elem>
+    <elem site="1"> Type </elem>
+    ...
+  </OLattice>
+</a>
+\endverbatim
+- QDP::LatticeReal
+  -
+\verbatim
+<a>
+  <OLattice>
+    <elem site="0">1
+    </elem>
+    <elem site="1">2
+    </elem>
+  ...
+  </OLattice>
+</a>
+\endverbatim
+- QDP::LatticeColorVector
+  -
+\verbatim
+<a>
+  <OLattice>
+    <elem site="0">
+      <ColorVector>
+        <elem row="0">
+           <re>1</re>
+           <im>2</im>
+        </elem>
+  ...
+      </ColorVector>
+    </elem>
+  </OLattice>
+</a>
+\endverbatim
+
+\subsection secbinaryio Binary Reading and Writing
+
+\par BinaryReader member functions and global functions
+
+-  Open to read   
+   - BinaryReader::BinaryReader(const std::string& filename)
+   - void BinaryReader::open(const std::string& filename)
+-  Close          
+   - BinaryReader::~BinaryReader()
+   - void BinaryReader::close()
+-  Open?          
+   - bool BinaryReader::is_open() 
+-  Any IO errors? 
+   - bool BinaryReader::fail() 
+-  Input a type T 
+   - BinaryReader& operator>>(BinaryReader&, T&) 
+   - void read(BinaryReader&, T&) 
+   - void read(BinaryReader&, multi1d<T>&) 
+   - void read(BinaryReader&, multi1d<T>&, int num) 
+
+\par BinaryWriter member functions and global functions
+
+-  Open to write  
+   - BinaryWriter::BinaryWriter(const std::string& filename)
+   - void BinaryWriter::open(const std::string& filename)
+-  Close          
+   - BinaryWriter::~BinaryWriter()
+   - void BinaryWriter::close()
+-  Open?          
+   - bool BinaryWriter::is_open() 
+-  Any IO errors? 
+   - bool BinaryWriter::fail() 
+-  Flush          
+   - bool BinaryWriter::flush() 
+-  Output a type T 
+   - BinaryWriter& operator<<(BinaryWriter&, const T&) 
+   - void write(BinaryWriter&, const T&) 
+   - void write(BinaryWriter&, const multi1d<T>&) 
+   - void write(BinaryWriter&, const multi1d<T>&, int num) 
+
+To read and write ASCII text from the file, use the standard operators
+familiar in the C++ Standard Library,  e.g.,
+
+\verbatim
+BinaryWriter out("foo");
+Real a;
+LatticeColorMatrix b
+write(out, a);  // can write this way
+out << b;       // or can write this way - have choice of style
+close(out);
+
+BinaryReader in("foo");
+Real a;
+LatticeColorMatrix b;
+read(in, a);
+in >> b;
+close(in);
+\endverbatim
+
+The QDP::read and 
+QDP::write functions using
+ BinaryReader
+and BinaryWriter are special since metadata (in this case
+the length of the array) is read/written along with an object of type
+multi1d. 
+
+The standard C behavior when writing an array is to write only whatever
+number of elements is specified. The problem comes when reading with the
+number of elements is no known beforehand. The default QDP::write behavior
+is to also write the number of elements, and the QPD::read expects
+to find this length. The standard C behavior (reading/writing a fixed
+number of elements) is obtained through an an explicit argument to the call.
+Specifically:
+
+\verbatim
+BinaryWriter out("foo");
+multi1d<Real> a(17);
+write(out, a);     // will write an int=a.size() along with a.size() Real elements
+write(out, a, 4);  // only writes 4  Real  elements 
+close(out);
+
+BinaryReader in("foo");
+multi1d<Real> a;
+read(in, a);  // reads an int=a.size(), a is resized, and reads a.size() elements
+read(in, a, 4);  // reads precisely 4 elements, no resizing.
+in >> b;
+close(in);
+\endverbatim
+
+
+
+
+
+
+*/

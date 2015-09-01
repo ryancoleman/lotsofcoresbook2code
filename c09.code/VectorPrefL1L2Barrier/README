@@ -1,0 +1,68 @@
+This Directory contains the QPhiX Library with Vectorized kernels, 
+and explicit L1 & L2 pre-fetching and Barriers every 16 t-slices in each phase
+
+Building the example code
+========================
+
+First Ensure Dependencies are built
+then:
+
+i) Build for Xeon Phi, by running ./build_mic.sh
+ii) Run the timing on Xeon Phi by 
+     1) Modifying ./run_test_mic.sh to suit your environment
+     2) Launching the run with ./run_test_mic.sh
+
+Notes:
+======
+*)  The build_mic.sh scripts simply run configure; make; make check to generate the tests
+
+*) The build takes place in the ./build_mic subdirectory.
+   Executables are plased in the ./build_mic/tests/
+
+*) Due to all the template possibilities and multiple #includes, compile times may be *long* -- several minutes.
+
+*) The timing routine is called time_dlash_noqdp and takes
+the following command line arguments:
+
+-x <Lx>   -- Lx is the X-dimension of the lattice
+-y <Ly>   -- Ly is the Y-dimension of the lattice
+-z <Lz>   -- Lz is the Z-dimension of the lattice
+-t <Lt>   -- Lt is the T-dimension of the lattice
+
+-pxy <Pxy> -- Pxy is the padding factor in the XY plane
+-pxyz <Pxy> -- Pxyz is the padding factor in XYZ volumes
+
+-by <By> -- By is the Y block length
+-bz <Bz> -- Bz is the Z block length
+
+-c <Ncores> -- is the number of cores
+-sy <Sy>    -- Y dimension of the SMT thread "shape"
+-sz <Sz>    -- Z dimension of the SMT thread "shape"
+
+-minct <MinCt> -- the minimum number of splits in T
+-compress12    -- add this flag to use compression
+-prec <p>      -- Precision p can be h, f, d for Half, float and double
+
+-i <iterss>    -- number of iterations to execute
+
+*) There is also a test routine t_dslash that takes similar arguments, but it is a good idea to omit the -i option when running that.
+
+Contents:
+=========
+
+./build_mic.sh  -- Build Script for Xeon Phi
+./run_test_mic.sh       -- Run the timing on a Xeon Phi
+./clean.sh -- Deletes everything in the build directories
+
+ qphix/ the source code
+ +-- tests/   -- the source for the timing and test functions are here. 
+ |              
+ +-- include/qphix -- most useful files are here (geometry.h, dslash_body.h)
+ +-- include/qphix/mic -- The kernels are here in the generated/ subdir
+                             Files including the kernels are here.
+                
+build_mic/    -- build_mic.sh builds the code in this directory for Xeon Phi
+ +---tests/   -- the t_dslash and time_dslash_noqdp code get built here
+
+
+

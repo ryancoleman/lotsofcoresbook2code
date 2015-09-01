@@ -1,0 +1,61 @@
+//$Id: build.dox,v 1.2 2005-07-07 16:02:47 zbigniew Exp $
+/*!
+\page buildpage Compilation with QDP
+
+\section build Compilation with QDP
+
+  -# \ref headers
+  -# \ref configure 
+  -# \ref  nonuni
+
+\subsection headers Generic header and macros
+
+The compilation parameters:
+- QDP::Nd : the number of space-time dimensions
+- QDP::Nc : the dimension of the color vector space
+- QDP::Ns : the dimension of the spin vector space
+.
+are defined in qdp_params.h . 
+There are macros QDP_ND, QDP_NC and
+QDP_NS that are used to set the above parameters via
+\verbatim
+const int Nd = QDP_ND;
+const int Nc = QDP_NC;
+const int Ns = QDP_NS;
+\endverbatim
+
+They are set in the build directories file qdp_config.h
+during configuration.
+
+\subsection configure How to configure QDP++
+
+QDP++ uses the GNU autoconf and automake systems for builds. Help on
+configuration parameters can be found with
+\verbatim
+% configure --help
+\endverbatim
+The most important flag is the \c --enable-parallel-arch[=some_arch]
+with the architectural choices \c scalar, 
+\c parscalar, 
+\c scalarvec,
+\c parscalarvec.
+
+\subsection nonuni Nonuniform color and precision
+
+must use specific type names whenever these types
+and names differ from the prevailing precision and color. 
+Type declarations can be found in qdp_scalarsite_defs.h \e etc. A convenient
+definition of a QDP::LatticeColorMatrix and QDP::LatticeDiracFermion is as follows:
+
+\verbatim
+typedef OLattice<PScalar<ColorMatrix<Complex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<SpinVector<ColorVector<Complex<float>, Nc>, Ns> > LatticeFermion
+\endverbatim
+
+However, for the user to choose a specific number of colors:
+\verbatim
+const int NN = 17  // work in SU(17)
+typedef OLattice<PScalar<ColorMatrix<Complex<float>, NN> > > LatticeColorMatrix17
+\endverbatim
+
+*/

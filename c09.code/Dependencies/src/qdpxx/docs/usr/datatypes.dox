@@ -1,0 +1,214 @@
+//$Id: datatypes.dox,v 1.2 2005-07-07 16:02:47 zbigniew Exp $
+/*!
+\page datatypespage Data Types
+
+ -# \ref typestructure
+ -# \ref genericnames
+ -# \ref colorprecisiontypes
+ -# \ref colorprecisionuniform
+ -# \ref colorprecbreak
+
+\section datatypes Datatypes in QDP
+
+The <em>N<sub>d</sub></em> dimensional lattice consists of all the
+space-time sites in 
+the problem space.  Lattice data are fields on these sites.  A data
+primitive describes data on a single site.  The lattice fields consist
+of the primitives over all sites.  We do not define data types
+restricted to a subset of the lattice; rather, lattice fields occupy
+the entire lattice.
+The primitive types at
+each site are represented as the (tensor) product space of, for
+example, a vector space over color components with a vector space over
+spin components and complex valued elements.
+
+\subsection typestructure Type Structure
+
+Generically, objects transform under different spaces with a tensor
+product structure 
+
+Lattice \f$\otimes\f$ Color \f$\otimes\f$ Spin \f$\otimes\f$ Complexity
+
+as shown below:
+
+- Gauge fields
+  - Lattice \f$\otimes\f$ Matrix(Nc)\f$\otimes\f$ Scalar \f$\otimes\f$ Complex
+- Fermions
+  - Lattice \f$\otimes\f$ Vector(Nc) \f$\otimes\f$ Vector(Ns) \f$\otimes\f$ Complex
+- Scalars 
+  - Scalar \f$\otimes\f$ Scalar \f$\otimes\f$ Scalar \f$\otimes\f$ Scalar
+- Propagators
+  - Lattice \f$\otimes\f$ Matrix(Nc) \f$\otimes\f$ Matrix(Ns) \f$\otimes\f$ Complex
+- Gamma
+  - Scalar \f$\otimes\f$ Scalar \f$\otimes\f$ Matrix(Ns) \f$\otimes\f$ Complex
+
+where 
+- Nd is the number of space-time dimensions <em>N<sub>d</sub></em>
+- Nc is the dimension of the color vector space <em>N<sub>c</sub></em>
+- Ns is the dimension of the spin vector space <em>N<sub>s</sub></em>
+
+Gauge fields can left-multiply fermions via color matrix times color
+vector but is diagonal in spin space (spin scalar times spin vector).
+A gamma matrix can right-multiply a propagator (spin matrix times
+spin matrix) but is diagonal in color space (color matrix times color
+scalar).
+
+Types in the %QDP interface are parameterized by a variety of types
+including:
+
+- <strong>Word type:</strong> 
+  - int, float, double, bool. 
+  - Basic machine types. 
+- <strong>Reality type:</strong> 
+  - complex or scalar. 
+  - This is where the idea of a complex number lives.
+- <strong>Primitive type:</strong>
+  - scalar, vector, matrix, etc. 
+  - This is where the concept of a gauge or spin field lives. There can be many more types here.
+- <strong>Inner grid type:</strong>
+  - scalar or lattice. 
+  - Supports vector style architectures.
+- <strong>Outer grid type:</strong>
+  - scalar or lattice. 
+  - Supports super-scalar style architectures. In
+  combination with Inner grid can support a mixed mode like a
+  super-scalar architecture with short length vector instructions.
+
+There are template classes for each of the type variants listed
+above. The interface relies heavily on templates for
+composition - there is very little inheritance. The basic objects are
+constructed (at the user's choice) by compositions like the following:
+
+\verbatim
+typedef OLattice<PScalar<PColorMatrix<RComplex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<PSpinVector<PColorVector<RComplex<float>, Nc>, Ns> > LatticeFermion
+\endverbatim
+
+
+The classes PScalar, PSpinVector, PColorMatrix,
+PColorVector are all subtypes of a primitive type. The relative
+ordering of the classes is important. It is simply a user convention
+that spin is used as the second index (second level of type
+composition) and color is the third. The ordering of types can be
+changed. From looking at the types one can immediately decide what
+operations among objects makes sense.
+
+
+
+\subsection genericnames Generic Names
+
+The linear algebra portion of the %QDP API is designed to resemble the
+functionality that is available in the Level 1 QLA API and the C Level
+%QDP API.  Thus the datatypes and function naming conventions are
+similar.  Predefined names for some generic lattice field datatypes
+are listed in the table below. Because the API is based heavily on
+templates, the possible types allowed is much larger than listed
+below.
+
+
+- QDP::LatticeReal : real
+
+- QDP::LatticeComplex :complex
+
+- QDP::LatticeInt : integer
+
+- QDP::LatticeColorMatrix : <em>N<sub>c</sub></em> x
+<em>N<sub>c</sub></em> complex matrix</td>
+
+- QDP::LatticeFermion : <em>N<sub>s</sub></em> spin
+<em>N<sub>c</sub></em> color spinor</td>
+
+- QDP::LatticeHalfFermion <em>N<sub>s</sub></em>/2 spin 
+<em>N<sub>c</sub></em> color spinor</td>
+
+- QDP::LatticeDiracFermion : 4 spin
+<em>N<sub>c</sub></em> color spinor
+
+- QDP::LatticeStaggeredFermion : 1 spin
+<em>N<sub>c</sub></em> color spinor
+
+- QDP::LatticeDiracPropagator : 4 <em>N<sub>c</sub></em> x 4
+<em>N<sub>c</sub></em> complex matrix
+
+- QDP::LatticeStaggeredPropagator : <em>N<sub>c</sub></em> x 
+<em>N<sub>c</sub></em> complex matrix
+
+
+
+Single site (lattice wide constant fields) versions of types exist
+without the \c Lattice preprended.  All types and operations
+defined for %QDP live within a C++ namespace called QDP, thus
+ensuring no type conflicts with other namespaces.
+
+\subsection colorprecisiontypes Specific Types for Color and Precision
+
+According to the chosen color and precision, names for specific
+floating point types are constructed from names for generic types.
+Thus QDP::LatticeColorMatrix becomes \a LatticeColorMatrix<em>PC</em>,
+where the precision <em>P</em> is  D or  F according to the
+table below,
+
+
+\htmlonly
+<table>
+<tr>
+<th>Abbreviation</th><th>Description</th>
+</tr>
+<tr>
+<td>D</td><td>double precision</td></tr>
+<tr>
+<td>F</td><td>single precision</td>
+</tr>
+</table>
+\endhtmlonly
+
+and C is  2,  3, or some arbitrary  N, if color is a
+consideration. Note, the value of  N is an arbitrary compile
+time constant.
+
+If the datatype carries no color, the color label is omitted. Also,
+if the number of color components is the same as the compile
+time constant, then the color label can be omitted.
+Integers also have no precision label. The specification of
+precision and number of colors is not needed for functions because
+of overloading.
+
+For example, the type QDP::LatticeDiracFermionF3
+describes a lattice quantity of single-precision four-spin, 
+three-color spinor field.
+
+\subsection colorprecisionuniform Color and Precision Uniformity
+
+The only place that the number of color or spin components occur
+is through instance of the global constant variables QDP::Nc and QDP::Ns. These 
+are only directly used in the typedef constructions of user defined types. Nothing
+restricts a user from constructing types for other number of colors. In fact,
+the use of QDP::Nc in the construction of user defined types is simply a
+convenience for the user, and as such a user can use any integer that is
+reasonable. The API merely requires that the types used in operations are conforming.
+
+However, in standard coding practice it is assumed that a user keeps
+one of the precision, color, and spin options in force throughout the
+compilation.  So as a rule all functions in the interface take
+operands of the same precision, color, and number of spin
+components. As with data type names, function names come in generic
+color-, spin- and precision-specific forms, as described in the next
+section.  Exceptions to this rule are functions that explicitly
+convert from double to single precision and vice versa.  If the user
+choose to adopt color and precision uniformity, then all variables can
+be defined with generic types and all functions accessed through
+generic names.  The prevailing color <em>N<sub>c</sub></em> is defined through
+the compile time constant QDP::Nc.  The interface automatically
+translates data type names and function names to the appropriate
+specific type names through typedefs.  With such a scheme and careful
+coding, changing only the compile time <em>N<sub>c</sub></em> and the %QDP library
+converts code from one color and precision choice to another.
+
+\subsection colorprecbreak Breaking Color and Precision Uniformity
+
+It is permissible for a user to mix precision and color choices.  This
+is done by declaring variables with specific type names, using
+functions with specific names, and making appropriate precision
+conversions when needed. 
+
+*/

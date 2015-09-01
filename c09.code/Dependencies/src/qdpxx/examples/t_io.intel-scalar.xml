@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+
+<t_io>
+  <a>
+    <OLattice>
+      <elem  site="0">0.565441</elem>
+      <elem  site="1">0.32542</elem>
+      <elem  site="2">0.269948</elem>
+      <elem  site="3">0.93418</elem>
+      <elem  site="4">0.952254</elem>
+      <elem  site="5">0.0358213</elem>
+      <elem  site="6">0.759649</elem>
+      <elem  site="7">0.251705</elem>
+      <elem  site="8">0.790039</elem>
+      <elem  site="9">0.490305</elem>
+      <elem  site="10">0.87542</elem>
+      <elem  site="11">0.285545</elem>
+      <elem  site="12">0.916796</elem>
+      <elem  site="13">0.739085</elem>
+      <elem  site="14">0.484934</elem>
+      <elem  site="15">0.598781</elem>
+    </OLattice>
+  </a>
+  <aa>
+    <OLattice>
+      <elem  site="0">0.565441</elem>
+      <elem  site="1">0.32542</elem>
+      <elem  site="2">0.269948</elem>
+      <elem  site="3">0.93418</elem>
+      <elem  site="4">0.952254</elem>
+      <elem  site="5">0.0358213</elem>
+      <elem  site="6">0.759649</elem>
+      <elem  site="7">0.251705</elem>
+      <elem  site="8">0.790039</elem>
+      <elem  site="9">0.490305</elem>
+      <elem  site="10">0.87542</elem>
+      <elem  site="11">0.285545</elem>
+      <elem  site="12">0.916796</elem>
+      <elem  site="13">0.739085</elem>
+      <elem  site="14">0.484934</elem>
+      <elem  site="15">0.598781</elem>
+    </OLattice>
+  </aa>
+</t_io>

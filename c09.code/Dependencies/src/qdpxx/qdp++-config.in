@@ -1,0 +1,240 @@
+#!/bin/sh
+
+# qdp++-config
+#
+# George T. Fleming, 12 February 2003
+#
+# Tool for retrieving configuration information about the installed version
+# of QMP.
+#
+# This script was inspired by many similar scripts available in RedHat Linux,
+# including gnome-config, gtk-config and xmms-config.
+#
+# Be on the lookout for problems with undesirable CXXFLAGS and LDFLAGS
+# propagating through this script.  Send email to flemingg@jlab.org
+# if you find such a problem.
+
+prefix="@prefix@"
+exec_prefix="@exec_prefix@"
+exec_prefix_set=no
+
+version="@VERSION@"
+
+parallel_arch="@CONFIG_PARALLEL_ARCH@"
+
+qmp_home="@QMP_HOME@"
+qdp_cxx="@CXX@"
+qdp_cxxflags="@CXXFLAGS@ -I@includedir@ @BAGEL_QDP_CXXFLAGS@ @HDF5_CXXFLAGS@ @LIBXML2_CXXFLAGS@ @QMP_CFLAGS@ @QMT_CXXFLAGS@"
+qdp_ldflags="@LDFLAGS@ -L@libdir@ @BAGEL_QDP_LDFLAGS@ @HDF5_LDFLAGS@ @QMP_LDFLAGS@ @QMT_LDFLAGS@"
+qdp_libs="-lqdp -lXPathReader -lxmlWriter -lqio -llime @BAGEL_QDP_LIBS@ @HDF5_LIBS@ @LIBXML2_LIBS@ @QMP_LIBS@ @LIBS@ @QMT_LIBS@"
+
+libintrin_dir=@LIBINTRIN_DIR@
+case ${libintrin_dir} in
+    libintrin)
+	qdp_libs=${qdp_libs}" -lintrin"
+	;;
+    *)
+	;;
+esac
+
+filedb_dir=@FILEDB_DIR@
+case ${filedb_dir} in
+    filedb)
+	qdp_libs=${qdp_libs}" -lfiledb -lfilehash"
+	;;
+    *)
+	;;
+esac
+
+precision="@CONFIG_PRECISION@"
+layout="@CONFIG_LAYOUT@"
+
+qdp_ranlib="@RANLIB@"
+qdp_ar="@AR@"
+
+usage()
+{
+  cat <<EOF
+Usage: qdp++-config [OPTIONS]
+Options:
+  [--prefix[=DIR]]
+  [--exec-prefix[=DIR]]
+  [--version]
+  [--Nd]
+  [--Nc]
+  [--Ns]
+  [--parallel-arch]
+  [--qmp-home]
+  [--db-enabled]
+  [--precision]
+  [--layout]
+  [--cxx]
+  [--cxxflags]
+  [--ldflags]
+  [--libs]
+  {--ranlib]
+  [--ar]
+
+EOF
+  exit $1
+}
+
+if test $# -eq 0; then
+  usage 1 1>&2
+fi
+
+while test $# -gt 0; do
+  case "$1" in
+    -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+    *)    optarg= ;;
+  esac
+
+  case $1 in
+    --prefix=*)
+      prefix=$optarg
+      if test $exec_prefix_set = no ; then
+        exec_prefix=$optarg
+      fi
+      ;;
+
+    --prefix)
+      echo_prefix=yes
+      ;;
+
+    --exec-prefix=*)
+      exec_prefix=$optarg
+      exec_prefix_set=yes
+      ;;
+
+    --exec-prefix)
+      echo_exec_prefix=yes
+      ;;
+
+    --version)
+      echo $version
+      ;;
+
+    --Nd)
+      echo @CONFIG_ND@
+      ;;
+
+    --Nc)
+      echo @CONFIG_NC@
+      ;;
+
+    --Ns)
+      echo @CONFIG_NS@
+      ;;
+
+    --parallel-arch)
+      echo $parallel_arch
+      ;;
+
+    --qmp-home)
+      echo $qmp_home
+      ;;
+
+    --cxx)
+      echo $qdp_cxx
+      ;;
+
+    --cxxflags)
+      echo_cxxflags=yes
+      ;;
+
+    --ldflags)
+      echo_ldflags=yes
+      ;;
+
+    --libs)
+      echo_libs=yes
+      ;;
+
+    --precision)
+      case "${precision}" in 
+	32)
+		echo "single"
+		;;
+	64)
+		echo "double"
+		;;
+	*)
+		echo "Unknown Precision error"
+		;;
+      esac
+      ;;
+    --layout)
+       echo ${layout}
+       ;;
+
+    --ranlib)
+      echo ${qdp_ranlib}
+      ;;
+    --ar)
+      echo ${qdp_ar}
+      ;;
+    *)
+      usage 1 1>&2
+      ;;
+
+  esac
+  shift
+done
+
+if test "X${echo_prefix}X" = "XyesX" ; then
+  echo $prefix
+fi
+
+if test "X${echo_exec_prefix}X" = "XyesX" ; then
+  echo $exec_prefix
+fi
+
+if test "X${echo_cxxflags}X" = "XyesX" ; then
+  output_cxxflags=
+  for i in $qdp_cxxflags ; do
+    case $i in
+      -I/usr/include) ;;
+      -g) ;;
+#     -O*) ;;
+#     -W*) ;;
+      *)
+        case " $output_cxxflags " in
+          *\ $i\ *) ;;                             # already there, skip it
+          *) output_cxxflags="$output_cxxflags $i" # add it to output
+        esac
+    esac
+  done
+  echo $output_cxxflags
+fi
+
+if test "X${echo_ldflags}X" = "XyesX" ; then
+  output_ldflags=
+  for i in $qdp_ldflags ; do
+    if test "X${i}X" != "X-I/usr/libX" ; then
+      case " $output_ldflags " in
+        *\ $i\ *) ;;                               # already there, skip it
+        *) output_ldflags="$output_ldflags $i"     # add it to output
+      esac
+    fi
+  done
+  echo $output_ldflags
+fi
+
+# Straight out any possible duplicates, but be careful to
+# get `-lfoo -lbar -lbaz' for `-lfoo -lbaz -lbar -lbaz'
+# Nonono! Don't do this. Sometimes you need things like 
+# -lpmpich -lmpich -lpmpich -lmpich when libraries depend on
+# each other
+if test "X${echo_libs}X" = "XyesX" ; then
+  rev_libs=
+  for i in $qdp_libs ; do
+    rev_libs="$i $rev_libs"
+  done
+  output_libs=
+  for i in $rev_libs ; do
+    case " $output_libs " in
+      *) output_libs="$i $output_libs" ;;  # add it to output in reverse order
+    esac
+  done
+  echo $output_libs
+fi

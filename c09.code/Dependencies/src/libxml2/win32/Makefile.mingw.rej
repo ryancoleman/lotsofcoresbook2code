@@ -1,0 +1,17 @@
+***************
+*** 209,215 ****
+  	$(BINDIR)/testSchemas.exe\
+  	$(BINDIR)/testURI.exe\
+  	$(BINDIR)/testXPath.exe\
+- 	$(BINDIR)/runtest.exe\
+  	$(BINDIR)/runsuite.exe
+  ifeq ($(WITH_THREADS),yes)
+  UTILS += $(BINDIR)/testThreadsWin32.exe
+--- 211,217 ----
+  	$(BINDIR)/testSchemas.exe\
+  	$(BINDIR)/testURI.exe\
+  	$(BINDIR)/testXPath.exe\
++ 	$(BINDIR)/runtest.exe\
+  	$(BINDIR)/runsuite.exe
+  ifeq ($(WITH_THREADS),yes)
+  UTILS += $(BINDIR)/testThreadsWin32.exe

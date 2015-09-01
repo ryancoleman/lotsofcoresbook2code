@@ -1,0 +1,3 @@
+[submodule "other_libs/c-lime"]
+	path = other_libs/c-lime
+	url = https://github.com/usqcd-software/c-lime.git

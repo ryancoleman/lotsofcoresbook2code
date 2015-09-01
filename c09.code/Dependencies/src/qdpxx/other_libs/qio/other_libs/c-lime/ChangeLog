@@ -1,0 +1,1200 @@
+2011-04-14 14:38  osborn
+
+	* aclocal.m4, configure, include/lime_config_internal.h.in: made
+	  SINGLEFILE PARALLEL mode use only specified io nodes
+
+2009-04-20 10:57  tag adat2-12-4
+
+2009-04-20 10:57  tag adat2-13-0
+
+2009-04-20 10:57  tag adat2-14-0
+
+2009-04-20 10:57  tag adat2-15-0
+
+2009-04-20 10:57  tag adat2-16-0
+
+2009-04-20 10:57  tag adat2-17-0
+
+2009-04-20 10:57  tag adat2-17-1
+
+2009-04-20 10:57  tag adat2-17-2
+
+2009-04-20 10:57  tag adat2-17-3
+
+2009-04-20 10:57  tag adat2-17-4
+
+2009-04-20 10:57  tag adat2-18-0
+
+2009-04-20 10:57  tag adat2-18-1
+
+2009-04-20 10:57  tag adat2-18-2
+
+2009-04-20 10:57  tag adat2-18-3
+
+2009-04-20 10:57  tag adat2-18-4
+
+2009-04-20 10:57  tag adat2-18-5
+
+2009-04-20 10:57  tag adat2-18-6
+
+2009-04-20 10:57  tag adat2-18-7
+
+2009-04-20 10:57  tag adat2-19-0
+
+2009-04-20 10:57  tag adat2-19-1
+
+2009-04-20 10:57  tag c-lime1-3-2
+
+2009-04-20 10:57  tag pre-adat2-14
+
+2009-04-20 10:57  tag qdp1-32-1
+
+2009-04-20 10:57  tag qdp1-32-2
+
+2009-04-20 10:57  tag qdp1-33-0
+
+2009-04-20 10:57  tag qdp1-33-1
+
+2009-04-20 10:57  tag qdp1-34-0
+
+2009-04-20 10:57  detar
+
+	* aclocal.m4, configure: tag c-lime1-3-2
+
+2009-04-20 10:47  detar
+
+	* configure.ac: Tag c-lime 1.3.2
+
+2009-03-04 00:56  tag adat2-10-0
+
+2009-03-04 00:56  tag adat2-10-1
+
+2009-03-04 00:56  tag adat2-10-2
+
+2009-03-04 00:56  tag adat2-11-0
+
+2009-03-04 00:56  tag adat2-12-0
+
+2009-03-04 00:56  tag adat2-12-1
+
+2009-03-04 00:56  tag adat2-12-2
+
+2009-03-04 00:56  tag adat2-12-3
+
+2009-03-04 00:56  tag adat2-8-0
+
+2009-03-04 00:56  tag adat2-9-0
+
+2009-03-04 00:56  tag adat2-9-1
+
+2009-03-04 00:56  tag adat2-9-2
+
+2009-03-04 00:56  tag qdp1-30-1
+
+2009-03-04 00:56  tag qdp1-31-0
+
+2009-03-04 00:56  tag qdp1-31-1
+
+2009-03-04 00:56  tag qdp1-32-0
+
+2009-03-04 00:56  tag qdp1_31_2
+
+2009-03-04 00:56  tag qio2-3-8
+
+2009-03-04 00:56  osborn
+
+	* aclocal.m4, configure: Made it so that the "clear to send"
+	  messages are still sent when HAVE_BGL is defined.
+
+2008-11-06 13:18  tag adat1-44-0
+
+2008-11-06 13:18  tag adat2-0-0
+
+2008-11-06 13:18  tag adat2-1-0
+
+2008-11-06 13:18  tag adat2-2-0
+
+2008-11-06 13:18  tag adat2-3-0
+
+2008-11-06 13:18  tag adat2-4-0
+
+2008-11-06 13:18  tag adat2-5-0
+
+2008-11-06 13:18  tag adat2-6-0
+
+2008-11-06 13:18  tag adat2-7-0
+
+2008-11-06 13:18  tag pre-adat2-0
+
+2008-11-06 13:18  tag qdp-pre-threads
+
+2008-11-06 13:18  tag qdp1-30-0
+
+2008-11-06 13:18  tag qio2-3-7
+
+2008-11-06 13:18  detar
+
+	* aclocal.m4, configure, examples/lime_pack.c: Support </tag> in
+	  XML strings.	Bug fix for file splitting/joining with subset
+	  records
+
+2008-02-24 15:09  tag adat1-37-0
+
+2008-02-24 15:09  tag adat1-38-0
+
+2008-02-24 15:09  tag adat1-39-0
+
+2008-02-24 15:09  tag adat1-40-0
+
+2008-02-24 15:09  tag adat1-41-0
+
+2008-02-24 15:09  tag adat1-42-0
+
+2008-02-24 15:09  tag adat1-43-0
+
+2008-02-24 15:09  tag bjoo_debug_tag
+
+2008-02-24 15:09  tag qdp1-25-2
+
+2008-02-24 15:09  tag qdp1-26-0
+
+2008-02-24 15:09  tag qdp1-27-0
+
+2008-02-24 15:09  tag qdp1-28-0
+
+2008-02-24 15:09  tag qio2-3-4
+
+2008-02-24 15:09  tag qio2-3-5
+
+2008-02-24 15:09  tag qio2-3-6
+
+2008-02-24 15:09  detar
+
+	* examples/lime_extract_record.c: Correct file splitting/joining
+	  for hypercube records
+
+2008-02-05 16:55  tag qio2-3-3
+
+2008-02-05 16:55  detar
+
+	* examples/lime_extract_record.c: Bug fix.
+
+2008-02-05 16:51  detar
+
+	* lib/lime_reader.c: Complain about premature EOF
+
+2007-10-27 17:19  tag adat1-35-0
+
+2007-10-27 17:19  tag adat1-36-0
+
+2007-10-27 17:19  edwards
+
+	* include/lime_config_internal.h.in: Induced changes.
+
+2007-10-27 17:17  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-10-06 00:04  tag qdp1-25-1
+
+2007-10-06 00:04  kostas
+
+	* aclocal.m4: added a jack_fit util to make ensemble files of
+	  masses.
+
+2007-08-30 00:17  tag adat1-34-0
+
+2007-08-30 00:17  tag c-lime1-3-1
+
+2007-08-30 00:17  tag qdp1-24-6
+
+2007-08-30 00:17  tag qdp1-25-0
+
+2007-08-30 00:17  edwards
+
+	* NEWS: Info on 1.3.1
+
+2007-08-30 00:14  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-08-30 00:13  edwards
+
+	* configure.ac: Changed to 1.3.1
+
+2007-08-29 23:20  uid3790
+
+	* lib/: lime_reader.c, lime_utils.c, lime_writer.c: Changed all
+	  printf's to also write the name of the encompassing function.
+
+2007-07-08 14:17  tag qdp1-24-2
+
+2007-07-08 14:17  tag qdp1-24-3
+
+2007-07-08 14:17  tag qdp1-24-4
+
+2007-07-08 14:17  tag qdp1-24-5
+
+2007-07-08 14:17  tag qio2-2-1
+
+2007-07-08 14:17  tag qio2-3-0
+
+2007-07-08 14:17  tag qio2-3-1
+
+2007-07-08 14:17  kostas
+
+	* aclocal.m4, configure, include/lime_config_internal.h.in: added
+	  staticlight stripper
+
+2007-06-18 11:25  tag qio2-2-0
+
+2007-06-18 11:25  detar
+
+	* aclocal.m4, configure, include/lime_config_internal.h.in: Redo
+	  aclocal and automake to fix configure and Makefile.in
+
+2007-06-09 18:13  tag c-lime1-3-0
+
+2007-06-09 18:13  tag qdp1-24-0
+
+2007-06-09 18:13  tag qdp1-24-1
+
+2007-06-09 18:13  edwards
+
+	* include/lime_config_internal.h.in: Induced changes.
+
+2007-06-09 18:12  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-06-09 18:11  edwards
+
+	* configure.ac: Changed to 1.3.0
+
+2007-06-09 18:08  edwards
+
+	* aclocal.m4, configure: Induced changes
+
+2007-05-13 16:36  tag adat1-32-0
+
+2007-05-13 16:36  tag adat1-33-0
+
+2007-05-13 16:36  tag qio2-1-9
+
+2007-05-13 16:36  detar
+
+	* aclocal.m4, configure, configure.ac, examples/lime_contents.c,
+	  examples/lime_extract_record.c, examples/lime_extract_type.c,
+	  examples/lime_pack.c, examples/lime_unpack.c,
+	  examples/lime_writer_test1.c, include/Makefile.am,
+	  include/dcap-overload.h, include/lime.h,
+	  include/lime_config_internal.h.in, lib/lime_fseeko.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Add support for dcache/DCAP
+	  from Jim Simone
+
+2007-03-18 18:08  tag adat1-31-0
+
+2007-03-18 18:08  tag qdp1-23-1
+
+2007-03-18 18:08  tag qdp1-23-2
+
+2007-03-18 18:08  edwards
+
+	* examples/lime_unpack.c: Removed what I think is a dcache closing
+	  of a file.
+
+2007-03-17 08:55  detar
+
+	* examples/lime_unpack.c: Correct premature use of DCAP macro
+
+2007-03-16 20:14  detar
+
+	* examples/lime_unpack.c: Fix print statement
+
+2007-02-12 20:32  tag qdp1-22-0
+
+2007-02-12 20:32  tag qdp1-22-1
+
+2007-02-12 20:32  tag qdp1-23-0
+
+2007-02-12 20:32  tag qdp_pre_subset_cleanup
+
+2007-02-12 20:32  tag qio2-1-8
+
+2007-02-12 20:32  osborn
+
+	* examples/lime_writer_test1.c: fixed --enable-dml-bufsize option
+	  and more warning eliminations
+
+2007-02-12 19:49  osborn
+
+	* configure, examples/lime_contents.c,
+	  examples/lime_extract_type.c, examples/lime_pack.c,
+	  examples/lime_unpack.c, include/lime_config_internal.h.in:
+	  Eliminated compiler warnings and now save configure options in
+	  qio-config.
+
+2005-07-21 14:43  tag LIVTAG_1
+
+2005-07-21 14:43  tag LIVTAG_2
+
+2005-07-21 14:43  tag adat1-13-14
+
+2005-07-21 14:43  tag adat1-14-0
+
+2005-07-21 14:43  tag adat1-14-1
+
+2005-07-21 14:43  tag adat1-15-0
+
+2005-07-21 14:43  tag adat1-15-1
+
+2005-07-21 14:43  tag adat1-15-2
+
+2005-07-21 14:43  tag adat1-16-0
+
+2005-07-21 14:43  tag adat1-16-1
+
+2005-07-21 14:43  tag adat1-16-2
+
+2005-07-21 14:43  tag adat1-16-3
+
+2005-07-21 14:43  tag adat1-17-0
+
+2005-07-21 14:43  tag adat1-18-0
+
+2005-07-21 14:43  tag adat1-19-0
+
+2005-07-21 14:43  tag adat1-20-0
+
+2005-07-21 14:43  tag adat1-21-0
+
+2005-07-21 14:43  tag adat1-22-0
+
+2005-07-21 14:43  tag adat1-23-0
+
+2005-07-21 14:43  tag adat1-24-0
+
+2005-07-21 14:43  tag adat1-25-0
+
+2005-07-21 14:43  tag adat1-26-0
+
+2005-07-21 14:43  tag adat1-27-0
+
+2005-07-21 14:43  tag adat1-28-0
+
+2005-07-21 14:43  tag adat1-29-0
+
+2005-07-21 14:43  tag adat1-30-0
+
+2005-07-21 14:43  tag c-lime1-2-3
+
+2005-07-21 14:43  tag qdp1-15-0
+
+2005-07-21 14:43  tag qdp1-15-1
+
+2005-07-21 14:43  tag qdp1-15-2
+
+2005-07-21 14:43  tag qdp1-15-3
+
+2005-07-21 14:43  tag qdp1-15-4
+
+2005-07-21 14:43  tag qdp1-16-0
+
+2005-07-21 14:43  tag qdp1-16-1
+
+2005-07-21 14:43  tag qdp1-16-2
+
+2005-07-21 14:43  tag qdp1-16-3
+
+2005-07-21 14:43  tag qdp1-17-0
+
+2005-07-21 14:43  tag qdp1-17-1
+
+2005-07-21 14:43  tag qdp1-17-2
+
+2005-07-21 14:43  tag qdp1-18-0
+
+2005-07-21 14:43  tag qdp1-18-1
+
+2005-07-21 14:43  tag qdp1-18-2
+
+2005-07-21 14:43  tag qdp1-18-3
+
+2005-07-21 14:43  tag qdp1-19-0
+
+2005-07-21 14:43  tag qdp1-20-0
+
+2005-07-21 14:43  tag qdp1-20-1
+
+2005-07-21 14:43  tag qdp1-20-2
+
+2005-07-21 14:43  tag qdp1-20-3
+
+2005-07-21 14:43  tag qdp1-20-3-pre3
+
+2005-07-21 14:43  tag qdp1-20-3pre1
+
+2005-07-21 14:43  tag qdp1-20-3pre2
+
+2005-07-21 14:43  tag qdp1-20-4
+
+2005-07-21 14:43  tag qdp1-20-5
+
+2005-07-21 14:43  tag qdp1-20-6
+
+2005-07-21 14:43  tag qdp1-20-7
+
+2005-07-21 14:43  tag qdp1-20-8
+
+2005-07-21 14:43  tag qdp1-20-8-pre1
+
+2005-07-21 14:43  tag qdp1-20-8-pre2
+
+2005-07-21 14:43  tag qdp1-20-9
+
+2005-07-21 14:43  tag qdp1-21-0
+
+2005-07-21 14:43  tag qdp1-21-1
+
+2005-07-21 14:43  tag qdp1-21-2
+
+2005-07-21 14:43  tag qdp1-21-3
+
+2005-07-21 14:43  tag qdp1-21-4
+
+2005-07-21 14:43  tag qdp1-21-5
+
+2005-07-21 14:43  tag qdp1-21-6
+
+2005-07-21 14:43  tag qdp1-21-7
+
+2005-07-21 14:43  tag qdp1-21-8
+
+2005-07-21 14:43  tag qio2-1-1
+
+2005-07-21 14:43  tag qio2-1-2
+
+2005-07-21 14:43  tag qio2-1-3
+
+2005-07-21 14:43  tag qio2-1-4
+
+2005-07-21 14:43  tag qio2-1-5
+
+2005-07-21 14:43  tag qio2-1-6
+
+2005-07-21 14:43  tag qio2-1-7
+
+2005-07-21 14:43  detar
+
+	* examples/lime_contents.c, examples/lime_extract_record.c,
+	  examples/lime_extract_type.c, examples/lime_pack.c,
+	  examples/lime_unpack.c, include/lime_header.h,
+	  include/lime_reader.h, include/lime_writer.h, lib/lime_header.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Further changes to support
+	  large files.
+
+2005-07-18 18:13  tag adat1-13-13
+
+2005-07-18 18:13  tag qdp-1-14-4
+
+2005-07-18 18:13  tag qdp-1-14-4_pre1
+
+2005-07-18 18:13  tag qdp1-14-4
+
+2005-07-18 18:13  tag qdp1-14-5
+
+2005-07-18 18:13  detar
+
+	* examples/lime_contents.c, examples/lime_extract_record.c,
+	  examples/lime_extract_type.c, examples/lime_pack.c,
+	  examples/lime_unpack.c, examples/lime_writer_test1.c,
+	  lib/lime_fseeko.c, lib/lime_header.c, lib/lime_reader.c,
+	  lib/lime_utils.c, lib/lime_writer.c: Further corrections to
+	  support files > 2 GB.  Correct bug in QIO_read_record_info.c that
+	  failed with ILDG partitioned files.
+
+2005-07-17 09:09  tag qdp1-14-3
+
+2005-07-17 09:09  detar
+
+	* aclocal.m4, configure, configure.ac, include/lime.h,
+	  include/lime_config_internal.h.in, lib/lime_writer.c: Large file
+	  support.  See --enable-largefile
+
+2005-07-11 14:37  tag adat1-13-12
+
+2005-07-11 14:37  tag c-lime1-2-2
+
+2005-07-11 14:37  tag qdp1-14-2
+
+2005-07-11 14:37  tag qio2-1-0
+
+2005-07-11 14:37  detar
+
+	* examples/: Makefile.am, lime_extract_type.c: Add capability for
+	  inserting an ILDG LFN during partfile to singlefile conversion.
+	  Add another LIME extraction utility.	Useful for extracting the
+	  LFN.
+
+2005-07-10 14:30  tag adat1-13-11
+
+2005-07-10 14:30  detar
+
+	* examples/lime_contents.c: Fixing some compiler trivia.
+
+2005-07-08 17:50  tag adat1-13-10
+
+2005-07-08 17:50  detar
+
+	* aclocal.m4, configure, examples/lime_contents.c,
+	  examples/lime_pack.c, include/lime_config_internal.h.in,
+	  lib/lime_header.c, lib/lime_reader.c, lib/lime_writer.c: Major
+	  changes to support ILDG formats and parallel I/O - ced
+
+2005-07-08 17:28  detar
+
+	* configure.ac: Preparing to commit qio-2.1.0 and lime-1.2.2
+
+2005-06-16 07:57  tag adat1-13-5
+
+2005-06-16 07:57  tag adat1-13-6
+
+2005-06-16 07:57  tag adat1-13-7
+
+2005-06-16 07:57  tag adat1-13-8
+
+2005-06-16 07:57  tag adat1-13-9
+
+2005-06-16 07:57  tag qdp1-13-1
+
+2005-06-16 07:57  tag qdp1-14-0
+
+2005-06-16 07:57  tag qdp1-14-1
+
+2005-06-16 07:57  bjoo
+
+	* doc/Makefile.am, Makefile.am, lib/Makefile.am,
+	  include/Makefile.am, examples/Makefile.am: flopcounts
+	  Makefile.ams first
+
+2005-05-29 18:19  osborn
+
+	* examples/lime_writer_test1.c: Small fixes in examples.
+
+2005-05-29 18:01  osborn
+
+	* INSTALL, aclocal.m4, configure, configure.ac, config/depcomp,
+	  config/install-sh, config/missing, config/mkinstalldirs,
+	  examples/lime_contents.c, examples/lime_pack.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Changed the num_sites
+	  functions to return int instead of size_t, since this is what QDP
+	  will support.  Also minor cleanups and fixes.
+
+2005-05-18 18:24  tag c-lime1-2-1
+
+2005-05-18 18:24  tag qdp1-12-3
+
+2005-05-18 18:24  tag qdp1-12-4
+
+2005-05-18 18:24  tag qdp1-12-5
+
+2005-05-18 18:24  tag qdp1-13-0
+
+2005-05-18 18:24  tag qio2-0-2
+
+2005-05-18 18:24  edwards
+
+	* NEWS: Info on 1.2.1
+
+2005-05-18 18:20  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-05-18 18:20  edwards
+
+	* configure.ac: Changed to version 1.2.1
+
+2005-05-18 18:19  edwards
+
+	* doc/Makefile.am, examples/Makefile.am, lib/Makefile.am: Removed
+	  VPATH's.
+
+2005-05-06 16:44  tag adat1-13-2
+
+2005-05-06 16:44  tag adat1-13-3
+
+2005-05-06 16:44  tag adat1-13-4
+
+2005-05-06 16:44  tag qio2-0-1
+
+2005-05-06 16:44  osborn
+
+	* aclocal.m4, lib/Makefile.am: Fixed problem with VPATH builds
+	  (always use += when setting VPATH).
+
+2005-04-28 15:31  tag adat1-12-1
+
+2005-04-28 15:31  tag adat1-12-2
+
+2005-04-28 15:31  tag adat1-13-0
+
+2005-04-28 15:31  tag adat1-13-1
+
+2005-04-28 15:31  tag c-lime1-2
+
+2005-04-28 15:31  tag qdp1-12-1
+
+2005-04-28 15:31  tag qdp1-12-2
+
+2005-04-28 15:31  edwards
+
+	* NEWS: Info on 1.2
+
+2005-04-28 15:29  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-04-28 15:28  edwards
+
+	* include/lime_config_internal.h.in: Apparently comment changes.
+
+2005-04-28 12:48  detar
+
+	* aclocal.m4, configure, doc/Makefile.am, doc/lime_1p1.tex,
+	  doc/lime_1p2.tex, examples/lime_contents.c,
+	  examples/lime_extract_record.c, examples/lime_unpack.c,
+	  examples/lime_writer_test1.c, include/lime_config_internal.h.in,
+	  include/lime_reader.h, include/lime_writer.h, lib/lime_reader.c,
+	  lib/lime_writer.c: Significant changes support random access
+	  reads and writes More efficient file format conversion Updated
+	  documentation
+
+2005-04-28 12:47  detar
+
+	* configure.ac: New version number
+
+2005-04-27 05:28  tag adat1-11-1
+
+2005-04-27 05:28  tag adat1-12-0
+
+2005-04-27 05:28  tag qio1-1-6
+
+2005-04-27 05:28  bjoo
+
+	* include/Makefile.am: Added lime-config-internal.h.in to
+	  EXTRA_DIST
+
+2005-04-27 05:20  bjoo
+
+	* include/Makefile.am: Fixed including of lime_config_internal.h in
+	  dist
+
+2005-04-19 12:45  tag adat1-11-0
+
+2005-04-19 12:45  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2005-04-19 12:44  edwards
+
+	* examples/Makefile.am: Moved programs to bin_PROGRAMS
+
+2005-02-28 11:46  tag adat1-10-0
+
+2005-02-28 11:46  tag adat1-8-0
+
+2005-02-28 11:46  tag adat1-9-0
+
+2005-02-28 11:46  tag adat1-9-1
+
+2005-02-28 11:46  tag pre-qdp1-12-0
+
+2005-02-28 11:46  tag qdp1-12-0
+
+2005-02-28 11:46  bjoo
+
+	* include/lime_defs.h: t_qio now much more stable on QCDOC after
+	  QIO string handling fixes
+
+2005-02-04 13:44  tag adat1-6-1
+
+2005-02-04 13:44  tag adat1-7-0
+
+2005-02-04 13:44  tag qdp1-11-8
+
+2005-02-04 13:44  dgr
+
+	* aclocal.m4, configure: Updated baryons code  - still some
+	  problems with file I/O
+
+2005-01-29 23:34  detar
+
+	* examples/lime_reader_test1.c: Fix errors in examples/Makefile.am
+
+2005-01-26 09:21  tag ante-IO-dox
+
+2005-01-26 09:21  tag qdp1-11-4
+
+2005-01-26 09:21  tag qdp1-11-5
+
+2005-01-26 09:21  tag qdp1-11-6
+
+2005-01-26 09:21  tag qdp1-11-7
+
+2005-01-26 09:21  zbigniew
+
+	* include/lime_config.h: Changed the redefinitions of the macros
+	  generated by autoconf. Previously, the macro redefinitions didn't
+	  work, so now this info is stored in C-strings.
+
+2005-01-22 06:32  tag qdp1-11-2
+
+2005-01-22 06:32  tag qdp1-11-3
+
+2005-01-22 06:32  bjoo
+
+	* include/lime_fixed_types.h: Autoconfiscated uint_t type checking
+
+2005-01-22 06:21  bjoo
+
+	* include/lime_fseeko.h, lib/lime_utils.c: Fixed a bug in
+	  lime_fseeko.h
+
+2005-01-22 05:51  bjoo
+
+	* configure, configure.ac, include/Makefile.am,
+	  include/lime_config_internal.h.in, include/lime_fixed_types.h,
+	  include/lime_fseeko.h, lib/Makefile.am, lib/lime_fseeko.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Added fseeko stubs for
+	  qcdoc. Made the type checking system more sophisticated. Untested
+	  on QCDOC as yet
+
+2005-01-19 22:03  edwards
+
+	* configure: Induced changes.
+
+2005-01-07 01:04  tag c-lime1-1-new
+
+2005-01-07 01:04  tag qio1-1-5
+
+2005-01-07 01:04  edwards
+
+	* NEWS: Info on 1.1
+
+2005-01-07 01:02  tag c-lime1-1
+
+2005-01-07 01:02  edwards
+
+	* README, doc/README, doc/lime_1p1.tex, examples/lime_contents.c,
+	  examples/lime_extract_record.c, examples/lime_pack.c,
+	  examples/lime_unpack.c, examples/lime_writer_test1.c,
+	  include/lime_defs.h, include/lime_header.h,
+	  include/lime_reader.h, include/lime_writer.h, lib/lime_header.c,
+	  lib/lime_reader.c, lib/lime_writer.c: Add a variety of LIME
+	  utilities Add LIME documentation Change LIME file byte counter
+	  types to off_t and change QIO/LRL to conform Update QIO
+	  documentation A little housekeeping
+
+2005-01-07 01:02  edwards
+
+	* configure: Induced changes.
+
+2005-01-07 00:59  edwards
+
+	* examples/Makefile.am: Added more test files.
+
+2005-01-07 00:59  edwards
+
+	* doc/Makefile.am: First version
+
+2005-01-07 00:57  edwards
+
+	* Makefile.am: Added doc to SUBDIRS
+
+2005-01-07 00:56  edwards
+
+	* aclocal.m4: Induced changes.
+
+2005-01-07 00:56  edwards
+
+	* configure.ac: Changed to version 1.1 . Added configure of
+	  doc/Makefile
+
+2004-12-17 16:55  tag pre_qio1-1-5
+
+2004-12-17 16:55  tag qio1-1-4
+
+2004-12-17 16:55  osborn
+
+	* configure, include/lime_config_internal.h.in,
+	  include/lime_fixed_types.h: Made sure qio_config.h and
+	  lime_config.h are included where stdint.h is used.
+
+2004-12-17 16:40  osborn
+
+	* configure.ac: Fixed c-lime configure.ac to check for stdint.h.
+
+2004-12-16 19:40  osborn
+
+	* aclocal.m4, configure: Made DML_grid_route more efficient.
+
+2004-11-30 14:58  tag bj_QIO_fixes
+
+2004-11-30 14:58  osborn
+
+	* aclocal.m4, configure: Minor fixes.
+
+2004-11-30 14:52  osborn
+
+	* include/lime_fixed_types.h: Attempt to fix int types to work on
+	  QCDOC.  May need better fix later.
+
+2004-11-02 14:31  tag qdp1-10-6
+
+2004-11-02 14:31  tag qdp1-11-0
+
+2004-11-02 14:31  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-11-01 19:49  osborn
+
+	* include/Makefile.am: Don't install c-lime's lime_config.h and
+	  lime_config_internal.h.
+
+2004-11-01 19:26  osborn
+
+	* aclocal.m4, configure: Added missing files in examples, created
+	  qio-configure, other build fixes.
+
+2004-11-01 12:58  tag c-lime1-1-0
+
+2004-11-01 12:58  edwards
+
+	* NEWS: Info on 1.1.0
+
+2004-11-01 12:50  tag qio1-1-beta2
+
+2004-11-01 12:50  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-10-29 23:12  detar
+
+	* examples/lime_reader_test1.c, examples/lime_writer_test1.c,
+	  include/lime_reader.h, lib/lime_reader.c: Support host file
+	  conversion from singlefile to partfile.  Revision to example test
+	  code.   Verbosity level added.  -CD
+
+2004-10-18 15:35  tag c-lime1-0-0
+
+2004-10-18 15:35  tag qdp1-10-2
+
+2004-10-18 15:35  tag qdp1-10-3
+
+2004-10-18 15:35  tag qdp1-10-4
+
+2004-10-18 15:35  tag qdp1-10-5
+
+2004-10-18 15:35  tag qio1-0-beta4
+
+2004-10-18 15:35  tag qio1-0-beta5
+
+2004-10-18 15:35  edwards
+
+	* NEWS: Info on 1.0.0
+
+2004-10-18 15:29  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-10-18 15:28  edwards
+
+	* include/Makefile.am: Added hooks for lime_config files.
+
+2004-10-18 15:25  edwards
+
+	* include/lime_config_internal.h.in: New header file.
+
+2004-10-18 15:25  edwards
+
+	* include/lime_config.h: New config file.
+
+2004-10-18 15:24  edwards
+
+	* configure.ac: Added config headers.
+
+2004-10-18 15:16  edwards
+
+	* configure.ac: Added config header info.
+
+2004-10-18 14:57  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-10-16 14:13  osborn
+
+	* examples/lime_writer_test1.c: Fixed distcheck target.
+
+2004-10-16 13:17  osborn
+
+	* aclocal.m4, configure: Made configure use the QMP CC if known
+	  unless CC is explicitly specified.  Also fixed typo on
+	  examples/Makefile.am.
+
+2004-10-14 10:37  edwards
+
+	* configure: Induced changes.
+
+2004-09-01 08:54  tag adat1-5-0
+
+2004-09-01 08:54  tag adat1-6-0
+
+2004-09-01 08:54  tag pre_qdp1-10-0
+
+2004-09-01 08:54  tag qdp1-10-0
+
+2004-09-01 08:54  tag qdp1-10-1
+
+2004-09-01 08:54  tag qio1-0-beta3
+
+2004-09-01 08:54  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-08-31 19:48  tag qio1-0-beta2
+
+2004-08-31 19:48  osborn
+
+	* aclocal.m4, configure: Removed ':' from path in AC_PATH_PROG in
+	  configure.ac
+
+2004-08-26 17:34  tag qio1-0-beta
+
+2004-08-26 17:34  detar
+
+	* acinclude.m4: support change of QMP_io_master_node to function
+	  -CD
+
+2004-08-26 15:02  detar
+
+	* include/lime_fixed_types.h, include/lime_reader.h,
+	  include/lime_writer.h, lib/lime_reader.c, lib/lime_utils.c,
+	  lib/lime_writer.c: Added partitioned I/O support.  Made string
+	  functionality same as QDP.  Standardized fixed numeric types.  No
+	  support for parallel I/O or file appending yet, but included
+	  placeholders.  -CD
+
+2004-05-11 16:23  tag adat1-4-2
+
+2004-05-11 16:23  tag adat1-4-3
+
+2004-05-11 16:23  tag adat1-4-4
+
+2004-05-11 16:23  tag c-lime0-9-0
+
+2004-05-11 16:23  tag qdp1-8-5
+
+2004-05-11 16:23  tag qdp1-8-6
+
+2004-05-11 16:23  tag qdp1-9-0
+
+2004-05-11 16:23  tag qdp1-9-1
+
+2004-05-11 16:23  tag qdp1-9-2
+
+2004-05-11 16:23  tag qdp1-9-3
+
+2004-05-11 16:23  tag qdp1-9-4
+
+2004-05-11 16:23  tag qio0_9_6
+
+2004-05-11 16:23  edwards
+
+	* NEWS: Info on 0.9.0
+
+2004-04-05 21:20  tag adat1-4-1
+
+2004-04-05 21:20  tag qdp1-8-1
+
+2004-04-05 21:20  tag qdp1-8-2
+
+2004-04-05 21:20  tag qdp1-8-3
+
+2004-04-05 21:20  tag qdp1-8-4
+
+2004-04-05 21:20  tag qio0-9-5
+
+2004-04-05 21:20  edwards
+
+	* examples/lime_extract_record.c: Added record increment.
+
+2004-04-05 20:59  edwards
+
+	* examples/lime_extract_record.c: New program.
+
+2004-04-05 20:58  edwards
+
+	* examples/Makefile.am: Added lime_extract_record
+
+2004-03-19 23:13  tag qdp1-7-8
+
+2004-03-19 23:13  tag qdp1-7-9
+
+2004-03-19 23:13  tag qdp1-8-0
+
+2004-03-19 23:13  tag qio0-9-4
+
+2004-03-19 23:13  edwards
+
+	* configure: Induced changes.
+
+2004-03-15 15:41  tag qdp1-7-7
+
+2004-03-15 15:41  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-03-10 23:54  tag pre_qdp1-7-7
+
+2004-03-10 23:54  tag qdp1-7-6
+
+2004-03-10 23:54  tag qio0-9-3
+
+2004-03-10 23:54  detar
+
+	* aclocal.m4, configure, include/Makefile.am: Correct multifile
+	  lime header bug.
+
+2004-03-08 15:54  edwards
+
+	* configure: Induced changes.
+
+2004-03-08 15:18  edwards
+
+	* aclocal.m4: Induced changes.
+
+2004-03-08 15:18  edwards
+
+	* Makefile.am, examples/Makefile.am: Added examples generation.
+
+2004-03-08 15:18  edwards
+
+	* configure.ac: Added generation of examples.
+
+2004-03-07 17:44  detar
+
+	* examples/: lime_reader_test1.c, lime_writer_test1.c: Converted
+	  dime test utilities to lime.	lime_reader_test1 can also be used
+	  to dump a file.
+
+2004-03-06 16:26  tag qdp1-7-5
+
+2004-03-06 16:26  tag qio0-9-2
+
+2004-03-06 16:26  detar
+
+	* include/lime_defs.h, lib/lime_header.c, lib/lime_reader.c: Added
+	  reads and writes for global data.  Added reads and writes for
+	  arrays of fields.  Renamed XML_String type QIO_String.  Renamed
+	  XML_string.c QIO_string.c and moved it from xml to qio.
+	  Corrected bug that suppressed the lime header in secondary
+	  multifile data records
+
+2004-02-29 20:33  tag qdp1-7-4
+
+2004-02-29 20:33  edwards
+
+	* lib/: lime_reader.c, lime_writer.c: Changed DEBUG to LIME_DEBUG
+	  to avoid name collisions.  Commented out limeCloseRecord
+	  debugging comment.
+
+2004-02-29 18:14  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-28 16:14  tag qdp1-7-3
+
+2004-02-28 16:14  tag qio0-9-1
+
+2004-02-28 16:14  edwards
+
+	* configure: Induced changes.
+
+2004-02-28 16:12  edwards
+
+	* aclocal.m4: Induced changes
+
+2004-02-28 13:07  detar
+
+	* aclocal.m4, configure: Correct record_info mem leak.	Remove
+	  (size_t)(-1).
+
+2004-02-26 17:42  tag qcd1-7-2
+
+2004-02-26 17:42  tag qio0-9-0
+
+2004-02-26 17:42  edwards
+
+	* lib/: lime_reader.c, lime_writer.c: Fixed some casts.
+
+2004-02-26 17:34  edwards
+
+	* include/lime_binary_header.h: Changed type of lime_hdr_rec_type
+	  to unsigned char*.
+
+2004-02-18 21:47  tag qdp1-7-1
+
+2004-02-18 21:47  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-18 20:49  edwards
+
+	* Makefile.am: Removed building examples.
+
+2004-02-18 20:48  edwards
+
+	* configure, configure.ac: Removed building examples for now.
+
+2004-02-18 20:47  edwards
+
+	* aclocal.m4, configure: Induced changes.
+
+2004-02-18 20:47  edwards
+
+	* examples/: Makefile.am, lime_reader_test1.c, lime_writer_test1.c:
+	  Removed broken test codes - CD says they have not been used.
+
+2004-02-18 15:27  detar
+
+	* lib/lime_reader.c: Added root tags and xml info field to private
+	  file and record xml strings.
+
+2004-02-16 22:15  tag qdp1-7-0
+
+2004-02-16 22:15  detar
+
+	* include/lime_binary_header.h: . fix comment describing header
+	  length
+
+2004-02-06 18:45  tag qcd1-6-14
+
+2004-02-06 18:45  tag qdp-1-6-12-prestrip
+
+2004-02-06 18:45  tag qdp-1-6-13
+
+2004-02-06 18:45  detar
+
+	* AUTHORS, COPYING, INSTALL, Makefile.am, NEWS, README, aclocal.m4,
+	  configure, configure.ac, config/depcomp, config/install-sh,
+	  config/missing, config/mkinstalldirs, examples/Makefile.am,
+	  examples/lime_reader_test1.c, examples/lime_writer_test1.c,
+	  include/Makefile.am, include/lime.h,
+	  include/lime_binary_header.h, include/lime_defs.h,
+	  include/lime_fixed_types.h, include/lime_header.h,
+	  include/lime_reader.h, include/lime_utils.h,
+	  include/lime_writer.h, lib/Makefile.am, lib/lime_header.c,
+	  lib/lime_reader.c, lib/lime_utils.c, lib/lime_writer.c: Insert
+	  LIME and modify code to support it.  C. DeTar
+

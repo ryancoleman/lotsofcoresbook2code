@@ -1,0 +1,1393 @@
+//$Id: implementation.dox,v 1.5 2007-03-15 03:50:21 edwards Exp $
+/*!
+\page impldetail Implementation Details
+
+\section secimplementation Implementation Details
+
+  -# \ref headerfiles
+  -# \ref secsupported
+  -# \ref secsubsets
+  -# \ref secinfix
+  -# \ref seccfuncs
+  -# \ref secfuncs
+  -# \ref secinplace
+  -# \ref secbroadcasts 
+  -# \ref secreductions 
+  -# \ref secglobalcomparisons
+  -# \ref secpeek
+  -# \ref secotherfuncs	
+  -# \ref subtypeops 
+
+\subsection headerfiles Header Files
+
+The following table lists some of the QDP headers.
+ - qdp.h        
+   - Master header and QDP utilities     
+ - qdp_qdptype.h    
+   - Main class definition               
+ - qdp_qdpexpr.h    
+   - Expression class definition         
+ - qdp_primitive.h  
+   - Main header for all primitive types 
+ - qdp_primscalar.h 
+   - Scalar primitive class and operations 
+ - qdp_primmatrix.h 
+   - Matrix primitive and operations 
+ - qdp_primvector.h 
+   - Vector primitive and operations 
+ - qdp_primseed.h   
+   - Seed (random number) primitive  
+ - qdp_reality.h    
+   - Complex number internal class  
+ - qdp_simpleword.h 
+   - Machine word-type operations  
+
+
+\section secsupported Supported Operations
+
+This section describes in some detail the names and functionality for
+all functions in the interface involving linear algebra with and
+without shifts.  
+
+All QDP objects are of type QDPType, and QDP functions act on objects
+of this base class type. Unless otherwise indicated, operations occur
+on all sites in the specified subset of the target, often an
+assignment statement or object definition. The indexing of a QDPType
+returns an lvalue suitable for assignment (but not object
+definition). It is also used to narrow the lattice sites participating
+in a global reduction since the result of such a reduction is a
+lattice scalar, hence are independent of lattice sites.
+
+Supported operations are listed below.
+Convention: prototypes are basically of the form:
+
+\verbatim
+QDPType  unary_function(const QDPType&)
+QDPType  binary_function(const QDPType&, const QDPType&)
+\endverbatim
+
+\subsection secsubsets Subsets and Maps
+
+- Set::make(const SetFunc&) 
+  - Set construction of ordinality num subsets.
+                               func maps coordinates to a coloring in [0,num)
+
+- Map::make(const MapFunc&) 
+  - Construct a map function from source sites to the dest site.
+
+
+\subsection secinfix Infix operators
+
+\subsubsection Unary infix 
+
+e.g., \c  operator- 
+
+- -  
+  - negation
+- +  
+  - unary plus
+- ~  
+  - bitwise not
+- ! 
+  - boolean not
+
+\subsubsection Binary infix 
+
+e.g., \c operator+
+
+- +
+  -   addition
+- -
+  -   subtraction
+- *
+  -   multiplication
+- /
+  -   division
+- \%
+  -   mod 
+- &
+  -   bitwise and
+- |
+  -   bitwise or
+- ^
+  -   bitwise exclusive or
+- <<
+  -  left-shift
+- >>
+  -  right-shift
+
+
+\subsubsection Comparisons
+
+Operations returning booleans, e.g., \c operator<
+
+- <
+  - less than
+- <= 
+  - less than or equal
+- >
+  - greater than
+- >=
+  - greater than or equal
+- == 
+  - equality
+- !=
+  -  inequality
+- &&
+  - logical and 
+- ||
+  - logical or
+
+\subsubsection  Assignments
+
+e.g., \c operator+=
+
+- =, 
+- +=, 
+- -=, 
+- *=, 
+- /=
+
+\subsubsection Ternary
+
+- where(bool,arg1,arg2) 
+  -  the C ternary \c ? operator  (bool) ? arg1 : arg2
+
+
+
+\subsection seccfuncs Functions 
+
+As in the standard C mathematics library.
+
+\subsubsection Unary
+
+- QDP::cos
+- QDP::sin
+- QDP::tan
+- QDP::acos
+- QDP::asin
+- QDP::atan
+- QDP::cosh
+- QDP::sinh
+- QDP::tanh
+- QDP::exp
+- QDP::log
+- QDP::log10
+- QDP::sqrt
+- QDP::ceil
+- QDP::floor
+- QDP::fabs
+
+\subsubsection Binary
+
+- QDP::ldexp
+- QDP::pow
+- QDP::fmod
+- QDP::atan2
+
+
+\subsection secfuncs Additional functions (specific to QDP)
+
+\subsubsection Unary
+
+- QDP::adj
+  - hermitian conjugate (adjoint)
+- QDP::conj             
+  - complex conjugate
+- QDP::transpose        
+  - matrix tranpose, on a scalar it is a nop
+- QDP::transposeColor
+  - matrix tranpose of color indices, on a scalar it is a nop
+- QDP::transposeSpin
+  - matrix tranpose of spin indices, on a scalar it is a nop
+- QDP::trace            
+  - matrix trace
+- QDP::traceColor
+  - matrix trace of color indices
+- QDP::traceSpin
+  - matrix trace of spin indices
+- QDP::real             
+  - real part of complex
+- QDP::imag             
+  - imaginary part of complex
+- QDP::timesI           
+  - multiplies argument by imaginary \e i
+- QDP::localNorm2       
+  - on fibers, computes trace(adj(source)*source)
+
+\subsubsection Binary
+
+- QDP::cmplx              
+  - returns complex object   arg1 + i*arg2
+- QDP::localInnerProduct  
+  - at each site computes trace(adj(arg1)*arg2)
+- QDP::outerProduct       
+  - at each site constructs (arg1<sub>i</sub> * arg2<sub>j</sub><sup>*</sup>)<sub>ij</sub>
+
+
+\subsection secinplace In place functions
+
+- QDP::random
+  - uniform random numbers in all components
+- QDP::gaussian
+  - Gaussian random numbers in all components
+- QDP::copymask 
+  - copy under a boolean mask
+
+\subsection secbroadcasts Broadcasts
+
+\subsubsection broadcastassign Broadcasts via assignments 
+
+i.e. via \c operator=
+
+- \e LHS = constant 
+ - globally set conforming LHS to constant
+- \e LHS = zero
+ - globally set LHS to zero
+
+
+\subsection secreductions Global reductions
+
+- QDP::sum
+  - sum over lattice indices returning object of same fiber type
+- QDP::norm2
+  - sum(localNorm2(arg1))
+- QDP::innerProduct
+  - sum(localInnerProduct(arg1,arg2)) 
+- QDP::sumMulti
+  - sum over each subset of Set returning \#subset
+
+
+\subsection secglobalcomparisons Global comparisons
+
+- QDP::globalMax
+  - maximum over lattice indices (simple quantities)
+- QDP::globalMin
+  - minimum over lattice indices (simple quantities)
+
+
+\subsection secglobalchecks Global checks
+
+- QDP::isnan
+  - true if any value in source is NaN
+- QDP::isinf
+  - true if any value in source is an Inf
+- QDP::isfinite
+  - true if all values in source are finite
+- QDP::isnormal
+  - true if all values in source are normal
+
+
+\subsection secpeek Accessors
+
+Peeking and poking (accessors) into various component indices of objects.
+
+- QDP::peekSite (arg1,multi1d<int> coords) 
+  - return object located at lattice coords
+- QDP::peekColor (arg1,int row,int col) 
+  - return color matrix elem row and col
+- QDP::peekColor (arg1,int row) 
+  - return color vector elem row
+- QDP::peekSpin (arg1,int row,int col) 
+  - return spin matrix elem row and col
+- QDP::peekSpin (arg1,int row) 
+  - return spin vector elem row
+
+- QDP::pokeSite (dest,src,multi1d<int> coords) 
+  - insert into site given by coords
+- QDP::pokeColor (dest,src,int row,int col) 
+  - insert into color matrix elem row and col
+- QDP::pokeColor (dest,src,int row) 
+  - insert into color vector elem row
+- QDP::pokeSpin (dest,src,int row,int col) 
+  - insert into spin matrix elem row and col
+- QDP::pokeSpin (dest,src,int row) 
+  - insert into spin vector elem row
+
+
+\subsection secotherfuncs More exotic functions
+
+
+- QDP::spinProject (QDPType psi, int dir, int isign)
+  - Applies spin projection (1 + isign*\f$\gamma_\mu\f$)*psi
+  returning a half spin vector or matrix 
+
+- QDP::spinReconstruct (QDPType psi, int dir, int isign)
+  - Applies spin reconstruction of (1 + isign*\f$\gamma_\mu\f$)*psi
+returning a full spin vector or matrix
+
+- QDP::quarkContract13 (a,b)
+  - Epsilon contract 2 quark propagators and return a quark propagator.
+This is used for diquark constructions. Eventually, it could handle larger
+QDP::Nc. 
+The numbers represent which spin index to sum over.
+  - The sources and targets must all be propagators but not
+necessarily of the same lattice type. Effectively, one can use
+this to construct an anti-quark from a di-quark contraction. In
+explicit index form, the operation  quarkContract13 does
+\f[\mathrm{target}^{k' k}_{\alpha\beta} =
+ \epsilon^{i j k}\epsilon^{i' j' k'}* \mbox{source1}^{i i'}_{\rho\alpha}* \mbox{source2}^{j j'}_{\rho\beta}\f]
+and is (currently) only appropriate for QPD::Nc=3  (i.e. SU(3)).
+
+- QDP::quarkContract14 (a,b)
+  - Epsilon contract 2 quark propagators and return a quark propagator:
+
+\f[\mbox{target}^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*\mbox{source1}^{i i'}_{\rho\alpha}*\mbox{source2}^{j j'}_{\beta\rho}\f]
+
+- QDP::quarkContract23 (a,b)
+  - Epsilon contract 2 quark propagators and return a quark propagator.
+\f[\mbox{target}^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*\mbox{source1}^{i
+    i'}_{\alpha\rho}*\mbox{source2}^{j j'}_{\rho\beta}\f]
+
+- QDP::quarkContract24 (a,b)
+  - Epsilon contract 2 quark propagators and return a quark propagator.
+\f[\mbox{target}^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*\mbox{source1}^{i i'}_{\rho\alpha}*\mbox{source2}^{j j'}_{\beta\rho}\f]
+
+- QDP::quarkContract12 (a,b)
+Epsilon contract 2 quark propagators and return a quark propagator.
+\f[\mbox{target}^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*\mbox{source1}^{i
+    i'}_{\rho\rho}*\mbox{source2}^{j j'}_{\alpha\beta}\f]
+
+- QDP::quarkContract34 (a,b)
+  - Epsilon contract 2 quark propagators and return a quark propagator.
+\f[\mbox{target}^{k' k}_{\alpha\beta} =
+    \epsilon^{i j k}\epsilon^{i' j' k'}*\mbox{source1}^{i i'}_{\alpha\beta}*\mbox{source2}^{j j'}_{\rho\rho}\f]
+
+- QDP::colorContract (a,b,c)
+  - Epsilon contract 3 color primitives and return a primitive scalar.
+  - The sources and targets must all be of the same primitive type (a matrix or vector)
+but not necessarily of the same lattice type. In
+explicit index form, the operation  colorContract does
+\f[
+\mbox{target} =
+  \epsilon^{i j k}\epsilon^{i' j' k'}* \mbox{source1}^{i i'}* \mbox{source2}^{j j'}*\mbox{source3}^{k k'}
+\f]
+  - or
+\f[
+\mbox{target} =
+ \epsilon^{i j k}* \mbox{source1}^{i}* \mbox{source2}^{j}*\mbox{source3}^{k}
+\f]
+and is (currently) only appropriate for Nc=3  (or SU(3)).
+
+
+
+
+\subsection subtypeops Operations on subtypes
+
+\subsubsection  Subtypes
+
+Types in the QDP interface are parameterized by a variety of types, and
+can look like the following:
+
+\verbatim
+typedef OLattice<PScalar<PColorMatrix<RComplex<float>, Nc> > > LatticeColorMatrix
+typedef OLattice<PSpinVector<PColorVector<RComplex<float>, Nc>, Ns> > LatticeFermion
+\endverbatim
+
+\par machinetype Word type 
+ Basic machine types
+-  int
+-  float
+-  double
+-  bool
+\par Reality type 
+-  RComplex
+-  RScalar
+\par Primitive type 
+-  PScalar
+- PVector
+- PMatrix
+- PSeed 
+\par Inner grid type 
+-  IScalar
+- ILattice. 
+\par Outer grid type
+-  OScalar
+- OLattice. 
+
+\subsubsection Operations
+
+Supported operations for each type level are as follows:
+
+\par Grid type
+- OScalar
+- OLattice
+- IScalar
+- ILattice
+
+All operations listed in Sections \ref secinfix - \ref secotherfuncs
+
+\par Primitive type
+
+\par PScalar
+All operations listed in Sections \ref secinfix - \ref secotherfuncs
+
+\par PMatrix
+  - Unary
+    - -(PMatrix)
+    - +(PMatrix)
+  - Binary
+     -(PMatrix,PMatrix)
+     - +(PMatrix,PMatrix) 
+     - *(PMatrix,PScalar)
+     - *(PScalar,PMatrix)
+     - *(PMatrix,PMatrix)
+  - Comparisons
+    -  none
+  - Assignments
+    - =(PMatrix)
+    - =(PScalar)
+    - -=(PMatrix)
+    - +=(PMatrix)
+    - *=(PScalar)
+  - Ternary
+    - QDP::where
+  - C-lib funcs
+    - none
+  - %QDP funcs
+    - all
+  - In place funcs
+    - all
+  - Reductions
+    - all
+  - Global Comparisons
+    -  none
+
+\par PVector
+
+  - Unary - 
+    -(PVector) 
+    - +(PVector)
+  - Binary 
+    - -(PVector,PVector) 
+    - +(PVector,PVector) 
+    - *(PVector,PScalar) 
+    - *(PScalar,PVector) 
+    - *(PMatrix,PVector)
+  - Comparisons 
+    - none
+  - Assignments 
+    - =(PVector) 
+    - -=(PVector) 
+    - +=(PVector) 
+    - *=(PScalar)
+  - Ternary 
+    - QDP::where
+  - C-lib funcs 
+    - none
+  - QDP funcs 
+    - QDP::real 
+    - QDP::imag 
+    - QDP::timesI 
+    - QDP::localNorm2 
+    - QDP::cmplx 
+    - QDP::localInnerProduct 
+    - QDP::outerProduct
+  - In place funcs - all
+  - Broadcasts 
+    - =(Zero)
+  - Reductions 
+    - all
+  - Global Comparisons
+    -  none
+
+\par PSpinMatrix
+
+  - Binary 
+    - *(PSpinMatrix,QDP::Gamma) 
+    - *(QDP::Gamma,PSpinMatrix)
+  - Exotic 
+    - QDP::peekSpin 
+    - QDP::pokeSpin 
+    - spinProjection 
+    - spinReconstruction
+
+\par PSpinVector
+
+  - Binary 
+    - *(QDP::Gamma,PSpinVector)
+  - Exotic 
+    - QDP::peekSpin 
+    - QDP::pokeSpin 
+    - spinProjection 
+    - spinReconstruction
+
+\par PColorMatrix
+
+  - Binary 
+    - *(PColorMatrix,QDP::Gamma) 
+    - *(QDP::Gamma,PColorMatrix)
+  - Exotic 
+    - QDP::peekColor		
+    - QDP::pokeColor
+
+\par PColorVector
+
+  - Binary 
+    - *(QDP::Gamma,PColorVector)
+  - Exotic 
+    - QDP::peekColor 
+    - QDP::pokeColor
+
+\par Reality
+     - RScalar
+     - RComplex
+     .
+All operations listed in Sections \ref secinfix - \ref secotherfuncs.
+
+\par Word
+- int
+- float
+- double
+- bool
+.
+All operations listed in Sections \ref secinfix - \ref secotherfuncs.
+Only boolean operations allowed on bool.
+
+\section secdetails Detailed function description
+
+The purpose of this section is to show some explicit prototypes and
+usages for the functions described in Section \ref secsupported.
+In that section, all the functions are shown with complete information
+on which operations and their meaning are supported on some combination
+of types. The purpose of this section is something like the inverse -
+namely show all the functions and what are some (selected) usages.
+
+\subsection unaryops Unary Operations
+
+\par Elementary unary functions on reals
+
+- Syntax 
+  - Type func(const Type& a)
+- Meaning  
+  -   <em>r = func(a) </em>
+- func
+  - QDP::cos
+  - QDP::sin
+  - QDP::tan
+  - QDP::acos
+  - QDP::asin
+  - QDP::atan
+  - QDP::sqrt
+  - QDP::abs
+  - QDP::exp
+  - QDP::log
+  - QDP::sign
+- Type
+  - QDP::Real
+  - QDP::LatticeReal
+
+\par Elementary unary functions on complex values
+
+-  Syntax      
+   - Type func(const Type& a)
+-  Meaning
+   -   <em>r = func(a) </em>
+- func  
+  - QDP::exp
+  - QDP::sqrt
+  - QDP::log
+- Type
+  - QDP::Complex
+  - QDP::LatticeComplex
+
+\par Assignment operations
+
+-  Syntax
+   - Type operator=(const Type& r, const Type& a)
+-  Meaning
+   -     <em>r = a</em>
+- Type
+   - All numeric types
+
+\par Shifting
+
+-  Syntax
+   - Type QDP::shift (const Type& a, int sign, int dir)
+-  Meaning     
+   - <em>r = a</em>
+- Type
+  - All numeric types
+
+\par Hermitian conjugate
+
+-  Syntax 
+   - Type QDP::adj (const Type a)
+-  Meaning
+   - <em>r = a<sup>dagger</sup></em>
+- Type
+  - QDP::Real
+  - QDP::Complex
+  - QDP::ColorMatrix 
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - Also corresponding lattice variants
+
+\par Transpose
+
+-  Syntax
+   - Type QDP::transpose (const Type a)
+-  Meaning     
+   - <em>r = transpose(a)</em>
+- Type
+  - QDP::Real
+  - QDP::Complex
+  - QDP::ColorMatrix 
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - Also corresponding lattice variants
+
+\par Transpose of color indices
+
+-  Syntax
+   - Type QDP::transposeColor (const Type a)
+-  Meaning     
+   - <em>r = transposeColor(a)</em>
+- Type
+  - QDP::Real
+  - QDP::Complex
+  - QDP::ColorMatrix 
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - Also corresponding lattice variants
+
+\par Transpose of spin indices
+
+-  Syntax
+   - Type QDP::transposeSpin (const Type a)
+-  Meaning     
+   - <em>r = transposeSpin(a)</em>
+- Type
+  - QDP::Real
+  - QDP::Complex
+  - QDP::SpinMatrix 
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - Also corresponding lattice variants
+
+\par Complex conjugate
+
+-  Syntax
+   - Type QDP::conj (const Type a)
+-  Meaning     
+   - <em>r =a<sup>*</sup></em>
+- Type
+  - QDP::Real
+  - QDP::Complex
+  - QDP::ColorMatrix 
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - Also corresponding lattice variants
+
+
+\subsection typeconv Type conversion
+
+\par Convert integer or float to double
+
+-  Syntax
+   - Type2 Type2(const Type1& a) 
+- Type1
+  - All single precision numeric types 
+- Type2 
+  - All conforming double precision numeric types 
+-  Example
+   - QDP::LatticeReal a; QDP::LatticeRealD r = QDP::LatticeRealD (a)
+   - QDP::LatticeColorMatrix a; QDP::LatticeColorMatrixD r =
+   QDP::LatticeColorMatrixD (a);
+
+\par Convert double to float
+
+-  Syntax
+   - Type2 Type2(const Type1 a)
+- Type1
+  - All double precision numeric types 
+- Type2
+  - All conforming single precision numeric types 
+-  Example
+   - QDP::LatticeRealD a; QDP::LatticeReal r = QDP::LatticeReal (a) 
+   - QDP::LatticeColorMatrixD a; QDP::LatticeColorMatrix r =
+   QDP::LatticeColorMatrix (a);
+
+\par Integer to real
+
+-  Syntax Type2 Type2(\c const Type1& a)
+- Type1
+  - All integer precision numeric types 
+- Type2
+  - All conforming real precision numeric types 
+-  Example 
+   - QDP::LatticeInt a; QDP::LatticeReal r = QDP::LatticeReal (a);
+
+\par Real to integer
+
+-  Syntax Type2 Type2(const Type1& a)
+-  Example
+   - QDP::LatticeReal a; QDP::LatticeInt r = QDP::LatticeInt (a);
+
+\par Real to float
+
+The QDP type QDP::Real is not a primitive type, so an explicit
+conversion is provided. 
+
+-  Syntax
+   - float QDP::toFloat (const QDP::Real& a)
+-  Meaning 
+    <em>r = float(a)</em>
+-  Example 
+   - QDP::Real a; float r = QDP::toFloat (a);
+
+
+\par Double to double
+ 
+The QDP type QDP::RealD is not a primitive type, so an explicit
+conversion is provided. 
+
+-  Syntax
+   - double QDP::toDouble (const QDP::RealD& a)
+-  Meaning 
+    <em>r = double(a)</em>
+-  Example 
+   - QDP::RealD a; double r = QDP::toDouble (a);
+
+
+\par Boolean to bool
+
+The QDP type QDP::Boolean is not a primitive type, so an explicit
+conversion is provided. 
+
+-  Syntax
+   - bool QDP::toBool (const QDP::Boolean& a)
+-  Meaning 
+    <em>r = bool(a)</em>
+-  Example 
+   - QDP::Boolean a; bool r = QDP::toBool (a);
+
+ 
+
+\subsection complexops Operations on complex arguments
+
+\par Convert real and imaginary to complex
+
+-   Syntax 
+    - Type QDP::cmplx (const Type1& a, const Type2& b)
+-  Meaning  
+    - <em>Re r = a, Im r = b</em>
+- Type1 
+  - Constant
+  - QDP::Real
+  - Also corresponding lattice variants
+- Type2
+  - Constant
+  - QDP::Real
+  - Also corresponding lattice variants
+- Type 
+  - QDP::Complex
+  - Also corresponding lattice variants
+
+\par Real part of complex
+
+- Syntax
+  - Type QDP::real (const Type& a)
+- Meaning
+  - <em>r = Re a</em>
+
+\par Imaginary part of complex
+
+- Syntax
+  - Type QDP::imag (const Type& a)
+- Meaning
+  - <em>r = Im a</em>
+
+
+
+\subsection compextrins Component extraction and insertion
+
+\par Accessing a site object
+
+-  Syntax 
+   - Type QDP::peekSite (const LatticeType& a, const multi1d<int>& c)
+-  Meaning 
+   - <em>r = a[x]</em>
+
+\par Accessing a color matrix element
+
+-  Syntax 
+   - QDP::LatticeComplex QDP::peekColor (const QDP::LatticeColorMatrix& a, int i, int j)   
+   - QDP::LatticeSpinMatrix QDP::peekColor (const QDP::LatticeDiracPropagator& a, int i, int j)
+-  Meaning
+   - <em>r = a<sub>i,j</sub></em>
+
+\par Inserting a color matrix element
+
+-  Syntax
+   - QDP::LatticeColorMatrix& QDP::pokeColor (QDP::LatticeColorMatrix& r, const QDP::LatticeComplex& a, int i, int j)
+-  Meaning
+   - <em>r<sub>i,j</sub> = a</em>
+
+\par Accessing a color vector element
+
+-  Syntax
+   - QDP::LatticeComplex QDP::peekColor (const QDP::LatticeColorVector& a, int i)
+   - QDP::LatticeSpinVector QDP::peekColor (const QDP::LatticeDiracFermion& a, int i)
+-  Meaning
+   - <em>r = a<sub>i</sub></em>
+
+This function will extract the desired color component with all the
+other indices unchanged.
+
+A lattice color vector is another name (typedef) for a
+QDP::LatticeStaggeredFermion. Namely, an object that is vector in color
+spin and a scalar in spin space.  Together with spin accessors, one
+can build a QPD::LatticeDiracFermion.
+
+\par Inserting a color vector element 
+
+-   Syntax
+    - QDP::LatticeColorVector QDP::pokeColor (QDP::LatticeColorVector&
+    r, const QDP::LatticeComplex& a, int i})
+-  Meaning
+   - <em>r<sub>i</sub> = a</em>
+
+This function will extract the desired color component with all the
+other indices unchanged.
+
+A lattice color vector is another name (typedef) for a
+QDP::LatticeStaggeredFermion. Namely, an object that is vector in color
+spin and a scalar in spin space.  Together with spin accessors, one
+can build a QDP::LatticeDiracFermion{} or a QDP::LatticeDiracPropagator.
+
+\par Accessing a spin matrix element
+-  Syntax
+   - QDP::LatticeComplex QDP::peekSpin (const QDP::LatticeSpinMatrix& a, int i, int j)
+   - QDP::LatticeColorMatrix QDP::peekSpin (const QDP::LatticeDiracPropagator& a, int i, int j)\\
+-  Meaning
+   - <em>r = a<sub>i,j</sub></em>
+
+\par Inserting a spin matrix element
+
+-  Syntax
+   - QDP::LatticeSpinMatrix& QDP::pokeSpin (QDP::LatticeSpinMatrix& r, const QDP::LatticeComplex& a, int i, int j)
+-  Meaning
+   - <em>r<sub>i,j</sub> = a</em>
+
+\par Accessing a spin vector element
+
+-  Syntax
+   - QDP::LatticeComplex QDP::peekSpin (const QDP::LatticeSpinVector& a, int i)
+   - QDP::LatticeColorVector QDP::peekSpin (const QDP::LatticeDiracFermion& a, int i)
+-  Meaning
+   - <em>r = a<sub>i</sub></em>
+
+This function will extract the desired spin component with all the
+other indices unchanged.
+
+A lattice spin vector is an object that is a vector in spin space and
+a scalar in color space.  Together with color accessors, one can build
+a QDP::LatticeDiracFermion or a QDP::LatticeDiracPropagator.
+
+\par Inserting a spin vector element
+
+-  Syntax
+   - QDP::LatticeSpinVector QDP::pokeSpin (QDP::LatticeSpinVector& r, const QDP::LatticeComplex& a, int i)
+-  Meaning
+   - <em>r<sub>i</sub> = a</em>
+
+This function will extract the desired spin component with all the
+other indices unchanged.
+
+A lattice spin vector is an object that is a vector in spin space and
+a scalar in color space.  Together with color accessors, one can build
+a QDP::LatticeDiracFermion or a QDP::LatticeDiracPropagator.
+
+\par Trace of matrix
+
+-  Syntax
+   - Type2 QDP::trace (const Type1& a)
+-   Meaning
+   - <em>r = Tr a</em>
+- Type1
+  - QDP::ColorMatrix
+  - QDP::DiracPropagatorD, QDP::DiracPropagatorF, \e etc.
+  - Also corresponding lattice variants
+- Type2
+  - QDP::Complex
+  - QDP::Complex
+  - Also corresponding lattice variants
+-  Example
+    QDP::LatticeColorMatrix a; QDP::LatticeComplex r = QDP::trace (a);
+
+Traces over all matrix indices. It is an error to trace over a vector index.
+It will trivially trace a scalar variable.
+
+\par Color trace of matrix
+
+-  Syntax 
+   - Type2 QDP::traceColor (const Type1& a)
+-  Meaning
+   - <em> r = Tr a</em>
+- Type1
+  - QDP::ColorMatrix
+  - Also corresponding lattice variants
+- Type2
+  - QDP::Complex
+  - Also corresponding lattice variants 
+-  Example
+   - QDP::LatticeDiracPropagator a;
+   - QDP::LatticeSpinMatrix r = QDP::traceColor (a);
+
+Traces only over color matrix indices. It is an error to trace over a color vector index.
+All other indices are left untouched.
+It will trivially trace a scalar variable.
+
+\par Spin trace of matrix
+
+-  Syntax
+   - Type2 QDP::traceSpin (const Type1& a)
+-  Meaning
+   - <em> r = Tr a</em>
+- Type1
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD, \e etc.
+  - Also corresponding lattice variants 
+- Type2
+  - QDP::ColorMatrix
+  - Also corresponding lattice variants 
+-  Example
+   - QDP::LatticeDiracPropagator a;
+   - QDP::LatticeColorMatrix r = QDP::traceSpin(a); 
+
+Traces only over spin matrix indices. It is an error to trace over a
+spin vector index.  All other indices are left untouched.  It will
+trivially trace a scalar variable.
+
+\par Dirac spin projection
+
+-  Syntax 
+   - Type2 QDP::spinProject (const Type1& a, int d, int p)   
+-  Meaning
+   - \f$r = (1 + p\gamma_d)a\f$
+- Type1
+  - QDP::DiracFermionF, QDP::DiracFermionD \e etc.
+  - Also corresponding lattice variants 
+- Type2
+  - QDP::HalfFermion
+  - Also corresponding lattice variants 
+
+\par Dirac spin reconstruction
+
+-  Syntax
+   - Type2 QDP::spinReconstruct (const Type1& a, int d, int p)
+-  Meaning
+     - <em>r = recon(p,d,a)</em>
+- Type1
+  -  QDP::HalfFermion
+  - Also corresponding lattice variants 
+- Type2
+  - QDP::DiracFermionF, QDP::DiracFermionD, \e etc
+  - Also corresponding lattice variants 
+
+
+\subsection binopconst Binary Operations with Constants
+
+\par Multiplication by real constant
+
+-  Syntax
+  - Type operator*(const QDP::Real& a, const Type& b)
+  - Type operator*(const Type& b, const QDP::Real& a)
+-  Meaning
+  - <em>r = a*b</em> (\e a real, constant)
+- Type
+  - All floating types
+
+\par Multiplication by complex constant
+
+-  Syntax
+   - Type operator*(const QDP::Real\& a, const Type& b)\\
+   -  Type operator*( const Type& b, const QDP::Real &a)\\
+-  Meaning
+  - <em>r = a*b</em> (\e a complex, constant)
+- Type
+  - All numeric types
+
+\par Left multiplication by gamma matrix
+
+-  Syntax
+  -  Type operator*(const QDP::Gamma& a, const Type& b)
+-  Meaning
+   -     \f$r = \gamma_d * a\f$ 
+- Gamma
+  -  Gamma constructed from an explicit integer in [0,N<sub>s</sub><sup>2</sup>-1]
+- Types
+  - QDP::SpinVector
+  - QDP::SpinMatrix
+  - QDP::HalfFermion
+  - QDP::DiracFermionF, QDP::DiracFermionD \e etc.
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - similar lattice variants 
+- Example
+  - r = QDP::Gamma (7) * b;
+
+\par Right multiplication by gamma matrix
+
+-  Syntax
+   - Type operator*(const Type& a, const Gamma& b)
+-   Meaning   
+    -  \f$r = a * \gamma_d\f$ 
+- Gamma
+  -  Gamma constructed from an explicit integer in [0,N<sub>s</sub><sup>2</sup>-1]
+- Types
+  - QDP::SpinVector
+  - QDP::SpinMatrix
+  - QDP::HalfFermion
+  - QDP::DiracFermionF, QDP::DiracFermionD \e etc.
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD \e etc.
+  - similar lattice variants 
+
+See Section \ref secspin for details on \f$\gamma\f$-matrix conventions.
+
+
+
+\subsection binopfield Binary Operations with Fields
+
+\par Division of real fields
+
+-   Syntax
+   - Type operator/(const Type& a, const Type& b)
+-  Meaning
+   - <em>r = a / b</em>
+- Type
+  - All numeric types
+
+\par Addition
+
+-   Syntax
+   - Type operator+(const Type& a, const Type& b)
+-  Meaning
+   - <em>r = a + b</em>
+- Type
+  - All numeric types
+
+\par Subtraction
+
+-   Syntax
+   - Type operator-(const Type& a, const Type& b)
+-  Meaning
+   - <em>r = a - b</em>
+- Type
+  - All numeric types
+
+\par Multiplication: uniform types
+
+-   Syntax
+   - Type operator*(const Type& a, const Type& b)
+-  Meaning
+   - <em>r = a * b</em>
+- Type
+  - Constant
+  - QDP::Real
+  - QDP::Complex
+  - QDP::Int
+  - QDP::ColorMatrix
+  - QDP::SpinMatrix
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD, \e etc.
+
+\par ColorMatrix matrix from outer product
+
+- Syntax
+  - Type  QDP::outerProduct (const Type1& a, const Type2& b)
+-   Meaning
+    - <em>r<sub>j,k</sub> = a<sub>j</sub> * b<sub>k</sub><sup>*</sup></em>
+- Type1
+  - QDP::ColorVector
+  - QDP::LatticeColorVector
+- Type2
+  - QDP::ColorVector
+  - QDP::LatticeColorVector
+- Type
+  - QDP::ColorMatrix
+  - QDP::LatticeColorMatrix
+
+\par Left multiplication by gauge matrix
+
+-  Syntax
+   - Type operator*(const Type1& a, const Type& b)
+-  Meaning
+   - <em>r = a * b </em>
+-  Type1
+   - QDP::ColorMatrix
+   - QDP::LatticeColorMatrix
+- Type
+  - Constant
+  - QDP::Complex
+  - QDP::ColorMatrix
+  - QDP::ColorVector
+  - QDP::SpinVector
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD, \e etc.
+  - and similar lattice variants
+
+\par Right multiplication by gauge matrix
+
+-  Syntax
+   - Type operator*(const Type& a, const Type1& b)
+-  Meaning
+   - <em>r = a * b </em>
+-  Type1
+   - QDP::ColorMatrix
+   - QDP::LatticeColorMatrix
+- Type
+  - QDP::ColorMatrix
+  - QDP::SpinMatrix
+  - QDP::DiracPropagatorF, QDP::DiracPropagatorD, \e etc.
+  - and similar lattice variants
+   
+
+\subsection boolbit Boolean and Bit Operations
+
+\par Comparisons
+
+-  Syntax
+   - Type2 op(const Type& a, const Type1& b)
+-  Meaning
+   - <em>r = a op b</em>
+   - <em>r = op(a, b)</em>
+- op
+  - <
+  - >
+  - !=
+  - <=
+  - >=
+  - ==
+- Type1
+  - QDP::Int
+  - QDP::Real
+  - QDP::RealD
+  - similar lattice variants   
+- Type2
+  - QDP::Boolean
+  - QDP::LatticeBoolean (result is lattice if any arg is lattice)
+
+\par Elementary binary operations on integers
+
+-  Syntax
+   - Type2 op(const Type& a, const Type1& b)
+-  Meaning
+   - <em>r = a op b</em>
+   - <em>r = op(a, b)</em>
+- op 
+  - <<
+  - >>
+  - & 
+  - |
+  - ^
+  - mod
+  - max
+  - min
+
+\par Elementary binary operations on reals
+
+-  Syntax
+   - Type2 op(const Type& a, const Type1& b)
+-  Meaning
+   - <em>r = a op b</em>
+   - <em>r = op(a, b)</em>
+- op 
+  - mod
+  - max
+  - min
+- Type
+  - QDP::Real
+  - QDP::RealD
+  - similar lattice variants 
+
+\par Boolean Operations
+
+-  Syntax
+   - Type op(const Type& a, const Type& b)
+-  Meaning
+   - <em>r = a op b</em>
+- op
+  - |
+  - &
+  - ^
+- Type
+  - QDP::Boolean
+  - QDP::LatticeBoolean     
+
+-  Syntax
+   -Type op(const Type& a)
+-  Meaning
+   - <em>r = not a</em>
+- op
+  - !
+- Type
+  - QDP::Boolean
+  - QDP::LatticeBoolean     
+
+\par Copymask
+
+-  Syntax 
+   - void QDP::copymask (const Type2&  r, const Type1& a, const Type1& b)
+-   Meaning
+   - <em>r = b</em> if \e a is true
+- Type
+  - All numeric types
+
+
+\subsection reductions Reductions
+
+Global reductions sum over all lattice sites in the subset specified by 
+the left hand side of the assignment.
+
+\par Norms
+
+-  Syntax
+   - QDP::Real QDP::norm2 (Type& a)
+-  Meaning
+   - \f$r = \sum |a|^2\f$ 
+- Type
+  - All numeric types
+
+\par Inner products
+
+-  Syntax
+   -  QDP::Complex QDP::innerProduct (Type& a, const Type& b)
+-  Meaning
+   - \f$r = \sum a^\dagger \cdot b\f$
+- Type
+  - All numeric types
+
+\par Global sums
+
+-  Syntax
+   - Type QDP::sum (const LatticeType& a)
+-  Meaning
+   - \f$r = \sum a\f$ 
+- Type
+   - All numeric types
+
+
+\subsection globalcomparisons Global comparisons
+
+Find the maximum or minimum of a quantity across the lattice. These
+operations do not have subset variants.
+
+\par Global maximum
+
+-  Syntax
+   - Type QDP::globalMax (const LatticeType& a)
+-  Meaning
+   - \f$r = max_x a(x)\f$ 
+- Type
+   - Only reals
+
+\par Global minimum
+
+-  Syntax
+   - Type QDP::globalMin (const LatticeType& a)
+-  Meaning
+   - \f$r = min_x a(x)\f$ 
+- Type
+   - Only reals
+
+
+\subsection fills Fills
+
+\par Coordinate function fills
+
+-  Syntax
+   - QDP::LatticeInt Layout::latticeCoordinate( int d)
+-  Meaning
+   - <em>r = f(d)</em> for direction \e d
+   - Returns the lattice coordinates in direction \e d
+
+The call Layout::latticeCoordinate (d) returns an integer lattice field with a
+value on each site equal to the integer value of the <em>d</em>th
+space-time coordinate on that site.
+
+\par Constant fills
+
+-  Syntax
+   - LatticeType operator=(LatticeType& r, const Type& a)
+-  Meaning
+   - <em> r = a </em> for all sites
+- Types
+   - All non-lattice objects
+-  Example
+   - QDP::Real a = 2.0;
+   - QDP::LatticeReal r = a;
+
+Constant (or lattice global) fills are always defined for lattice scalar objects broadcasting to
+all lattice sites. These are broadcasts of a lattice scalar type to a conforming lattice type.
+
+N.B. one cannot fill a QDP::LatticeColorVector with a QDP::Real.
+
+-  Syntax
+   - LatticeType operator=(LatticeType& r, const Type& a)
+-  Meaning
+   -   <em>r = diag(a, a, ..., a)</em> (constant \e a)
+- Type
+  - QDP::Complex
+  - QDP::ColorMatrix
+  - QDP::SpinMatrix
+-  Example
+   - QDP::Real a = 2.0;
+   - QDP::LatticeColorMatrix r = a;
+
+Only sets the diagonal part of a field to a constant \a a times
+the identity.
+
+This fill can only be used on primitive types that are scalars or
+matrices. E.g., it can not be used for a  vector field since
+there is no meaning of diagonal.  N.B., a zero cannot be distinguished
+from a constant like 1. To initialize to zero the \e zero argument
+must be used.
+
+\par Zero fills
+
+-  Syntax
+   - Type operator=(Type& r, const Zero& zero)
+-  Meaning
+   - <em>r = 0</em>
+- Type
+   - All numeric types
+-  Example
+   - QDP::LatticeDiracFermion r = zero;
+
+This is the only way to fill a vector field with a constant (like zero).
+
+\par Uniform random number fills
+
+-  Syntax
+   - void QDP::random (Type& r)
+-  Meaning
+   - \e r random, uniform on [0,1]
+- Type
+  - All floating types
+
+
+\par Gaussian random number fills
+
+-  Syntax
+   - void QDP::random (Type& r)
+-  Meaning
+   - \e r random, normal gaussian
+- Type
+  - All floating types
+
+\par Seeding the random number generator
+
+-  Syntax
+   - void RNG::setrn (const QDP::RandomState& a)
+-   Meaning
+    - Initialize the random number generator with seed state \e a.
+
+
+
+\par Extracting the random number generator seed
+
+-  Syntax
+   - void RNG::savern ( QDP::RandomState& r)
+-  Meaning
+   - Extract the random number generator into seed state \e r
+
+
+
+*/

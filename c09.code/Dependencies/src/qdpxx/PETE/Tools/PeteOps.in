@@ -1,0 +1,491 @@
+unaryOps
+-----
+  TAG = "FnArcCos"
+  FUNCTION = "acos"
+  EXPR = "return (acos(a));"
+  COMMENTA = "//! Arc cos"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnArcSin"
+  FUNCTION = "asin"
+  EXPR = "return (asin(a));"
+  COMMENTA = "//! Arc sin"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnArcTan"
+  FUNCTION = "atan"
+  EXPR = "return (atan(a));"
+  COMMENTA = "//! Arc tangent"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnCeil"
+  FUNCTION = "ceil"
+  EXPR = "return (ceil(a));"
+  COMMENTA = "//! Floating point ceiling of source"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnCos"
+  FUNCTION = "cos"
+  EXPR = "return (cos(a));"
+  COMMENTA = "//! Cosine"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnHypCos"
+  FUNCTION = "cosh"
+  EXPR = "return (cosh(a));"
+  COMMENTA = "//! Hyperbolic cosine"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnExp"
+  FUNCTION = "exp"
+  EXPR = "return (exp(a));"
+  COMMENTA = "//! Exponential"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnFabs"
+  FUNCTION = "fabs"
+  EXPR = "return (fabs(a));"
+  COMMENTA = "//! Floating point absolute value"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnFloor"
+  FUNCTION = "floor"
+  EXPR = "return (floor(a));"
+  COMMENTA = "//! floating point floor of source"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnLog"
+  FUNCTION = "log"
+  EXPR = "return (log(a));"
+  COMMENTA = "//! Log"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnLog10"
+  FUNCTION = "log10"
+  EXPR = "return (log10(a));"
+  COMMENTA = "//! Log base 10"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSin"
+  FUNCTION = "sin"
+  EXPR = "return (sin(a));"
+  COMMENTA = "//! Sine"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnHypSin"
+  FUNCTION = "sinh"
+  EXPR = "return (sinh(a));"
+  COMMENTA = "//! Hyperbolic sine"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnSqrt"
+  FUNCTION = "sqrt"
+  EXPR = "return (sqrt(a));"
+  COMMENTA = "//! Square root"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnTan"
+  FUNCTION = "tan"
+  EXPR = "return (tan(a));"
+  COMMENTA = "//! Tangent"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnHypTan"
+  FUNCTION = "tanh"
+  EXPR = "return (tanh(a));"
+  COMMENTA = "//! Hyperbolic tangent"
+  COMMENTB = "/*! @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpUnaryMinus"
+  FUNCTION = "operator-"
+  EXPR = "return (-a);"
+  COMMENTA = "//! Unary minus"
+  COMMENTB = "/*! 
+  @return -a
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpUnaryPlus"
+  FUNCTION = "operator+"
+  EXPR = "return (+a);"
+  COMMENTA = "//! Unary minus"
+  COMMENTB = "/*!
+  @return +a
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseNot"
+  FUNCTION = "operator~"
+  EXPR = "return (~a);"
+  COMMENTA = "//! Bitwise not"
+  COMMENTB = "/*!
+  @return (~a)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpIdentity"
+  FUNCTION = "PETE_identity"
+  EXPR = "return (a);"
+  COMMENTA = "//! Identity operator"
+  COMMENTB = "/*! Constructs expression form of a source
+  @return (a)
+  @ingroup group1
+  @relates QDPType */"
+
+unaryBoolOps
+-----
+  TAG = "OpNot"
+  FUNCTION = "operator!"
+  EXPR = "return (!a);"
+  COMMENTA = "//! Boolean not operator"
+  COMMENTB = "/*! 
+  @return (!a)
+  @ingroup group1
+  @relates QDPType */"
+
+binaryOps
+-----
+  TAG = "OpAdd"
+  FUNCTION = "operator+"
+  EXPR = "return (a + b);"
+  COMMENTA = "//! Binary addition"
+  COMMENTB = "/*! 
+  @return (a+b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpSubtract"
+  FUNCTION = "operator-"
+  EXPR = "return (a - b);"
+  COMMENTA = "//! Binary subtract"
+  COMMENTB = "/*! 
+  @return (a-b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpMultiply"
+  FUNCTION = "operator*"
+  EXPR = "return (a * b);"
+  COMMENTA = "//! Binary multiply"
+  COMMENTB = "/*! 
+  @return (a * b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpDivide"
+  FUNCTION = "operator/"
+  EXPR = "return (a / b);"
+  COMMENTA = "//! Binary division"
+  COMMENTB = "/*! 
+  @return (a / b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpMod"
+  FUNCTION = "operator%"
+  EXPR = "return (a % b);"
+  COMMENTA = "//! Binary mod"
+  COMMENTB = "/*! Also call mod(a,b)
+  @return (a % b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseAnd"
+  FUNCTION = "operator&"
+  EXPR = "return (a & b);"
+  COMMENTA = "//! Bitwise and"
+  COMMENTB = "/*! 
+  @return (a & b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseOr"
+  FUNCTION = "operator|"
+  EXPR = "return (a | b);"
+  COMMENTA = "//! Bitwise or"
+  COMMENTB = "/*! 
+  @return (a | b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseXor"
+  FUNCTION = "operator^"
+  EXPR = "return (a ^ b);"
+  COMMENTA = "//! Bitwise exclusive or"
+  COMMENTB = "/*! 
+  @return (a ^ b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnLdexp"
+  FUNCTION = "ldexp"
+  EXPR = "return (ldexp(a,b));"
+  COMMENTA = "//! Load exponent"
+  COMMENTB = "/*! Calculates the value a times 2 to the power b.
+  Based on the C-math lib function.
+  @return ldexp(a,b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnPow"
+  FUNCTION = "pow"
+  EXPR = "return (pow(a,b));"
+  COMMENTA = "//! a to the power b"
+  COMMENTB = "/*! Based on the C-math lib function.
+  @return pow(a,b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnFmod"
+  FUNCTION = "fmod"
+  EXPR = "return (fmod(a,b));"
+  COMMENTA = "//! Floating point remainder"
+  COMMENTB = "/*! Computes a modulo b.
+  Based on the C-math lib function.
+  @return fmod(a,b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "FnArcTan2"
+  FUNCTION = "atan2"
+  EXPR = "return (atan2(a,b));"
+  COMMENTA = "//! Arctan of a/b"
+  COMMENTB = "/*! Produces correct angles near +-pi/2 (or a near 0).
+  Based on the C-math lib function.
+  @return atan2(a,b)
+  @ingroup group1
+  @relates QDPType */"
+
+binaryBoolOps
+-----
+  TAG = "OpLT"
+  FUNCTION = "operator<"
+  EXPR = "return (a < b);"
+  COMMENTA = "//! Less than"
+  COMMENTB = "/*! Boolean result 
+  @return (a < b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpLE"
+  FUNCTION = "operator<="
+  EXPR = "return (a <= b);"
+  COMMENTA = "//! Less than equal"
+  COMMENTB = "/*! Boolean result 
+  @return (a <= b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpGT"
+  FUNCTION = "operator>"
+  EXPR = "return (a > b);"
+  COMMENTA = "//! Great than"
+  COMMENTB = "/*! Boolean result 
+  @return (a > b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpGE"
+  FUNCTION = "operator>="
+  EXPR = "return (a >= b);"
+  COMMENTA = "//! Great than equal"
+  COMMENTB = "/*! Boolean result 
+  @return (a >= b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpEQ"
+  FUNCTION = "operator=="
+  EXPR = "return (a == b);"
+  COMMENTA = "//! Equality"
+  COMMENTB = "/*! Boolean result 
+  @return (a == b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpNE"
+  FUNCTION = "operator!="
+  EXPR = "return (a != b);"
+  COMMENTA = "//! Not equal"
+  COMMENTB = "/*! Boolean result 
+  @return (a != b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpAnd"
+  FUNCTION = "operator&&"
+  EXPR = "return (a && b);"
+  COMMENTA = "//! Logical and"
+  COMMENTB = "/*! Boolean result 
+  @return (a && b)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpOr"
+  FUNCTION = "operator||"
+  EXPR = "return (a || b);"
+  COMMENTA = "//! Logical or"
+  COMMENTB = "/*! Boolean result 
+  @return (a | b)
+  @ingroup group1
+  @relates QDPType */"
+
+binaryLeftOps
+-----
+  TAG = "OpLeftShift"
+  FUNCTION = "operator<<"
+  EXPR = "return (a << b);"
+  COMMENTA = "//! Left shift"
+  COMMENTB = "/*! Not cyclic
+  @return (a left shifted by b bits)
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpRightShift"
+  FUNCTION = "operator>>"
+  EXPR = "return (a >> b);"
+  COMMENTA = "//! Right shift"
+  COMMENTB = "/*! Not cyclic
+  @return (a right shifted by b bits)
+  @ingroup group1
+  @relates QDPType */"
+
+assignOp
+-----
+  TAG = "OpAssign"
+  FUNCTION = "assign"
+  EXPR = "return (const_cast<T1 &>(a) = b);"
+  COMMENTA = "//! Assignment"
+  COMMENTB = "/*! Assign and return ref to left-hand-side.
+  @return (a = b)
+  @ingroup group1
+  @relates QDPType */"
+
+binaryAssignOps
+-----
+  TAG = "OpAddAssign"
+  FUNCTION = "operator+="
+  EXPR = "(const_cast<T1 &>(a) += b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Add and assign"
+  COMMENTB = "/*! Add b to a and return ref to left-hand-side.
+  @sa operator+()
+  @return (a <- (a + b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpSubtractAssign"
+  FUNCTION = "operator-="
+  EXPR = "(const_cast<T1 &>(a) -= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Subtract and assign"
+  COMMENTB = "/*! Add b from a and return ref to left-hand-side.
+  @sa operator-()
+  @return (a <- (a - b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpMultiplyAssign"
+  FUNCTION = "operator*="
+  EXPR = "(const_cast<T1 &>(a) *= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Multiply and assign"
+  COMMENTB = "/*! Multiply b onto a and return ref to left-hand-side.
+  @sa operator*()
+  @return (a <- (a * b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpDivideAssign"
+  FUNCTION = "operator/="
+  EXPR = "(const_cast<T1 &>(a) /= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Divide and assign"
+  COMMENTB = "/*! Divide b from a and return ref to left-hand-side.
+  @sa operator/()
+  @return (a <- (a / b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpModAssign"
+  FUNCTION = "operator%="
+  EXPR = "(const_cast<T1 &>(a) %= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Mod and assign"
+  COMMENTB = "/*! Mod b onto a and return ref to left-hand-side.
+  @sa operator%()
+  @return (a <- (a & b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseOrAssign"
+  FUNCTION = "operator|="
+  EXPR = "(const_cast<T1 &>(a) |= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Bitwise or and assign"
+  COMMENTB = "/*! Bitwise or b with a and return ref to left-hand-side.
+  @sa operator|()
+  @return (a <- (a | b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseAndAssign"
+  FUNCTION = "operator&="
+  EXPR = "(const_cast<T1 &>(a) &= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Bitwise and and assign"
+  COMMENTB = "/*! Bitwise and b with a and return ref to left-hand-side.
+  @sa operator&()
+  @return (a <- (a & b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpBitwiseXorAssign"
+  FUNCTION = "operator^="
+  EXPR = "(const_cast<T1 &>(a) ^= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Bitwise xor and assign"
+  COMMENTB = "/*! Bitwise xor b with a and return ref to left-hand-side.
+  @sa operator^()
+  @return (a <- (a ^ b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpLeftShiftAssign"
+  FUNCTION = "operator<<="
+  EXPR = "(const_cast<T1 &>(a) <<= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Left-shift and assign"
+  COMMENTB = "/*! Left-shift a by b bits and return ref to left-hand-side.
+  @sa operator<<()
+  @return (a <- (a << b))
+  @ingroup group1
+  @relates QDPType */"
+-----
+  TAG = "OpRightShiftAssign"
+  FUNCTION = "operator>>="
+  EXPR = "(const_cast<T1 &>(a) >>= b); return const_cast<T1 &>(a);"
+  COMMENTA = "//! Right-shift and assign"
+  COMMENTB = "/*! Right-shift a by b bits and return ref to left-hand-side.
+  @sa operator>>()
+  @return (a <- (a >> b))
+  @ingroup group1
+  @relates QDPType */"
+
+trinaryOps
+-----
+  TAG = "FnWhere"
+  FUNCTION = "where"
+  EXPR = "if (a) return b; else return c;"
+  COMMENTA = "//! The C ? operator"
+  COMMENTB = "/*! The where statement is similar to the C ? operator.
+  @return (if (a) return b; else return c;)
+  @ingroup group1
+  @relates QDPType */"

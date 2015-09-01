@@ -1,0 +1,990 @@
+02/06/2015 -- Balint Joo 
+	Updated submodules, pulled in HDF5 fixes (Thorsten Kurth)
+        Added  Blue Gene Thread binding (orig. developed in QPhiX by Diptorup Deb)
+
+
+06/02/2014 -- Frank Winter and Robert Edwards
+        Version 1.44.0: Added new OSubLattice  type that can be declared. This allows objects
+	to be allocated according to a subset.
+	Removed QCDOC-isms.
+
+03/13/2014 -- Robert Edwards
+        Version 1.43.0: Added new global functions. 
+
+07/04/2012 -- Balint Joo
+        Version 1.42.0: New funtionality allowing for QIO to write from multiple
+        IO nodes.
+
+06/26/2012 -- Robert Edwards
+        Version 1.41.0: Changed implementation of MapObjectDisk to
+        use tr1::unordered_map. Now, should be no more instances of
+        std::map in qdp++ that requires the user to supply some form
+        of operator< for key comparisons.
+  
+06/25/2012 -- Robert Edwards
+        Version 1.40.1: Added xml reads/writes of std::list as well as
+        specializatiions for std::vector.
+   
+06/06/2012 -- Robert Edwards
+        Version 1.40.0: Added in new tr1::unordered_map class. Several fixes
+        in string broadcasts.
+
+09/26/2011 -- Balint Joo
+        Version 1.39.0: Changed OpenMP dispatch methods.
+
+11/02/2010 -- Robert Edwards
+        Version 1.38.3: Added a new BinaryReaderWriter class and structure
+        that supports both reading and writing of objects. 
+        Overhauled MapObject interface to use this new structure. Removed
+        the previous locking mechanisms as they are now unneeded. This all
+        simplifies the MapObject interface. Can now close and reopen a 
+        MapObjectDisk file and continue insertions.
+        Did a bunch of house cleaning - removed some obsolete code and stuff
+        not actually used.
+
+11/02/2010 -- Robert Edwards
+        Version 1.37.3: Added a close function in MapObjectDisk. Some slight
+        change of diagnostic output in multiNd.
+
+11/01/2010 -- Robert Edwards
+        Version 1.37.2: Added some IO support for multiNd.
+
+10/10/2010 -- Robert Edwards
+        Version 1.37.1: Some more MapObject variants. Added another RNG just
+        for variety.
+
+10/07/2010 -- Robert Edwards
+        Version 1.37.0: Added MapObject and MapObjectDisk.
+
+03/08/2010 -- Balint Joo
+        Version 1.36.2: Merged in devel branch, with threaded sumMulti
+
+02/11/2010 -- Balint Joo
+	Version 1.36.1: Changed a template trait so that it would become palatable to the intel compiler
+
+02/07/2010 -- Robert Edwards
+	Version 1.36.0: Changed interface of DB wrappers to use new "const" version
+        within FILEDB get/insert.
+
+11/06/2009 -- Robert Edwards
+	Version 1.35.0: Added new seek functions to BinaryReader/Writer.
+
+11/06/2009 -- Robert Edwards
+	Version 1.34.1: Fixes in xpath_reader to support bools under gcc-4.4
+
+10/16/2009 -- Robert Edwards
+	Version 1.34.0: Added a Dirac-Pauli gamma matrix basis.
+
+10/13/2009 -- Robert Edwards
+	Version 1.33.1: Changes to support and odd number of threads. Small changes in
+        DB wrappers.
+
+09/11/2009 -- Robert Edwards
+	Version 1.33.0: Added new qdp functions colorCrossProduct and colorVectorContract.
+        Some important bug fixes in filedb. Added some new functions to those classes.
+        Some other small changes in xpath reader. Reintroduced stub and implementation
+        functions for filedb wrappers.
+
+04/22/2009 -- Balint Joo
+	Version 1.32.1 
+	  Fixed a mistake in the filedb/filehash makefile.am  that
+	stopped this from building...
+
+
+03/17/2009 -- Robert Edwards
+	Version 1.32.0: Added back in functionality to turn on/off the "filedb" DB support.
+        By default it is on, but a  "--disable-filedb" can turn it off. QDP++ leaves
+        a stub version of the DB routines. The main reason to disable filedb is if a
+        posix thread library is not available, as on a BG/L. 
+
+03/16/2009 -- Balint Joo
+	Version 1.31.1: Maintainance:
+	  - Fixed OpenMP Bug that plagued OpenMP threaded reductions
+          - Added OpenMP innerProduct() for LatticeFermions
+	  - Disabled spinProjection Optimizations -- these clash in a 'multi precision' build.
+	     put these on a toFix list
+	Remaining FIXMEs:
+	   - Generic BLAS etc is still in 'floating' type. Specialize to Single/Double
+	   - Threaded Complex BLAS in Single and Double Prec SSE please for BiCGStab
+	   - BlueGene development: 
+		xlC building
+	        threading BAGEL QDP wrappers
+	        generate single and double precision BAGEL libraries?
+
+03/05/2009 -- Robert Edwards
+        Version 1.31.1: Important bug fix in the DB routines  filedb - fixed a 
+        free of a memory page. Was causing the code to crash. 
+
+03/04/2009 -- Robert Edwards
+        Version 1.31.0: Ripped out ffdb-lite. Switched to filedb. No longer any Berkeley DB
+        dependencies.
+
+03/04/2009 -- Robert Edwards
+        Version 1.30.1: Balint put threading in rest of way, including norm2. Various other
+        fixes. Robert switched DB support ffdb-lite to slightly different calling interface 
+        to fix support for page sizes, etc. This is the last of ffdb-lite. Will be removed.
+        Other changes in qio for BG/P.
+
+01/27/2009 -- Robert Edwards
+        Version 1.30.0: First DB implementations. First threading version. Not fully certified.
+        Support subset records in qio.
+
+12-22-2008 -- Balint Joo
+	Added threading support courtesy of EPCC. Tested that threading code with threads disabled: 
+	 -- does not break cb2, cb3d, sse2/generic, single-double builds (scalar)
+	Threading code with threads enabled has causes some SEGFAULTS in
+	QDP++ tests. However, with cb2, chroma regressions passed. Only
+	failures were in the new all-to-all code
+
+Total Failures were:
+i)		chroma           RUN_FAIL    prec_clover.eigcg.candidate.xml
+ NOTE: Easily understood, I didn't compile BLAS etc for EigCG support...
+
+ii)  chroma           RUN_FAIL    colorvec_matelem.candidate.xml
+iii) make_meson_ops   FAIL (compile)  make_meson_ops.candidate.xml
+iv)  make_baryon_ops  FAIL (compile)  make_baryon_ops.candidate.xml
+
+These are not yet understood
+-
+08/02/2008 -- Balint Joo
+        Version 1.28.0: SSE3 and 3dnow support. Added new double prec blas and linalg routines. New
+        test jig support.
+
+05/22/2008 -- Robert Edwards
+        Version 1.27.0: Improved SSE for global sums. Fixed some ifdef guard-isms. Now have some significant
+        amount of SSE BLAS routines.
+
+05/14/2008 -- Balint Joo
+        Various tweaks:  
+            - some explicit char * casting to get rid of deprecated feature warnings from newer gcc compilers
+	    - included <cstring> <cstdlib> in a few places to get at memcpy, memcmp and memset - this broke some 
+              really new gcc compilers
+	    - Got rid of complicated logic to cope with gnu/non gnu builds for SSE in scalarsite_sse. Now if you 
+	      --enable-sse or --enable-sse2 you'll get the SSE code, whether you want it or not. Pretty much all 
+              the assembler is now done with compiler intrinsics, so as long as your compiler can eat those you 
+	      should be OK. Intel is supposed to be able to eat them as is pathscale, but I haven't tested these
+	      recently.
+
+05/02/2008 -- Version 1.26.0 -- Balint Joo
+        Minor tweaks:
+          - exposed some layout functions to facilitate Level 3 related issues.
+	  - added 'cb3d' layout with time running fastest (but not vectorized on)
+	  - added Hypercubic writes to QDPFileWriter to write QIO sources
+	  - cleaned up QDPFileReader so it can read QIO sources (and not corrupt anything outside the hypercube)
+	  - Added readOLattie_parallel, writeOLattice_parallel to do parallel writing on QCDOC
+            - NB This feature is exposed in all parscalar_specific targets as it appears to have no real QCDOC
+	      specific bits - just deals with FILE*-s etc.
+
+08/30/2007 -- Balint Joo
+        Removed SSE Inlines from scalarsite_sse. Replaced with calls to libintrin (made from the same NASM source but with intrinsics). 3rd party track imported libintrin. It gets checked out with the qdp++ source automatically and --enable-sse2 is needed to configure it. I disabled automatic turning on of the -msse and -msse2 flags since they can break some compilers. Set these using your own CXXFLAGS and CFLAGS. 
+
+08/30/2007 -- Robert Edwards
+	Version 1.24.6: Added some diagnostic output code in c-lime & qio.
+
+08/23/2007 -- Robert Edwards
+	Version 1.24.5: Mainly this tags a working version of QIO for mesh
+        machines. Also, some cleanups by Balint in SSE asm codes.
+
+08/14/2007 -- Robert Edwards
+	Version 1.24.4: Changes to QIO to support BinaryBufferWriter used in QDPQIO
+        calls. Basically, the contents of BinaryBufferWriter lives only on the 
+        primary node, so QIO had to be changed to support "global data" only on
+        the primary node and only char datatypes.
+
+08/13/2007 -- Robert Edwards
+	Version 1.24.3: Bug fix. The reorganized BinaryReader/Writer were failing
+        in parallel mode. This is now fixed. There are still some issues/errors
+        with using BinaryBufferWriter within QIO in a parscalar build. However,
+        BinaryFileReader/Writer plus NERSC and SZIN IO are fine.
+
+07/17/2007 -- Balint Joo
+	Version 1.24.2: Trawled through to eliminate most compiler
+	warnings with -Wall in the QDP++ and XPathReader libs. Still
+	some warnings remain in QIO.
+
+06/12/2007 -- Robert Edwards
+
+	Version 1.24.1: Added "const" to some member funcs in XMLBufferWriter.
+        Fixed a missing #endif.
+
+06/10/2007 -- Robert Edwards
+
+	Version 1.24.0: Reorganized BinaryReader/Writer and TextReader. Now,
+        these classes are abstract classes (just like XMLWriter) for 
+        BinaryBufferReader/Writer and BinaryFileReader/Writer . Also, removed
+        the old QDP_BEGIN/END_NAMESPACE macro and now simply use "namespace QDP".
+	Added string initialization to XMLBufferWriter.
+
+03/14/2007 -- Robert Edwards
+
+	Version 1.23.0: Added new functions globalMax and globalMin.
+
+03/05/2007 -- Balint Joo
+ ---    Version 1.22.1 
+	For release.....
+
+02/27/2007
+
+	Version 1.22.0
+
+	Major surgery. Unordered/Unordered Sets, Ordered/UnorderedSubsets are gone.
+	Only Sets and Subsets remain. Trawled through evaluates and recoded with
+	if( s.hasOrderedSubset() ) {   } else {  } 
+	constructs (This speeded up unordered subsets. Checked tests and chroma 
+	regressions pass with generic, sse and bagel_qdp in both cb2 and lexico layouts.
+
+        NB: scalarsite_qcdoc needs tested on an actual QCDOC (BEWARE!!!!)
+
+
+02/16/2007 -- Balint Joo
+        Version 1.21.9
+	
+	Added an Unordered subset (rb3) for 3d checkerboarding - This subset is currently
+	unordered in all builds
+ 
+02/09/2006 -- Balint Joo
+	Version 1.21.8
+	Propagated spin/projection and reconstruction hooks to the SSE Single Prec branch.
+	Duplicated qdp_primvector code into qdp_primspinvector so that qdp_primpspinvector
+	is no longer a qdp_primvector. This way I can have spin vectors 16 byte aligned
+	without necessarily having to have all vectors 16 bye aligned. Wrote SSE versions
+	of spin project and recon inlines. Sadly even with all these the Chroma Dslash
+	only runs at about 900Mflops on a scalar version of my laptop. Should probably
+	rewrite with inline assembler so I have better control of registers than the compiler
+
+02/06/2007 -- Balint Joo
+	Version 1.21.7: Added various generic spin projection and recon 
+        optimizations and hooks, which hopefully will be useful for
+	temporal preconditioning in chroma
+
+11/21/2006 -- Robert Edwards
+
+	Version 1.21.6: Fix zero-length arrays in read/write xml.
+
+11/03/2006 -- Robert Edwards
+
+	Version 1.21.5: Fix in QIO writer/reader to support scalars.
+
+11/03/2006 -- Robert Edwards
+
+	Version 1.21.4: Added some multi1d functions. Some rpm support in now.
+        Small fix in xpath_reader/Makefile.am.
+
+10/15/2006 -- Robert Edwards
+
+	Version 1.21.3: Some more small SSE improvements.
+
+09/26/2006 -- Robert Edwards
+
+	Version 1.21.2: Small code cleanup of duplicate sse opts.
+
+09/26/2006 -- Robert Edwards
+
+	Version 1.21.1: New SSE optimizations  a*x+b*y  like ops (vaxpby3).
+
+09/24/2006 -- Robert Edwards
+
+	Version 1.21.0: New SSE optimizations for traceSpin(outerProduct()), LatColMat=M*M
+        and adj variants including  adjMultiplyAdj().
+
+07/17/2006 -- Robert Edwards
+
+	Version 1.20.9: Changed precision output in xml and stdio. 
+        Now, singles get 7 digits and doubles get 15 digits.
+
+07/11/2006 -- Robert Edwards
+
+	Version 1.20.8: Changes/fixes to SSE version of norm2(). Now do local on
+        node sum in double prec. instead of single.
+
+06/21/2006 -- Balint Joo
+
+	Version 1.20.7: Compilation fixes for new platforms. Fixes in multi3d.
+
+05/21/2006 -- Robert Edwards
+
+	Version 1.20.6: Updated to match update of qio - a trivial compilation fix.
+
+05/18/2006 -- Robert Edwards
+
+	Version 1.20.5: Bug fix in the XMLReader "set" function. This fix is
+        for parallel machines.
+
+05/18/2006 -- Balint Joo
+
+	Version 1.20.4: More args on the config script for interrogation.
+
+05/10/2006 -- Balint Joo
+
+	Version 1.20.3: Compilation fixes for the QCDOC.
+
+03/24/2006 -- Robert Edwards
+
+	Version 1.20.2: Tagged to include bug fixed QIO 2.1.5
+
+01/21/2006 -- Balint Joo
+
+	Version 1.20.1: Added missing xpath_reader test code.
+
+01/21/2006 -- Balint Joo
+
+	Version 1.20.0: Added set primitives to xpath_reader
+
+01/05/2006 -- Robert Edwards
+
+	Version 1.18.3: Patches in QIO to support reading ancient propagators.
+        Added flexible precision reading of QIO files. Some more ILDG support.
+
+12/22/2005 -- Robert Edwards
+
+	Version 1.18.2: Changes to support gcc4 and intel compiler.
+
+11/17/2005 -- Robert Edwards
+
+	Version 1.18.1: Typos fixed in multi3d. Fixed QIO isms.
+
+11/17/2005 -- Robert Edwards
+
+	Version 1.18.0: New seed operatations. Eliminated default PSeed traits.
+        Added some missing functions  floor, ceil, cosh, tanh, sinh.
+
+11/16/2005 -- Balint Joo
+
+	Version 1.17.2: New QIO and QDP++ support for ILDG.
+
+11/04/2005 -- Robert Edwards
+
+	Version 1.17.1: Removed EDRAM option. No longer used.
+
+11/04/2005 -- Balint Joo
+
+	Version 1.17.0: New blas routines useful for twisted-mass.
+
+10/16/2005 -- Robert Edwards
+
+	Version 1.16.3: Added memory map dump in Olattice alloc failure.
+
+10/16/2005 -- Robert Edwards
+
+	Version 1.16.2: Moved StopWatch inline functions to new lib file. 
+        Moved inline functions in xpath_reader/basic_xpath_reader down into
+        lib file.
+
+10/12/2005 -- Robert Edwards
+
+	Version 1.16.1: Changed QDPFileReader/Writer to shutdown if errors
+        upon opening file for reading/writing.
+
+09/16/2005 -- Robert Edwards
+
+	Version 1.16.0: Added QDP_DEBUG_MEMORY control.
+
+09/03/2005 -- Robert Edwards
+
+	Version 1.15.4: Added mem map to QCDOC allocator. Moved code to lib file.
+
+08/26/2005 -- Robert Edwards
+
+	Version 1.15.3: Updated NERSC header parsing to accomodate funky headers.
+
+08/23/2005 -- Robert Edwards
+
+	Version 1.15.2: Checksums, plaq and link checks in NERSC gauge reader/writer.
+
+08/20/2005 -- Robert Edwards
+
+	Version 1.15.1: Added checks in XML open routines. Changes in
+        QIO to support PARTFILE.
+
+07/26/2005 -- Robert Edwards
+
+	Version 1.15.0: Checksums added to binary reader and writer.
+
+07/20/2005 -- Robert Edwards
+
+	Version 1.14.5: Added transposeColor
+
+07/20/2005 -- Balint Joo
+
+	Version 1.14.4
+	Various fixes:
+	   -- memory manager singletons are now created with no destroy
+	      policy. This fixes bug reported by CraigMcNeile in staggered
+	      code where the static phases containing memory allocated by the
+	      memory manager were destroyed after the memory manager causing
+	      a dead reference exception
+
+	   -- Fixed the PETE/Tools code so that it compiles. diff of 
+	      QDPOperators.h before and after fix differs only in 
+	      indentation. Rock on PETE!
+
+	   -- Added transposeSpin function to QDPOperators.h 
+	      and defined in qdp_primscalar.h qdp_primmatrix.h and 
+	      most importantly in qdp_primspinmat.h. Incorrect
+	      invocations eg transposeSpin(ColorMatrix) fail to compile.
+	      Correct invocations work. transposeSpin(SpinMatrix) and 
+	      transposeSpin(Propagator) were tested. Simple test code
+	      t_transpose_spin added to examples directory -- now
+	      need to move transpose spin functionality to appropriate
+	      places in chroma.
+
+07/18/2005 -- Robert Edwards
+
+	Version 1.14.3. Updated lib/Makefile.am to include new paths
+        down inside c-lime. This sub-release reflects new changes in
+        QIO and C-LIME.
+
+07/12/2005 -- Robert Edwards
+
+	Version 1.14.2. Bug fix in qdp_primmatrix. Fixed  "PScalar - PMatrix". 
+        Thanks to Patrick Varilly for finding this.
+        Incorporated new changes for file reading/writing support within QIO.
+
+06/28/2005 -- Robert Edwards
+
+	Version 1.14.1. Allocator pushed to a cc file instead of inlined. Saves on
+        compilation.
+
+06/28/2005 -- Balint Joo
+
+	Version 1.14.0. New memory placement hints for OLattice. New container for memory
+        allocation. New flopcount module.
+
+06/28/2005 -- Robert Edwards
+
+	Version 1.13.1. Last mods before 1.14.0
+
+05/24/2005 -- Robert Edwards
+
+	Version 1.13.0. New norm2, innerProduct, innerProductReal support
+        for multi1d.
+
+05/24/2005 -- Robert Edwards
+
+	Version 1.12.5. New install scripts.
+
+05/19/2005 -- Robert Edwards
+
+	Version 1.12.4. Further tweaks in blas-like support.
+
+05/18/2005 -- Robert Edwards
+
+	Version 1.12.3. New blas support.
+
+05/04/2005 -- Robert Edwards
+
+	Version 1.12.2. Bug fix in qdp_reality.h (operator+ and -).
+
+04/28/2005 -- Robert Edwards
+
+	Version 1.12.1. Changes to support QIO 2 interface.
+
+03/21/2005 -- Robert Edwards
+
+	Version 1.12.0. New/improved generic and SSE opts for chiralProject.
+        Improved sumMulti and added a sumMulti(multi1d<>) variant.
+
+02/10/2005 -- Robert Edwards
+
+	Version 1.11.8. Bug fix again in qdp_multi1d.h . Now have moved 
+        back to the old tried-and-true version if multiXd but added a few
+        new functions.
+
+02/03/2005 -- Robert Edwards
+
+	Version 1.11.7. Removed member func. template params in
+        multi1,2,Nd<T>. 
+
+01/28/2005 -- Robert Edwards
+
+	Version 1.11.6. Further fixes to multi1d,
+
+01/28/2005 -- Robert Edwards
+
+	Version 1.11.5. Further changes to qdp_io.h to put Remote IO
+        under REMOTE_USE_QIO control.
+
+01/24/2005 -- Robert Edwards
+
+	Version 1.11.4. Zbigniew has changed all qdp, qio, c-lime config.h 
+        to use char* for package names so they actually are useable.
+
+01/24/2005 -- Robert Edwards
+
+	Version 1.11.3. Changed XMLFileWriter support. Now, explicitly
+        use ofstream in case of not USE_REMOTE_QIO. Make 
+        XMLFileWriter::is_open() check if QDP is (still) initialized
+        to avoid crashes on destructor calls.
+
+01/22/2005 -- Robert Edwards
+
+	Version 1.11.2. QCDOC fixes. Changed xmlreader.print functions to 
+        broadcast their strings.
+
+01/18/2005 -- Robert Edwards
+
+	Version 1.11.1. Maintenance changes within QIO and other little
+        things.
+
+11/22/2004 -- Robert Edwards
+
+	Version 1.11.0. Removed all Namelist usage and files. Switched all regression
+        to XML. Modified Makefiles to now pass   make distcheck
+
+11/02/2004 -- Robert Edwards
+
+	Version 1.10.6. More QIO fiddling.
+
+10/29/2004 -- Robert Edwards
+
+	Version 1.10.5. Changed QIO to (again) use optimized QMP_gigE calls
+
+10/29/2004 -- Robert Edwards
+
+	Version 1.10.4. Bug fix. Fix free'ing of msghandles in parscalar
+        and parscalarvec per the new QMP-2 specification.
+
+10/22/2004 -- Robert Edwards
+
+	Version 1.10.3. Added staggered propagator typedefs.
+
+10/18/2004 -- Robert Edwards
+
+	Version 1.10.2. Improvements within QIO.
+
+09/10/2004 -- Robert Edwards
+
+	Version 1.10.1. Added obsolete calling conventions of QDPFile{Reader,Writer}.
+        Fixed QIO string usage.
+
+09/07/2004 -- Robert Edwards
+
+	Version 1.10.0. Parallel version now exclusively uses QMP-2 . QMP-1.X is
+        not supported. Now one must specify the arch on configure. QIO support is
+        now 1.0. So, the default checkouts of QMP and QIO are consistent with QDP++.
+
+08/18/2004 -- Robert Edwards
+
+	Version 1.9.4. More little fixes to really really get the
+        "vec" versions work again. 
+
+08/10/2004 -- Robert Edwards
+
+	Version 1.9.3. Lots of cleanups. The "vec" versions work again. Some
+        bug fixes. Fleshed out missing outerProduct.
+
+07/28/2004 -- Robert Edwards
+
+	Version 1.9.2. Added switch to qdp++-config to tell about QMP_HOME.
+
+07/28/2004 -- Robert Edwards
+
+	Version 1.9.1. Changed RNG generation so that a lattice wide
+        fill of rngs will also throw away an additional rng. This
+        dirty trick helps to avoid correlations induced from generating
+        large powers of 2 of rngs.
+
+07/26/2004 -- Robert Edwards
+
+	Version 1.9.0. Added profiling capability at configure with  --enable-profiling.
+        Changed/broke old memory layout by removing the PScalar level for PDWVector
+	which has been removed.
+
+07/12/2004 -- Robert Edwards
+
+	Version 1.8.6. Small tweaks before next minor release.
+
+05/23/2004 -- Robert Edwards
+
+	Version 1.8.5. Added complete SciDAC mandated types.
+
+05/09/2004 -- Balint Joo
+
+	Version 1.8.4. Hook in (generic) double precision BLAS support.
+
+05/02/2004 -- Robert Edwards
+
+	Version 1.8.3. Improved BinaryWriter/Reader for parscalar case
+	to gang bigger (and fewer) messages for a lattice write/read.
+
+04/06/2004 -- Robert Edwards
+
+	Version 1.8.2. Fixed XMLReader to print the derived portion of a
+        tree when it is derived.
+
+04/05/2004 -- Robert Edwards
+
+	Version 1.8.1. Fixed multi1d in QIO.
+
+03/29/2004 -- Robert Edwards
+
+	Version 1.8.0. Binx supported added by McNeile. 
+        RGE added SSE blas support.
+
+03/21/2004 -- Robert Edwards
+
+	Version 1.7.9. Added in support for scalar array reading/writing in
+        QDPFileReader/QDPFileWriter.
+        Added generic blas support.
+
+03/19/2004 -- Robert Edwards
+
+	Version 1.7.8. Added back in tests for QMP_route.
+
+03/15/2004 -- Robert Edwards
+
+	Version 1.7.7. Rearranged internally to remove QMP_route.
+
+03/11/2004 -- Robert Edwards
+
+	Version 1.7.6. Bug fixes in multifile lime headers.
+
+03/07/2004 -- Robert Edwards
+
+	Version 1.7.5. Rearrangements in QIO.
+
+03/03/2004 -- Robert Edwards
+
+	Version 1.7.4. Possibly a bug fix in mem-alignment. 
+        Small improvements/bug fixes in QIO. 
+
+02/28/2004 -- Robert Edwards
+
+	Version 1.7.3. Small improvements/bug fixes in QIO. It is now 
+        fully autoconf-iscated.
+
+02/27/2004 -- Robert Edwards
+
+	Version 1.7.2. Fixed bugs in QIO.
+
+02/18/2004 -- Robert Edwards
+
+	Version 1.7.1. Small code cleanups. Should pass make check.
+
+02/17/2004 -- Robert Edwards
+
+	Version 1.7.0. First official QIO version.
+
+02/16/2004 -- Balint Joo
+
+	Version 1.6.14. Functioning 4 node QCDOC port.
+
+02/15/2004 -- Balint Joo
+
+	Version 1.6.13. Initial QCDOC port.
+
+12/23/2003 -- Robert Edwards
+
+	Version 1.6.12. Changed IO from using sendRecv/sendTo like primitives to using QMP_route.
+
+12/21/2003 -- Robert Edwards
+
+	Version 1.6.11. Generalized +=, -= and = in qdp_prim{matrix,vector,spinmat,spinvec,color stuff}
+
+12/09/2003 -- Robert Edwards
+
+	Version 1.6.10. Added chiralProject{Plus,Minus} and norm2(multi1d<>).
+
+11/05/2003 -- Robert Edwards
+
+	Version 1.6.9. Changed layout to use QMP node layout functions as per QMP spec.
+
+11/01/2003 -- Robert Edwards
+
+	Version 1.6.8. Moved DWF index to innermost index. Added some new SSE
+        support for it.
+
+10/30/2003 -- Robert Edwards
+
+	Version 1.6.7. Small tweaks.
+
+10/21/2003 -- Robert Edwards
+
+	Version 1.6.6. Added new DWF index.
+
+10/21/2003 -- Robert Edwards
+
+	Version 1.6.5. Small tweaks. Can compile for Nc > 3.
+
+10/17/2003 -- Robert Edwards
+
+	Version 1.6.4. Fixed up optimizations (again). Added, but not turned
+        on a new primitive index for domain-wall like fermions.
+
+10/15/2003 -- Robert Edwards
+
+	Version 1.6.3. New architecture and hopefully faster versions
+        of NERSC archive read/write routines.
+
+10/15/2003 -- Robert Edwards
+
+	Version 1.6.2. New read/write(Binary,Lattice,coord) routines that
+        combine peekSite and read, and pokeSite with write. New NERSC
+        Archive read/write functions with more header support.
+
+10/14/2003 -- Robert Edwards
+
+	Version 1.6.1. Changed BinaryReader/Writer to write out the size of an
+        array for a multi1d. Removed multi2d bin IO. There are still C-like
+        behavior functions that can read/write a fixed number of objects.
+
+10/14/2003 -- Robert Edwards
+
+	Version 1.6.0. Trival tweaks. Changed version of configure.ac to 1.6 to
+        reflect new IO formats and configuration methods.
+
+10/09/2003 -- Robert Edwards
+
+	Version 1.5.15. Added support for parallel versions of stdout,stdin, stderr.
+
+10/06/2003 -- Robert Edwards
+
+	Version 1.5.14. Small tweaks in peekSite.
+
+10/02/2003 -- Robert Edwards
+
+	Version 1.5.13. Added generic optimizations for basic linear
+        algebra ops. These are used if no sse, etc. are specified.
+	Balint Joo fixed QIO support. QIO still in alpha development 
+	stage.
+
+
+09/23/2003 -- Balint Joo
+
+	Version 1.5.12. Overhauled configure system for writing defines. Now has
+        hooks for controlling layout, sse, and precision.
+
+09/23/2003 -- Robert Edwards
+
+	Version 1.5.11. Minor tweaks.
+
+09/03/2003 -- Robert Edwards
+
+	Version 1.5.10. Implemented parscalarvec and seems to pass major tests. 
+
+09/02/2003 -- Robert Edwards
+
+	Version 1.5.9. scalarvec now seems to pass major tests. Overhauled
+        configure.ac, lib/Makefile.am to handle new build structure.
+
+09/02/2003 -- Robert Edwards
+
+	Version 1.5.8. More tweaks to scalarvec. Small cleanups.
+
+09/01/2003 -- Balint Joo
+
+	Version 1.5.7. Added enable-precision to configure.ac
+
+08/31/2003 -- Robert Edwards
+
+	Version 1.5.6. Changes to make scalarvec work.
+
+08/27/2003 -- Robert Edwards
+
+	Version 1.5.5. Changed qdp_scalarsite_sse.h to fix type conflicts with subsets
+        on LHS.
+
+08/27/2003 -- Robert Edwards
+
+	Version 1.5.4. Updated manual. Added better xml support. Added some
+        new traits classes.
+
+08/26/2003 -- Robert Edwards
+
+	Version 1.5.3. More changes in inner grid stuff. Still need map support.
+        Added more SSE support in  qdp_scalarsite_sse.h .
+
+08/22/2003 -- Robert Edwards
+
+	Version 1.5.2. More changes in inner grid stuff.
+
+08/22/2003 -- Robert Edwards
+
+	Version 1.5.1. Start of support for new  scalarvec and parscalarvec
+        architectures. These have an inner grid and outer grid - suitable for
+        pentiums with SSE/SSE2.
+
+08/12/2003 -- Robert Edwards
+
+	Version 1.5.0. Major change of subset support. Now have an Ordered{Set,Subset}
+        and Unordered{Set,Subset}. Added initial SSE support for Intel. Added an
+        enable sse/sse flag to autoconf.
+
+07/26/2003 -- Robert Edwards
+
+	Version 1.4.13. Cb=2 layout now works in parscalar. Changed to this as the
+        default layout.
+
+07/16/2003 -- Robert Edwards
+
+	Version 1.4.12. Doccumentation added and start of different layouts for 
+        parscalar.
+
+07/16/2003 -- Robert Edwards
+
+	Version 1.4.11. More XML tweaks.
+
+06/21/2003 -- Robert Edwards
+
+	Version 1.4.10. Changed XML reader/writers of basic type to
+	use XML list type.
+
+06/20/2003 -- Robert Edwards
+
+	Version 1.4.9. Bug fix on nml writing of const char*. 
+
+06/19/2003 -- Robert Edwards
+
+	Version 1.4.8. Added QDP_extract/insert. Added a test
+	t_entry.cc . Added XMLReader support for multi1d's.
+
+06/16/2003 -- Robert Edwards
+
+	Version 1.4.7: changed Nml,XML,Txt,Bin reader/writers to use a more generic
+        implementation. Now works on odd-ball lattice and subgrid sizes.
+
+06/09/2003 -- Robert Edwards
+
+	Version 1.4.6: standardized XML output instances.
+
+06/08/2003 -- Robert Edwards
+
+	Version 1.4.5: added flush(), fail() to the XML writer classes.
+
+06/08/2003 -- Robert Edwards
+
+	Version 1.4.4: added flush() to the Text, Nml, Binary writer classes.
+
+06/07/2003 -- Robert Edwards
+
+	Version 1.4.3: added QIO support under new(er) MPICH. Changed ifstream/ofstream
+        into  qdp_io.cc  to now use a generic RemoteFile{Input,Output}{Buf,Stream}
+        for stream'ed files. This gives hooks for manipulating files.
+
+06/05/2003 -- Robert Edwards
+
+	Version 1.4.2: small tweaks. Added is_open(), fail() to IO classes.
+
+06/05/2003 -- Robert Edwards
+
+	Version 1.4.1: small tweaks. Added IO ops for TextReader/Writer.
+
+06/04/2003 -- Robert Edwards
+
+	Version 1.4.0. Overhauled IO classes (except QIO) to use C++
+	streams instead of C FILE buffers. Currently, DIME still uses
+        C-FILEs since it is written in C.
+
+05/23/2003 -- Robert Edwards
+
+	Version 1.3.3 turned on QDP namespace. Moved bfread/bfwrite off to their
+        own namespace.
+
+05/23/2003 -- Robert Edwards
+
+	Version 1.3.2 changed read_t/write_t to read/write in qdp_qdpio.h . Global
+        function variants wrap over member functions.
+
+05/22/2003 -- Robert Edwards
+
+	Version 1.3.1 tweaked qdp_primvector.h in localInnerProduct to make intel compiler
+        happy.
+
+05/22/2003 -- Robert Edwards
+
+	Version 1.3.0 pre-release. Added XML support. Changed QIO
+        support.
+
+05/10/2003 -- Robert Edwards
+
+	Version 1.2.5 minor maintenance update.
+
+04/30/2003 -- Robert Edwards
+
+	Version 1.2.4 removed readSzin and readSzinQprop. Changed all occurances
+        of char* to using string - except for C-like error exit routines.
+
+04/26/2003 -- Robert Edwards
+
+	Version 1.2.3 fixed some small problems in parallel version of NmlReader.
+
+04/25/2003 -- Robert Edwards
+
+	Version 1.2.2 more complex namelist reading support.
+
+04/23/2003 -- Robert Edwards
+
+	Version 1.2.1 added push/pop to NmlReader/Writer members. Keep
+        a push/pop count. Improved regexp for reals in NmlReader.
+
+        Removed check of various std-headers in qio & c-dime. Causing
+        problems with malloc on IBM's.
+
+04/21/2003 -- Robert Edwards
+
+	Version 1.2.0 now have support for namelist reading and QIO. Still missing
+        XML metadata.
+
+04/14/2003 -- Robert Edwards
+
+	Version 1.1.9 added (but not using) new packages in other_libs/ nml, qio.
+
+04/09/2003 -- Robert Edwards
+
+	Version 1.1.8 replaced Layout::subgridVol with Layout::sitesOnNode.
+
+04/09/2003 -- Robert Edwards
+
+	Version 1.1.7 added preprocessor control over precision.
+
+04/08/2003 -- Robert Edwards
+
+	Version 1.1.6 added Layout::sitesOnNode (as in manual). Changed
+        innerproduct to innerProduct. 
+
+04/02/2003 -- Robert Edwards
+
+	Version 1.1.5 added preprocessor test of g++ to require V3.0 or greater.
+
+04/02/2003 -- Robert Edwards
+
+	Version 1.1.4 moved proto.h to qdp_util.h .
+
+04/02/2003 -- Robert Edwards
+
+	Version 1.1.3 fixed usage of QDPSubType (e.g.,subsets) in poke routines
+
+02/27/2003 -- Robert Edwards
+
+	Version 1.1.0 added colorContract for color matrices and vectors. 
+
+02/16/2003 -- Robert Edwards
+
+        Version 1.0.0 considered ready. The arch  "scalar" and "parscalar"
+	are considered working.
+
+02/10/2003 -- George Fleming:
+
+        Totally reworked the way QDP gets information about how to compile
+        and link against QMP (if needed for parscalar).  INSTALL and README
+        now are wrong and I need to update them.
+
+01/29/2003 -- Robert Edwards:
+
+        The single box (scalar) and parallel (parscalar) versions
+        work. The old compile-time volume configuration removed. The
+        user can now choose at run-time the lattice size.
+
+
+12/13/2002 -- Balint Joo: 
+
+	Switched to George Fleming style autoconf system (See INSTALL)
+	examples now not automatically built (make check builds them)
+
+	Added Robert's parscalar_specific.h of 12/12/2002
+	Parscalar targets now compile
+
+	Added QDP::QDP_init() and QDP_finalize() to call QMP_init_msg_passing 
+	from, with command line arguments
+
+

@@ -1,0 +1,238 @@
+__m512 b_S0_C0_RE = _mm512_setzero_ps(); 
+__m512 b_S0_C0_IM = _mm512_setzero_ps(); 
+__m512 b_S0_C1_RE = _mm512_setzero_ps(); 
+__m512 b_S0_C1_IM = _mm512_setzero_ps(); 
+__m512 b_S0_C2_RE = _mm512_setzero_ps(); 
+__m512 b_S0_C2_IM = _mm512_setzero_ps(); 
+__m512 b_S1_C0_RE = _mm512_setzero_ps(); 
+__m512 b_S1_C0_IM = _mm512_setzero_ps(); 
+__m512 b_S1_C1_RE = _mm512_setzero_ps(); 
+__m512 b_S1_C1_IM = _mm512_setzero_ps(); 
+__m512 b_S1_C2_RE = _mm512_setzero_ps(); 
+__m512 b_S1_C2_IM = _mm512_setzero_ps(); 
+__m512 psi_S0_RE = _mm512_setzero_ps(); 
+__m512 psi_S0_IM = _mm512_setzero_ps(); 
+__m512 psi_S1_RE = _mm512_setzero_ps(); 
+__m512 psi_S1_IM = _mm512_setzero_ps(); 
+__m512 tmp_1_re = _mm512_setzero_ps(); 
+__m512 tmp_1_im = _mm512_setzero_ps(); 
+__m512 tmp_2_re = _mm512_setzero_ps(); 
+__m512 tmp_2_im = _mm512_setzero_ps(); 
+__m512 tmp_3_re = _mm512_setzero_ps(); 
+__m512 tmp_3_im = _mm512_setzero_ps(); 
+__m512 tmp_4_re = _mm512_setzero_ps(); 
+__m512 tmp_4_im = _mm512_setzero_ps(); 
+__m512 zero = _mm512_setzero_ps(); 
+ _mm_prefetch((const char *)( (((outbuf) + hsprefdist)+0) ), _MM_HINT_ET1);
+
+zero = _mm512_setzero_ps(); 
+__mmask accMask;
+
+accMask = mask;
+
+ _mm_prefetch((const char *)( ((outbuf)+0) ), _MM_HINT_ET0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+0) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+16) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+32) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+48) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+64) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+80) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+96) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+112) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+128) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+144) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+160) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+176) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+192) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+208) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+224) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+240) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+256) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+272) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+288) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+304) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+320) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+336) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+352) + offs[0]) ), _MM_HINT_T0);
+
+ _mm_prefetch((const char *)( (((*xyBase)[0][0][0]+368) + offs[0]) ), _MM_HINT_T0);
+
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[0][0][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfffe, ((*xyBase)[0][0][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[0][0][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfffe, ((*xyBase)[0][0][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[0][3][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfffe, ((*xyBase)[0][3][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[0][3][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfffe, ((*xyBase)[0][3][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+b_S0_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[1][0][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfffe, ((*xyBase)[1][0][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[1][0][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfffe, ((*xyBase)[1][0][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[1][3][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfffe, ((*xyBase)[1][3][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[1][3][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfffe, ((*xyBase)[1][3][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+b_S0_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[2][0][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfffe, ((*xyBase)[2][0][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[2][0][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfffe, ((*xyBase)[2][0][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[2][3][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfffe, ((*xyBase)[2][3][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[2][3][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfffe, ((*xyBase)[2][3][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+b_S0_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S0_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[0][1][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfffe, ((*xyBase)[0][1][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[0][1][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfffe, ((*xyBase)[0][1][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[0][2][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfffe, ((*xyBase)[0][2][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[0][2][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfffe, ((*xyBase)[0][2][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+b_S1_C0_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C0_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[1][1][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfffe, ((*xyBase)[1][1][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[1][1][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfffe, ((*xyBase)[1][1][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[1][2][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfffe, ((*xyBase)[1][2][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[1][2][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfffe, ((*xyBase)[1][2][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+b_S1_C1_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C1_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+psi_S0_RE = _mm512_undefined(); 
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0x1, ((*xyBase)[2][1][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_RE = _mm512_mask_extloadunpacklo_ps(psi_S0_RE, 0xfffe, ((*xyBase)[2][1][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_undefined(); 
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0x1, ((*xyBase)[2][1][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S0_IM = _mm512_mask_extloadunpacklo_ps(psi_S0_IM, 0xfffe, ((*xyBase)[2][1][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_undefined(); 
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0x1, ((*xyBase)[2][2][0] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_RE = _mm512_mask_extloadunpacklo_ps(psi_S1_RE, 0xfffe, ((*xyBase)[2][2][0] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_undefined(); 
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0x1, ((*xyBase)[2][2][1] + offs[0]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+psi_S1_IM = _mm512_mask_extloadunpacklo_ps(psi_S1_IM, 0xfffe, ((*xyBase)[2][2][1] + offs[1]), _MM_UPCONV_PS_NONE, _MM_HINT_NONE);
+
+b_S1_C2_RE = _mm512_add_ps( psi_S0_RE , psi_S1_IM );
+b_S1_C2_IM = _mm512_sub_ps( psi_S0_IM , psi_S1_RE );
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+0), mask, b_S0_C0_RE, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+1), mask, b_S0_C0_IM, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+2), mask, b_S0_C1_RE, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+3), mask, b_S0_C1_IM, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+4), mask, b_S0_C2_RE, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+5), mask, b_S0_C2_IM, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+6), mask, b_S1_C0_RE, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+7), mask, b_S1_C0_IM, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+8), mask, b_S1_C1_RE, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+9), mask, b_S1_C1_IM, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+10), mask, b_S1_C2_RE, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+
+_mm512_mask_extpackstorelo_ps((void*)((outbuf)+11), mask, b_S1_C2_IM, _MM_DOWNCONV_PS_NONE, _MM_HINT_NONE);
+

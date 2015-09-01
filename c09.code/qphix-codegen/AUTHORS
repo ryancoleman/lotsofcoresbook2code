@@ -1,0 +1,2 @@
+Balint Joo, Jefferson Lab - bjoo@jlab.org (Original Code-Generator)
+Dhiraj. D. Kalamkar, Intel Parallel Computing Lab, Bangalore India - dhiraj.d.kalamkar@intel.com (Rewrote everything to make it fast, added SSE, AVX2, AVX512 :) )

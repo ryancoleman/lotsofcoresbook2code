@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+
+<t_mesplq>
+  <lattis>
+    <Nd>4</Nd>
+    <Nc>3</Nc>
+    <nrow>4 4 4 4</nrow>
+  </lattis>
+  <observables>
+    <w_plaq>-0.00175386</w_plaq>
+    <link>0.00312937</link>
+  </observables>
+</t_mesplq>

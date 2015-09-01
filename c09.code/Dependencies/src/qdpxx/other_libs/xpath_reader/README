@@ -1,0 +1,107 @@
+Release:
+========
+
+This package contains the XPathReader class for accessing document 
+elements via XPath in C++. This package uses libxml -- you need to 
+get a good recent version (I use 2.5.1).
+
+Configuration
+=============
+
+GNU autoconf / automake style configuration. You need to provide the
+location of the libxml2 installation using the --with-libxml2=<dir>
+option to configure:
+
+eg: (for me on the Edinburgh Physics machines)
+
+./configure --with-libxml2=/Home/bj/Devel/SciDAC/install/libxml2
+
+then type 
+
+gmake 
+
+to make the library.
+
+gmake install
+
+to install as usual.
+
+Running: 
+
+gmake check
+
+will build the examples in the examples/ directory.
+
+Documentation
+=============
+ Almost as much as for libxml :) (or should that be :( )
+I have added excessive comments to the header files:
+  basic_xpath_reader.h
+
+and 
+ 
+  xpath_reader.h 
+
+in the include directory, at the start of the files. I recommend
+you read them.
+
+Examples
+========
+
+I provide 3 examples in the examples directory:
+
+i) basic_xpath_reader_test 
+--------------------------
+
+This is effectively an XPath shell. 
+Run:      basic_xpath_reader_test foo.xml
+
+and type XPath expression. 
+
+Typing / should return the whole document.
+
+ii) basic_xpath_reader_test2
+----------------------------
+
+This actually tries to get at bits of the XML and store them in
+variables/classes. THe output should produce a bunch of failure
+and success messages (it contains deliberately erroneous queries)
+
+iii) xpath_reader_test2
+-----------------------
+
+Much like basic_xpath_reader_test2 but using the full XPathReader.
+Also matches some weird types like complex'es and arrays etc.
+
+Conformance
+===========
+
+XML:	I use libxml2 and this sets an upper limit on my standard
+        conformance. I then deal probably dodgily with namespaces.
+	(see www.xmlsoft.org for details of libxml2 conformance)
+
+C++:    I make pervasive use of ANSI standard io and string streams 
+        I also make use of templates a great deal, but hopefully 
+	only in ANSI/ISO C++ ways.
+
+	My code compiled with g++-3.2 -- 'nuff said.
+	(earlier eg g++-2.x series compilers may barf).
+
+Future
+======
+
+immediate/near: 
+
+   Some kind of writer class API, so we can write as well as read.
+
+intermediate/medium distant:
+
+   Autogeneration of unmarshal (read?) functions from some kind 
+of mapfile, which contains XPath (perhaps a sophisticated XSLT?).
+This could be done by PERL/Python. The source for unmarshalling
+would use XPathReader...
+
+far/distant/perhaps never:
+    Autogeneration of the mapping file by reading XMLSchema
+	=> Complete C++ Open Source Data Binding Framework.
+

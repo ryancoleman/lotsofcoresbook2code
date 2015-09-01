@@ -1,0 +1,7 @@
+To generate the documentation, run
+
+  make doc
+
+To install it run
+
+  make doc-install
