@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<log version="1.0" tool="runtool">
+
+<msg id="1" tool="runtool">
+  <type>log-start</type>
+  <arg>2015/05/06 21:26:18</arg>
+</msg>
+<msg id="2" tool="runtool">
+  <type>collector-starts</type>
+</msg>
+<msg id="3" tool="runtool">
+  <type>marker-file</type>
+  <arg>/nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3/r000ti3.inspxe</arg>
+</msg>
+<msg id="4" tool="tc">
+  <type>START</type>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:18 2015</timestamp>
+</msg>
+<msg id="5" tool="tc">
+  <type>EXEC_OF_INTEREST</type>
+  <arg>/opt/sgi/mpt/mpt-2.11/bin/mpirun</arg>
+  <arg>15618</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:18 2015</timestamp>
+</msg>
+<msg id="6" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/opt/sgi/mpt/mpt-2.11/bin/mpirun</arg>
+  <arg>0x400000</arg>
+  <arg>0x601047</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:18 2015</timestamp>
+</msg>
+<msg id="7" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/ld-linux-x86-64.so.2</arg>
+  <arg>0x7ffff7dde000</arg>
+  <arg>0x7ffff7ffe1c7</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:18 2015</timestamp>
+</msg>
+<msg id="8" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/opt/sgi/mpt/mpt-2.11/lib/libxmpi.so</arg>
+  <arg>0x7fffe3cc2000</arg>
+  <arg>0x7fffe3eeee77</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="9" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libc.so.6</arg>
+  <arg>0x7fffe389c000</arg>
+  <arg>0x7fffe3c148b7</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="10" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libdl.so.2</arg>
+  <arg>0x7fffe3656000</arg>
+  <arg>0x7fffe385911f</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="11" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libgcc_s.so.1</arg>
+  <arg>0x7fffe3440000</arg>
+  <arg>0x7fffe3655417</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="12" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/librt.so.1</arg>
+  <arg>0x7fffe3237000</arg>
+  <arg>0x7fffe343fc17</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="13" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libpthread.so.0</arg>
+  <arg>0x7fffe301a000</arg>
+  <arg>0x7fffe32363af</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="14" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libnss_files.so.2</arg>
+  <arg>0x7fffe2669000</arg>
+  <arg>0x7fffe28755cf</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:19 2015</timestamp>
+</msg>
+<msg id="15" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libnss_dns.so.2</arg>
+  <arg>0x7fffe22b1000</arg>
+  <arg>0x7fffe24b6117</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:20 2015</timestamp>
+</msg>
+<msg id="16" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libresolv.so.2</arg>
+  <arg>0x7fffe209a000</arg>
+  <arg>0x7fffe22b0aa7</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:20 2015</timestamp>
+</msg>
+<msg id="17" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/usr/lib64/libarray.so</arg>
+  <arg>0x7fffe1aee000</arg>
+  <arg>0x7fffe1d257c7</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:20 2015</timestamp>
+</msg>
+<msg id="18" tool="tc">
+  <type>LOAD_MODULE</type>
+  <arg>/usr/lib64/libprocset.so</arg>
+  <arg>0x7fffe18eb000</arg>
+  <arg>0x7fffe1aed087</arg>
+  <severity>INFO</severity>
+  <timestamp>Wed May  6 21:26:20 2015</timestamp>
+</msg>
+<msg id="19" tool="runtool">
+  <type>app-exit-code</type>
+  <arg>137</arg>
+</msg>
+<msg id="20" tool="runtool">
+  <type>marker-file</type>
+  <arg>/nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3/r000ti3.inspxe</arg>
+</msg>
+<msg id="21" tool="runtool">
+  <type>collector-done</type>
+</msg>
+<msg id="22" tool="runtool">
+  <type>log-end</type>
+  <arg>2015/05/06 21:26:25</arg>
+</msg>
+
+</log>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<log version="1.0" tool="runtool">
+
+<msg id="1" tool="runtool">
+  <type>log-start</type>
+  <arg>2015/05/06 21:26:18</arg>
+</msg>
+<msg id="2" tool="runtool">
+  <type>load-warning</type>
+  <arg>/nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3</arg>
+  <arg>Run terminated abnormally. Some data may be lost.</arg>
+</msg>
+<msg id="3" tool="runtool">
+  <type>status</type>
+  <arg> </arg>
+</msg>
+<msg id="4" tool="runtool">
+  <type>problems-total</type>
+  <arg>0</arg>
+</msg>
+<msg id="5" tool="runtool">
+  <type>log-end</type>
+  <arg>2015/05/06 21:26:26</arg>
+</msg>
+
+</log>
+

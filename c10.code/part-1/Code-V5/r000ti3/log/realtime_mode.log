@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feedback>
+ <message severity="verbose">Analysis started...</message>
+ <nop/>
+ <message severity="verbose">Result file: /nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3/r000ti3.inspxe </message>
+ <nop/>
+ <message severity="verbose">Found target process /opt/sgi/mpt/mpt-2.11/bin/mpirun (PID = 15618). Analysis started... </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /opt/sgi/mpt/mpt-2.11/bin/mpirun. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/ld-linux-x86-64.so.2. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /opt/sgi/mpt/mpt-2.11/lib/libxmpi.so. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libc.so.6. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libdl.so.2. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libgcc_s.so.1. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/librt.so.1. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libpthread.so.0. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libnss_files.so.2. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libnss_dns.so.2. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /lib64/libresolv.so.2. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /usr/lib64/libarray.so. </message>
+ <nop/>
+ <message severity="verbose">Loaded module: /usr/lib64/libprocset.so. </message>
+ <nop/>
+ <message severity="verbose">Application exit code: 137 </message>
+ <nop/>
+ <message severity="verbose">Result file: /nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3/r000ti3.inspxe </message>
+ <nop/>
+ <message severity="verbose">Analysis completed</message>
+ <nop/>
+ <message severity="warning">Encountered an issue while loading result [/nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3]. Run terminated abnormally. Some data may be lost. </message>
+ <nop/>
+ <message severity="info">  </message>
+ <nop/>
+ <message severity="info">0 new problem(s) found </message>
+ <nop/>
+</feedback>

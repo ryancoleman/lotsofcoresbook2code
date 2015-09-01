@@ -1,0 +1,6 @@
+
+=== Start: [2015/05/06 21:26:18] === 
+Warning: Encountered an issue while loading result [/nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3]. Run terminated abnormally. Some data may be lost. 
+  
+0 new problem(s) found 
+=== End: [2015/05/06 21:26:26] === 

@@ -1,0 +1,22 @@
+
+=== Start: [2015/05/06 21:26:18] === 
+Analysis started...
+Result file: /nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3/r000ti3.inspxe 
+Found target process /opt/sgi/mpt/mpt-2.11/bin/mpirun (PID = 15618). Analysis started... 
+Loaded module: /opt/sgi/mpt/mpt-2.11/bin/mpirun. 
+Loaded module: /lib64/ld-linux-x86-64.so.2. 
+Loaded module: /opt/sgi/mpt/mpt-2.11/lib/libxmpi.so. 
+Loaded module: /lib64/libc.so.6. 
+Loaded module: /lib64/libdl.so.2. 
+Loaded module: /lib64/libgcc_s.so.1. 
+Loaded module: /lib64/librt.so.1. 
+Loaded module: /lib64/libpthread.so.0. 
+Loaded module: /lib64/libnss_files.so.2. 
+Loaded module: /lib64/libnss_dns.so.2. 
+Loaded module: /lib64/libresolv.so.2. 
+Loaded module: /usr/lib64/libarray.so. 
+Loaded module: /usr/lib64/libprocset.so. 
+Application exit code: 137 
+Result file: /nfs/home/users/dc-brig1/git/mini-modal/part-1-optimisation/Code-V5/r000ti3/r000ti3.inspxe 
+Analysis completed
+=== End: [2015/05/06 21:26:25] === 

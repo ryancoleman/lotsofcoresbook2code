@@ -1,0 +1,260 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+ALLOC	global.h	16;"	d
+CLOCK_SGI_CYCLE	mtime.c	12;"	d	file:
+Delta	calculate_int.c	/^inline double Delta(double* xdiff, int i) {$/;"	f
+FREE	global.h	17;"	d
+H_GETMIC	get_mic.h	2;"	d
+H_GLOBAL	global.h	2;"	d
+I_CUTOFF	calculate_gamma.c	87;"	d	file:
+MAXBLOCKSIZE	gamma_mpi.c	15;"	d	file:
+MAXLEN	global.h	6;"	d
+MAXLINES	global.h	7;"	d
+NTASKS	calculate_gamma.c	19;"	d	file:
+RETAIN	global.h	18;"	d
+REUSE	global.h	19;"	d
+TRAPEZIUM	calculate_int.c	19;"	d	file:
+_OFFLOADABLE	global.h	11;"	d
+_OFFLOADABLE	global.h	13;"	d
+alpha_data_file	parameter.c	/^char alpha_data_file[MAXLEN];$/;"	v
+alpha_max	parameter.c	/^int alpha_max;$/;"	v
+alpha_points	parameter.c	/^int alpha_points;$/;"	v
+alpha_size_file	parameter.c	/^char alpha_size_file[MAXLEN];$/;"	v
+array_read	arrays.c	/^void array_read(int *n, char filename[100], double grid[(*n)]){$/;"	f
+array_write	arrays.c	/^void array_write(int *n, char filename[100], double grid[(*n)]){$/;"	f
+b_lsize	fixed_data.c	/^_OFFLOADABLE static int b_lsize;$/;"	v	file:
+b_lvec	fixed_data.c	/^static int *b_lvec;$/;"	v	file:
+b_xsize	fixed_data.c	/^_OFFLOADABLE static int b_xsize;$/;"	v	file:
+b_xvec	fixed_data.c	/^_OFFLOADABLE static double *b_xvec;$/;"	v	file:
+bar	global.h	/^    barrier_t* bar;     \/\/ ptr to struct for core barrier data$/;"	m	struct:__anon1
+barrier_t	local_barrier.h	/^typedef struct barrier_t$/;"	s
+barrier_t	local_barrier.h	/^} barrier_t;$/;"	t	typeref:struct:barrier_t
+basis_functions_bi	basis_functions.c	/^int basis_functions_bi(double **array, int size, int pmax, double max, double *values){$/;"	f
+basis_functions_chebyshev	basis_functions.c	/^int basis_functions_chebyshev(double **array, int size, int pmax, double max, double *values){$/;"	f
+basis_functions_fourier	basis_functions.c	/^int basis_functions_fourier(double **array, int size, int pmax, double max, double *values){$/;"	f
+basis_functions_legendre	basis_functions.c	/^int basis_functions_legendre(double **array, int size, int pmax, double max, double *values){$/;"	f
+basis_functions_sinlog	basis_functions.c	/^int basis_functions_sinlog(double **array, int size, int pmax, double xmin, double max, double *values){$/;"	f
+basis_functions_tri	basis_functions.c	/^int basis_functions_tri(double **array, int size, int pmax, double max, double *values){$/;"	f
+basis_late_flat	fixed_data.c	/^_OFFLOADABLE static double *basis_late_flat;$/;"	v	file:
+beam	fixed_data.c	/^static double *beam;$/;"	v	file:
+beam_noise_file	parameter.c	/^char beam_noise_file[MAXLEN];$/;"	v
+bessel_data_file	parameter.c	/^char bessel_data_file[MAXLEN];$/;"	v
+bessel_max	parameter.c	/^int bessel_max;$/;"	v
+bessel_points	parameter.c	/^int bessel_points;$/;"	v
+bessel_size_file	parameter.c	/^char bessel_size_file[MAXLEN];$/;"	v
+beta_flat	fixed_data.c	/^_OFFLOADABLE static double *beta_flat;$/;"	v	file:
+bflag_load	parameter.c	/^int bflag_load;$/;"	v
+bflag_lset	parameter.c	/^int bflag_lset;$/;"	v
+bispectrum_file	parameter.c	/^char bispectrum_file[MAXLEN];$/;"	v
+bload_file	parameter.c	/^char bload_file[MAXLEN];$/;"	v
+calculate_gamma_3d_nested	calculate_gamma.c	/^_OFFLOADABLE void calculate_gamma_3d_nested(thread_g3d_data_t* thread_data, int maxblocksize)$/;"	f
+calculate_geometric	calculate_geometric.c	/^_OFFLOADABLE double calculate_geometric(int l1, int l2, int l3){$/;"	f
+calculate_xint	calculate_int.c	/^_OFFLOADABLE double calculate_xint(int n, int xsize, double* restrict x, double* restrict y, int l1, int l2, int l3, double* restrict xdiff, double* restrict ixdiff) {$/;"	f
+cl	fixed_data.c	/^static double *cl;$/;"	v	file:
+clflag_uselens	parameter.c	/^int clflag_uselens;$/;"	v
+cls_data_file	parameter.c	/^char cls_data_file[MAXLEN];$/;"	v
+corebarrier_t	local_barrier.h	/^typedef struct corebarrier_t$/;"	s
+corebarrier_t	local_barrier.h	/^} corebarrier_t;$/;"	t	typeref:struct:corebarrier_t
+coreval	local_barrier.h	/^    int coreval;$/;"	m	struct:barrier_t
+create_array	arrays.c	/^double **create_array(int dim_x, int dim_y){$/;"	f
+create_basis_late	fixed_data.c	/^int create_basis_late(int size, double max, double *vec){$/;"	f
+create_beam	fixed_data.c	/^int create_beam(int l_size){$/;"	f
+create_beta	fixed_data.c	/^int create_beta(int l_size, int x_size){$/;"	f
+create_cl	fixed_data.c	/^int create_cl(int l_size){$/;"	f
+create_gamma	fixed_data.c	/^int create_gamma(){$/;"	f
+create_ivector	arrays.c	/^int *create_ivector(int length){$/;"	f
+create_lens	fixed_data.c	/^int create_lens(int l_size){$/;"	f
+create_noise	fixed_data.c	/^int create_noise(int l_size){$/;"	f
+create_order_late	fixed_data.c	/^int create_order_late(){$/;"	f
+create_order_prim	fixed_data.c	/^int create_order_prim(){$/;"	f
+create_t_wgt	fixed_data.c	/^int create_t_wgt(int l_size){$/;"	f
+create_vector	arrays.c	/^double *create_vector(int length){$/;"	f
+csecond	mtime.c	/^double csecond(void )$/;"	f
+decompose_data_file	parameter.c	/^char decompose_data_file[MAXLEN];$/;"	v
+decompose_gamma_3d_mpi	calculate_gamma.c	/^_OFFLOADABLE void decompose_gamma_3d_mpi(thread_g3d_data_t* thread_data, int rank, int numranks, double workshare) $/;"	f
+decompose_size_file	parameter.c	/^char decompose_size_file[MAXLEN];$/;"	v
+delta	calculate_int.c	/^inline double delta(double* restrict xdiff, double* restrict ixdiff, double* restrict y, int i) {$/;"	f
+deltaphi	parameter.c	/^double deltaphi;$/;"	v
+depth	parameter.c	/^int depth;$/;"	v
+deriv	calculate_int.c	/^inline double deriv(double* restrict xdiff, double* restrict ixdiff, double* restrict y, int i) {$/;"	f
+destroy_array	arrays.c	/^void destroy_array(double **array){$/;"	f
+dflag_dmax	parameter.c	/^int dflag_dmax;$/;"	v
+dflag_out	parameter.c	/^int dflag_out;$/;"	v
+directory	parameter.c	/^char directory[MAXLEN];$/;"	v
+edist_file	parameter.c	/^char edist_file[MAXLEN];$/;"	v
+edist_tri_file	parameter.c	/^char edist_tri_file[MAXLEN];$/;"	v
+eflag_lmax	parameter.c	/^int eflag_lmax;$/;"	v
+eflag_order_late	parameter.c	/^int eflag_order_late;$/;"	v
+eflag_order_prim	parameter.c	/^int eflag_order_prim;$/;"	v
+eigen_data_file	parameter.c	/^char eigen_data_file[MAXLEN];$/;"	v
+eigen_tri_data_file	parameter.c	/^char eigen_tri_data_file[MAXLEN];$/;"	v
+find_perm_late	fixed_data.c	/^_OFFLOADABLE void find_perm_late(int r,int* p1,int* p2,int* p3){$/;"	f
+find_perm_prim	fixed_data.c	/^_OFFLOADABLE void find_perm_prim(int r,int* p1,int* p2,int* p3){$/;"	f
+flat_data_file	parameter.c	/^char flat_data_file[MAXLEN];$/;"	v
+flat_size_file	parameter.c	/^char flat_size_file[MAXLEN];$/;"	v
+gamma	fixed_data.c	/^static double **gamma;$/;"	v	file:
+gamma_3d_host	gamma_mpi.c	/^_OFFLOADABLE void gamma_3d_host(double * restrict gamma_flat, int gamma_size, int rank, int numranks, double workshare)$/;"	f
+gamma_3d_offload	gamma_mpi.c	/^void gamma_3d_offload(double * restrict gamma_flat, int gamma_size, int rank, int numranks, double workshare)$/;"	f
+gamma_data_file	parameter.c	/^char gamma_data_file[MAXLEN];$/;"	v
+gamma_tri_data_file	parameter.c	/^char gamma_tri_data_file[MAXLEN];$/;"	v
+get_b_lsize	fixed_data.c	/^_OFFLOADABLE int get_b_lsize(){$/;"	f
+get_b_lvec	fixed_data.c	/^int get_b_lvec(int *vec){$/;"	f
+get_b_xsize	fixed_data.c	/^_OFFLOADABLE int get_b_xsize(){$/;"	f
+get_b_xvec	fixed_data.c	/^_OFFLOADABLE int get_b_xvec(double *vec){$/;"	f
+get_basis_late_array	fixed_data.c	/^_OFFLOADABLE double* get_basis_late_array()$/;"	f
+get_beam	fixed_data.c	/^double get_beam(int i){$/;"	f
+get_beam_array	fixed_data.c	/^double* get_beam_array() { return beam; }$/;"	f
+get_beta_array	fixed_data.c	/^_OFFLOADABLE double* get_beta_array() {$/;"	f
+get_cl	fixed_data.c	/^double get_cl(int i){$/;"	f
+get_cl_array	fixed_data.c	/^double* get_cl_array() {$/;"	f
+get_kmax_cut	io.c	/^double get_kmax_cut(){$/;"	f
+get_lambdal	fixed_data.c	/^double get_lambdal(int i,int j){$/;"	f
+get_lens_tp	fixed_data.c	/^double get_lens_tp(int i){$/;"	f
+get_lens_tt	fixed_data.c	/^double get_lens_tt(int i){$/;"	f
+get_lmax	fixed_data.c	/^_OFFLOADABLE int get_lmax(){$/;"	f
+get_local_mic	get_mic.h	/^int get_local_mic()$/;"	f
+get_next_ijk_bound	calculate_gamma.c	/^_OFFLOADABLE void get_next_ijk_bound(int i0, int j0, int k0, int *i1, int *j1, int *k1, \\$/;"	f
+get_noise	fixed_data.c	/^double get_noise(int i){$/;"	f
+get_noise_array	fixed_data.c	/^double* get_noise_array() { return noise; }$/;"	f
+get_orthol	fixed_data.c	/^double get_orthol(int i,int j){$/;"	f
+get_pmax_late	fixed_data.c	/^_OFFLOADABLE int get_pmax_late(){$/;"	f
+get_pmax_prim	fixed_data.c	/^_OFFLOADABLE int get_pmax_prim(){$/;"	f
+get_tau0	io.c	/^double get_tau0(){$/;"	f
+get_term_flat_value	fixed_data.c	/^static long get_term_flat_value(int *term, int pmax)$/;"	f	file:
+get_terms_late	fixed_data.c	/^int get_terms_late(){$/;"	f
+get_terms_prim	fixed_data.c	/^_OFFLOADABLE int get_terms_prim(){$/;"	f
+gflag_pca	parameter.c	/^int gflag_pca;$/;"	v
+i0	global.h	/^    int i0;$/;"	m	struct:__anon1
+i1	global.h	/^    int i1;$/;"	m	struct:__anon1
+init_lmax	fixed_data.c	/^int init_lmax(int l){$/;"	f
+initial_grid_size	parameter.c	/^int initial_grid_size;$/;"	v
+initilise	parameter.c	/^int initilise(char *inifile){$/;"	f
+integrate	calculate_int.c	/^_OFFLOADABLE double integrate(int size, double* restrict xdiff, double* restrict ixdiff, double* restrict y)$/;"	f
+interpolated_bispectrum_file	parameter.c	/^char interpolated_bispectrum_file[MAXLEN];$/;"	v
+interpolated_l_data_file	parameter.c	/^char interpolated_l_data_file[MAXLEN];$/;"	v
+interpolated_l_size_file	parameter.c	/^char interpolated_l_size_file[MAXLEN];$/;"	v
+intgrlvec	global.h	/^    double* intgrlvec;  \/\/ array of x in calculate_gamma_3d $/;"	m	struct:__anon1
+ivector_read	arrays.c	/^void ivector_read(int *n, char filename[100], int grid[(*n)]){$/;"	f
+ixdiff	global.h	/^    double* ixdiff;$/;"	m	struct:__anon1
+j0	global.h	/^    int j0;$/;"	m	struct:__anon1
+j1	global.h	/^    int j1;$/;"	m	struct:__anon1
+k0	global.h	/^    int k0;$/;"	m	struct:__anon1
+k1	global.h	/^    int k1;$/;"	m	struct:__anon1
+kmax_cut	io.c	/^static double kmax_cut;$/;"	v	file:
+kpivot	parameter.c	/^double kpivot;$/;"	v
+kstar	parameter.c	/^double kstar;$/;"	v
+l1	parameter.c	/^int l1,l2,l3,l4;$/;"	v
+l2	parameter.c	/^int l1,l2,l3,l4;$/;"	v
+l3	parameter.c	/^int l1,l2,l3,l4;$/;"	v
+l4	parameter.c	/^int l1,l2,l3,l4;$/;"	v
+l_data_file	parameter.c	/^char l_data_file[MAXLEN];$/;"	v
+l_flat	parameter.c	/^int l_flat;$/;"	v
+l_size_file	parameter.c	/^char l_size_file[MAXLEN];$/;"	v
+lambda_data_file	parameter.c	/^char lambda_data_file[MAXLEN];$/;"	v
+lambda_tri_data_file	parameter.c	/^char lambda_tri_data_file[MAXLEN];$/;"	v
+lambdal	fixed_data.c	/^static double **lambdal;$/;"	v	file:
+lambdal_data_file	parameter.c	/^char lambdal_data_file[MAXLEN];$/;"	v
+lambdal_tri_data_file	parameter.c	/^char lambdal_tri_data_file[MAXLEN];$/;"	v
+lens_data_file	parameter.c	/^char lens_data_file[MAXLEN];$/;"	v
+lens_tp	fixed_data.c	/^static double *lens_tp;$/;"	v	file:
+lens_tt	fixed_data.c	/^static double *lens_tt;$/;"	v	file:
+limber_data_file	parameter.c	/^char limber_data_file[MAXLEN];$/;"	v
+limber_size_file	parameter.c	/^char limber_size_file[MAXLEN];$/;"	v
+lini_file	parameter.c	/^char lini_file[MAXLEN];$/;"	v
+lmax	fixed_data.c	/^_OFFLOADABLE static int lmax;$/;"	v	file:
+load_BN	fixed_data.c	/^int load_BN(int l_size ,int* l_values){$/;"	f
+load_TL	fixed_data.c	/^int load_TL(int l_size ,int* l_values){$/;"	f
+load_cl	fixed_data.c	/^int load_cl(int l_size ,int* l_values){$/;"	f
+load_lens	fixed_data.c	/^int load_lens(int l_size ,int* l_values){$/;"	f
+load_three	io.c	/^int load_three(char* filename, double* values, int* size){$/;"	f
+load_three_int	io.c	/^int load_three_int(char* filename, int* values, int* size){$/;"	f
+load_two	io.c	/^int load_two(char* filename, double* values, int* size){$/;"	f
+load_txt_dbl	io.c	/^int load_txt_dbl(char* filename, int columns, double* values, int* size){$/;"	f
+main	gamma_mpi.c	/^int main( int argc, char *argv[] ){$/;"	f
+mdist_file	parameter.c	/^char mdist_file[MAXLEN];$/;"	v
+mdist_tri_file	parameter.c	/^char mdist_tri_file[MAXLEN];$/;"	v
+me	local_barrier.h	/^    corebarrier_t* me;$/;"	m	struct:barrier_t
+min	calculate_gamma.c	86;"	d	file:
+min	calculate_int.c	49;"	d	file:
+model	parameter.c	/^int model;$/;"	v
+model2	parameter.c	/^int model2;$/;"	v
+modes_data_file	parameter.c	/^char modes_data_file[MAXLEN];$/;"	v
+modes_tri_data_file	parameter.c	/^char modes_tri_data_file[MAXLEN];$/;"	v
+multiplier	parameter.c	/^int multiplier;$/;"	v
+mvec	global.h	/^    double* mvec;$/;"	m	struct:__anon1
+my_deltaphi	calculate_gamma.c	/^_OFFLOADABLE static double my_deltaphi;$/;"	v	file:
+mycoretid	local_barrier.h	/^    int mycoretid;$/;"	m	struct:barrier_t
+noise	fixed_data.c	/^static double *noise;$/;"	v	file:
+nscalar	parameter.c	/^double nscalar;$/;"	v
+oflag_load	parameter.c	/^int oflag_load;$/;"	v
+one_accuracy	parameter.c	/^double one_accuracy;$/;"	v
+order_late_flat	fixed_data.c	/^_OFFLOADABLE static int *order_late_flat;$/;"	v	file:
+order_prim_flat	fixed_data.c	/^_OFFLOADABLE static int *order_prim_flat;$/;"	v	file:
+ortho_data_file	parameter.c	/^char ortho_data_file[MAXLEN];$/;"	v
+ortho_tri_data_file	parameter.c	/^char ortho_tri_data_file[MAXLEN];$/;"	v
+orthol	fixed_data.c	/^static double **orthol;$/;"	v	file:
+orthol_data_file	parameter.c	/^char orthol_data_file[MAXLEN];$/;"	v
+orthol_tri_data_file	parameter.c	/^char orthol_tri_data_file[MAXLEN];$/;"	v
+output_gamma	fixed_data.c	/^int output_gamma(){$/;"	f
+p1_basis_late_flat	calculate_gamma.c	/^_OFFLOADABLE static double* p1_basis_late_flat;$/;"	v	file:
+p2_basis_late_flat	calculate_gamma.c	/^_OFFLOADABLE static double* p2_basis_late_flat;$/;"	v	file:
+p3_basis_late_flat	calculate_gamma.c	/^_OFFLOADABLE static double* p3_basis_late_flat;$/;"	v	file:
+padding	local_barrier.h	/^    int padding[14];    \/\/ pad things out to fill the cacheline.$/;"	m	struct:corebarrier_t
+permsix	fixed_data.c	/^_OFFLOADABLE double permsix(int i, int j, int k){$/;"	f
+phase	parameter.c	/^double phase;$/;"	v
+plijk	orthogonalisation_late.c	/^double plijk(int r,int i,int j,int k){$/;"	f
+plijkz	global.h	/^    double* plijkz;     \/\/ array of plijk*z in calculate_gamma_3d$/;"	m	struct:__anon1
+pmax_late	fixed_data.c	/^_OFFLOADABLE static int pmax_late;$/;"	v	file:
+pmax_prim	fixed_data.c	/^_OFFLOADABLE static int pmax_prim;$/;"	v	file:
+precompute_gamma_3d	calculate_gamma.c	/^void precompute_gamma_3d() {$/;"	f
+proj_data_file	parameter.c	/^char proj_data_file[MAXLEN];$/;"	v
+proj_size_file	parameter.c	/^char proj_size_file[MAXLEN];$/;"	v
+proj_tri_data_file	parameter.c	/^char proj_tri_data_file[MAXLEN];$/;"	v
+proj_tri_size_file	parameter.c	/^char proj_tri_size_file[MAXLEN];$/;"	v
+read_beta	fixed_data.c	/^int read_beta(){$/;"	f
+read_lambdal	fixed_data.c	/^int read_lambdal(char *directory){$/;"	f
+read_orthol	fixed_data.c	/^int read_orthol(char *directory){$/;"	f
+restart_file	parameter.c	/^char restart_file[MAXLEN];$/;"	v
+rflag_do3D	parameter.c	/^int rflag_do3D;$/;"	v
+seci	mtime.c	15;"	d	file:
+section_count	parameter.c	/^int section_count;$/;"	v
+set_terms_late	fixed_data.c	/^int set_terms_late(){$/;"	f
+set_terms_prim	fixed_data.c	/^int set_terms_prim(){$/;"	f
+sinlog_pt	basis_functions.c	/^double sinlog_pt(double kpt, int j){$/;"	f
+sixth	calculate_gamma.c	/^_OFFLOADABLE static const double sixth = (1.0)\/(6.0);$/;"	v	file:
+sixth	calculate_int.c	/^_OFFLOADABLE static const double sixth = (1.0\/6.0);$/;"	v	file:
+sort_terms_array	fixed_data.c	/^static void sort_terms_array(int *flat_array, int lo, int hi, int pmax)$/;"	f	file:
+source_data_file	parameter.c	/^char source_data_file[MAXLEN];$/;"	v
+source_size_file	parameter.c	/^char source_size_file[MAXLEN];$/;"	v
+step	parameter.c	/^int step;$/;"	v
+svec	calculate_gamma.c	/^_OFFLOADABLE static double* svec;$/;"	v	file:
+t_wgt	fixed_data.c	/^static double *t_wgt;$/;"	v	file:
+target	local_barrier.c	/^__declspec(target(mic)) void cpu_pause()$/;"	f
+target	local_barrier.c	/^__declspec(target(mic)) void userCoreBarrier(barrier_t *bar)$/;"	f
+tau0	io.c	/^static double tau0;$/;"	v	file:
+terms_late	fixed_data.c	/^static int terms_late;$/;"	v	file:
+terms_prim	fixed_data.c	/^_OFFLOADABLE static int terms_prim;$/;"	v	file:
+tflag_bessel	parameter.c	/^int tflag_bessel;$/;"	v
+tflag_flat	parameter.c	/^int tflag_flat;$/;"	v
+tflag_limber	parameter.c	/^int tflag_limber;$/;"	v
+tflag_transfer	parameter.c	/^int tflag_transfer;$/;"	v
+thread_g3d_data_t	global.h	/^} thread_g3d_data_t;$/;"	t	typeref:struct:__anon1
+tilt	parameter.c	/^double tilt;$/;"	v
+transfer_data_file	parameter.c	/^char transfer_data_file[MAXLEN];$/;"	v
+transfer_size_file	parameter.c	/^char transfer_size_file[MAXLEN];$/;"	v
+transfer_wgt_file	parameter.c	/^char transfer_wgt_file[MAXLEN];$/;"	v
+tri_accuracy	parameter.c	/^double tri_accuracy;$/;"	v
+trispectrum_file	parameter.c	/^char trispectrum_file[MAXLEN];$/;"	v
+update_gamma	fixed_data.c	/^int update_gamma(double *results){$/;"	f
+use_l_file	parameter.c	/^int use_l_file;$/;"	v
+userbarrier_arrive	local_barrier.h	/^    volatile int userbarrier_arrive;$/;"	m	struct:corebarrier_t
+userbarrier_depart	local_barrier.h	/^    volatile int userbarrier_depart;$/;"	m	struct:corebarrier_t
+usersense	local_barrier.h	/^    int usersense;$/;"	m	struct:barrier_t
+xdiff	global.h	/^    double* xdiff;$/;"	m	struct:__anon1
+xsize	global.h	/^    int xsize;$/;"	m	struct:__anon1
+xvec	global.h	/^    double* xvec;$/;"	m	struct:__anon1
+yvec	global.h	/^    double* yvec;$/;"	m	struct:__anon1
