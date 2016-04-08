@@ -1,1 +1,0 @@
-./run_scripts/run_md_hsw.sh
