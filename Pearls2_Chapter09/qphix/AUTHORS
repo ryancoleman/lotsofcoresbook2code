@@ -1,0 +1,11 @@
+Original Authors:
+
+Balint Joo, Jefferson Lab           email: bjoo@jab.org
+Dhiraj D. Kalamkar, Intel Parallel Computing Labs, Bangalore, India   email: dhiraj.d.kalamkar@intel.com
+Karthikeyan Vaidyanathan, Intel Parallel Computing Labs, Bangalore, India  email:  karthikeyan.vaidyanathan@intel.com
+Mikhail Smelyanskiy, Intel Parallel Computing Labs, Santa Clara, USA   email: mikhail.smelianskiy@intel.com
+
+Contributors:
+*) Diptorup Deb, RENCI University of North Carolina Chapel Hill - is working on portability to other compilers
+
+*) Thanks to Kiran Pamnany, Intel Parallel Computing Labs, Bangalore, India  for the MIC Barrier routine (Barrier_mic.h) email: kiran.pamndany@intel.com
