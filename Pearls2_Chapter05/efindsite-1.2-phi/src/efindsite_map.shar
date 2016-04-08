@@ -1,0 +1,230 @@
+# This is a shell archive.  Save it in a file, remove anything before
+# this line, and then unpack it by entering "sh file".  Note, it may
+# create directories; files and directories will be owned by you and
+# have default permissions.
+#
+# This archive contains:
+#
+#	efindsite_map
+#
+echo x - efindsite_map
+sed 's/^X//' >efindsite_map << 'END-of-efindsite_map'
+X#!/usr/bin/perl -w
+X
+X#===============================================================================
+X#         ___________.__            .____________.__  __          
+X#     ____\_   _____/|__| ____    __| _/   _____/|__|/  |_  ____  
+X#   _/ __ \|    __)  |  |/    \  / __ |\_____  \ |  \   __\/ __ \ 
+X#   \  ___/|     \   |  |   |  \/ /_/ |/        \|  ||  | \  ___/ 
+X#    \___  >___  /   |__|___|  /\____ /_______  /|__||__|  \___  >
+X#        \/    \/            \/      \/       \/               \/ 
+X#
+X#                                                  
+X#   eFindSite - ligand-binding site prediction from meta-threading
+X#
+X#   Computational Systems Biology Group
+X#   Department of Biological Sciences
+X#   Center for Computation & Technology
+X#   Louisiana State University
+X#   407 Choppin Hall, Baton Rouge, LA 70803, USA
+X#
+X#   http://www.brylinski.org
+X#
+X#   Report bugs to michal@brylinski.org wfeinstein@lsu.edu
+X#
+X#   Copyright 2013 Michal Brylinski, Wei Feinstein
+X#
+X#   This file is part of eFindSite.
+X#
+X#   eFindSite is free software: you can redistribute it and/or modify
+X#   it under the terms of the GNU General Public License as published by
+X#   the Free Software Foundation, either version 3 of the License, or
+X#   (at your option) any later version.
+X#
+X#   eFindSite is distributed in the hope that it will be useful,
+X#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+X#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+X#   GNU General Public License for more details.
+X#
+X#   You should have received a copy of the GNU General Public License
+X#   along with eFindSite. If not, see <http://www.gnu.org/licenses/>.
+X#
+X#===============================================================================
+X
+X use strict;
+X use File::Path;
+X use File::Copy;
+X use Benchmark;
+X use Cwd;
+X use File::Slurp;
+X use File::Temp qw/ tempfile tempdir /;
+X 
+X local $| = 1;
+X 
+X print "------------------------------------------------------------\n";
+X print "                       efindsite_map\n";
+X print "                        version 1.2\n";
+X print "                 Threading library mapping\n\n";
+X print "       report bugs and issues to michal\@brylinski.org\n";
+X print "------------------------------------------------------------\n\n";
+X 
+X if ($#ARGV < 5)
+X {
+X  print "efindsite_map -t <threading library in FASTA format>\n";
+X  print "              -p <eFindSite library in FASTA format>\n";
+X  print "              -o <output filename>\n";
+X  print "              -a <number of processors to use, default 1>\n";
+X  die "\n";
+X }
+X 
+X die "Could not find formatdb\n" if ( !( `which formatdb` ) );
+X die "Could not find blastall\n" if ( !( `which blastall` ) );
+X 
+X my $ftpl1 = '';
+X my $fpdb1 = '';
+X my $fout1 = '';
+X my $fcpu1 = 1;
+X 
+X for ( my $i = 0; $i <= $#ARGV; $i++ )
+X {
+X  $ftpl1 = $ARGV[$i+1] if ( $ARGV[$i] eq '-t' );
+X  $fpdb1 = $ARGV[$i+1] if ( $ARGV[$i] eq '-p' );
+X  $fout1 = $ARGV[$i+1] if ( $ARGV[$i] eq '-o' );
+X  $fcpu1 = $ARGV[$i+1] if ( $ARGV[$i] eq '-a' );
+X }
+X 
+X die "Provide template library in FASTA format\n" if ( !( -e $ftpl1 ) or !length($ftpl1) );
+X die "Provide PDB library in FASTA format\n"      if ( !( -e $fpdb1 ) or !length($fpdb1) );
+X die "Provide output filename\n"                  if ( !length($fout1) );
+X 
+X my $bt0 = Benchmark->new;
+X 
+X my @pdb1 = read_file($fpdb1); chomp(@pdb1);
+X 
+X my @tpl1 = read_file($ftpl1); chomp(@tpl1);
+X 
+X my $dir1 = getcwd();
+X 
+X my $dir2 = tempdir( CLEANUP => 1 );
+X 
+X my ($fh1, $tmpfil1) = tempfile( DIR => $dir2, UNLINK => 1);
+X my ($fh2, $tmpfil2) = tempfile( DIR => $dir2, UNLINK => 1);
+X 
+X copy($ftpl1, "$tmpfil1");
+X copy($fpdb1, "$tmpfil2");
+X 
+X printf("Tempdir created: %s\n\n", $dir2);
+X 
+X chdir($dir2) or die "Cannot chdir to $dir2 $!";
+X 
+X open (FOR, "formatdb -i $tmpfil1 -p T -o T 2>&1 |") || die "Cannot run formatdb -i $tmpfil1 -p T -o T\n";
+X  my @for1=<FOR>;
+X  chomp(@for1);
+X close (FOR);
+X 
+X print "Mapping ... ";
+X 
+X open (BLA, "blastall -p blastp -d $tmpfil1 -i $tmpfil2 -m 8 -v 1 -b 1 -a $fcpu1 2>&1 |") || die "Cannot run blastall -p blastp -d $tmpfil1 -i $tmpfil2 -m 8 -v 1 -b 1 -a $fcpu1\n";
+X  my @bla1=<BLA>;
+X  chomp(@bla1);
+X close (BLA);
+X 
+X chdir($dir1) or die "Cannot chdir to $dir1 $!";
+X 
+X my %bla3 = ();
+X my %bla4 = ();
+X 
+X foreach my $wbla1 (@bla1)
+X {
+X  while ( $wbla1 =~ /\t/ ) { $wbla1 =~ s/\t/\ /g; }
+X  while ( $wbla1 =~ /\ \ / ) { $wbla1 =~ s/\ \ /\ /g; }
+X  
+X  substr($wbla1,  0, 1) = '' if ( substr($wbla1,  0, 1) eq ' ' );
+X  substr($wbla1, -1, 1) = '' if ( substr($wbla1, -1, 1) eq ' ' );
+X  
+X  my @bla2 = split(/\ /, $wbla1);
+X  
+X  my $nbla2 = @bla2;
+X  
+X  if ( $nbla2 == 12 )
+X  {
+X   $bla2[10] = '1'.$bla2[10] if ( substr($bla2[10],0,1) eq 'e' ); $bla2[10] *= 1.0;
+X   
+X   if ( exists $bla3{$bla2[0]} )
+X   {
+X    if ( $bla2[10] < $bla4{$bla2[0]} )
+X    {
+X     $bla3{$bla2[0]} = $bla2[1];
+X     $bla4{$bla2[0]} = $bla2[10];
+X    }
+X   }
+X   else
+X   {
+X    $bla3{$bla2[0]} = $bla2[1];
+X    $bla4{$bla2[0]} = $bla2[10];
+X   }
+X  }
+X }
+X 
+X my %tpl2 = ();
+X 
+X foreach my $wbla3 ( keys %bla3 )
+X {
+X  if ( exists $tpl2{$bla3{$wbla3}} )
+X  {
+X   $tpl2{$bla3{$wbla3}} .= '&'.$wbla3;
+X  }
+X  else
+X  {
+X   $tpl2{$bla3{$wbla3}} = $wbla3;
+X  }
+X }
+X 
+X my @out1 = ();
+X 
+X my $n1 = 0;
+X my $n2 = 0;
+X 
+X foreach my $wtpl2 ( sort { $a cmp $b } keys %tpl2 )
+X {
+X  my @out2 = split(/\&/, $tpl2{$wtpl2});
+X  
+X  my $nout2 = @out2;
+X  
+X  if ( $nout2 )
+X  {
+X   my $out3 = sprintf("%15s%5d", $wtpl2, $nout2);
+X   
+X   foreach my $wout2 (@out2)
+X   {
+X    $out3 .= " $wout2";
+X   }
+X   
+X   push(@out1, "$out3\n");
+X   
+X   $n1 += $nout2;
+X   
+X   $n2++;
+X  }
+X }
+X 
+X print "done: $n1 -> $n2\n\n";
+X 
+X if ( @out1 )
+X {
+X  write_file($fout1, @out1);
+X  
+X  print "Mapping file written to $fout1\n\n";
+X }
+X 
+X my $bt1 = Benchmark->new;
+X 
+X printf("------------------------------------------------------------\n");
+X printf("Walltime: %s\n", timestr(timediff($bt1, $bt0)));
+X printf("------------------------------------------------------------\n");
+X 
+X exit(0);
+X 
+END-of-efindsite_map
+exit
+

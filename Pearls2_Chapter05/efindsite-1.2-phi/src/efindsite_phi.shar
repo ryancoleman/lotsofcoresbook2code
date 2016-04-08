@@ -1,0 +1,329 @@
+# This is a shell archive.  Save it in a file, remove anything before
+# this line, and then unpack it by entering "sh file".  Note, it may
+# create directories; files and directories will be owned by you and
+# have default permissions.
+#
+# This archive contains:
+#
+#	efindsite_phi
+#
+echo x - efindsite_phi
+sed 's/^X//' >efindsite_phi << 'END-of-efindsite_phi'
+X#!/usr/bin/perl -w
+X
+X#===============================================================================
+X#         ___________.__            .____________.__  __          
+X#     ____\_   _____/|__| ____    __| _/   _____/|__|/  |_  ____  
+X#   _/ __ \|    __)  |  |/    \  / __ |\_____  \ |  \   __\/ __ \ 
+X#   \  ___/|     \   |  |   |  \/ /_/ |/        \|  ||  | \  ___/ 
+X#    \___  >___  /   |__|___|  /\____ /_______  /|__||__|  \___  >
+X#        \/    \/            \/      \/       \/               \/ 
+X#
+X#                                                  
+X#   eFindSite - ligand-binding site prediction from meta-threading
+X#
+X#   Computational Systems Biology Group
+X#   Department of Biological Sciences
+X#   Center for Computation & Technology
+X#   Louisiana State University
+X#   407 Choppin Hall, Baton Rouge, LA 70803, USA
+X#
+X#   http://www.brylinski.org
+X#
+X#   Report bugs to michal@brylinski.org wfeinstein@lsu.edu
+X#
+X#   Copyright 2013 Michal Brylinski, Wei Feinstein
+X#
+X#   This file is part of eFindSite.
+X#
+X#   eFindSite is free software: you can redistribute it and/or modify
+X#   it under the terms of the GNU General Public License as published by
+X#   the Free Software Foundation, either version 3 of the License, or
+X#   (at your option) any later version.
+X#
+X#   eFindSite is distributed in the hope that it will be useful,
+X#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+X#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+X#   GNU General Public License for more details.
+X#
+X#   You should have received a copy of the GNU General Public License
+X#   along with eFindSite. If not, see <http://www.gnu.org/licenses/>.
+X#
+X#===============================================================================
+X 
+X use strict;
+X use Benchmark;
+X use Uniq;
+X use File::Slurp;
+X use Proc::Background;
+X 
+X $ENV{'OMP_NUM_THREADS'} = '4';
+X $ENV{'OMP_STACKSIZE'} = '64M';
+X $ENV{'MIC_ENV_PREFIX'} = 'MIC';
+X $ENV{'MIC_STACKSIZE'} = '64M';
+X $ENV{'MIC_KMP_AFFINITY'} = 'compact';
+X $ENV{'MIC_OMP_NUM_THREADS'} = '24';
+X $ENV{'MIC_OMP_STACKSIZE'} = '64M';
+X
+X local $| = 1;
+X 
+X print "------------------------------------------------------------\n";
+X print "                       efindsite-phi\n";
+X print "                        version 1.2\n";
+X print "       heterogeneous processing system for CPU and PHI\n\n";
+X print "       report bugs and issues to michal\@brylinski.org\n";
+X print "------------------------------------------------------------\n\n";
+X 
+X die "EF_LIB is not set\n" if !( $ENV{'EF_LIB'} );
+X die "EF_MAP is not set\n" if !( $ENV{'EF_MAP'} );
+X die "EF_MOD is not set\n" if !( $ENV{'EF_MOD'} );
+X die "EF_APL is not set\n" if !( $ENV{'EF_APL'} );
+X 
+X die "EF_OMP is not set\n" if !( $ENV{'EF_OMP'} );
+X die "EF_MIC is not set\n" if !( $ENV{'EF_MIC'} );
+X 
+X if ($#ARGV < 1)
+X {
+X  print "efindsite_phi -l <list of targets>\n";
+X  print "              -b <sequence identity threshold (default 1.0)>\n";
+X  print "              -x <max number of templates (default 250)>\n";
+X  die "\n";
+X }
+X
+X my $flst1 = '';
+X my $foptb = 1.0;
+X my $foptx = 250;
+X 
+X my $n_mic = 10;
+X my $n_cpu = 4;
+X 
+X for ( my $i = 0; $i <= $#ARGV; $i++ )
+X {
+X  $flst1 = $ARGV[$i+1] if ( $ARGV[$i] eq '-l' );
+X  $foptb = $ARGV[$i+1] if ( $ARGV[$i] eq '-b' );
+X  $foptx = $ARGV[$i+1] if ( $ARGV[$i] eq '-x' );
+X }
+X 
+X $foptx = 250 if ( $foptx > 250 );
+X 
+X my $ef_lib = $ENV{'EF_LIB'};
+X my $ef_map = $ENV{'EF_MAP'};
+X my $ef_mod = $ENV{'EF_MOD'};
+X my $ef_apl = $ENV{'EF_APL'};
+X 
+X my $ef_omp = $ENV{'EF_OMP'};
+X my $ef_mic = $ENV{'EF_MIC'};
+X 
+X die "Provide list of targets\n" if ( !( -e $flst1 ) or !length($flst1) );
+X 
+X die "Wrong EF_LIB: $ef_lib\n" if ( !( -d $ef_lib ) or !length($ef_lib) );
+X die "Wrong EF_MAP: $ef_map\n" if ( !( -e $ef_map ) or !length($ef_map) );
+X die "Wrong EF_MOD: $ef_mod\n" if ( !( -d $ef_mod ) or !length($ef_mod) );
+X die "Wrong EF_APL: $ef_apl\n" if ( !( -e $ef_apl ) or !length($ef_apl) );
+X 
+X die "Wrong EF_OMP: $ef_omp\n" if ( !( -e $ef_omp ) or !length($ef_omp) );
+X die "Wrong EF_MIC: $ef_mic\n" if ( !( -e $ef_mic ) or !length($ef_mic) );
+X 
+X my $bt0 = Benchmark->new;
+X 
+X my @map1 = read_file($ef_map); chomp(@map1);
+X 
+X my %map2 = ();
+X 
+X foreach my $wmap1 (@map1)
+X {
+X  my $tpl1 = substr($wmap1, 0, 15);
+X  
+X  while ( $tpl1 =~ /\ / ) { $tpl1 =~ s/\ //g; }
+X  
+X  my @tpl2 = split(/\ /, substr($wmap1, 21, length($wmap1) - 21));
+X  
+X  $map2{$tpl1} = \@tpl2;
+X }
+X 
+X my @lst1 = read_file($flst1); chomp(@lst1);
+X 
+X my %lst2 = ();
+X 
+X foreach my $wlst1 (@lst1)
+X {
+X  my @pdb1 = read_file($wlst1.'.pdb'); chomp(@pdb1);
+X  
+X  @pdb1 = grep(/ CA /, @pdb1);
+X  
+X  my $npdb1 = @pdb1;
+X  
+X  my @dat1 = read_file($wlst1.'.ethread-fun'); chomp(@dat1);
+X  
+X  my @dat2 = ();
+X  
+X  foreach my $wdat1 (@dat1)
+X  {
+X   my $dat2 = substr($wdat1, 0, 15);
+X   
+X   while ( $dat2 =~ /\ / ) { $dat2 =~ s/\ //g; }
+X   
+X   if ( exists $map2{$dat2} )
+X   {
+X    foreach my $dat3 ( @{$map2{$dat2}} )
+X    {
+X     push(@dat2, $dat3);
+X    }
+X   }
+X  }
+X  
+X  @dat2 = uniq sort { $a cmp $b } @dat2;
+X  
+X  my $ndat2 = @dat2;
+X  
+X  $ndat2 = $foptx if ( $ndat2 > $foptx );
+X  
+X  $lst2{$wlst1} = $npdb1 * $ndat2;
+X }
+X 
+X my @lst3 = ();
+X 
+X foreach my $wlst2 ( sort { $lst2{$a} <=> $lst2{$b} } keys %lst2 )
+X {
+X  push(@lst3, $wlst2);
+X }
+X 
+X my $nlst3 = @lst3;
+X 
+X my @j_cpu = ();
+X my @j_mic = ();
+X 
+X my @c_cpu = ();
+X my @c_mic = ();
+X 
+X my @l_cpu = ();
+X my @l_mic = ();
+X 
+X for ( my $xa = 0; $xa < $n_cpu; $xa++ )
+X {
+X  $j_cpu[$xa] = Proc::Background->new("echo > /dev/null");
+X  
+X  $c_cpu[$xa] = 0;
+X  $l_cpu[$xa] = 0;
+X }
+X 
+X for ( my $xa = 0; $xa < $n_mic; $xa++ )
+X {
+X  $j_mic[$xa] = Proc::Background->new("echo > /dev/null");
+X  
+X  $c_mic[$xa] = 0;
+X  $l_mic[$xa] = 0;
+X }
+X 
+X print "Processing $nlst3 eFindSite jobs using 16 CPU and 240 MIC cores:\n\n";
+X 
+X my $prg1 = 0;
+X 
+X while ( @lst3 )
+X {
+X  # CPU jobs
+X  
+X  for ( my $xa = 0; $xa < $n_cpu; $xa++ )
+X  {
+X   if ( @lst3 and !$j_cpu[$xa]->alive )
+X   {
+X    my $job = shift(@lst3);
+X    
+X    printf("CPU%d <- %s ... %.1f%s\n", $xa, $job, (++$prg1/$nlst3)*100.0, '%');
+X    
+X    $j_cpu[$xa] = Proc::Background->new("$ef_omp -s $job.pdb -t $job.ethread-fun -i $job.ss -e $job.prf -o $job-efindsite -b $foptb -x $foptx > $job.log 2>&1");
+X    
+X    $c_cpu[$xa]++;
+X    $l_cpu[$xa] += $lst2{$job};
+X   }
+X  }
+X  
+X  # MIC jobs
+X  
+X  for ( my $xa = 0; $xa < $n_mic; $xa++ )
+X  {
+X   if ( @lst3 and !$j_mic[$xa]->alive )
+X   {
+X    my $job = pop(@lst3);
+X    
+X    my $kpt = 'export MIC_KMP_PLACE_THREADS=6c,4t,'.int($xa*6).'O';
+X    
+X    printf("MIC%d <- %s ... %.1f%s\n", $xa, $job, (++$prg1/$nlst3)*100.0, '%');
+X    
+X    $j_mic[$xa] = Proc::Background->new("$kpt ; $ef_mic -s $job.pdb -t $job.ethread-fun -i $job.ss -e $job.prf -o $job-efindsite -b $foptb -x $foptx > $job.log 2>&1");
+X    
+X    $c_mic[$xa]++;
+X    $l_mic[$xa] += $lst2{$job};
+X   }
+X  }
+X  
+X  sleep(2) if ( @lst3 );
+X }
+X 
+X for ( my $xa = 0; $xa < $n_cpu; $xa++ )
+X {
+X  $j_cpu[$xa]->wait;
+X }
+X 
+X for ( my $xa = 0; $xa < $n_mic; $xa++ )
+X {
+X  $j_mic[$xa]->wait;
+X }
+X 
+X print "\nPartitioning details:\n\n";
+X 
+X my $tot1 = 0;
+X my $tot2 = 0;
+X 
+X my $tot3 = 0;
+X my $tot4 = 0;
+X 
+X my $tot5 = 0;
+X my $tot6 = 0;
+X 
+X for ( my $xa = 0; $xa < $n_cpu; $xa++ )
+X {
+X  $tot1 += $c_cpu[$xa];
+X  $tot2 += $l_cpu[$xa];
+X  
+X  $tot3 += $c_cpu[$xa];
+X  $tot4 += $l_cpu[$xa];
+X }
+X 
+X for ( my $xa = 0; $xa < $n_mic; $xa++ )
+X {
+X  $tot1 += $c_mic[$xa];
+X  $tot2 += $l_mic[$xa];
+X  
+X  $tot5 += $c_mic[$xa];
+X  $tot6 += $l_mic[$xa];
+X }
+X 
+X for ( my $xa = 0; $xa < $n_cpu; $xa++ )
+X {
+X  printf("CPU%d       %5.1f%s %5.1f%s\n", $xa, ($c_cpu[$xa]/$tot1)*100.0, '%', ($l_cpu[$xa]/$tot2)*100.0, '%');
+X }
+X 
+X print "\n";
+X 
+X for ( my $xa = 0; $xa < $n_mic; $xa++ )
+X {
+X  printf("MIC%d       %5.1f%s %5.1f%s\n", $xa, ($c_mic[$xa]/$tot1)*100.0, '%', ($l_mic[$xa]/$tot2)*100.0, '%');
+X }
+X 
+X print "\n";
+X 
+X printf("Total CPU: %5.1f%s %5.1f%s\n", ($tot3/$tot1)*100.0, '%', ($tot4/$tot2)*100.0, '%');
+X printf("Total MIC: %5.1f%s %5.1f%s\n", ($tot5/$tot1)*100.0, '%', ($tot6/$tot2)*100.0, '%');
+X 
+X my $bt1 = Benchmark->new;
+X 
+X print "\n";
+X printf("------------------------------------------------------------\n");
+X printf("Walltime: %s\n", timestr(timediff($bt1, $bt0)));
+X printf("------------------------------------------------------------\n");
+X 
+X exit(0);
+END-of-efindsite_phi
+exit
+
