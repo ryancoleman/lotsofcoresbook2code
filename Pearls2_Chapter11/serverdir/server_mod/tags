@@ -1,0 +1,140 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ABS	defs.h	19;"	d
+ARGCOUNT	server.cpp	49;"	d	file:
+AllocMatrix	util.cpp	/^float **AllocMatrix(int rows, int cols)$/;"	f
+BUFFER	server.cpp	51;"	d	file:
+BUFFERSIZE	server.cpp	57;"	d	file:
+BindToCpu	server.cpp	/^int BindToCpu(int cpu_num) {$/;"	f
+CC	Makefile	/^CC = icpc$/;"	m
+CFLAGS	Makefile	/^CFLAGS	= -Wno-write-strings $(OPTFLAGS) $/;"	m
+CPU_0	server.cpp	48;"	d	file:
+CreateImage	util.cpp	/^Image CreateImage(int rows, int cols)$/;"	f
+DEBUGFLAGS	Makefile	/^DEBUGFLAGS = -g -ggdb -O0$/;"	m
+DIM	server.cpp	38;"	d	file:
+DrawLine	util.cpp	/^void DrawLine(Image image, int r1, int c1, int r2, int c2)$/;"	f
+EPSILON	server.cpp	45;"	d	file:
+FatalError	util.cpp	/^void FatalError(char *fmt, ...)$/;"	f
+Image	defs.h	/^} *Image;$/;"	t	typeref:struct:ImageSt
+ImageSt	defs.h	/^typedef struct ImageSt {$/;"	s
+Keypoint	defs.h	/^} *Keypoint;$/;"	t	typeref:struct:KeypointSt
+KeypointSt	defs.h	/^typedef struct KeypointSt {$/;"	s
+LISTENPORT	server.cpp	50;"	d	file:
+LOWE_MATCH_RATIO	server.cpp	40;"	d	file:
+MATCH_PERCENT	server.cpp	44;"	d	file:
+MAX	defs.h	20;"	d
+MAX_BUFFER	server.cpp	33;"	d	file:
+MAX_BUFFER_SIZE	server.cpp	47;"	d	file:
+MAX_CORES	server.cpp	29;"	d	file:
+MAX_FILE_LEN	server.cpp	35;"	d	file:
+MAX_FILE_NAME_LENGTH	server.cpp	31;"	d	file:
+MAX_IMAGES	server.cpp	34;"	d	file:
+MAX_KEYPOINTS	server.cpp	39;"	d	file:
+MAX_MSG	server.cpp	52;"	d	file:
+MAX_SIFT_CMD_LEN	server.cpp	36;"	d	file:
+MIN	defs.h	21;"	d
+NN	server.cpp	43;"	d	file:
+NNIDX_0	server.cpp	41;"	d	file:
+NNIDX_1	server.cpp	42;"	d	file:
+NUM_CHECKS	server.cpp	54;"	d	file:
+NUM_PROCESSES	server.cpp	30;"	d	file:
+NUM_TREES	server.cpp	53;"	d	file:
+OBJS	Makefile	/^OBJS = $(SOURCE:.cpp=.o)$/;"	m
+OPTFLAGS	Makefile	/^OPTFLAGS= -O3  $/;"	m
+PORT_NO	server.cpp	37;"	d	file:
+PRECISION	server.cpp	55;"	d	file:
+PROGS	Makefile	/^PROGS := server$/;"	m
+QUIET_CC	Makefile	/^	QUIET_CC	= @echo '   ' CC $@;$/;"	m
+QUIET_DEP	Makefile	/^	QUIET_DEP	= @echo '   ' DEP $@;$/;"	m
+QUIET_LINK	Makefile	/^	QUIET_LINK	= @echo '   ' LINK $@;$/;"	m
+RANDOM_WALK	server.cpp	46;"	d	file:
+ReadKeyFile	util.cpp	/^Keypoint ReadKeyFile(char *filename)$/;"	f
+ReadKeys	util.cpp	/^Keypoint ReadKeys(FILE *fp)$/;"	f
+ReadPGM	util.cpp	/^Image ReadPGM(FILE *fp)$/;"	f
+ReadPGMFile	util.cpp	/^Image ReadPGMFile(char *filename)$/;"	f
+SIZE_LINE_ARRAY	server.cpp	32;"	d	file:
+SOURCE	Makefile	/^SOURCE := server.cpp util.cpp$/;"	m
+SkipComments	util.cpp	/^void SkipComments(FILE *fp)$/;"	f
+TOP_FIVE	server.cpp	27;"	d	file:
+TOP_FOUR	server.cpp	28;"	d	file:
+VERY_LARGE_NUMBER	server.cpp	56;"	d	file:
+WritePGM	util.cpp	/^void WritePGM(FILE *fp, Image image)$/;"	f
+_MULTI_THREADED	server.cpp	1;"	d	file:
+buffer	server.cpp	/^char buffer[MAX_BUFFER_SIZE];$/;"	v
+call_flannC	server.cpp	/^void call_flannC(int id, int from, int to, int from_value, int to_value) {$/;"	f
+call_image_matching_module	server.cpp	/^void *call_image_matching_module(void *ptr) {$/;"	f
+client_packet	server.cpp	/^struct packet client_packet;$/;"	v	typeref:struct:packet
+col	defs.h	/^  float row, col;             \/* Subpixel location of keypoint. *\/$/;"	m	struct:KeypointSt
+cols	defs.h	/^  int rows, cols;          \/* Dimensions of image. *\/$/;"	m	struct:ImageSt
+data_images	server.cpp	/^char *data_images[MAX_IMAGES];$/;"	v
+data_key_names	server.cpp	/^char *data_key_names[MAX_IMAGES];$/;"	v
+data_key_names_structured	server.cpp	/^char *data_key_names_structured[MAX_IMAGES];$/;"	v
+db_init	server.cpp	/^void db_init(char *dbimgpath, int runsift) {$/;"	f
+db_path_data	server.cpp	/^char db_path_data[MAX_FILE_LEN];$/;"	v
+db_path_query	server.cpp	/^char db_path_query[MAX_FILE_LEN];$/;"	v
+descrip	defs.h	/^  unsigned char *descrip;     \/* Vector of descriptor values *\/$/;"	m	struct:KeypointSt
+dispatch_to_worker_threads	server.cpp	/^void dispatch_to_worker_threads() {$/;"	f
+dostuff	server.cpp	/^void dostuff(int sock) {$/;"	f
+error	server.cpp	/^void error(const char *msg) {$/;"	f
+flann_threads	server.cpp	/^int flann_threads = 1;$/;"	v
+from	server.cpp	/^	int from;$/;"	m	struct:str_thdata	file:
+from_value	server.cpp	/^	int from_value;$/;"	m	struct:str_thdata	file:
+g	server.cpp	/^int g = 0;$/;"	v
+generateKey_mmap	server.cpp	/^inline void generateKey_mmap(int count, int runsift) {$/;"	f
+hdf5_data_files	server.cpp	/^float *hdf5_data_files[MAX_IMAGES];$/;"	v
+hdf5_query_files	server.cpp	/^float *hdf5_query_files[MAX_IMAGES];$/;"	v
+im_data	server.cpp	/^} im_data;$/;"	t	typeref:struct:img_data	file:
+imageInfo	server.cpp	/^im_data imageInfo[MAX_IMAGES];$/;"	v
+image_count	server.cpp	/^	int image_count;$/;"	m	struct:str_thdata	file:
+img_data	server.cpp	/^typedef struct img_data {$/;"	s	file:
+img_id	server.cpp	/^	int img_id;$/;"	m	struct:packet	file:
+index_id	server.cpp	/^flann_index_t index_id[MAX_IMAGES];$/;"	v
+init_server	server.cpp	/^void init_server() {$/;"	f
+int_cmp	server.cpp	/^int int_cmp(const void *a, const void *b) {$/;"	f
+key_count_query	server.cpp	/^int key_count_query[MAX_IMAGES];$/;"	v
+keydarr	server.cpp	/^Keypoint keydarr[MAX_IMAGES];$/;"	v
+keyqarr	server.cpp	/^Keypoint keyqarr[MAX_IMAGES];$/;"	v
+keys_data	server.cpp	/^int keys_data[MAX_IMAGES] = { 0 };$/;"	v
+main	server.cpp	/^int main(int argc, char *argv[]) {$/;"	f
+match_found	server.cpp	/^	int match_found;$/;"	m	struct:img_data	file:
+next	defs.h	/^  struct ImageSt *next;    \/* Pointer to next image in sequence. *\/$/;"	m	struct:ImageSt	typeref:struct:ImageSt::ImageSt
+next	defs.h	/^  struct KeypointSt *next;    \/* Pointer to next keypoint in list. *\/$/;"	m	struct:KeypointSt	typeref:struct:KeypointSt::KeypointSt
+num	server.cpp	/^	int num;$/;"	m	struct:img_data	file:
+num_data_images	server.cpp	/^int num_data_images = 0;$/;"	v
+num_keys	server.cpp	/^	int num_keys;$/;"	m	struct:packet	file:
+num_query_images	server.cpp	/^int num_query_images = 0;$/;"	v
+ori	defs.h	/^  float scale, ori;           \/* Scale and orientation (range [-PI,PI]) *\/$/;"	m	struct:KeypointSt
+packet	server.cpp	/^struct packet {$/;"	s	file:
+pixels	defs.h	/^  float **pixels;          \/* 2D array of image pixels. *\/$/;"	m	struct:ImageSt
+process_query_data	server.cpp	/^void process_query_data() {$/;"	f
+query_images	server.cpp	/^char *query_images[MAX_IMAGES];$/;"	v
+query_key_names	server.cpp	/^char *query_key_names[MAX_IMAGES];$/;"	v
+query_key_names_structured	server.cpp	/^char *query_key_names_structured[MAX_IMAGES];$/;"	v
+read_points_q	server.cpp	/^float* read_points_q(const char* filename) {$/;"	f
+row	defs.h	/^  float row, col;             \/* Subpixel location of keypoint. *\/$/;"	m	struct:KeypointSt
+rows	defs.h	/^  int rows, cols;          \/* Dimensions of image. *\/$/;"	m	struct:ImageSt
+scale	defs.h	/^  float scale, ori;           \/* Scale and orientation (range [-PI,PI]) *\/$/;"	m	struct:KeypointSt
+send_results_to_client	server.cpp	/^void send_results_to_client(int sock) {$/;"	f
+sift1	server.cpp	/^const char *sift1 = ".\/sift <";$/;"	v
+sift2	server.cpp	/^const char *sift2 = " >";$/;"	v
+sift3_2	server.cpp	/^const char *sift3_2 = "\/mnt\/pmfs\/data\/";$/;"	v
+sift4	server.cpp	/^const char *sift4 = ".key";$/;"	v
+str_thdata	server.cpp	/^typedef struct str_thdata {$/;"	s	file:
+t_create	server.cpp	/^int t_create = 0;$/;"	v
+t_search	server.cpp	/^int t_search = 0;$/;"	v
+t_sum	server.cpp	/^int t_sum = 0;$/;"	v
+th_create	server.cpp	/^int th_create = 0;$/;"	v
+th_data	server.cpp	/^thdata th_data[MAX_CORES];$/;"	v
+thdata	server.cpp	/^} thdata;$/;"	t	typeref:struct:str_thdata	file:
+thread_count	server.cpp	/^int thread_count;$/;"	v
+threadcount	server.cpp	/^	int threadcount;$/;"	m	struct:str_thdata	file:
+to	server.cpp	/^	int to;$/;"	m	struct:str_thdata	file:
+to_value	server.cpp	/^	int to_value;$/;"	m	struct:str_thdata	file:
+top_four	server.cpp	/^	int top_four;$/;"	m	struct:str_thdata	file:
+total_cpus_present	server.cpp	/^int total_cpus_present;$/;"	v
+total_query_images	server.cpp	/^	int total_query_images;$/;"	m	struct:packet	file:
+write_results	server.cpp	/^void write_results(const char* filename, int *data, int rows,$/;"	f

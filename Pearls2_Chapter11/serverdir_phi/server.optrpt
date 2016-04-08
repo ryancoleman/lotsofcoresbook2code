@@ -1,0 +1,70 @@
+
+Begin optimization report for: dostuff(int)
+
+    Report from: Offload optimizations [offload]
+
+OFFLOAD:dostuff(950,3):  Offload to target MIC 1
+ Data sent from host to target
+       imageInfo, array size 6400 bytes
+       client_packet, record size 12 bytes
+       hdf5_data_files, pointer to data with element count specified in pragma
+       keys_data, array size 3200 bytes
+       th_data, array size 7168 bytes
+       query_file, pointer to data with element count specified in pragma
+ Data received by host from target
+       imageInfo, array size 6400 bytes
+
+OFFLOAD:dostuff(953,3):  Offload to target MIC 1
+ Data sent from host to target
+       offloadstart, record size 16 bytes
+       num_data_images, scalar size 4 bytes
+       thread_count, scalar size 4 bytes
+       offloadend, record size 16 bytes
+ Data received by host from target
+       offloadstart, record size 16 bytes
+       num_data_images, scalar size 4 bytes
+       thread_count, scalar size 4 bytes
+       offloadend, record size 16 bytes
+
+OFFLOAD:dostuff(959,3):  Offload to target MIC 1
+ Data sent from host to target
+ Data received by host from target
+       imageInfo, array size 6400 bytes
+       num_data_images, scalar size 4 bytes
+
+===========================================================================
+
+*MIC* Begin optimization report for: dostuff(int)
+
+    Report from: Offload optimizations [offload]
+
+OFFLOAD:_Z7dostuffi(950,3):  Outlined offload region
+ Data received by target from host
+       imageInfo, array size 6400 bytes
+       client_packet, record size 12 bytes
+       hdf5_data_files, pointer to data with element count specified in pragma
+       keys_data, array size 3200 bytes
+       th_data, array size 7168 bytes
+       query_file, pointer to data with element count specified in pragma
+ Data sent from target to host
+       imageInfo, array size 6400 bytes
+
+OFFLOAD:_Z7dostuffi(953,3):  Outlined offload region
+ Data received by target from host
+       offloadstart, record size 16 bytes
+       num_data_images, scalar size 4 bytes
+       thread_count, scalar size 4 bytes
+       offloadend, record size 16 bytes
+ Data sent from target to host
+       offloadstart, record size 16 bytes
+       num_data_images, scalar size 4 bytes
+       thread_count, scalar size 4 bytes
+       offloadend, record size 16 bytes
+
+OFFLOAD:_Z7dostuffi(959,3):  Outlined offload region
+ Data received by target from host
+ Data sent from target to host
+       imageInfo, array size 6400 bytes
+       num_data_images, scalar size 4 bytes
+
+===========================================================================
