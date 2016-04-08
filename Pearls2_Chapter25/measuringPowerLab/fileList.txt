@@ -1,0 +1,22 @@
+
+collectData.sh - script file to collect power/energy data
+
+epB_knc_1_244_4_scatter_1.csv - example CSV file containing power/energy data extracted from the
+        raw log files
+
+epB_knc_1_244_4_scatter_1.log - raw power/energy log file
+
+executionDialog_r2.docx - step by step walk through for collecting and processing power/energy
+        data
+
+extractDataKNC.sh - bash script to extract the relevant data from the KNC raw log file and 
+        place into a CSV file
+
+extractDataXeon.sh - bash script to extract the relevant data from the Xeon raw log file and 
+        place into a CSV file
+
+fileList.txt - this list
+
+pwr-read-xeon.c - code to read the power MSRs from the Xeon processor
+
+readMe_r1 - Misc notes on this package
