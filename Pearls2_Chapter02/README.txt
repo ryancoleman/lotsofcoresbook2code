@@ -1,0 +1,316 @@
+
+WSM6 Stand-Alone Sample Code
+
+ This document contains instructions for building and running the stand-alone 
+ WSM6 sample code on a Xeon host node with attached MIC (KNC Xeon Phi) card.  
+ Build-time and run-time options used to create results described in the 
+ "Optimizing Numerical Weather Prediction" chapter of "High Performance 
+ Parallelism Pearls: Multicore and Many-core Programming Approaches, 2nd 
+ Edition" are described.  
+
+ The sample code reads input state based upon a full model run with real data, 
+ executes a single call to the WSM6 microphysics top-level routine "wsm62d()", 
+ and writes output state to disk.  Built-in timers measure execution time.  
+
+ Please note that times quoted in the chapter cannot be replicated using this 
+ simplified sample code.  The chapter times measure execution of 72 time steps 
+ of a complete NWP model that includes a full dynamical core and suite of 
+ physics packages.  This sample code contains only the WSM6 physics package 
+ and executes it only once.  However, it is possible to use this sample code 
+ to explore code modifications described in the chapter and to roughly 
+ reproduce relative performance differences, with caveats noted below.  
+
+
+Building and Running the Sample Code
+
+ All host commands in this recipe use tcsh.  ">>" is the command-line 
+ prompt on a Xeon host.  "$" is the command-line prompt on a KNC card.  
+
+STEPS 1-3 done for you - just "cd src" from where this README.txt is located!
+xx 1)  Grab the tarfile and stuff it into your working directory.  For this 
+xx     recipe, assume the working directory is named "/mydir/WSM6":  
+xx   >> cd /mydir/WSM6/
+xx
+xx 2)  Untar:  
+xx   >> tar xfz WSM6sample.tgz 
+xx     Note that Fortran source code lives in src/kernel/wsm6_kernel.F90.  
+xx
+xx 3)  Go to the source directory:  
+xx   >> cd WSM6sample/src
+
+ 4)  Build the "best" case for Xeon and KNC.  This is the set-up used 
+     to produce the results in Figure 15 of the chapter and it includes all 
+     of the successful optimizations.  The "makewsm6" command sets up any 
+     environment variables or modules and executes "make" with the 
+     appropriate target(s).  First, edit the makewsm6 script to modify 
+     environment settings needed for your Xeon or KNC setup.  See "EDIT HERE" 
+     and modify the "intelxeon" section with Xeon settings and/or the 
+     "intelxeonphi" section with KNC settings.  When makewsm6 is run, it 
+     will write these settings to a script named "module_setup" which is 
+     automatically sourced prior to building or running the sample code.  
+     This automation ensures that Xeon build settings are not accidentally 
+     used for a KNC run and vice-versa.  If it becomes necessary to modify 
+     ifort compiler settings, this can be done for Xeon by editing file 
+     "macros.make.intelxeon" or for KNC by editing file 
+     "macros.make.intelxeonphi".  Note that the makewsm6 script builds 
+     both the WSM6 sample program and the thread-safe GPTL timing library 
+     it uses to execution times.  
+    
+ 5)  Execute the makewsm6 script to build for Xeon and/or KNC.  Note that 
+     builds made with different build settings are created in independent 
+     src_*/ subdirectories and may co-exist without interference.  Arguments 
+     to the makewsm6 script are described in more detail below.  
+     To build the "best" case for Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=4 nz=32 fpmp=no > & ! make.xeon.out
+     To build the "best" case for KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=8 nz=32 fpmp=no > & ! make.xeonphi.out
+
+ 6)  Look in files make.*.out for any build errors.  If there are no errors, 
+     make.*.out will end with two messages indicating location and name of a 
+     script that will run the sample code.  
+     For the Xeon build:  
+ Run scripts are in:
+   /mydir/WSM6/WSM6sample/run_intelxeon_ompyes_CHUNK4_NZ32_FPMPno
+ Run script is:
+   runintelxeon
+     For the KNC build:  
+ Run scripts are in:
+   /mydir/WSM6/WSM6sample/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno
+ Run script is:
+   runintelxeonphi
+     Note that code for the Xeon build is compiled in subdirectory 
+     src_intelxeon_ompyes_CHUNK4_NZ32_FPMPno/ while code for the KNC build is 
+     compiled in subdirectory src_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno/.  
+     In both subdirectories, the original source file 
+     src_*/kernel/wsm6_kernel.F90 is automatically translated to file 
+     src_*/kernel/wsm6_kernel_kcmd.f90, which is then compiled by the 
+     ifort compiler.  Automatic translation is used to implement various 
+     build-time optimizations as described in the chapter.  
+     Also, note that all builds can be cleaned using the "clean" option to 
+     the makewsm6 script:  
+   >> ./makewsm6 clean
+
+ 7)  Go to the run directory and execute the run script.  This will execute the 
+     default "real32level" test case.  This test case was extracted from a 
+     full model run with real input data generated from a call to the WSM6 
+     package made halfway through the simulation. 
+     For a Xeon with 32 threads:  
+   >> cd /mydir/WSM6/WSM6sample/run_intelxeon_ompyes_CHUNK4_NZ32_FPMPno
+   >> ./runintelxeon threads=32
+ Made directory: RUN_real32level_32threads_16727
+ To run case 'real32level', change to directory 'RUN_real32level_32threads_16727' and execute './runscript'
+     For KNC:  
+   >> cd /mydir/WSM6/WSM6sample/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno
+   >> ./runintelxeonphi
+ Made directory: RUN_real32level_240threads_65203
+ To run case 'real32level', ssh to your MIC card, change to directory 'RUN_real32level_240threads_65203' and execute './runscript'
+
+ 8)  The run script creates a subdirectory and places a file called "runscript" 
+     in it.  In these cases the subdirectory is "RUN_real32level_*threads_*".
+     For Xeon, change to the subdirectory and execute the runscript:  
+   >> cd RUN_real32level_32threads_16727
+   >> ./runscript
+     For KNC, it may be necessary to edit runscript and change LD_LIBRARY_PATH 
+     before running.  See "EDIT HERE".  Once runscript is correct, login to a 
+     KNC card, change to the subdirectory and execute the runscript.  
+     Assuming that the MIC card is named "my-mic0":  
+   >> ssh my-mic0
+   $ cd /mydir/WSM6/WSM6sample/run_intelxeonphi_ompyes_CHUNK8_NZ32_FPMPno/RUN_real32level_240threads_65203
+   $ ./runscript
+
+ 9)  Look for output files.  The sample code should create the following files:  
+     stdout, wsm6_output.dat, timing.summary, and timing.0.  
+     Files stdout and wsm6_output.dat can be used to validate the run as 
+     described below.  File timing.summary contains timer output in the 
+     following form:  
+ name            ncalls   wallmax (thred)   wallmin (thred)
+ Total                1     0.349 (    0)     0.349 (    0)
+ WSM62D+OpenMP        1     0.274 (    0)     0.274 (    0)
+ WSM62D            2561     0.258 (    1)     0.090 (   10)
+     All times are in seconds.  
+     "Total" time is total execution time for the sample code including all I/O.  
+     "WSM62D+OpenMP" time is execution time for the single OpenMP loop that 
+     contains only one call to wsm62d().  
+     "WSM62D" time is execution time measured inside the OpenMP loop.  This 
+     timer is placed around the call to wsm62d().  See source file 
+     src/kernel/wsm6_kernel.F90 for details.  
+     Run times reported in the chapter are for the slowest thread ("wallmax") 
+     of the "WSM62D" timer.  Runs are repeated at least ten times due to 
+     large run-to-run variability in execution times and the fastest of the 
+     "wallmax" times are reported.  
+
+
+Build-Time and Run-Time Settings
+
+ Build-time settings are controlled via arguments passed to the makewsm6 
+ script.  Run-time settings are controlled via arguments passed to the 
+ runintelxeon script (for Xeon) or the runintelxeonphi script (for KNC).  
+
+ Relevant arguments to the makewsm6 script are:  
+       arch=intelxeon      Build for Xeon.  Makefile settings macros for this 
+                           architecture can be found in file 
+                           src/macros.make.intelxeon.  
+       arch=intelxeonphi   Build for KNC.  Makefile settings macros for this 
+                           architecture can be found in file 
+                           src/macros.make.intelxeonphi.  
+       threading=yes       Turn on OpenMP theading.  
+       threading=no        Turn off OpenMP theading.  
+       chunk=8             Use horizontal chunk size=8 and translate "chunk" 
+                           dimension ("i" dimension) to use compile-time 
+                           constants for loop and memory bounds.  Units of 
+                           "chunk" are double-precision words so "chunk=8" 
+                           matches KNC vector length.  This is the default 
+                           setting for "chunk".  
+       chunk=4             As above, this is the best chunk size for Xeon.  
+       nz=32               Use vertical loop length=32 and translate vertical 
+                           dimension ("k" dimension) to use compile-time 
+                           constants for loop and memory bounds.  
+       translatei=no       Do not translate "i" loop bounds and memory bounds 
+                           to compile-time constants prior to compilation.  
+                           By default this translation is done whenever 
+                           threading=yes.  
+       iinside=yes         Swap "k-inside" code out and replace with 
+                           "i-inside" code as illustrated in Figure 13 of the 
+                           chapter.  By default this is not done.  
+       fpmp=no             Turn off "-fp-model precise".  
+       fpmp=yes            Turn on "-fp-model precise".  This can be used for 
+                           rudimentary validation of the WSM6 sample code vs. 
+                           an included baseline.  
+     Please note that the compiler options used do not include the aggressive 
+     KNC optimizations added by Indraneil and Ashish yet.  (These can be added 
+     by adding the $(AGGRESSIVE) flag to the definition of PHYSFLAGS in 
+     src/macros.make.intelxeonphi if desired.)  The aggressive KNC 
+     optimizations have not yet been validated.  
+
+ When code is automatically translated during the build, the code that is 
+ actually compiled will live in file src_*/kernel/wsm6_kernel_kcmd.f90.  This 
+ can be easily compared with the original code using your favorite 
+ side-by-side differencing tool.  For example, using xxdiff:  
+   >> cd src_*/kernel
+   >> xxdiff wsm6_kernel.F90 wsm6_kernel_kcmd.f90
+ This is the easiest way to quickly understand what each optimization 
+ option is doing.  
+
+ Rudimentary validation is possible by comparing printed values in the stdout 
+ file with the baseline included in the sample code.  For validation runs, 
+ the "fpmp=yes" build-time option must be used to turn on the ifort compiler's 
+ "-fp-model precise" option.  For the "real32level" case, compare stdout from 
+ a test run with the stored baseline in data/real32level/stdout.  Printed 
+ maximum and minimum field values should be within 1%.  Variation in 
+ locations of maxima and minima is OK.  
+
+ At run-time, OpenMP thread count may be varied via the "threads" argument 
+ to the runintelxeon and runintelxeon scripts.  Default thread counts are 1 
+ for runintelxeon and 240 for runintelxeonphi.  To run on 48 Xeon threads:  
+   >> ./runintelxeon threads=48
+
+
+Build-Time and Run-Time Settings for Specific Chapter Examples
+
+ As shown above, the "best" times reported in Figure 15 can be mimicked via 
+ the following build-time and run-time options (here the Xeon run uses 48 
+ threads and the KNC run uses the default setting of 240 threads):  
+   Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=4 nz=32 fpmp=no
+   >> ./runintelxeon threads=48
+   KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=8 nz=32 fpmp=no
+   >> ./runintelxeonphi
+
+ Tests with reduced thread counts shown in Figure 16 can be made using 
+ these settings (same build-time settings as the "best" times):  
+   Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=4 nz=32 fpmp=no
+   >> ./runintelxeon threads=36
+   >> ./runintelxeon threads=24
+   >> ./runintelxeon threads=12
+   KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=8 nz=32 fpmp=no
+   >> ./runintelxeonphi threads=180
+   >> ./runintelxeonphi threads=120
+   >> ./runintelxeonphi threads=60
+
+ Tests with different chunk sizes as shown in Figure 17 can be made using 
+ these settings (same run-time settings as the "best" times):  
+   Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=2 nz=32 fpmp=no
+   >> ./runintelxeon threads=48
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=8 nz=32 fpmp=no
+   >> ./runintelxeon threads=48
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=16 nz=32 fpmp=no
+   >> ./runintelxeon threads=48
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=32 nz=32 fpmp=no
+   >> ./runintelxeon threads=48
+   KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=16 nz=32 fpmp=no
+   >> ./runintelxeonphi
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=32 nz=32 fpmp=no
+   >> ./runintelxeonphi
+
+ Tests with "k-inside" code swapped out and replaced with "i-inside" 
+ code as shown in Figure 18 can be made using these settings (same 
+ run-time settings as the "best" times):  
+   Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=4 nz=32 iinside=yes fpmp=no
+   >> ./runintelxeon threads=48
+   KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=8 nz=32 iinside=yes fpmp=no
+   >> ./runintelxeonphi
+
+ Tests with compile-time constants used for "k" loops but not for "i" loops 
+ as shown in the second column of Figure 19 can be made using these settings 
+ (same run-time settings as the "best" times):
+   Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=4 nz=32 translatei=no fpmp=no
+   >> ./runintelxeon threads=48
+   KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=8 nz=32 translatei=no fpmp=no
+   >> ./runintelxeonphi
+
+ Tests with no compile-time constants as shown in the first column of Figure 
+ 19 can be made using these settings (same run-time settings as the "best" 
+ times):
+   Xeon:  
+   >> ./makewsm6 arch=intelxeon threading=yes chunk=4 translatei=no fpmp=no
+   >> ./runintelxeon threads=48
+   KNC:  
+   >> ./makewsm6 arch=intelxeonphi threading=yes chunk=8 translatei=no fpmp=no
+   >> ./runintelxeonphi
+
+
+Performance Caveats
+
+ As mentioned above, times quoted in the chapter can only be qualitatively 
+ reproduced using this simplified sample code because only a single time step 
+ is executed.  In addition, several other issues can cause performance to 
+ differ qualitatively from the chapter results.  
+   - The WSM6 microphysics can exhibit significant dynamic load imbalance.  
+     As discussed in the chapter, dry air columns require significantly less 
+     computation than moist columns.  Since moisture moves with time, the 
+     single time step executed by the sample code can only approximate 
+     behavior of the 72-time-step run.  
+   - Run-to-run variability can skew performance results.  Usually, many runs 
+     are needed to extract signal from noise.  For the full-model 72-time-step 
+     results reported the chapter, a minimum of 10 runs were made for each 
+     case with minimum execution times of the slowest threads reported.  We 
+     have observed larger run-to-run variability with the sample code, so 
+     more runs may be needed.  
+   - It may be necessary to turn off the Xeon "turbo" feature to avoid chip 
+     clock frequency varying with time.  This can cause confusion when Xeon 
+     nodes are undersubscribed.  
+   - We have observed that nodes with two KNC cards may exhibit significantly 
+     different performance depending on which KNC card is chosen.  On 
+     machines we have tried (TACC stampede, Intel endeavor, and a local 
+     single-node test system) "${HOST}-mic0" usually runs faster than 
+     "${HOST}-mic1".  
+   - The thread-safe GPTL timing library is used to measure execution times.  
+     We use the Intel-specific "nanotime" timer for maximum accuracy (this is 
+     set in the run/GPTLnamelist file).  Other timer options are available 
+     (gettimeofday, etc.).  Please see the GPTL webpage at 
+     http://jmrosinski.github.io/GPTL/ for more details.  
+   - We have observed significant performance differences due to use of 
+     different compiler versions.  The results in the chapter used 
+     ifort 14 for KNC results (because it was faster than early ifort 15 
+     variants that were available) and ifort 15 for the Xeon (again because 
+     it was the fastest available).  
+
