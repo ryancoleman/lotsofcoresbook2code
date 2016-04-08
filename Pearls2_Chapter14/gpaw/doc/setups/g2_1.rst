@@ -1,0 +1,67 @@
+.. _g2_1:
+
+=============
+G2-1 database
+=============
+
+Codes precision estimated for PBE exchange-correlation functional
+on the database of molecular systems
+from http://www.cse.anl.gov/OldCHMwebsiteContent/compmat/G2-97.htm
+Single-point energy calculations performed at "MP2(full)/6-31G* geometries".
+
+Energies in *eV*, geometries in *Angstrom*.
+
+GPAW
+----
+
+Calculated with: :svn:`gpaw/test/big/g2_1/pbe_gpaw_nrel.agts.py`.
+
+Fixed geometries
+++++++++++++++++
+
+Atomization energies on single-point energy calculations
+vs http://www.nwchem-sw.org
+
+.. csv-table::
+   :file: pbe_gpaw_nrel_ea_vs.csv
+
+.. image:: pbe_gpaw_nrel_ea_vs.png
+
+Relaxed geometries
+++++++++++++++++++
+
+Atomization energies on relaxed geometries vs http://www.nwchem-sw.org
+
+.. csv-table::
+   :file: pbe_gpaw_nrel_opt_ea_vs.csv
+
+Optimized distance between the first and last atom in the given molecule
+vs http://www.nwchem-sw.org
+
+.. csv-table::
+   :file: pbe_gpaw_nrel_opt_distance_vs.csv
+
+NWCHEM
+------
+
+This is the reference data calculated with
+:svn:`gpaw/test/big/g2_1/pbe_nwchem_def2_qzvppd.agts.py`. Gaussian reference
+results from http://jcp.aip.org/resource/1/jcpsa6/v122/i23/p234102_s1
+
+See :svn:`gpaw/test/big/g2_1/pbe_nwchem_def2_qzvppd_analyse.py` and
+:svn:`gpaw/test/big/g2_1/pbe_nwchem_def2_qzvppd_opt_analyse.py` for
+NWCHEM calculated results.
+
+Relaxed geometries
+++++++++++++++++++
+
+Atomization energies on relaxed geometries vs Gaussian.
+
+.. csv-table::
+   :file: pbe_nwchem_def2_qzvppd_opt_ea_vs.csv
+
+Optimized distance between the first and last atom in the given molecule
+vs Gaussian.
+
+.. csv-table::
+   :file: pbe_nwchem_def2_qzvppd_opt_distance_vs.csv

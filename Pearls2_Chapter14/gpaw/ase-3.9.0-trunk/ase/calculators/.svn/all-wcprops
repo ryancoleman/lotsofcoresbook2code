@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/4016/trunk/ase/calculators
+END
+siesta.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2653/trunk/ase/calculators/siesta.py
+END
+vdwcorrection.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3992/trunk/ase/calculators/vdwcorrection.py
+END
+calculator.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3695/trunk/ase/calculators/calculator.py
+END
+aims.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3896/trunk/ase/calculators/aims.py
+END
+neighborlist.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3687/trunk/ase/calculators/neighborlist.py
+END
+gromacs.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3705/trunk/ase/calculators/gromacs.py
+END
+singlepoint.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3959/trunk/ase/calculators/singlepoint.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2509/trunk/ase/calculators/__init__.py
+END
+mopac.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3222/trunk/ase/calculators/mopac.py
+END
+tip3p.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2166/trunk/ase/calculators/tip3p.py
+END
+interface.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3246/trunk/ase/calculators/interface.py
+END
+eam.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3474/trunk/ase/calculators/eam.py
+END
+lj.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3394/trunk/ase/calculators/lj.py
+END
+abinit.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3746/trunk/ase/calculators/abinit.py
+END
+turbomole.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3556/trunk/ase/calculators/turbomole.py
+END
+vasp.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3884/trunk/ase/calculators/vasp.py
+END
+gaussian.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/4016/trunk/ase/calculators/gaussian.py
+END
+exciting.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3414/trunk/ase/calculators/exciting.py
+END
+elk.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3745/trunk/ase/calculators/elk.py
+END
+general.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3003/trunk/ase/calculators/general.py
+END
+fleur.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2890/trunk/ase/calculators/fleur.py
+END
+lammpsrun.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3826/trunk/ase/calculators/lammpsrun.py
+END
+dftb.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3503/trunk/ase/calculators/dftb.py
+END
+castep.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3257/trunk/ase/calculators/castep.py
+END
+test.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3431/trunk/ase/calculators/test.py
+END
+ase_qmmm_manyqm.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3826/trunk/ase/calculators/ase_qmmm_manyqm.py
+END
+nwchem.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3868/trunk/ase/calculators/nwchem.py
+END
+emt.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3472/trunk/ase/calculators/emt.py
+END
+morse.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3378/trunk/ase/calculators/morse.py
+END
+dacapo.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/1804/trunk/ase/calculators/dacapo.py
+END

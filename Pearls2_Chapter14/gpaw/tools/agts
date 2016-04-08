@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+# Emacs: treat this as -*- python -*-
+
+from gpaw.test.big.agts import main
+main()

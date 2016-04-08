@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/projects/ase/!svn/ver/3881/trunk/ase/test/ga
+END
+cutandsplicepairing.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3808/trunk/ase/test/ga/cutandsplicepairing.py
+END
+standardcomparator.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3801/trunk/ase/test/ga/standardcomparator.py
+END
+particle_comparators.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/3801/trunk/ase/test/ga/particle_comparators.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3799/trunk/ase/test/ga/__init__.py
+END
+database_logic.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3801/trunk/ase/test/ga/database_logic.py
+END
+particle_operators.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3881/trunk/ase/test/ga/particle_operators.py
+END
+basic_example_create_database.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/projects/ase/!svn/ver/3801/trunk/ase/test/ga/basic_example_create_database.py
+END
+mutations.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3808/trunk/ase/test/ga/mutations.py
+END
+basic_example_main_run.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3808/trunk/ase/test/ga/basic_example_main_run.py
+END
+create_database.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3801/trunk/ase/test/ga/create_database.py
+END
+element_operators.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3801/trunk/ase/test/ga/element_operators.py
+END

@@ -1,0 +1,14 @@
+#
+# This is your SoftEnv configuration run control file.
+#
+#   It is used to tell SoftEnv how to customize your environment by
+#   setting up variables such as PATH and MANPATH.  To learn more
+#   about this file, do a "man softenv".
+#
++mpiwrappers
+@default
+
+# NumPy Standard
+PYTHONPATH += /soft/apps/python/python-2.6-cnk-gcc/numpy-1.3.0/lib/python2.6/site-packages
+
+LD_LIBRARY_PATH += /bgsys/drivers/ppcfloor/gnu-linux/lib

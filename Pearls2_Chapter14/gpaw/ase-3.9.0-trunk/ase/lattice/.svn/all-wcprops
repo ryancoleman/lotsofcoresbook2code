@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/projects/ase/!svn/ver/3975/trunk/ase/lattice
+END
+surface.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3975/trunk/ase/lattice/surface.py
+END
+monoclinic.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/239/trunk/ase/lattice/monoclinic.py
+END
+bulk.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3897/trunk/ase/lattice/bulk.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2286/trunk/ase/lattice/__init__.py
+END
+orthorhombic.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2376/trunk/ase/lattice/orthorhombic.py
+END
+tetragonal.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/233/trunk/ase/lattice/tetragonal.py
+END
+triclinic.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2376/trunk/ase/lattice/triclinic.py
+END
+cubic.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2376/trunk/ase/lattice/cubic.py
+END
+general_surface.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/2631/trunk/ase/lattice/general_surface.py
+END
+hexagonal.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/1834/trunk/ase/lattice/hexagonal.py
+END
+bravais.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2286/trunk/ase/lattice/bravais.py
+END
+compounds.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/1860/trunk/ase/lattice/compounds.py
+END

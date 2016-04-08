@@ -1,0 +1,22 @@
+
+BEGIN_EXCLUDE_LIST
+void get_point_gga(functionals_type *, double *, double *, double *) C 
+void xc_gga_vxc(const xc_gga_type *, const double *, const double *, double *, double *, double *) C 
+void xc_gga(const xc_gga_type *, const double *, const double *, double *, double *, double *, double *, double *, double *) C 
+void func(const xc_gga_type *, double, double *, double *, double *, double *) C 
+void gga_c_pbe(const void *, const double *, const double *, double *, double *, double *, double *, double *, double *) C 
+void xc_perdew_params(const xc_gga_type *, const double *, const double *, int, xc_perdew_t *) C 
+void xc_rho2dzeta(int, const double *, double *, double *) C 
+void get_vxc_lda(functionals_type *, double *, double *, double *) C 
+void lda_x(const void *, const double *, double *, double *, double *) C
+void xc_lda_vxc(const xc_lda_type *, const double *, double *, double *) C 
+void xc_lda(const xc_lda_type *, const double *, double *, double *, double *, double *) C 
+void func(const xc_lda_type *, double *, double, double *, double *, double *, double *, double *, double *) C 
+void g(int, int, double *, double *, double *, double *) C 
+void get_vxc_gga(functionals_type *, double *, double *, double *) C 
+void pbe_eq7(int, int, double, double, double, double, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *, double *) C 
+void pbe_eq8(int, int, double, double, double, double *, double *, double *, double *, double *, double *, double *) C 
+void xc_perdew_potentials(xc_perdew_t *, const double *, double, int, double *, double *, double *, double *, double *) C 
+PyObject *spherical_harmonics(PyObject *, PyObject *) C 
+END_EXCLUDE_LIST
+

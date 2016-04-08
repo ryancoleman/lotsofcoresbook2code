@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+""" Program for extracting all relaxed structures from a GA run. """
+from ase.ga.data import DataConnection
+from ase.io import write
+from optparse import OptionParser
+
+description = 'Extracts all relaxed structures and ' + \
+    'saves them to all_candidates.traj'
+
+p = OptionParser(usage='%prog',
+                 description=description)
+
+p.add_option('-o', '--output',
+             default='all_candidates.traj',
+             help='Traj file to save the candidates to')
+
+p.add_option('-d', '--db',
+             default='gadb.db',
+             help='SQLite db file')
+
+p.add_option('-s', '--sort',
+             default='energy',
+             help='Valid values are energy and time,'
+             'if the candidates should be sorted by'
+             'energy or by creation time.')
+
+
+opt, args = p.parse_args()
+
+dbfile = opt.db
+outputfile = opt.output
+sort = opt.sort
+
+
+da = DataConnection(dbfile)
+
+all_trajs = da.get_all_relaxed_candidates()
+
+if sort == 'energy':
+    all_trajs.sort(key=lambda x: -x.get_potential_energy())
+elif sort == 'time':
+    all_trajs.sort(key=lambda x: x.info['confid'])
+
+
+write(outputfile, all_trajs)

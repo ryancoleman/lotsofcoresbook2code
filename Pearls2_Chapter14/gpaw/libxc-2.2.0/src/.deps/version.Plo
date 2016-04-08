@@ -1,0 +1,57 @@
+version.lo: version.c /usr/include/stdio.h /usr/include/features.h \
+ /usr/include/stdc-predef.h /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /opt/intel/composer_xe_2015.3.187/compiler/include/stddef.h \
+ /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/typesizes.h /usr/include/libio.h /usr/include/_G_config.h \
+ /opt/intel/composer_xe_2015.3.187/compiler/include/stddef.h /usr/include/wchar.h \
+ /opt/intel/composer_xe_2015.3.187/compiler/include/stdarg.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+ /usr/include/bits/stdio.h xc.h ../xc_version.h xc_config.h xc_funcs.h \
+ xc_unconfig.h ../config.h
+
+/usr/include/stdio.h:
+
+/usr/include/features.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/opt/intel/composer_xe_2015.3.187/compiler/include/stddef.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/libio.h:
+
+/usr/include/_G_config.h:
+
+/usr/include/wchar.h:
+
+/opt/intel/composer_xe_2015.3.187/compiler/include/stdarg.h:
+
+/usr/include/bits/stdio_lim.h:
+
+/usr/include/bits/sys_errlist.h:
+
+/usr/include/bits/stdio.h:
+
+xc.h:
+
+../xc_version.h:
+
+xc_config.h:
+
+xc_funcs.h:
+
+xc_unconfig.h:
+
+../config.h:

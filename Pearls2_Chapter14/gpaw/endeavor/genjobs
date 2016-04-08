@@ -1,0 +1,107 @@
+#!/bin/bash 
+
+# somm generic definitions
+dbext=.jobs.csv
+shext=.bsub.sh
+tpext=.bsub.in
+
+
+# get the parameters from the command line
+dbfile=$1
+basename=$2
+template=$3
+
+message() {
+	msg=$@
+	echo "genjobs: $msg"	
+}
+
+usage() {
+	echo "genjobs {dbfile}$dbext {basename}$shext [{template}$tpext]"
+	echo
+	echo If the template is omitted the filename defaults to \{dbfile\}.
+}
+
+read_database() {
+	file=$1
+	local line
+	database=
+	cnt=0
+	while read line; do
+		database[$cnt]="$line"
+		cnt=$((cnt + 1))
+	done
+}
+
+#patch_filename() {
+#	filename=$1
+#	variables=(${2[@]})
+#	values=(${3[@]})
+#	result=$filename
+#	cnt=0
+#	echo Called patch_filename
+#	for ((cnt=0; cnt < ${#variables[@]}; cnt=cnt+1)); do
+#		result=`echo $result | sed -e "s|@@${variables[$cnt]}@@|${values[$cnt]}|g"`
+#		echo "        $result"
+#	done
+#}
+
+main() {
+	# determine default template name if needed
+	if [ x$dbfile == x ]; then
+		usage
+		exit 1
+	fi 
+	if [ x$basename == x ]; then
+		usage
+		exit 1
+	fi	
+
+	if [ x$template == x ]; then
+		template=$dbfile$tpext
+	fi
+	dbfile=$dbfile$dbext
+
+
+	# check all the files for presence
+	if [ ! -f $dbfile ]; then
+		message "database $dbfile is not a valid database"
+		exit 1
+	fi
+	if [ ! -f $template ]; then
+		message "template $template is not a valid template"
+		exit 1
+	fi
+
+	message Using dbfile \"$dbfile\" and template \"$template\" for job creation
+
+	# read the database and use its first line as variable names
+	read_database < $dbfile
+
+	variables=(`echo ${database[0]} | tr \; ' '`)
+	message using variables: ${variables[@]}
+
+    for ((cnt = 1; cnt < ${#database[@]}; cnt=cnt + 1)); do
+		# retrieve values for variables
+		values=(`echo ${database[$cnt]} | tr \; ' '`)
+
+		# do variable substitution in the filename of the job script
+		filename=$basename
+		for ((v=0; v < ${#variables[@]}; v=v+1)); do
+			filename=`echo $filename | sed -e "s|@@${variables[$v]}@@|${values[$v]}|g"`
+		done
+		filename=$filename$shext		
+
+		# create the job script from the template and do variable substitution
+		message "Creating job script $filename"
+		command="cat $template |"
+		for ((v = 0; v < ${#variables[@]}; v=v+1)); do
+			command=$command" sed \"s:@@${variables[$v]}@@:${values[$v]}:g\" |"
+		done 
+		command=$command" cat > $filename"
+		eval "$command"
+	done	
+
+}
+
+main

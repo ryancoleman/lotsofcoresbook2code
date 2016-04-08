@@ -1,0 +1,324 @@
+# -*- python -*-
+# ex: set syntax=python:
+
+import sys
+
+####### global settings
+baseURL = "https://svn.fysik.dtu.dk/projects/ase/"
+
+# we want latest, more imporant builders first
+# in order to easily select a slice of them to run!
+
+builders_Linux = [
+    '2.7 gcc fedora 18 x86_64',
+    '2.7 gcc fedora 17 x86_64',
+    '2.7 gcc ubuntu 12.04 x86_64',
+    #'2.6 gcc redhat 6 x86_64',
+    #'2.4 gcc redhat 5 x86_64',
+    # custom builders
+    '2.6 gcc niflheim 6 x86_64',
+    '2.4 gcc niflheim 5 x86_64',
+    ]
+# limit builders here
+builders_Linux = builders_Linux[:]
+
+builders_Darwin = [
+    '2.7 gcc darwin 10.8 x86_64',
+    ]
+builders_Darwin = builders_Darwin[:]
+
+builders_Windows = [
+    '2.7 msc windows 7 AMD64',
+    #'2.7 msc windows 7 x86',
+    ]
+builders_Windows = builders_Windows[:]
+
+builders_all = builders_Linux + builders_Darwin + builders_Windows
+
+builders_active = []
+
+slavesep = '+'
+
+def get_slave_name(label=''):
+    import platform
+    from distutils import sysconfig
+    name = ''
+    if ''.join(platform.win32_ver()):
+        name += platform.system().lower()  # windows
+        name += slavesep + platform.win32_ver()[0]  # 7, 8, ...
+    # flatten ('', ('', '', ''), '')
+    elif ''.join([item for sublist in platform.mac_ver() for item in sublist]):
+        name += platform.system().lower()  # darwin
+        name += slavesep + platform.mac_ver()[0]  # 10.8, ...
+    elif 'redhat' in platform.dist() or 'centos' in platform.dist():
+        name += platform.dist()[0]
+        # major RHEL ver only
+        name += slavesep + platform.dist()[1].split('.')[0]
+    else:
+        name += platform.dist()[0]  # fedora, ubuntu, ...
+        name += slavesep + platform.dist()[1].lower()
+    name += slavesep + platform.machine()
+    name += slavesep + platform.python_compiler().split()[0].lower()
+    name += slavesep + sysconfig.get_python_version()
+    if label:
+        name += ' ' + label
+    return name
+
+try:
+    from buildbot_ase import slaves
+    from buildbot_ase import ASE_BB_PORT, ASE_BW_PORT
+    print get_slave_name()
+except ImportError:
+    print get_slave_name()
+    sys.exit()
+    slaves = (
+        # examples buildslave, password
+        ('darwin+10.8+x86_64+gcc+2.7 homebrew', 'password'),
+        ('fedora+18+x86_64+gcc+2.7 stock', 'password'),
+        ('ubuntu+12.04+x86_64+gcc+2.7 stock', 'password'),
+        ('windows+7+AMD64+msc+2.7 pythonxy', 'password'),
+        ('windows+7+x86+msc+2.7 pythonxy', 'password'),
+        )
+slavenames_all = [s[0] for s in slaves]
+
+print slaves
+
+####### CONFIG
+
+from buildbot.config import BuilderConfig
+
+# This is a sample buildmaster config file. It must be installed as
+# 'master.cfg' in your buildmaster's base directory.
+
+# This is the dictionary that the buildmaster pays attention to. We also use
+# a shorter alias to save typing.
+c = BuildmasterConfig = {}
+
+####### BUILDSLAVES
+
+from buildbot.buildslave import BuildSlave
+
+# The 'slaves' list defines the set of recognized buildslaves. Each element is
+# a BuildSlave object, specifying a unique slave name and password.  The same
+# slave name and password must be configured on the slave.
+c['slaves'] = [BuildSlave(s[0], s[1]) for s in slaves]
+
+# 'slavePortnum' defines the TCP port to listen on for connections from slaves.
+# This must match the value configured into the buildslaves (with their
+# --master option)
+c['slavePortnum'] = ASE_BB_PORT
+
+####### CHANGESOURCES
+
+from buildbot.changes.svnpoller import SVNPoller, split_file_branches
+
+# http://buildbot.net/buildbot/docs/latest/manual/cfg-changesources.html
+
+# the 'change_source' setting tells the buildmaster how it should find out
+# about source code changes.
+
+c['change_source'] = []
+
+svnpoller = SVNPoller(svnurl = baseURL,
+                      #svnuser = "foo",
+                      #svnpasswd = "bar",
+                      pollinterval = 1 * 15 * 60,  # 15 min
+                      split_file = split_file_branches)
+
+c['change_source'] = svnpoller
+
+####### SCHEDULERS
+
+from buildbot.schedulers.basic import SingleBranchScheduler
+from buildbot.changes import filter
+
+# http://buildbot.net/buildbot/docs/latest/manual/cfg-schedulers.html
+
+# Configure the Schedulers, which decide how to react to incoming changes.
+
+c['schedulers'] = []
+
+# define the dynamic scheduler for trunk
+builders = ['trunk' + ' ' + b for b in builders_all]
+trunkscheduler = SingleBranchScheduler(
+    name = "trunkscheduler",
+    change_filter = filter.ChangeFilter(branch = None),
+    # The Scheduler will wait for this many seconds before starting the build
+    treeStableTimer = None,
+    builderNames = builders,
+    )
+for b in builders:
+    if b not in builders_active:
+        builders_active.append(b)
+
+# define the available schedulers
+c['schedulers'] = [
+    trunkscheduler,
+    ]
+
+# This is how to enable a branch to be run by niflheim and windows builders
+# define the dynamic scheduler for a branch
+if 0:
+    branch = 'branches/aep1'
+    branchname = branch.replace('/', '>')  # replace with a special char
+    builders = [branchname + ' ' + b for b in builders_all if 'niflheim' in b or 'windows' in b]
+    c['schedulers'].append(
+        SingleBranchScheduler(
+            name = branch + "scheduler",
+            change_filter = filter.ChangeFilter(branch = branch),
+            builderNames=builders,
+            ))
+    for b in builders:
+        if b not in builders_active:
+            builders_active.append(b)
+
+try:
+    from buildbot.schedulers.forcesched import ForceScheduler
+    builders = builders_active  # all builders
+    trunkforcescheduler = ForceScheduler(
+        name="trunkforcescheduler",
+        builderNames=builders,
+        )
+    c['schedulers'].append(trunkforcescheduler)
+except ImportError:
+    pass
+ 
+####### BUILDERS
+
+from buildbot.process.factory import BuildFactory
+from buildbot.steps.source import SVN
+from buildbot.steps.shell import ShellCommand
+
+# http://buildbot.net/buildbot/docs/latest/manual/cfg-buildsteps.html
+
+# The 'builders' list defines the Builders, which tell Buildbot how to perform a build:
+# what steps, and which slaves can execute them.  Note that any particular build will
+# only take place on one slave.
+
+cleanall = ShellCommand(name = "clean",
+                        command = ["python", "setup.py", "clean", "--all"], 
+                        haltOnFailure = True,
+                        description = "clean",
+                        )
+
+test = ShellCommand(name = "test",
+                    command = ["python", "setup.py", "test"], 
+                    haltOnFailure = True,
+                    description = "test",
+                    #env = {'PYTHONPATH': '.:${PYTHONPATH}',
+                    #       'PATH': './tools:${PATH}'})
+                    )
+
+c['builders'] = []
+
+# automatically configured builders
+for b in builders_active:
+    branch, python, compiler, system, systemver, bitness = b.split()
+    branch = branch.replace('>', '/')  # restore path
+    f = BuildFactory()
+    # BuildFactory steps may be dependent on system (fedora, windows, ..)
+    f.addStep(
+        SVN(baseURL = baseURL,
+            mode = "clobber",
+            #username = "foo",
+            #password = "bar",
+            haltOnFailure = True,
+            defaultBranch = branch,
+            ))
+    # python version assert
+    assertstr = "from distutils.sysconfig import get_python_version as v; assert v() == "
+    assertstr += "'" + python + "'"
+    f.addStep(
+        ShellCommand(name = "assert python",
+                     command = ["python", "-c", assertstr], 
+                     haltOnFailure = True,
+                     description = "assert python",
+                     ))
+    f.addStep(cleanall)
+    f.addStep(test)
+    if system == 'windows':  # build msi on windows
+        f.addStep(
+            ShellCommand(name = "bdist_msi",
+                         command = ["python", "setup.py", "bdist_msi"], 
+                         haltOnFailure = True,
+                         description = "bdist_msi",
+                         ))
+    slavenames = []
+    for s in slavenames_all:
+        ssystem = s.split()[0].split(slavesep)[0]
+        ssystemver = s.split()[0].split(slavesep)[1]
+        spython = s.split()[0].split(slavesep)[-1]
+        if system == ssystem and systemver == ssystemver and python == spython:
+            slavenames.append(s)
+    if len(slavenames) > 0:
+        c['builders'].append(
+            BuilderConfig(name=b,
+                          slavenames=slavenames,
+                          factory=f,
+                          # http://trac.buildbot.net/ticket/928
+                          # http://localhost:8010/waterfall?category=2.7
+                          #tags=[branch, python, compiler, system, systemver, bitness],
+                          category=python,
+                          ))
+
+####### STATUS TARGETS
+
+# http://buildbot.net/buildbot/docs/latest/manual/cfg-statustargets.html
+
+# 'status' is a list of Status Targets. The results of each build will be
+# pushed to these targets. buildbot/status/*.py has a variety to choose from,
+# including web pages, email senders, and IRC bots.
+
+c['status'] = []
+
+from buildbot.status import html
+from buildbot.status.web import authz, auth
+
+authz_cfg=authz.Authz(
+    # change any of these to True to enable; see the manual for more
+    # options
+    #auth=auth.BasicAuth([("ase","ase")]),  # we don't want that!
+    gracefulShutdown = False,
+    forceBuild = 'auth', # use this to test your slave once it is set up
+    forceAllBuilds = False,
+    pingBuilder = False,
+    stopBuild = False,
+    stopAllBuilds = False,
+    cancelPendingBuild = False,
+)
+c['status'].append(html.WebStatus(http_port=ASE_BW_PORT, authz=authz_cfg))
+
+if 1:  # one notification per builder!
+    from buildbot.status import mail
+    m = mail.MailNotifier(
+                          mode=("change", "failing", "warnings", "exception"),
+                          fromaddr="ase-developers@listserv.fysik.dtu.dk",
+                          extraRecipients=["ase-svncheckins@listserv.fysik.dtu.dk"],
+                          relayhost="mail.fysik.dtu.dk",
+                          sendToInterestedUsers=False)
+    c['status'].append(m)
+
+####### PROJECT IDENTITY
+
+# the 'title' string will appear at the top of this buildbot
+# installation's html.WebStatus home page (linked to the
+# 'titleURL') and is embedded in the title of the waterfall HTML page.
+
+c['title'] = "ASE"
+c['titleURL'] = "https://wiki.fysik.dtu.dk/ase/"
+
+# the 'buildbotURL' string should point to the location where the buildbot's
+# internal web server (usually the html.WebStatus page) is visible. This
+# typically uses the port number set in the Waterfall 'status' entry, but
+# with an externally-visible host name which the buildbot cannot figure out
+# without some help.
+
+c['buildbotURL'] = "https://ase-buildbot.fysik.dtu.dk/"
+
+####### DB URL
+
+c['db'] = {
+    # This specifies what database buildbot uses to store its state.  You can leave
+    # this at its default for all but the largest installations.
+    'db_url' : "sqlite:///state.sqlite",
+}

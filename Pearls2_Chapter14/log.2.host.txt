@@ -1,0 +1,198 @@
+++ pwd
++ oldpwd=/home/rmfarber/book2/s09/gpaw
++ cd example
++ mpirun -np 12 -genv GPAW_OFFLOAD 0 gpaw-python C60.py
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+GPAW info: GPAW_OFFLOAD=0
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 11): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 8): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 9): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 10): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 7): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 1): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 5): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 3): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 0): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 6): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 2): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+Traceback (most recent call last):
+  File "C60.py", line 3, in <module>
+    from gpaw import GPAW, ConvergenceError
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/__init__.py", line 244, in <module>
+    from gpaw.aseinterface import GPAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/aseinterface.py", line 12, in <module>
+    from gpaw.paw import PAW
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/paw.py", line 23, in <module>
+    from gpaw.setup import Setups
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup.py", line 20, in <module>
+    from gpaw.setup_data import SetupData
+  File "/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/setup_data.py", line 20, in <module>
+    from gpaw.atom.radialgd import AERadialGridDescriptor
+ImportError: No module named atom.radialgd
+GPAW CLEANUP (node 4): <type 'exceptions.ImportError'> occurred.  Calling MPI_Abort!
+application called MPI_Abort(MPI_COMM_WORLD, 42) - process 11
++ cd /home/rmfarber/book2/s09/gpaw

@@ -1,0 +1,22 @@
+PROFILE=gpaw
+BGPHOME=unknown
+BGPBASE=/bgsys/drivers/ppcfloor
+BGP_LINUX_OS_PATH=/bgsys/linux/1.4.120091014
+
+.PHONY: all clean install ramdisk
+
+all:
+	@echo "Make Targets"
+	@echo "    install  - copy ramdisk into kernel location"
+	@echo "    ramdisk  - builds the ramdisk"
+	@echo "    clean    - removes targets"
+
+install:
+	cp ramdisk /bgsys/argonne-utils/profiles/$(PROFILE)/ramdisk
+	chgrp bgpadmin /bgsys/argonne-utils/profiles/$(PROFILE)/ramdisk
+
+ramdisk:
+	$(BGPBASE)/build-ramdisk --runos $(BGP_LINUX_OS_PATH) --addtree fs
+
+clean:
+	rm -f ramdisk

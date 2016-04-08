@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/projects/ase/!svn/ver/3962/trunk/ase/cli
+END
+info.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3484/trunk/ase/cli/info.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3378/trunk/ase/cli/__init__.py
+END
+build.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3854/trunk/ase/cli/build.py
+END
+run.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3962/trunk/ase/cli/run.py
+END

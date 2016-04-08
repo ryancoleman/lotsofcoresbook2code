@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3826/trunk/ase/test/turbomole
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3543/trunk/ase/test/turbomole/__init__.py
+END
+turbomole_h3o2m.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3557/trunk/ase/test/turbomole/turbomole_h3o2m.py
+END
+turbomole_H2.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3826/trunk/ase/test/turbomole/turbomole_H2.py
+END

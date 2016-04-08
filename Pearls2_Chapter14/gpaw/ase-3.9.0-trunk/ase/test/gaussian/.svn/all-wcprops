@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3730/trunk/ase/test/gaussian
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/2757/trunk/ase/test/gaussian/__init__.py
+END
+water.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3712/trunk/ase/test/gaussian/water.py
+END
+gaussian_cmdline.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3730/trunk/ase/test/gaussian/gaussian_cmdline.py
+END

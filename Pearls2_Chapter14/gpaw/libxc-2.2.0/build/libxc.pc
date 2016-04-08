@@ -1,0 +1,11 @@
+prefix=/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libxc
+Description: Library of exchange and correlation functionals to be used in DFT codes
+Requires: 
+Version: 2.2.0
+Libs: -L${libdir} -lxc
+Cflags: -I${includedir}

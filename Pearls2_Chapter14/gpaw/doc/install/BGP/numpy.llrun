@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# @ job_type = bluegene
+# @ requirements = (Machine == "$(host)")
+# @ class = medium
+# @ job_name = $(user).$(host)
+# @ comment = "LoadLeveler llrun script"
+# @ error = $(job_name).$(jobid).err
+# @ output = $(job_name).$(jobid).out
+# @ wall_clock_limit = 00:15:00
+# @ notification = always
+# @ notify_user =
+# @ bg_connection = prefer_torus
+# @ bg_size = 32
+# @ queue
+
+dir="/gpfs/fs2/frontend-13/${USER}"
+home=$dir
+prog=/bgsys/drivers/ppcfloor/gnu-linux/bin/python
+args=${dir}/numpy_dot.py
+
+ldpath="${ldpath}:/bgsys/opt/ibmcmp/lib/bg"
+ldpath="${ldpath}:/bgsys/drivers/ppcfloor/gnu-linux/powerpc-bgp-linux/lib"
+ldpath="${ldpath}:/bgsys/drivers/ppcfloor/gnu-linux/lib"
+pythonpath=":${home}/numpy-1.0.4-1.optimized/bgsys/drivers/ppcfloor/gnu-linux/lib/python2.5/site-packages:"
+
+export LD_LIBRARY_PATH=\"$ldpath\"
+export PYTHONPATH=\"$pythonpath\"
+export OMP_NUM_THREADS=1
+
+mpirun=/bgsys/drivers/ppcfloor/bin/mpirun
+
+runargs="-np 1"
+runargs="$runargs -cwd $PWD"
+runargs="$runargs -exp_env LD_LIBRARY_PATH -exp_env PYTHONPATH -exp_env OMP_NUM_THREADS"
+runargs="$runargs -mode SMP"
+runargs="$runargs -verbose 2"
+
+echo "Hello. This is `hostname` at `date` `pwd`"
+
+echo "$mpirun $runargs $prog $args"
+/usr/bin/time $mpirun $runargs $prog $args
+
+echo "Program completed at `date` with exit code $?."

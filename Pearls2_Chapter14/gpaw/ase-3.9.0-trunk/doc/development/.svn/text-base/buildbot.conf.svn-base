@@ -1,0 +1,40 @@
+
+# EEE.EEE.EEE.EEE is the IP of your External apache server:
+# ase-buildbot.fysik.dtu.dk
+
+<VirtualHost EEE.EEE.EEE.EEE:80>
+    ServerName ase-buildbot.fysik.dtu.dk
+    ServerAlias ase-buildbot ase-buildbot.fysik.dtu.dk
+    Redirect / https://ase-buildbot.fysik.dtu.dk/
+</VirtualHost>
+
+<VirtualHost EEE.EEE.EEE.EEE:443>
+    ServerName ase-buildbot.fysik.dtu.dk
+    ServerAlias ase-buildbot ase-buildbot.fysik.dtu.dk
+
+    # important http://httpd.apache.org/docs/current/mod/mod_proxy.html
+    ProxyRequests Off
+
+    # III.III.III.III:8080 the IP and port of the Internal buildbot web server
+
+    ProxyPass / http://III.III.III.III:8080/
+    ProxyPassReverse / http://III.III.III.III:8080/
+
+    <Proxy http://III.III.III.III:8080/*>
+	Options -Indexes
+	Order deny,allow
+	Deny from all
+	Allow from 127.0.0.1
+	Allow from ::1
+	#Allow from all
+    </Proxy>
+
+SSLProxyEngine on
+
+# provide an authority signed certificate
+SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+
+</VirtualHost>
+
+# vim: filetype=apache shiftwidth=4 tabstop=4 wrap!

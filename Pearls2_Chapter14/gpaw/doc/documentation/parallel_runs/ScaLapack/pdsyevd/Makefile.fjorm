@@ -1,0 +1,9 @@
+CC = /opt/openmpi/1.3.3-1.el5.fys.gfortran43.4.3.2/bin/mpicc
+F77 = /opt/openmpi/1.3.3-1.el5.fys.gfortran43.4.3.2/bin/mpicc
+CFLAGS = -O3 -Wall -I./include -DGPAW_NO_UNDERSCORE_CBLACS -DGPAW_NO_UNDERSCORE_CSCALAPACK -std=c99
+INCLUDEMPI = -I/opt/openmpi/1.3.3-1.el5.fys.gfortran43.4.3.2/include
+LDFLAGS = -O3 -lgfortran
+LIBSCALAPACK = /opt/scalapack/1.8.0/1.el5.fys.gfortran43.4.3.2.openmpi.1.3.3.acml.4.3.0.acml.4.3.0/lib64/libscalapack.a
+LIBBLACS = /opt/blacs/1.1/24.el5.fys.gfortran43.4.3.2.openmpi.1.3.3/lib64/libmpiblacsCinit.a /opt/blacs/1.1/24.el5.fys.gfortran43.4.3.2.openmpi.1.3.3/lib64/libmpiblacs.a /opt/blacs/1.1/24.el5.fys.gfortran43.4.3.2.openmpi.1.3.3/lib64/libmpiblacsCinit.a /opt/blacs/1.1/24.el5.fys.gfortran43.4.3.2.openmpi.1.3.3/lib64/libmpiblacs.a
+LIBBLAS = /opt/acml/4.3.0/gfortran4364/lib/libacml.a
+LIBMPI = -L/opt/openmpi/1.3.3-1.el5.fys.gfortran43.4.3.2/lib64 -lmpi

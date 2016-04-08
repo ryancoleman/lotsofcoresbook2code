@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/projects/ase/!svn/ver/4022/trunk/ase/dft
+END
+bee.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/4022/trunk/ase/dft/bee.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3736/trunk/ase/dft/__init__.py
+END
+pars_mbeef.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3127/trunk/ase/dft/pars_mbeef.py
+END
+stm.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3875/trunk/ase/dft/stm.py
+END
+wannier.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3843/trunk/ase/dft/wannier.py
+END
+pars_mbeefvdw.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3914/trunk/ase/dft/pars_mbeefvdw.py
+END
+dos.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/2229/trunk/ase/dft/dos.py
+END
+kpoints.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3309/trunk/ase/dft/kpoints.py
+END
+pars_beefvdw.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3127/trunk/ase/dft/pars_beefvdw.py
+END

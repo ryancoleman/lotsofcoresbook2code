@@ -1,0 +1,56 @@
+2010-09-02
+ - Should the projection operator be included in the preconditioning ???
+   - seems like it makes the convergence considerably slower.
+   - however, that was only for the ill-posed Si AH system with conduction bands lying below the top of the valence band in Gamma.
+   - for "normal" systems the projection should be switched on.
+ * Which Krylov solver to use ?
+   - the cg solver seems to be the most efficient and fastest converging for well-posed problem. For hard problem gmres might be more stable.
+2010-08-25
+ * The dtype of the DynamcialMatrix object must be determined by the presence of inversion symmetry!
+   - the dynamical matrix is only real for monoatomic bases with inversion symmetry !
+2010-08-12
+ * Test how it works if a set number of Krylov iteration are done in each SC iteration.
+   - did not work.
+ - How to mix the complex density derivative for q != 0
+   - if the mapping between in and output density, i.e. each iteration in the SC loop, does not mix the real and imaginary parts of the density derivative they should be mixed separately.
+     It seems that the real and imaginary parts are mixed via the wave-functions when calculating the density derivative!
+   - how about q != 0 where the density derivative does not integrate to zero - should you use a different constraint ???
+ - Does the implementation work with other functionals than LDA?
+   - No, see Clark paper in ``__init__.py``.
+2010-06-29
+ * Provide instance of ``Perturbation`` in ``__call__`` member function of class ``ResponseCalculator`` instead of in constructor.
+   - implemented.
+ * Member function ``integrate/derivative`` of class ``lfc`` does not work with complex quantities when initialized with ``integral`` keyword.
+   - did not seem to have any consequence for the second-order derivative for Si with AH pseudo-potential
+ * How does the ``second_derivative`` member function of class ``LFC`` handle complex wave-functions?
+   - fixed for spherical symmetric lfc's now   
+ * Perturbation breaks symmetry -> how should that be accounted for.
+   - the lower symmetry results in more k-points to be calculated.
+ - Include time-reversal symmetry both in dynamical matrix and the self-consistent cycle.
+   - Time-reversal symmetry does not reduce the number of k-points in the self-consistent perturation calculation.
+ - The integrated density change for q!=0 is different from zero.
+ - The contribution to the rhs of the Sternheimer eq. from the perturbation is 
+   recalculated in each iteration - NOT necessary, at least not all of it!!!
+2010-06-24
+ * use XXX for things that needs a closer inspection when time allows.
+ - Use of time-reversal symmetry in case of degeneracies (Gonze PRB 1997 in Ref. 82) ????
+ - Implicit downcast of complex numpy arrays to real arrays when assigning entrances of a real array to complex values.
+ - Use fast blacs functions.
+ - Implement ``Iteration`` class taking care of convergence checks for density, wave-functions and dynamical matrix.
+ * Convergenece criteria for SC loop; how does ``integrate`` member function on class ``GridDescriptor`` handle complex quantitites ?
+   - it returns a complex number. 
+2010-05-25
+ * Implement phases for the Transformer object for q != 0.
+2010-04-08
+ * Generalize Poisson solver to handle complex potentials with Bloch BC's.
+   - dirty hack for q=0 in function ``construct_reciprocal``.
+ * Generalize mixer to handle complex densities.
+ - Generalize ``second_derivative`` method in the LFC class to arbitraty angular momentum.
+ - Improve the ``add_derivative`` method of the LFC class.
+ - Generalize ``dict`` method of the LFC class to provide dicts for integrals with second derivatives.
+ * Does the linear solver handle complex vectors ??
+   - yes, taken care of by its dtype
+ * Implement q-vectors.
+   - move on to exploit symmetries (complex stuff!)
+ - Implement symmetries.
+ - Convergence criteria for density (and wave functions).

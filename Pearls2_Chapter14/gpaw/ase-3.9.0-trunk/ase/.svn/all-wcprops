@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/projects/ase/!svn/ver/4022/trunk/ase
+END
+infrared.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3910/trunk/ase/infrared.py
+END
+parallel.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3992/trunk/ase/parallel.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/2509/trunk/ase/__init__.py
+END
+atom.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/projects/ase/!svn/ver/4012/trunk/ase/atom.py
+END
+dimer.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/3691/trunk/ase/dimer.py
+END
+structure.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3850/trunk/ase/structure.py
+END
+units.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/3867/trunk/ase/units.py
+END
+xrdebye.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/1626/trunk/ase/xrdebye.py
+END
+svnversion_io.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3639/trunk/ase/svnversion_io.py
+END
+neb.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/projects/ase/!svn/ver/3711/trunk/ase/neb.py
+END
+constraints.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3824/trunk/ase/constraints.py
+END
+quaternions.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3826/trunk/ase/quaternions.py
+END
+all.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/projects/ase/!svn/ver/3844/trunk/ase/all.py
+END
+atoms.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/4019/trunk/ase/atoms.py
+END
+phonons.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3389/trunk/ase/phonons.py
+END
+version.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3421/trunk/ase/version.py
+END
+thermochemistry.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3824/trunk/ase/thermochemistry.py
+END

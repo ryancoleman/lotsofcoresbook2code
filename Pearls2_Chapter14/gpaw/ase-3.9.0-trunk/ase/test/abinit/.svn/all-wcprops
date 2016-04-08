@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3531/trunk/ase/test/abinit
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3003/trunk/ase/test/abinit/__init__.py
+END
+abinit_Si.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3531/trunk/ase/test/abinit/abinit_Si.py
+END
+abinit_cmdline.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3378/trunk/ase/test/abinit/abinit_cmdline.py
+END

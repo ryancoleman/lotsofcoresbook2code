@@ -1,0 +1,29 @@
+--- numpy-1.0.4.orig/numpy/distutils/system_info.py	2007-11-07 16:05:15.000000000 -0600
++++ numpy-1.0.4/numpy/distutils/system_info.py	2008-10-01 12:55:17.678310718 -0500
+@@ -760,7 +760,7 @@
+ class mkl_info(system_info):
+     section = 'mkl'
+     dir_env_var = 'MKL'
+-    _lib_mkl = ['mkl','vml','guide']
++    _lib_mkl = ['esslbg','cblas_bgp']
+ 
+     def get_mkl_rootdir(self):
+         mklroot = os.environ.get('MKLROOT',None)
+@@ -840,7 +840,7 @@
+         if sys.platform == 'win32':
+             lapack_libs = self.get_libs('lapack_libs',['mkl_lapack'])
+         else:
+-            lapack_libs = self.get_libs('lapack_libs',['mkl_lapack32','mkl_lapack64'])
++            lapack_libs = self.get_libs('lapack_libs',['lapack_bgp'])
+ 
+         info = {'libraries': lapack_libs}
+         dict_append(info,**mkl)
+@@ -852,7 +852,7 @@
+ class atlas_info(system_info):
+     section = 'atlas'
+     dir_env_var = 'ATLAS'
+-    _lib_names = ['f77blas','cblas']
++    _lib_names = ['lapack_bgp']
+     if sys.platform[:7]=='freebsd':
+         _lib_atlas = ['atlas_r']
+         _lib_lapack = ['alapack_r']

@@ -1,0 +1,23 @@
+body {margin: auto;
+      padding: 0px;
+      font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+      min-width: 59em;
+      max-width: 70em;
+      color: #333333}
+table, th, td {border: 1px solid black; border-collapse: collapse}
+.right {text-align: right}
+tr.even {background-color: #FFEEDD}
+td.right {text-align: right}
+a {color: #dc3c01; text-decoration: none}
+a:hover {color:#ff4500; text-decoration: underline}
+tr.click:hover {background-color:#FF4500}
+img.right {float: right}
+div.bar {background-color: #E0E0E0;
+         padding: 1px;
+         font-size: 0.8em;
+         text-align: right}
+div.bar1 {background-color: #EEEEEE;
+          padding: 3px;
+          font-size: 1.6em;
+          color: #0c3762}
+div.footer {font-size: 11px; text-align: center}

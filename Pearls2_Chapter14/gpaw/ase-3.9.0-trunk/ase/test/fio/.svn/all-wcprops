@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/3856/trunk/ase/test/fio
+END
+netcdftrajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3765/trunk/ase/test/fio/netcdftrajectory.py
+END
+info.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2388/trunk/ase/test/fio/info.py
+END
+magmom.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2388/trunk/ase/test/fio/magmom.py
+END
+v_sim.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3702/trunk/ase/test/fio/v_sim.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2541/trunk/ase/test/fio/__init__.py
+END
+cfg.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3729/trunk/ase/test/fio/cfg.py
+END
+oldtraj.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2388/trunk/ase/test/fio/oldtraj.py
+END
+nwchem.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3856/trunk/ase/test/fio/nwchem.py
+END
+netcdf.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2858/trunk/ase/test/fio/netcdf.py
+END
+abinit.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2879/trunk/ase/test/fio/abinit.py
+END
+trajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/2858/trunk/ase/test/fio/trajectory.py
+END
+oi.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3734/trunk/ase/test/fio/oi.py
+END

@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% set d = s.dct %}
+{% block title %}Summary{% endblock %}
+{% block bar1 %}
+SUMMARY
+{% endblock %}
+{% block content %}
+{% if d.numbers|length %}
+<a href="/gui/{{ d.id }}">
+<img src="/image/{{ d.id }}.png">
+</a>
+<br>
+{% endif %}
+Download:
+<a href="/sqlite/{{ d.id }}">db</a>,
+<a href="/json/{{ d.id }}">json</a>
+<table>
+<tr><th>name</th><th>unit</th><th>value</th></tr>
+{% for name, unit, value in s.table %}
+    <tr class={{ loop.cycle('even', 'odd') }}>
+        <td> {{ name }} </td>
+        <td> {{ unit }} </td>
+        <td>{{ value|safe }}</td>
+    </tr>
+{% endfor %}
+</table>
+Unit cell in Ang:
+<table>
+<tr><th>axis</th><th>periodic</th><th>x</th><th>y</th><th>z</th></tr>
+{% for axis in s.cell %}
+<tr class={{ loop.cycle('even', 'odd') }}>
+<td>{{ loop.index }}</td>
+<td>{{ d.pbc[loop.index0] }}</td>
+{% for a in axis %} <td class=right>{{ a }}</td>{% endfor %}</tr>
+{% endfor %}
+</table>
+
+{% if s.key_value_pairs %}
+Key-value pairs:
+<table>
+<tr><th>Key</th><th>Value</th></tr>
+{% for key, value in s.key_value_pairs %}
+<tr class={{ loop.cycle('even', 'odd') }}>
+<td>{{ key }}</td><td>{{ value }}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+        
+{% if s.forces %}
+Forces in ev/Ang:
+<table>
+<tr><th>#</th><th>symbol</th><th>x</th><th>y</th><th>z</th></tr>
+{% for f in s.forces %}
+<tr class={{ loop.cycle('even', 'odd') }}>
+<td>{{ f[0] }}</td><td>{{ f[1] }}</td>
+<td class=right>{{ f[2] }}</td>
+<td class=right>{{ f[3] }}</td>
+<td class=right>{{ f[4] }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% if s.stress %}
+Stress tensor (xx, yy, zz, zy, zx, yx) in eV/Ang<sup>3</sup>:<br>
+{{ s.stress }}
+{% endif %}
+
+{% if s.dipole %}
+Dipole moment in e*Ang: ({{ s.dipole }})
+{% endif %}
+        
+{% if s.constraints %}
+Constraints: {{ s.constraints }}
+{% endif %}
+            
+{% if s.data %}
+Data keys: {{ s.data }}
+{% endif %}
+{% endblock content %}

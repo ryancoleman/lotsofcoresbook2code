@@ -1,0 +1,25 @@
+2011-09-15 10.1166/mex.2011.1027 Computing C1s X-ray Absorption for Single-Walled Carbon Nanotubes with Distinct Electronic Type
+2011-10-03 10.1103/PhysRevLett.107.156401 Dispersive and Covalent Interactions between Graphene and Metal Surfaces from the Random Phase Approximation
+2011-12-20 10.1103/PhysRevB.84.235430 First-principles study of surface plasmons on Ag(111) and H/Ag(111)
+2012-02-16 10.1103/PhysRevB.85.085424 Channeling of charge carrier plasmons in carbon nanotubes
+2012-07-19 10.1103/PhysRevB.86.045208 Optical properties of bulk semiconductors and graphene/boron nitride: The Bethe-Salpeter equation with derivative discontinuity-corrected density functional energies
+2012-08-15 10.1103/PhysRevB.86.081103 Extending the random-phase approximation for electronic correlation energies: The renormalized adiabatic local density approximation
+2012-12-20 10.1103/PhysRevB.86.241404 Conventional and acoustic surface plasmons on noble metal surfaces: A time-dependent density functional theory study
+2012-12-26 10.1103/PhysRevB.86.245129 Spatially resolved quantum plasmon modes in metallic nano-films from first-principles
+2013-01-30 10.1103/PhysRevB.87.045428 Stratified graphene/noble metal systems for low-loss plasmonics applications
+2013-02-13 10.1103/PhysRevB.87.075111 Random phase approximation applied to solids, molecules, and graphene-metal interfaces: From van der Waals to covalent bonding
+2013-02-25 10.1103/PhysRevB.87.075207 Formation energies of group I and II metal oxides using random phase approximation
+2013-06-19 10.1103/PhysRevB.87.235312 Acoustic phonon limited mobility in two-dimensional semiconductors: Deformation potential and piezoelectric scattering in monolayer MoS2 from first principles
+2013-06-21 10.1063/1.4811455 Optoelectronic properties of single-layer, double-layer, and bulk tin sulfide: A theoretical study
+2013-06-24 10.1103/PhysRevB.87.235132 Quasiparticle GW calculations for solids, molecules, and two-dimensional materials
+2013-06-26 10.1103/PhysRevB.87.235433 Visualizing hybridized quantum plasmons in coupled nanowires: From classical to tunneling regime
+2013-09-18 10.1103/PhysRevB.88.115131 Beyond the random phase approximation: Improved description of short-range correlation by a renormalized adiabatic local density approximation
+2013-10-23 10.1103/PhysRevB.88.155128 Plasmons in metallic monolayer and bilayer transition metal dichalcogenides
+2013-12-15 10.1016/j.cpc.2013.07.014 Graphics Processing Unit acceleration of the Random Phase Approximation in the projector augmented wave method
+2013-12-26 10.1103/PhysRevB.88.245309 How dielectric screening in two-dimensional crystals affects the convergence of excited-state calculations: Monolayer MoS2
+2013-12-27 10.1103/PhysRevB.88.245204 Calculated formation and reaction energies of 3d transition metal oxides using a hierachy of exchange-correlation functionals
+2014-04-28 10.1063/1.4871875 Static correlation beyond the random phase approximation: Dissociating H-2 with the Bethe-Salpeter equation and time-dependent GW
+2014-05-15 10.1007/s00339-013-8034-3 Atomistic approach for simulating plasmons in nanostructures
+2014-05-21 10.1103/PhysRevLett.112.203001 Accurate Ground-State Energies of Solids and Molecules from Time-Dependent Density-Functional Theory
+2014-07-15 10.1117/1.OE.53.7.071808 Optical and other material properties of SiO2 from ab initio studies
+2014-08-15 10.1016/j.ssc.2014.04.023 MoS2 nanostructures: Semiconductors with metallic edges

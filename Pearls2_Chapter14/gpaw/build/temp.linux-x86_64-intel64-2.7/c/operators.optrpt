@@ -1,0 +1,56 @@
+
+Begin optimization report for: Operator_relax(OperatorObject *, PyObject *)
+
+    Report from: Offload optimizations [offload]
+
+OFFLOAD:Operator_relax(110,1):  Offload to target MIC <expr>
+ Data sent from host to target
+       stencil_buffer, pointer to string
+ Data received by host from target
+
+OFFLOAD:Operator_relax(135,1):  Offload to target MIC <expr>
+ Data sent from host to target
+       stencil_buffer, pointer to string
+       fun, pointer to data with element count specified in pragma
+       buf, pointer to data with element count specified in pragma
+       src, pointer to data with element count specified in pragma
+       relax_method, scalar size 4 bytes
+       w, scalar size 8 bytes
+ Data received by host from target
+       fun, pointer to data with element count specified in pragma
+       relax_method, scalar size 4 bytes
+       w, scalar size 8 bytes
+
+OFFLOAD:Operator_relax(164,1):  Offload to target MIC <expr>
+ Data sent from host to target
+ Data received by host from target
+
+===========================================================================
+
+*MIC* Begin optimization report for: Operator_relax(OperatorObject *, PyObject *)
+
+    Report from: Offload optimizations [offload]
+
+OFFLOAD:Operator_relax(110,1):  Outlined offload region
+ Data received by target from host
+       stencil_buffer, pointer to string
+ Data sent from target to host
+
+OFFLOAD:Operator_relax(135,1):  Outlined offload region
+ Data received by target from host
+       stencil_buffer, pointer to string
+       fun, pointer to data with element count specified in pragma
+       buf, pointer to data with element count specified in pragma
+       src, pointer to data with element count specified in pragma
+       relax_method, scalar size 4 bytes
+       w, scalar size 8 bytes
+ Data sent from target to host
+       fun, pointer to data with element count specified in pragma
+       relax_method, scalar size 4 bytes
+       w, scalar size 8 bytes
+
+OFFLOAD:Operator_relax(164,1):  Outlined offload region
+ Data received by target from host
+ Data sent from target to host
+
+===========================================================================

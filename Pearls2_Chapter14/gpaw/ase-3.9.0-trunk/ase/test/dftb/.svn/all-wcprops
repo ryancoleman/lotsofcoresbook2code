@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3659/trunk/ase/test/dftb
+END
+test_simple.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3659/trunk/ase/test/dftb/test_simple.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3277/trunk/ase/test/dftb/__init__.py
+END
+test_tricky.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3277/trunk/ase/test/dftb/test_tricky.py
+END

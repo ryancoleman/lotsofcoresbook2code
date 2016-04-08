@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/projects/ase/!svn/ver/3997/trunk/ase/ga
+END
+cutandsplicepairing.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3970/trunk/ase/ga/cutandsplicepairing.py
+END
+population.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3816/trunk/ase/ga/population.py
+END
+particle_comparator.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3800/trunk/ase/ga/particle_comparator.py
+END
+particle_crossovers.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3801/trunk/ase/ga/particle_crossovers.py
+END
+parallellocalrun.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3799/trunk/ase/ga/parallellocalrun.py
+END
+element_mutations.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3801/trunk/ase/ga/element_mutations.py
+END
+convergence.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3809/trunk/ase/ga/convergence.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3799/trunk/ase/ga/__init__.py
+END
+adsorbate_operators.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3811/trunk/ase/ga/adsorbate_operators.py
+END
+standardmutations.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3997/trunk/ase/ga/standardmutations.py
+END
+startgenerator.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3801/trunk/ase/ga/startgenerator.py
+END
+particle_mutations.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3809/trunk/ase/ga/particle_mutations.py
+END
+atoms_attach.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3799/trunk/ase/ga/atoms_attach.py
+END
+data.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3809/trunk/ase/ga/data.py
+END
+standard_comparators.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3799/trunk/ase/ga/standard_comparators.py
+END
+utilities.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3970/trunk/ase/ga/utilities.py
+END
+pbs_queue_run.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3801/trunk/ase/ga/pbs_queue_run.py
+END
+offspring_creator.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3808/trunk/ase/ga/offspring_creator.py
+END
+element_crossovers.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3799/trunk/ase/ga/element_crossovers.py
+END
+relax_attaches.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3799/trunk/ase/ga/relax_attaches.py
+END

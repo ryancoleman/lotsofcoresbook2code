@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/4018/trunk/ase/optimize
+END
+fmin_bfgs.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/1381/trunk/ase/optimize/fmin_bfgs.py
+END
+basin.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/basin.py
+END
+lbfgs.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/lbfgs.py
+END
+oldqn.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/oldqn.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2687/trunk/ase/optimize/__init__.py
+END
+bfgslinesearch.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/bfgslinesearch.py
+END
+minimahopping.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3651/trunk/ase/optimize/minimahopping.py
+END
+optimize.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/optimize.py
+END
+bfgs.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/bfgs.py
+END
+sciopt.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/sciopt.py
+END
+mdmin.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/mdmin.py
+END
+fire.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/4018/trunk/ase/optimize/fire.py
+END

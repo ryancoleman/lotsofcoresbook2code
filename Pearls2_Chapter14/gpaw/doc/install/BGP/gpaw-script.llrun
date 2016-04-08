@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# @ job_type = bluegene
+# @ requirements = (Machine == "$(host)")
+# @ class = medium
+# @ job_name = $(user).$(host)
+# @ comment = "LoadLeveler llrun script"
+# @ error = $(job_name).$(jobid).err
+# @ output = $(job_name).$(jobid).out
+# @ wall_clock_limit = 00:30:00
+# @ notification = always
+# @ notify_user =
+# @ bg_connection = prefer_torus
+# @ bg_size = 32
+# @ queue
+
+dir=/gpfs/fs2/frontend-13/$USER
+home=$dir
+prog=${home}/gpaw/build/bin.linux-ppc64-2.5/gpaw-python
+#prog=/bgsys/drivers/ppcfloor/gnu-linux/bin/python
+args="${home}/gpaw/test/CH4.py --sl_diagonalize=2,2,2"
+
+ldpath="${ldpath}:/bgsys/opt/ibmcmp/lib/bg"
+ldpath="${ldpath}:/bgsys/drivers/ppcfloor/gnu-linux/powerpc-bgp-linux/lib"
+ldpath="${ldpath}:/bgsys/drivers/ppcfloor/gnu-linux/lib"
+pythonpath=":${home}/Numeric-24.2-1/bgsys/drivers/ppcfloor/gnu-linux/lib/python2.5/site-packages/Numeric"
+pythonpath="${pythonpath}:${home}/numpy-1.0.4-1.optimized/bgsys/drivers/ppcfloor/gnu-linux/lib/python2.5/site-packages"
+pythonpath="${pythonpath}:${home}/gpaw"
+pythonpath="${pythonpath}:${home}/ase3k:"
+
+export LD_LIBRARY_PATH=\"$ldpath\"
+export PYTHONPATH=\"$pythonpath\"
+export GPAW_SETUP_PATH="${home}/gpaw-setups-0.4.2039"
+export OMP_NUM_THREADS=1
+
+mpirun=/bgsys/drivers/ppcfloor/bin/mpirun
+
+runargs="-np 32"
+runargs="$runargs -cwd $PWD"
+runargs="$runargs -exp_env LD_LIBRARY_PATH -exp_env PYTHONPATH -exp_env GPAW_SETUP_PATH -exp_env OMP_NUM_THREADS"
+runargs="$runargs -mode SMP"
+runargs="$runargs -verbose 1"
+
+echo "Hello. This is `hostname` at `date` `pwd`"
+
+echo "$mpirun $runargs $prog $args"
+/usr/bin/time $mpirun $runargs $prog $args
+
+echo "Program completed at `date` with exit code $?."

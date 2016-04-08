@@ -1,0 +1,133 @@
+#!/bin/sh
+#
+# python-ase:	python-ase buildmaster
+#
+# chkconfig:	345 98 02
+# description:	python-ase buildmaster
+
+# LSB init-info
+### BEGIN INIT INFO
+# Provides:          python-ase
+# Required-Start:    $network
+# Required-Stop:     $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: python-ase buildmaster
+### END INIT INFO
+
+# Source function library.
+if [ -e /etc/init.d/functions ]; then
+	. /etc/init.d/functions
+fi
+
+# LSB functions
+. /lib/lsb/init-functions
+
+# Check that networking is configured.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+RUN_AS=buildmaster-username
+PYTHON_ASE_HOME=/home/$RUN_AS/python-ase
+test -d $PYTHON_ASE_HOME || exit 5
+
+LOGFILE=$PYTHON_ASE_HOME/../python-ase.log
+PIDFILE=$PYTHON_ASE_HOME/../python-ase.pid
+LOCKFILE=$PYTHON_ASE_HOME/../python-ase.lock
+
+start() {
+	echo -n $"Starting python-ase buildmaster: "
+	dostatus > /dev/null 2>&1
+	if [ $RETVAL -eq 0 ]
+	then
+		echo -n $"python-ase buildmaster already running"
+		log_failure_msg
+		RETVAL=1
+		return
+	fi
+	#su - $RUN_AS -s /bin/sh -c "exec nohup /bin/sh $PYTHON_ASE_HOME/../python-ase-start.sh >> $LOGFILE 2>&1 &"
+        # don't produce log
+	su - $RUN_AS -s /bin/sh -c "exec nohup /bin/sh $PYTHON_ASE_HOME/../python-ase-start.sh >> /dev/null 2>&1 &"
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ]
+	then
+		sleep 5
+		su - $RUN_AS -s /bin/sh -c "cat $PYTHON_ASE_HOME/twistd.pid > $PIDFILE"
+		su - $RUN_AS -s /bin/sh -c "touch $LOCKFILE"
+		log_success_msg
+	else
+		log_failure_msg
+	fi
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Shutting down python-ase buildmaster: "
+	kill $(su - $RUN_AS -s /bin/sh -c "cat $PIDFILE 2>/dev/null") > /dev/null 2>&1
+	RETVAL=$?
+	sleep 5
+	if [ $RETVAL -eq 0 ]
+	then
+		su - $RUN_AS -s /bin/sh -c "rm -f $PIDFILE $LOCKFILE"
+		log_success_msg
+	else
+		log_failure_msg
+	fi
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+condrestart() {
+	[ -f $LOCKFILE ] && restart || :
+}
+
+dostatus() {
+	kill -0 $(cat $PIDFILE 2>/dev/null) > /dev/null 2>&1
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ]
+	then
+		echo "python-ase buildmaster (pid $(cat $PIDFILE 2>/dev/null)) is running..."
+	else
+		if [ -f $PIDFILE ]
+		then
+			echo "python-ase buildmaster dead but pid file exists"
+			RETVAL=1
+			return
+		fi
+		if [ -f $LOCKFILE ]
+		then
+			echo "python-ase buildmaster dead but subsys locked"
+			RETVAL=2
+			return
+		fi
+		echo "python-ase buildmaster is stopped"
+		RETVAL=3
+	fi
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	dostatus
+	;;
+  restart|reload)
+	restart
+	;;
+  condrestart)
+	condrestart
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|reload|condrestart}"
+	exit 1
+esac
+
+exit $RETVAL

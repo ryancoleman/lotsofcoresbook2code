@@ -1,0 +1,794 @@
+#!/bin/env python
+# Emacs: treat this as -*- python -*-
+
+import os
+import stat
+import sys
+import re
+from optparse import OptionParser
+
+defaults = { 'err'   : None,
+             'mail'  : None,
+             'mem'   : None,
+             'name'  : None,
+             'depth' : 1,
+             'cores' : 2,
+             'out'   : None,
+             'arch'  : 'pbs',
+             'script': 'run.py',
+             'time'  : 86400, # one day in seconds
+             'wd'    : None,
+             'queue' : None,
+             'smt'   : False,
+             }
+
+hosts = { 'batman'                   : 'pbs_batman',
+          'c551'                     : 'murska',
+          'c552'                     : 'murska',
+          'c553'                     : 'murska',
+          'c554'                     : 'murska',
+          'louhi'                    : 'louhi',
+          'opaali.phys.jyu.fi'       : 'sge',
+          'sepeli.csc.fi'            : 'sepeli',
+          'bwui.bfg.uni-freiburg.de' : 'bwg',
+          'globus.bfg.uni-freiburg.de' : 'bwg',
+          'globus'                   : 'bwg',
+          'ui.bfg.uni'               : 'pbs_bfg',
+          r'xc2(.*)'                 : 'xc2',
+          'juropa.fz-juelich.de'     : 'juropa',
+	  r'jj(.*)'                  : 'juropa',
+	  r'j3(.*)'                  : 'juropatest',
+          r'joe*'                    : 'joe',
+          r'uc1n99*'                 : 'bwUniCluster',
+          }
+
+platforms = { 'aix5' : 'loadleveler' }
+
+env = {'PATH'            : None,
+       'PYTHONPATH'      : None,
+       'GPAW_PYTHON'     : None,
+       'GPAW_SETUP_PATH' : None,
+       'GPAW_MAIL'       : None,
+       'LD_LIBRARY_PATH' : None,
+       }
+
+set = defaults
+
+#......................................................
+# functions
+
+def dhms(secs):
+    """return days,hours,minutes and seconds"""
+    dhms = [0, 0, 0, 0]
+    dhms[0] = int(secs // 86400)
+    s = secs % 86400
+    dhms[1] = int(s // 3600)
+    s = secs % 3600
+    dhms[2] = int(s // 60)
+    s = secs % 60
+    dhms[3] = int(s+.5)
+    return dhms
+
+def hms(secs):
+    """return hours,minutes and seconds"""
+    hms = [0,0,0]
+    hms[0] = int(secs // 3600)
+    s = secs % 3600
+    hms[1] = int(s // 60)
+    s = secs % 60
+    hms[2] = int(s+.5)
+    return hms
+
+def hms_string(secs):
+    """return hours,minutes and seconds string, e.g. 02:00:45"""
+    l = hms(secs)
+    def extend10(n):
+        if n<10:
+            return '0' + str(n)
+        else:
+            return str(n)
+    return extend10(l[0]) + ':' + extend10(l[1]) + ':' + extend10(l[2])
+
+def s_from_dhms(time):
+    """return seconds from dhms"""
+    dhms_s = { 's' : 1, 'm' : 60, 'h' : 3600, 'd' : 86400 }
+    time = time.lower()
+    word_list = re.findall('\d*[^\d]*',time)
+    seconds=0 
+    for word in word_list:
+        if word != '':
+            sec = 1
+            for t in dhms_s.keys():
+                nw = word.replace(t,'')
+                if nw != word:
+                    sec = dhms_s[t]
+                    word = nw
+                    break
+            try:
+                seconds += int(word) * sec
+            except:
+                raise RuntimeError, 'unknown format in timestring ' + time
+    return seconds
+
+def minutes(secs):
+    return int(secs // 60)
+def list_systems(obj):
+    print "Allowed names are:"
+    p = re.compile('__')
+    for host in dir(obj):
+        if not p.match(host):
+            print '', host
+
+def unique_name(name):
+    import string
+    letters = list(string.letters)
+    n = name
+    while os.path.exists(n):
+        n = name + letters.pop(0)
+    return n
+
+class RunScript:
+    def __init__(self, set, env, name=None):
+        if not hasattr(self,set['arch']):
+            print "unkown system >" + set['arch'] + "<"
+            list_systems(self)
+            sys.exit()
+        if name is None:
+            name = 'run.' + set['arch']
+            if set['arch'] == 'xc2':
+                name = unique_name(name)
+        self.name = name
+        f = open(name, 'w')
+        call = "self." + set['arch'] + "(f,set,env)"
+        eval(call)
+        if not f.closed:
+            f.close()
+        print name, 'written'
+
+    def loadleveler(self, f, set, env):
+        print >> f,"#!/bin/bash"
+        if set['cores'] > 1:
+            print >> f, "# @ job_type=parallel"
+        else:
+            print >> f, "# @ job_type=serial"
+        # ibm nodes contain 32 cpus
+        nodes = int(set['cores'] / 32)
+        if nodes == 0:
+            print >> f, '# @ node = 1'
+        else:
+            if nodes * 32 != int(set['cores']):
+                raise RuntimeError("! use a multiple of 32 cpus !")
+            print >> f, '# @ node =', nodes
+        print >> f, '# @ total_tasks =', set['cores']
+        print >> f, '# @ wall_clock_limit =', hms_string(set['time']) 
+##        print >> f, "#PBS -N", set['name']
+        print >> f, '# @ output = ', (set['out'] + '.$(jobid).$(stepid)')
+        print >> f, '# @ error = ', (set['err'] + '.$(jobid).$(stepid)')
+        if set['mail'] is not None:
+            print >> f, '# @ notify_user =', set['mail']
+        print >> f, '# @ queue'
+        print >> f
+        print >> f, "export GPAW_SETUP_PATH=" + str(env['GPAW_SETUP_PATH'])
+        print >> f, "export PYTHONPATH=$PYTHONPATH:"+env['PYTHONPATH']
+        print >> f, "export GPAW_PYTHON=" + str(env['GPAW_PYTHON'])
+        print >> f
+        print >> f, 'cd', set['wd']
+        print >> f, 'poe $GPAW_PYTHON', set['script']
+
+
+    def louhi(self,f,set,env):
+        size = set['cores']
+        print >> f, '#!/bin/csh'
+        # louhi PBS does not like names longer than 16 characters
+        print >> f, '#PBS -N', set['name'][:15]
+        print >> f, '#PBS -l mppwidth=%d' % size
+        hs = dhms(set['time'])
+        print >> f, '#PBS -l walltime=' + ( str(24 * hs[0] + hs[1]) + ':' +
+                                            str(hs[2]) + ':' + str(hs[3]) )
+        if set['mem']:
+            print >> f, '#PBS -l mppmem=1900M'
+        if set['mail'] is not None:
+            print >> f, '#PBS -m be'
+            print >> f, '#PBS -M', set['mail']
+        print >> f
+        print >> f, 'module load python'
+        print >> f, 'module load acml'
+        print >> f, 'setenv MPICH_PTL_UNEX_EVENTS 60000'
+        print >> f, 'setenv MPICH_UNEX_BUFFER_SIZE 400M'
+        print >> f, 'setenv GPAW_SETUP_PATH', env['GPAW_SETUP_PATH']
+        print >> f, 'setenv PYTHONPATH ${PYTHONPATH}:' + env['PYTHONPATH']
+        print >> f, 'setenv GPAW_PYTHON', env['GPAW_PYTHON']
+        print >> f
+        print >> f, 'cd', set['wd']
+        print >> f, 'aprun -n %d' % size,
+        if set['mem']:
+            print >> f, '-m 1900M',
+        print >> f, '$GPAW_PYTHON', set['script']
+        
+    def louhi_deisa(self,f,set,env):
+        size = set['cores']
+        print >> f,"#!/bin/csh"
+        print >> f,"#PBS -N",set['name']
+        print >> f,"#PBS -l mppwidth=%d" % size
+        hs = dhms(set['time'])
+        print >> f,'#PBS -l walltime=' + ( str(24 * hs[0] + hs[1]) + ':' +
+                                           str(hs[2]) + ':' + str(hs[3]) )
+        if set['mem']:
+            print >> f, '#PBS -l mppmem=1900M'
+        if set['mail'] is not None:
+            print >> f,"#PBS -M",set['mail']
+        print >> f
+        print >> f, 'source /opt/deisa/modules/ch_modules.csh'
+        print >> f, 'module load python'
+        print >> f, 'module load acml'
+        print >> f, 'setenv MPICH_PTL_UNEX_EVENTS 60000'
+        print >> f, 'setenv MPICH_UNEX_BUFFER_SIZE 400M'
+        print >> f, 'setenv GPAW_SETUP_PATH', env['GPAW_SETUP_PATH']
+        print >> f, 'setenv PYTHONPATH ${PYTHONPATH}:' + env['PYTHONPATH']
+        print >> f, 'setenv GPAW_PYTHON', env['GPAW_PYTHON']
+        print >> f
+        print >> f, 'cd', set['wd']
+        print >> f, 'aprun -n %d' % size,
+        if set['mem']:
+            print >> f, '-m 1900M',
+        print >> f, '$GPAW_PYTHON', set['script']
+        
+    def louhi_pre(self, f, set, env):
+        size = set['cores']
+        print >> f,"#!/bin/csh"
+        print >> f,"#PBS -N",set['name']
+        print >> f,"#PBS -l mppwidth=%d" % size
+        hs = dhms(set['time'])
+        print >> f,'#PBS -l walltime=' + ( str(24 * hs[0] + hs[1]) + ':' +
+                                           str(hs[2]) + ':' + str(hs[3]) )
+        if set['mem']:
+            print >> f, '#PBS -l mppmem=1900M'
+        print >> f, 'module load python'
+        print >> f, 'module load ASE/3.0'
+        print >> f, 'module load gpaw'
+        print >> f, 'cd', set['wd']
+        print >> f, 'aprun -n %d' % size,
+        if set['mem']:
+            print >> f, '-m 1900M',
+        print >> f, '$GPAW_PYTHON', set['script']
+        
+    def murska(self, f, set, env):
+        print >> f, '#!/bin/csh'
+        print >> f, '#BSUB -n%d' % set['cores']
+        hs = dhms(set['time'])
+        print >> f, '#BSUB -W %d:%d' % (hs[0]*24+hs[1],hs[2])
+        print >> f, '#BSUB -J', set['name']
+        if set['mail'] is not None:
+            print >> f, '#BSUB -N'
+            print >> f, '#BSUB -u', set['mail']
+        print >> f, '#BSUB -e ', set['err'] + '_%J'
+        print >> f, '#BSUB -o ', set['out'] + '_%J'
+        if set['mem']:
+            print >> f, '#BSUB -ext "SLURM[constraint=mediummem|bigmem]"'
+        print >> f,"module load ASE"
+        print >> f,"setenv GPAW_SETUP_PATH",env['GPAW_SETUP_PATH']
+        print >> f,"setenv PYTHONPATH ${PYTHONPATH}:"+env['PYTHONPATH']
+        print >> f,"setenv GPAW_PYTHON",env['GPAW_PYTHON']
+        print >> f,"mpirun -srun $GPAW_PYTHON",set['script']
+      
+    def murska_pre(self, f, set, env):
+        """Pre-installed version on murska."""
+        print >> f,"#!/bin/csh"
+        print >> f,"#BSUB -n%d" % set['cores']
+        hs = dhms(set['time'])
+        print >> f,"#BSUB -W %d:%d" % (hs[0]*24+hs[1],hs[2])
+        print >> f,"#BSUB -J",set['name']
+        if set['mail'] is not None:
+            print >> f,"#BSUB -u",set['mail']
+        print >> f,"#BSUB -e ",set['err']+'_%J'
+        print >> f,"#BSUB -o ",set['out']+'_%J'
+        if set['mem']:
+            print >> f, '#BSUB -ext "SLURM[constraint=mediummem|bigmem]"'
+        print >> f, 'module load ASE'
+        print >> f, 'module load ASE/3.0'
+        print >> f, 'module load gpaw'
+        print >> f,"mpirun -srun $GPAW_PYTHON",set['script']
+      
+    def pbs_batman(self, f, set, env):
+        print >> f,"#PBS -N "+set['name']
+        print >> f,"#PBS -l ncpus="+str(set['cores'])
+        print >> f,"#PBS -l walltime="""+str(set['time'])
+        print >> f,"#PBS -m bea"
+        if set['mail'] is not None:
+            print >> f,"#PBS -M",set['mail']
+        print >> f,"#PBS -o", set['out']+'_$PBS_JOBID'
+        print >> f,"#PBS -e", set['err']+'_$PBS_JOBID'
+        print >> f,"""
+# change to the directory where you submitted the job
+cd""", set['wd']
+        print >> f,"echo \"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\""
+        print >> f,"echo \"Current working directory is `pwd`\""
+        print >> f,"echo \"Running on `hostname`\""
+        print >> f,"export PYTHONPATH=$PYTHONPATH:" + env['PYTHONPATH']
+        print >> f,"""
+# we need to use openmpi instead of SGI's MPI library
+export LD_LIBRARY_PATH=/cxfs/sandbox/funano/openmpi/lib:$LD_LIBRARY_PATH
+export PATH=/cxfs/sandbox/funano/openmpi/bin:$PATH
+        
+#include the full path to the name of your MPI program
+. /usr/share/modules/init/bash
+module add mkl
+unset CC CFLAGS LDFLAGS
+
+# With the upgrade of the queue system, one problem arised and this
+# requires everyone to add one line in the run scripts:
+# unset PBS_NODEFILE
+
+"""
+        print >> f,"date"
+        print >> f,"export GPAW_PYTHON=~/gridpaw/build/bin.linux-ia64-2.4/gpaw-python"
+        print >> f,"mpirun -np", set['cores'], "$GPAW_PYTHON", set['script']
+        print >> f, 'date'
+        print >> f, 'echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"'
+        print >> f, 'exit 0'
+
+    def pbs_bfg(self, f, set, env):
+        print >> f, '#!/bin/bash'
+        print >> f, '#PBS -N '+set['name']
+        # bfg nodes contain 8 cores
+        cores = set['cores']
+        nodes = int((cores + 7) / 8)
+        ppn = int((cores + nodes - 1) / nodes)
+        if cores != nodes * ppn:
+            print 'Note:', nodes * ppn, 'cores reserved but only', cores, 'cores used.'
+            print '     Consider to use multiples of 8 processors for best performance.'
+        print >> f, '#PBS -l nodes=' + str(nodes) + ':ppn=' + str(ppn)
+        print >> f, '#PBS -l cput=' + hms_string(set['time'])
+        print >> f, '#PBS -l walltime=' + hms_string(set['time'])
+        print >> f, '#PBS -m bea'
+        if set['mail'] is not None:
+            print >> f, '#PBS -M',set['mail']
+        print >> f, 'export PATH=/usr/lib/openmpi/1.2.5-gcc/bin:$PATH'
+        print >> f, 'cd', set['wd']
+        print >> f, 'export PYTHONPATH=$PYTHONPATH:' + env['PYTHONPATH']
+        print >> f, 'export GPAW_SETUP_PATH='+env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON='+env['GPAW_PYTHON']
+        print >> f, 'mpirun -np', cores, '$GPAW_PYTHON', set['script'],
+        print >> f, '>', set['out']+'_$PBS_JOBID',
+        print >> f, '2>', set['err']+'_$PBS_JOBID'
+
+    def bwg(self, f, set, env):
+        modules_to_load = [
+            'devel/python/2.7.2',
+            'compiler/intel/12.0',
+            'mpi/impi/4.0.2-intel-12.0',
+            'numlib/mkl/10.3.5',
+            'numlib/python_numpy/1.6.1-python-2.7.2',
+                ]
+        print >> f, '#!/bin/bash'
+        print >> f, '#PBS -N '+set['name']
+        # bwg nodes contain 8 cores
+        cores = set['cores']
+        nodes = int((cores + 7) / 8)
+        ppn = int((cores + nodes - 1) / nodes)
+        if cores != nodes * ppn:
+            print 'Note:', nodes * ppn, 'cores reserved but only', cores, 'cores used.'
+            print '     Consider to use multiples of 8 processors for best performance.'
+        print >> f, '#PBS -l nodes=' + str(nodes) + ':ppn=' + str(ppn)
+        print >> f, '#PBS -l walltime=' + hms_string(set['time'])
+        print >> f, '#PBS -m bea'
+        if set['mail'] is not None:
+            print >> f, '#PBS -M', set['mail']
+	for module in modules_to_load:
+        	print >> f, 'module load ' + module
+        print >> f, 'cd', set['wd']
+        print >> f, 'export PYTHONPATH=$PYTHONPATH:' + env['PYTHONPATH']
+        print >> f, 'export GPAW_SETUP_PATH='+env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON='+env['GPAW_PYTHON']
+        try:       
+            LD_LIBRARY_PATH = os.environ['LD_LIBRARY_PATH'] + ':'
+        except:
+            LD_LIBRARY_PATH = ''
+        print >> f, ('export LD_LIBRARY_PATH=' + LD_LIBRARY_PATH
+                     + '$LD_LIBRARY_PATH')
+        print >> f, 'mpirun -np', cores, '$GPAW_PYTHON', set['script'],
+        if 'parameters' in set:
+            print >> f, set['parameters'],
+        print >> f, '>', set['out']+'_$PBS_JOBID',
+        print >> f, '2>', set['err']+'_$PBS_JOBID'
+
+    def joe(self, f, set, env):
+        queue_pe_cores = {
+            # queue    pe            min.cores
+            'short' : ['openmpi_64', 64],
+            'medium': ['openmpi_8',   8],
+            'long'  : ['openmpi', 1],
+            }
+        modules_to_load = []
+        print >> f, '#!/bin/bash'
+        print >> f, '#$ -N ' + set['name']
+        print >> f, '#$ -cwd'
+        print >> f, '#$ -S /bin/bash'
+        print >> f, '#$ -j y  # join stdout and stderr'
+        print >> f, '#$ -o', set['out'] + '_$JOB_ID'
+        cores = set['cores']
+        pe = 'openmpi'
+        if set['queue']:
+            queue = set['queue']
+            if queue in queue_pe_cores:
+                pe, nodesize = queue_pe_cores[queue]
+                qcores = (cores // nodesize) * nodesize
+                if cores > qcores:
+                    qcores += nodesize
+                    print 'allocating', qcores,
+                    print 'cores in queue', queue
+        else:
+            queue = None
+            qcores = cores
+        print >> f, '#$ -pe', pe, qcores
+        if queue:
+            print >> f, '#$ -q', queue
+        print >> f, '#$ -l h_rt=' + hms_string(set['time'])
+        if set['mail'] is not None:
+            print >> f, '#$ -M',set['mail']
+        print >> f
+        print >> f, 'cd', set['wd']
+        print >> f
+        print >> f, 'export OMP_NUM_THREADS="1"'
+        print >> f, 'export PATH=$PATH:' + env['PATH']
+        print >> f, 'export PYTHONPATH=$PYTHONPATH:' + env['PYTHONPATH']
+        print >> f, 'export GPAW_SETUP_PATH='+env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON='+env['GPAW_PYTHON']
+        try:       
+            LD_LIBRARY_PATH = os.environ['LD_LIBRARY_PATH'] + ':'
+        except:
+            LD_LIBRARY_PATH = ''
+        print >> f, ('export LD_LIBRARY_PATH=' + LD_LIBRARY_PATH
+                     + '$LD_LIBRARY_PATH')
+        print >> f
+        print >> f, 'mpirun -np', cores, '$GPAW_PYTHON', set['script'],
+        if 'parameters' in set:
+            print >> f, set['parameters'],
+
+    def juropa(self, f, set, env):
+        print >> f, '#!/bin/bash'
+        print >> f, '#MSUB -N '+set['name']
+        # nodes contain 8 cores                                             
+        cores = set['cores']
+        cores_per_node = 8
+        if set['smt']:
+            cores_per_node = 16
+        nodes = int((cores + (cores_per_node - 1)) / cores_per_node)
+        ppn = int((cores + nodes - 1) / nodes)
+        if cores != nodes * ppn:
+            print 'Note:', nodes * ppn, 'cores reserved but only', cores, 'core\
+s used.'
+            print '     Consider to use multiples of 8 processors for best perf\
+ormance.'
+        print >> f, '#MSUB -l nodes=' + str(nodes) + ':ppn=' + str(ppn)
+        print >> f, '#MSUB -l cput=' + hms_string(set['time'])
+        print >> f, '#MSUB -l walltime=' + hms_string(set['time'])
+        print >> f, '#MSUB -m bea'
+        if set['mail'] is not None:
+            print >> f, '#MSUB -M', set['mail']
+#        print >> f, 'export PATH=/usr/lib/openmpi/1.2.5-gcc/bin:$PATH'
+        print >> f, 'cd', set['wd']
+        print >> f, ('export LD_LIBRARY_PATH=' + env['LD_LIBRARY_PATH'] + 
+                     ':$LD_LIBRARY_PATH')
+        print >> f, 'export PYTHONPATH=' + env['PYTHONPATH'] + ':$PYTHONPATH'
+        print >> f, 'export GPAW_SETUP_PATH=' + env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON=' + env['GPAW_PYTHON']
+        print >> f, 'export PSP_ONDEMAND=1'
+        print >> f, 'mpiexec -np', cores, '-x', 
+        print >> f, '$GPAW_PYTHON', set['script'],
+        if 'parameters' in set:
+            print >> f, set['parameters'],
+        print >> f, '>', set['out']+'_$PBS_JOBID',
+        print >> f, '2>', set['err']+'_$PBS_JOBID'
+
+    def juropatest(self, f, set, env):
+        print >> f, '#!/bin/bash -x'
+        print >> f, '#SBATCH --job-name=' + set['name']
+        # nodes contain 14 cores                                             
+        cores = set['cores']
+        cores_per_node = 28
+        if set['smt']:
+            cores_per_node = 28
+        nodes = int((cores + (cores_per_node - 1)) / cores_per_node)
+        ppn = int((cores + nodes - 1) / nodes)
+        if cores != nodes * ppn:
+            print 'Note:', nodes * ppn, 'cores reserved but only', cores, 'core\
+s used.'
+            print '     Consider to use multiples of', cores_per_node,
+            print 'processors for best performance.'
+        print >> f, '#SBATCH --nodes=' + str(nodes)
+        print >> f, '#SBATCH --ntasks-per-node=' + str(ppn)
+        print >> f, '#SBATCH --time=' + hms_string(set['time'])
+        if set['mail'] is not None:
+            print >> f, '#MSUB -M', set['mail']
+        print >> f, 'cd', set['wd']
+        print >> f, ('export LD_LIBRARY_PATH=' + env['LD_LIBRARY_PATH'] + 
+                     ':$LD_LIBRARY_PATH')
+        print >> f, 'export PYTHONPATH=' + env['PYTHONPATH'] + ':$PYTHONPATH'
+        print >> f, 'export GPAW_SETUP_PATH=' + env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON=' + env['GPAW_PYTHON']
+        print >> f, 'srun $GPAW_PYTHON', set['script'],
+        if 'parameters' in set:
+            print >> f, set['parameters'],
+        print >> f, '>', set['out']+'_$SLURM_JOBID',
+        print >> f, '2>', set['err']+'_$SLURM_JOBID'
+
+    def bwUniCluster(self, f, set, env):
+        print >> f, '#!/bin/bash'
+        print >> f, '#MSUB -N '+set['name']
+        # nodes contain 8 cores                                             
+        cores = set['cores']
+        cores_per_node = 8
+        if set['smt']:
+            cores_per_node = 16
+        nodes = int((cores + (cores_per_node - 1)) / cores_per_node)
+        ppn = int((cores + nodes - 1) / nodes)
+        if cores != nodes * ppn:
+            print 'Note:', nodes * ppn, 'cores reserved but only', cores, 'core\
+s used.'
+            print '     Consider to use multiples of 8 processors for best perf\
+ormance.'
+        print >> f, '#MSUB -l nodes=' + str(nodes) + ':ppn=' + str(ppn)
+        print >> f, '#MSUB -l cput=' + hms_string(set['time'])
+        print >> f, '#MSUB -l walltime=' + hms_string(set['time'])
+        print >> f, '#MSUB -m bea'
+        if set['mail'] is not None:
+            print >> f, '#MSUB -M', set['mail']
+        print >> f, 'module load mpi'
+#        print >> f, 'export PATH=/usr/lib/openmpi/1.2.5-gcc/bin:$PATH'
+        print >> f, 'cd', set['wd']
+        print >> f, ('export LD_LIBRARY_PATH=' + env['LD_LIBRARY_PATH'] + 
+                     ':$LD_LIBRARY_PATH')
+        print >> f, 'export PYTHONPATH=' + env['PYTHONPATH'] + ':$PYTHONPATH'
+        print >> f, 'export GPAW_SETUP_PATH=' + env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON=' + env['GPAW_PYTHON']
+        print >> f, 'export PSP_ONDEMAND=1'
+        print >> f, 'mpirun -n', cores,
+        print >> f, '$GPAW_PYTHON', set['script'],
+        if 'parameters' in set:
+            print >> f, set['parameters'],
+        print >> f, '>', set['out']+'_$MOAB_JOBID',
+        print >> f, '2>', set['err']+'_$MOAB_JOBID'
+
+    def sepeli(self, f, set, env):
+        print >> f,"#$ -N",set['name']
+        print >> f,"#$ -cwd"
+        print >> f,"#$ -j y"
+        print >> f,"#$ -pe mvapich-gnu64",set['cores']
+        print >> f,"#$ -S /bin/csh"
+        print >> f,"#$ -R y"
+        print >> f,"#$ -V"
+        print >> f,"#$ -l h_rt=23:48:00"
+        print >> f,"#$ -l s_rt=23:45:00"
+        print >> f,"#$ -e",set['err']+'_$JOB_ID'
+        print >> f,"setenv out",'"'+set['out']+'_$JOB_ID"'
+        print >> f,"""
+cat $TMPDIR/machines > $out
+use ASE
+setenv GPAW_SETUP_PATH \"/mnt/nas2/wrk/walter/gridpaw/setups/generate:/mnt/nas2/wrk/walter/gridpaw/setups/gpaw-setups-0.3\"
+setenv PYTHONPATH \"/mnt/nas2/wrk/walter/gridpaw/trunk:/home/u2/univ2/jyy/walter/gridpaw/trunk:${PYTHONPATH}\"
+setenv GPAW_MPI_COMMAND \"mpirun -np 4 %(job)s &\"
+setenv GPAW_PYTHON /mnt/nas2/wrk/walter/gridpaw/trunk/build/bin.linux-x86_64-2.4/gpaw-python
+"""
+        print >> f,"mpirun -np",set['cores'],"$GPAW_PYTHON",set['script'],\
+              ">> $out"
+        
+    def sge(self,f,set,env):
+        print >> f,"#!/bin/bash"
+        print >> f,"#$ -S /bin/bash"
+        print >> f,"#$ -N",set['name']
+        print >> f,"#$ -cwd"
+        print >> f,"#$ -o",set['out']+'_$JOB_ID'
+        print >> f,"#$ -e",set['err']+'_$JOB_ID'
+        if set['mail'] is not None:
+            print >> f,"#$ -M", set['mail']
+        print >> f,"#$ -m be"
+        print >> f,"#$ -pe mpich",set['cores']
+        if set['mem']:
+            print >> f, '#$ -q new8G'
+        print >> f,"cd",set['wd']
+        print >> f,"""
+echo \"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\"
+echo \"We've got $NSLOTS processor(s) on compute nodes: \";
+echo "MPICH machines file: ${TMPDIR}/machines";
+echo; cat  $TMPDIR/machines; echo
+
+# initialize environment
+. /opt/ASE/ASE.sh
+# source /opt/openmpi/openmpi-path64.sh # does not exist anymore
+export MPIHOME=/opt/openmpi/path64
+export PATH=$MPIHOME/bin/:$PATH
+export LD_LIBRARY_PATH=$MPIHOME/lib64:$MPIHOME/lib:$LD_LIBRARY_PATH
+"""
+        print >> f, 'export GPAW_SETUP_PATH='+env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON='+env['GPAW_PYTHON']
+        print >> f, 'export PYTHONPATH=$PYTHONPATH:'+env['PYTHONPATH']
+        print >> f, 'date'
+        print >> f,"mpirun -np",set['cores'], '$GPAW_PYTHON',\
+              set['script']
+        print >> f,"""date
+echo \"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\"
+"""        
+
+    def xc2(self, f, set, env):
+        print >> f, '#!/bin/bash'
+        print >> f, 'cd', set['wd']
+        print >> f, 'export PYTHONPATH=$PYTHONPATH:' + env['PYTHONPATH']
+        print >> f, 'export GPAW_SETUP_PATH='+env['GPAW_SETUP_PATH']
+        print >> f, 'export GPAW_PYTHON='+env['GPAW_PYTHON']
+        print >> f, 'mpirun $GPAW_PYTHON', set['script'],
+        if 'parameters' in set:
+            print >> f, set['parameters']
+        else:
+            print >> f
+        f.close()
+        os.chmod(f.name, 0755)
+        if set['cores'] > 16 or set['mem'] or minutes(set['time']) > 60:
+            jobclass = 'p'
+        else:
+            jobclass = 'd'
+        if set['mem']:
+            mem = 5000
+        else:
+            mem = 2000
+        msg = 'use: job_submit -t ' + str(minutes(set['time'])) +\
+              ' -m ' + str(mem) +' -p' + str(set['cores']) +\
+              ' -c ' + jobclass + ' ' + self.name
+        if set['mail'] is not None:
+            msg += ' -Nbc:' + str(set['mail'])
+        print msg
+
+# ............................................................
+# program
+
+# handle command line options
+
+parser = OptionParser(usage='%prog [options] [script ncores]')
+parser.add_option("-m", "--mail", dest='mail',
+                  help='Where to send an email about starting/ending of the job (def: read from environment variable GPAW_MAIL)')
+parser.add_option("-M", "--Memory", action='count', default=None,
+                  help='request large memory cores (host specific)')
+parser.add_option("-n", "--name", dest='name',
+                  help='Name of the job (def: name of parent directory)')
+parser.add_option("-d", "--depth", dest='depth',
+                  help='depth of directories for naming (def: 1)')
+parser.add_option("-o", "--outfile", dest='outfile',
+                  help='Name of the output file (def: script.out)')
+parser.add_option("-p", "--parameters", dest='parameters',
+                  help='Parameters to give to the script (def: empty)')
+parser.add_option("-a", "--arch", dest='arch',
+                  help='architecture (def: try to guess)')
+parser.add_option("-t", "--time", dest='time',
+                  help='Time (def: 86400=1140m=24h=1d=one day)')
+parser.add_option("-q", "--queue", dest='queue',
+                  help='queue to use (host specific)')
+parser.add_option("-s", "--smt", dest='smt', action='count',
+                  help='Simultaneous Multi-Threading (host specific)')
+opt, args = parser.parse_args()
+##print "opt=",opt
+##print "args=",args
+
+if opt.mail:
+    set['mail'] = str(opt.mail)
+
+if opt.Memory is not None:
+    set['mem'] = True
+
+if opt.name:
+    set['name'] = str(opt.name)
+
+if opt.depth:
+    set['depth'] = int(opt.depth)
+
+if opt.outfile:
+    set['out'] = str(opt.outfile)
+
+if opt.parameters:
+    set['parameters'] = str(opt.parameters)
+
+if opt.time:
+    set['time'] = s_from_dhms(opt.time)
+
+if opt.smt:
+    set['smt'] = True
+
+if opt.queue:
+    set['queue'] = str(opt.queue)
+
+if len(args):
+    set['script'] = args[0]
+    if len(args) > 1:
+        try:
+            set['cores'] = int(args[1])
+        except ValueError:
+            raise ValueError('Number of cores must be integer. ' +
+                             'See gpaw-runscript -h')
+
+# ............................................................
+
+# try to determine the system
+if opt.arch:
+    set['arch']=opt.arch
+else:
+    host = None
+    if 'HOSTNAME' in os.environ.keys():
+        host = os.environ['HOSTNAME']
+    else:
+        try:
+            import socket
+            host = socket.gethostname().split('-')[0]
+        except:
+            dummy, hostname = os.popen4('hostname -s')
+            host = hostname.readline().split()
+
+    def has_key_regexp(dictionary, expression):
+        for key in dictionary:
+            if re.match(key, expression):
+                return dictionary[key]
+        return False
+
+    if has_key_regexp(hosts, host):
+        set['arch'] = has_key_regexp(hosts, host)
+        print 'hostname', host, 'found,',
+    elif platforms.has_key(sys.platform):
+        set['arch'] = platforms[sys.platform]
+        print 'platform', sys.platform, 'found,',
+    else:
+        print "Host " + str(host) + " unknown, try -a option."
+        list_systems(RunScript)
+        sys.exit()
+
+print 'using', set['arch']
+
+# ............................................................
+# check necessary environment variables
+
+helptxt = {
+    'GPAW_PYTHON': 'to the parallel custom interpreter (gpaw-python)'
+    }
+
+for variable in helptxt.keys():
+    if not (variable in os.environ):
+        raise RuntimeError('Please set the environment variable ' +
+                           variable + ' ' + helptxt[variable] + ' !')
+
+# ............................................................
+# get environment variables
+
+for key in env:
+    if key in os.environ.keys():
+        env[key] = os.environ[key]
+##print "env=",env
+
+# ............................................................
+
+if set['mail'] is None and os.environ.has_key('GPAW_MAIL'):
+    set['mail'] = str(os.environ['GPAW_MAIL'])
+
+parameter_ext = ''
+if 'parameters' in set:
+     parameter_ext += '_' + set['parameters'].replace(' ','_')
+
+# set output files
+if set['out'] is None:
+    set['out'] = set['script'] + parameter_ext + ".out"
+if set['err'] is None:
+    set['err'] = set['script'] + parameter_ext + ".err"
+
+# get the name from current working directory
+if set['wd'] is None:
+    set['wd'] = os.getcwd()
+if set['name'] is None:
+    nl = os.getcwd().split('/')[-set['depth']:]
+    name = nl[0]
+    for string in nl[1:]:
+        name += '_' + string
+    # avoid beginning with a number
+    if name[0].isdigit():
+        name = 'j' + name 
+    set['name'] = name + parameter_ext 
+
+RunScript(set,env)
+
+
+

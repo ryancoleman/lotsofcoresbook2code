@@ -1,0 +1,265 @@
+@import "default.css";
+
+dl.function {background-color: #FFF3F3}
+dl.class {background-color: #FFF3F3}
+
+img {border: none;}
+
+/* This will center equations.  Alternatively, one could use a fixed
+indent like fleqn in LaTeX */
+img.center{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+}
+
+/* Align logo properly */
+img.logo {
+    vertical-align: middle;
+}
+
+body {
+    background-color: #113d30;
+}
+
+/* :::: LAYOUT :::: */
+
+div.document {
+    background-color: #1c634e;
+}
+
+/* Can be used to control the header size, making the logo fit*/
+div.related {
+    background-color: #13523f;
+    color: #81f2bb;
+    width: 100%;
+    height: 68px;
+    line-height: 68px;
+    font-size: 100%;
+}
+
+/* Change color of links in header? */
+div.related a {
+    color: white;
+}
+
+/* ::: TOC :::: */
+
+div.sphinxsidebar a {
+    color: #81f2bb;
+}
+
+div.sphinxsidebar input {
+    border: 1px solid #98dbcc;
+}
+
+div.sidebarfooter {
+    float: left;
+    width: 230px;
+    top: -3px;
+    position: relative;
+}
+
+/* :::: MODULE CLOUD :::: */
+div.modulecloud {
+    border: 1px solid #cbe7e5;
+    background-color: #f2fdfb;
+}
+
+/* :::: SEARCH :::: */
+
+/* Custom rule to facilitate search field in the relbar */
+div.related div.toprightsearch {
+    float: right;
+    margin-right: 15px;
+}
+
+/* :::: COMMON FORM STYLES :::: */
+
+div.actions {
+    border-top: 1px solid #cbe7e5;
+    border-bottom: 1px solid #cbe7e5;
+    background-color: #e0f4f6;
+}
+
+/* :::: INLINE COMMENTS :::: */
+
+div.inlinecomments a.bubble:hover {
+    color: #3ca4a0;
+}
+
+div.inlinecomments div.comments {
+    border: 1px solid #2eabb0;
+    background-color: #f2fdfb;
+}
+
+div#comments {
+    border: 1px solid #2eabb0;
+}
+
+div.inlinecomments div.comments h3,
+div#comments h3 {
+    background-color: #2eb0ab;
+}
+
+div#comments div.comment {
+    border: 1px solid #2eabb0;
+}
+
+div.inlinecomments div.comment h4,
+div.commentwindow div.comment h4,
+div#comments div.comment h4 {
+    background-color: #2eb0ab;
+}
+
+div#comments div.comment h4 a {
+    color: #d5f4f4;
+}
+
+div.inlinecomments div.comment div.meta,
+div.commentwindow div.comment div.meta,
+div#comments div.comment div.meta {
+    color: #539388;
+    border-top: 1px solid #cbe7e5;
+    background-color: #e0f4f6;
+}
+
+div.commentwindow {
+    border: 1px solid #cbe7e5;
+    background-color: #f2fdfb;
+}
+
+div.commentwindow h3 {
+    background-color: #2eb0ab;
+}
+
+div.commentwindow div.actions {
+    color: #539388;
+}
+
+div.commentwindow div.actions input {
+    border: 1px solid #2eabb0;
+    color: #135553;
+}
+
+div.commentwindow div.form input,
+div.commentwindow div.form textarea {
+    border: 1px solid #3c9ea2;
+}
+
+div.commentwindow div.error {
+    background-color: #fbdce5;
+}
+
+div.commentwindow div.preview {
+    background-color: #70d4d0;
+}
+
+div.commentwindow div.preview div.comment {
+    background-color: #f2fdfb;
+}
+
+/* :::: SUGGEST CHANGES :::: */
+
+/* :::: PREVIEW :::: */
+
+/* :::: INDEX PAGE :::: */
+
+/* :::: INDEX STYLES :::: */
+
+table.indextable tr.cap {
+    background-color: #f2f2f2;
+}
+
+/* :::: COVERAGE STYLES :::: */
+
+div#test-suite-coverage div.line-block {
+    padding: 5px;
+    color: #333;
+    background-color: #eee;
+    border: 1px solid #ac9;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+div#test-suite-coverage div.line {
+    white-space: pre;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+div#test-suite-coverage div.line strong {
+    color: #f33;
+}
+
+div#test-suite-coverage div.line em {
+    color: #338;
+}
+
+/* :::: GLOBAL STYLES :::: */
+
+.docwarning {
+    background-color: #ffe4e4;
+    border-bottom: 1px solid #f66;
+}
+
+a {
+    color: #00b344;
+}
+
+a:hover {
+    color: #008000;
+}
+
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6 {
+    color: #00b344;
+}
+
+a.headerlink {
+    color: #c60f0f;
+}
+
+a.headerlink:hover {
+    background-color: #c60f0f;
+}
+
+div.seealso {
+    background-color: #fcf;
+    border: 1px solid #ff6;
+}
+
+.refcount {
+    color: #060;
+}
+
+dt:target,
+.highlight {
+    background-color: #fb4ee5;
+}
+
+pre {
+    background-color: #efc;
+    border: 1px solid #ac9;
+}
+
+tt {
+    background-color: #ecf3f0;
+}
+
+.footnote:target  { background-color: #ffa}
+
+form.comment h3 {
+    background-color: #329165;
+}
+
+.system-message {
+    background-color: #fda;
+}
+
+/* :::: PRINT :::: */

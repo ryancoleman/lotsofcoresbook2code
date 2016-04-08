@@ -1,0 +1,156 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+import os
+import sys
+import fnmatch
+import urllib2
+from StringIO import StringIO
+import tarfile
+from optparse import OptionParser
+
+usage = '%prog [OPTION] [DIR]'
+description = ('Download and install gpaw-setups into DIR if given, '
+               'otherwise print current GPAW setup search paths.')
+
+p = OptionParser(usage=usage, description=description)
+p.add_option('--version', metavar='VERSION',
+             help='download VERSION of gpaw-setups.  '
+             'Use --check to download a list of versions.  As default, '
+             'get the newest version.')
+p.add_option('--tarball', metavar='FILENAME',
+             help='unpack and install from local tarball FILENAME '
+             'instead of downloading from the GPAW website')
+opts, args = p.parse_args()
+
+nargs = len(args)
+
+def get_setup_file_urls():
+    setups_page = 'https://wiki.fysik.dtu.dk/gpaw/_sources/setups/setups.txt'
+    response = urllib2.urlopen(setups_page)
+    pattern = 'https://wiki.fysik.dtu.dk/gpaw-files/gpaw-setups-*.tar.gz'
+    urls = [line.strip() for line in response
+            if fnmatch.fnmatch(line.strip(), pattern)]
+    return urls
+
+if not opts.tarball:
+    urls = get_setup_file_urls()
+
+    def print_urls(urls, marked=None):
+        for url in urls:
+            if url == marked:
+                print(' [*] %s' % url)
+            else:
+                print('     %s' % url)
+
+    if len(urls) == 0:
+        p.error('For some reason, no setup packages were found.  Probably'
+                'this script is out of date.  Please rummage around GPAW '
+                'web page until solution is found.')
+
+
+    if opts.version:
+        matching_urls = [url for url in urls if opts.version in url]
+        if len(matching_urls) > 1:
+            p.error('More than one setup file matches version "%s":\n'
+                    '%s' % (opts.version, '\n'.join(matching_urls)))
+        elif len(matching_urls) == 0:
+            p.error('\nNo setup matched the specified version "%s".\n'
+                    'Available setups are:\n'
+                    '%s' % (opts.version, '\n'.join(urls)))
+        assert len(matching_urls) == 1
+        url = matching_urls[0]
+    else:
+        url = urls[0]
+
+    print('Available setups')
+    print_urls(urls, url)
+
+
+def print_setups_info():
+    try:
+        import gpaw
+    except ImportError, e:
+        p.error("Cannot import 'gpaw'.  GPAW does not appear to be installed."
+                " %s" % e)
+    npaths = len(gpaw.setup_paths)
+    if npaths == 0:
+        print('GPAW currently has no setup search paths')
+    else:
+        print('GPAW setup paths in order of search priority:')
+        for path in gpaw.setup_paths:
+            print('     %s' % path)
+
+if nargs == 0:
+    print_setups_info()
+    print()
+    print('Please pass target directory as an argument to install.')
+    raise SystemExit
+elif len(args) != 1:
+    p.error('No more than one DIR expected.  Please try --help.')
+
+targetpath = args[0]
+
+if opts.tarball:
+    print('Reading local tarball %s' % opts.tarball)
+    targzfile = tarfile.open(opts.tarball)
+else:
+    tarfname = url.rsplit('/', 1)[1]
+    print('Downloading %s' % tarfname)
+    response = urllib2.urlopen(url)
+    targzfile = tarfile.open(fileobj=StringIO(response.read()))
+
+if not os.path.exists(targetpath):
+    os.makedirs(targetpath)
+
+print('Extracting tarball into %s' % targetpath)
+targzfile.extractall(targetpath)
+
+
+setup_dirname = tarfname.rsplit('.', 2)[0] # remove .tar.gz ending
+setup_path = os.path.abspath(os.path.join(targetpath, setup_dirname))
+assert os.path.isdir(setup_path)
+
+# Okay, now we have to maybe edit people's rc files.
+rcfiledir = os.path.join(os.environ['HOME'], '.gpaw')
+rcfilepath = os.path.join(rcfiledir, 'rc.py')
+
+print('Setups installed into %s.' % setup_path)
+
+# We could do all this by importing the rcfile as well and checking
+# whether things are okay or not.
+rcline1 = 'from gpaw import setup_paths'
+rcline2 = "setup_paths.insert(0, '%s')" % setup_path
+
+answer = raw_input('Register this setup path in %s? [y/n] ' % rcfilepath)
+
+if answer.lower() == 'y':
+    # First we create the file
+    if not os.path.exists(rcfiledir):
+        os.makedirs(rcfiledir)
+    if not os.path.exists(rcfilepath):
+        tmpfd = open(rcfilepath, 'w') # Just create empty file
+        tmpfd.close()
+
+    for line in open(rcfilepath):
+        if line.startswith(rcline2):
+            print('It looks like the path is already registered in %s.'
+                  % rcfilepath)
+            print('File will not be modified at this time.')
+            break
+    else:
+        rcfd = open(rcfilepath, 'a')
+        print(rcline1, file=rcfd)
+        print(rcline2, file=rcfd)
+        print('Setup path has been registered in %s.' % rcfilepath)
+else:
+    if answer.lower() != 'n':
+        print('What do you mean by "%s"?  Assuming "n".' % answer)
+    else:
+        print('As you wish.')
+    print('You can manually write the following two lines to %s:' % rcfilepath)
+    print()
+    print(rcline1)
+    print(rcline2)
+    print()
+print('Installation complete.')

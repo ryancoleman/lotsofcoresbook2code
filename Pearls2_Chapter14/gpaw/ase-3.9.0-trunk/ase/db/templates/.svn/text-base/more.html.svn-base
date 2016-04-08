@@ -1,0 +1,17 @@
+    <tr>
+        <td colspan=99>
+        {% if dct.numbers|length %}
+            <a href="/gui/{{ id }}">
+                <img class=right src="/image/{{ id }}.png">
+            </a>
+        {% endif %}
+        {% if dct.key_value_pairs %}
+        {% for key, value in dct.key_value_pairs.items() %}
+            <a href="/?x={{ cid }}&amp;toggle={{ key }}">{{ key }}</a>: {{ value }}
+            {%- if not loop.last %},{% endif %}
+        {% endfor %}
+        <br>
+        {% endif %}
+        <a href="/id/{{ id }}">more ...</a>
+        </td>
+    </tr>

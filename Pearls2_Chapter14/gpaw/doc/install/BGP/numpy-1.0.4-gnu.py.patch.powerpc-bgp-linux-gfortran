@@ -1,0 +1,44 @@
+--- numpy-1.0.4.orig/numpy/distutils/fcompiler/gnu.py	2007-11-07 16:05:14.000000000 -0600
++++ numpy-1.0.4/numpy/distutils/fcompiler/gnu.py	2008-04-15 03:48:07.936557992 -0500
+@@ -22,7 +22,7 @@
+             return None
+         m = re.match(r'GNU Fortran\s+95.*?([0-9-.]+)', version_string)
+         if m:
+-            return ('gfortran', m.group(1))
++            return ('/bgsys/drivers/ppcfloor/gnu-linux/bin/powerpc-bgp-linux-gfortran', m.group(1))
+         m = re.match(r'GNU Fortran.*?([0-9-.]+)', version_string)
+         if m:
+             v = m.group(1)
+@@ -32,7 +32,7 @@
+             else:
+                 # at some point in the 4.x series, the ' 95' was dropped
+                 # from the version string
+-                return ('gfortran', v)
++                return ('/bgsys/drivers/ppcfloor/gnu-linux/bin/powerpc-bgp-linux-gfortran', v)
+ 
+     def version_match(self, version_string):
+         v = self.gnu_version_match(version_string)
+@@ -278,12 +278,12 @@
+ 
+ class Gnu95FCompiler(GnuFCompiler):
+     compiler_type = 'gnu95'
+-    compiler_aliases = ('gfortran',)
++    compiler_aliases = ('/bgsys/drivers/ppcfloor/gnu-linux/bin/powerpc-bgp-linux-gfortran',)
+     description = 'GNU Fortran 95 compiler'
+ 
+     def version_match(self, version_string):
+         v = self.gnu_version_match(version_string)
+-        if not v or v[0] != 'gfortran':
++        if not v or v[0] != '/bgsys/drivers/ppcfloor/gnu-linux/bin/powerpc-bgp-linux-gfortran':
+             return None
+         return v[1]
+ 
+@@ -295,7 +295,7 @@
+     #       GNU Fortran 95 (GCC) 4.2.0 20060218 (experimental)
+     #       GNU Fortran (GCC) 4.3.0 20070316 (experimental)
+ 
+-    possible_executables = ['gfortran', 'f95']
++    possible_executables = ['/bgsys/drivers/ppcfloor/gnu-linux/bin/powerpc-bgp-linux-gfortran', 'f95']
+     executables = {
+         'version_cmd'  : ["<F90>", "--version"],
+         'compiler_f77' : [None, "-Wall", "-ffixed-form",

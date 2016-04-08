@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3982/trunk/doc/tutorials/spacegroup
+END
+spacegroup.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/ase/!svn/ver/1717/trunk/doc/tutorials/spacegroup/spacegroup.py
+END
+spacegroup.rst
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/3736/trunk/doc/tutorials/spacegroup/spacegroup.rst
+END
+spacegroup-mg.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-mg.py
+END
+spacegroup-rutile.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-rutile.py
+END
+spacegroup-cosb3.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/projects/ase/!svn/ver/1715/trunk/doc/tutorials/spacegroup/spacegroup-cosb3.py
+END
+spacegroup-sg.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/ase/!svn/ver/3982/trunk/doc/tutorials/spacegroup/spacegroup-sg.py
+END
+spacegroup-fe.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-fe.py
+END
+spacegroup-diamond.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-diamond.py
+END
+spacegroup-sg2.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projects/ase/!svn/ver/3982/trunk/doc/tutorials/spacegroup/spacegroup-sg2.py
+END
+spacegroup-al.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-al.py
+END
+spacegroup-sg3.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-sg3.py
+END
+spacegroup-skutterudite.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-skutterudite.py
+END
+spacegroup-nacl.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/projects/ase/!svn/ver/1639/trunk/doc/tutorials/spacegroup/spacegroup-nacl.py
+END

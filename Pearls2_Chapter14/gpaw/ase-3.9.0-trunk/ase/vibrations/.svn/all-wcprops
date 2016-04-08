@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3945/trunk/ase/vibrations
+END
+infrared.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3945/trunk/ase/vibrations/infrared.py
+END
+raman.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3941/trunk/ase/vibrations/raman.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3911/trunk/ase/vibrations/__init__.py
+END
+franck_condon.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3826/trunk/ase/vibrations/franck_condon.py
+END

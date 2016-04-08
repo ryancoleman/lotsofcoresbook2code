@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+# This file generates tested setups to be used with LCAO-TDDFT
+
+from gpaw.atom.generator import Generator
+from gpaw.atom.configurations import parameters
+from gpaw.atom.basis import BasisMaker
+
+symbol = 'Ag'
+args = {'core': '[Kr]',   'rcut': 2.45}
+for xc in ['GLLBSC','PBE','LDA']:
+    g = Generator(symbol, xc, scalarrel=True)
+    g.run(write_xml=True, use_restart_file=False, exx=True, logderiv=False, **args)
+    bm = BasisMaker(g, name=xc+'.dz5p', run=False)
+    basis = bm.generate(zetacount=2, polarizationcount=0, energysplit=0.01,
+                        jvalues=[0,1,2])
+    basis.write_xml()
+
+

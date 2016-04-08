@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3895/trunk/ase/visualize
+END
+primiplotter.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3489/trunk/ase/visualize/primiplotter.py
+END
+mlab.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3895/trunk/ase/visualize/mlab.py
+END
+fieldplotter.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/799/trunk/ase/visualize/fieldplotter.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3844/trunk/ase/visualize/__init__.py
+END
+sage.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2257/trunk/ase/visualize/sage.py
+END
+colortable.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2194/trunk/ase/visualize/colortable.py
+END

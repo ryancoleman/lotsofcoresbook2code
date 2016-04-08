@@ -1,0 +1,10 @@
+2010-08-25
+ - YOU HAVE OUTCOMMENTED THE NON-LOCAL CONTRIBUTIONS TO THE SECOND-ORDER DERIVATIVE OF THE ENERGY !!!!!
+2010-08-11
+ - Bug 1: error in the eigenvalue term of the SternheimerOperator
+ - Bug 2: density on the fine grid constructed from the non-mixed coarse density
+2010-04-08
+ - Density is now calculated as a complex quantity
+2010-03-29
+ - Implementation for periodic system initiated
+ - Changed default solver method from `gmres` to `cg` in ScipyLinearSolver

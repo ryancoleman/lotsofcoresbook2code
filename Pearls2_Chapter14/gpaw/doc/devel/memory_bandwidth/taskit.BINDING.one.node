@@ -1,0 +1,69 @@
+#!/bin/sh
+#UTILISATION METTRE 0 ET 1 EN ARGUMENT
+OFFSET=$1
+shift
+# number cores per socket
+CORES_PER_SOCKET=$1
+shift
+NCPU=$(grep "^processor" /proc/cpuinfo |wc -l)
+
+if   [ -n "$OMPI_MCA_ns_nds_vpid" ]; then
+	MPI_RANK=$OMPI_MCA_ns_nds_vpid
+
+#Myrinet with MX drivers
+elif [ -n "$MXMPI_ID" ]; then
+	DMPI_RANK=$MXMPI_ID
+
+#Myrinet with GM drivers
+elif [ -n "$GMPI_ID" ]; then
+	MPI_RANK=$GMPI_ID
+#INTEL MPI
+elif [ -n "${PMI_RANK}" ]; then
+	MPI_RANK=${PMI_RANK}
+
+#OPEN MPI
+elif [ -n "${OMPI_MCA_ns_nds_vpid}" ]; then
+	MPI_RANK=${OMPI_MCA_ns_nds_vpid}
+
+#OPEN MPI >= 1.3
+# http://osdir.com/ml/clustering.open-mpi.user/2008-07/msg00048.html
+elif [ -n "${OMPI_COMM_WORLD_RANK}" ]; then
+	MPI_RANK=${OMPI_COMM_WORLD_RANK}
+
+# VOLTAIRE IB & MVAPICH
+elif [ -n "${MPIRUN_RANK}" ]; then
+	MPI_RANK=${MPIRUN_RANK}
+else
+   echo "Error getting MPI_RANK";
+fi
+CPU=`echo "($OFFSET + $MPI_RANK)"|bc`
+case $CPU in
+0)
+CPU=0
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+1)
+CPU=1
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+2)
+CPU=2
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+3)
+CPU=3
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+4)
+CPU=4
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+5)
+CPU=5
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+6)
+CPU=6
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+7)
+CPU=7
+MEM=`echo "$CPU / $CORES_PER_SOCKET" |bc`;;
+esac
+#ulimit -s unlimited
+CMD="numactl --membind=$MEM --physcpubind=$CPU $@"
+echo $CMD
+eval $CMD

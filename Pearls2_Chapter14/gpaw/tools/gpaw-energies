@@ -1,0 +1,149 @@
+#!/usr/bin/env python
+# -*- python -*-
+
+import os
+import sys
+import re
+from optparse import OptionParser
+from math import log,sqrt
+import numpy as npy
+
+#from ase import *
+from ase.units import Ha, Bohr
+from gpaw.output import eigenvalue_string
+from gpaw.cluster import Cluster
+
+def fatalerror(msg=None):
+    if msg:
+        print 'gpaw-energies error:',msg
+    parser.print_help()
+    sys.exit()
+
+parser = OptionParser(usage='%prog [options] [file]')
+parser.add_option("-F", "--Forces", action='count', default=None,
+                  help='print forces also')
+parser.add_option("-G", "--Gauss", dest='gauss', default=None,
+                  help=' Gauss fold by width in the chosen energy unit')
+parser.add_option("-n", "--npoints", dest='npoints', default=201,
+                  help='# of base points for the sampling (dafult 201)')
+parser.add_option("-H", "--Hartree", action='count', default=None,
+                  help='use Hartree energy units (def: eV)')
+parser.add_option("-s", "--structure", dest='structure_file', default=None,
+                  help=' Write the atomic structure to the given file')
+opt, args = parser.parse_args()
+#print "opt=",opt
+##print "args=",args
+
+
+fname = 'gpaw-restart.gpw'
+if len(args):
+    fname = args[0]
+
+from gpaw import GPAW
+paw = GPAW(fname, txt=None, idiotproof=False)
+
+lengthunit = 'Ang'
+energyunit = 'eV'
+if opt.Hartree is not None:
+    Ha = 1.0
+    a0 = 1.0
+    lengthunit = 'Bohr'
+    energyunit = 'Hartree'
+
+# write the structure out only
+if opt.structure_file:
+    s = Cluster(paw.atoms)
+    s.write(opt.structure_file)
+    sys.exit()
+
+out = sys.stdout
+
+print >> out, "# file=",fname
+additional_info=True
+if additional_info:
+    p = paw.input_parameters
+    print >> out, '# xc:',paw.hamiltonian.xc.type
+    if  p['charge']:
+        print >> out, '# charge:',p['charge']
+    if paw.get_spin_polarized():
+        if paw.occupations.fixmagmom:
+            fixmom = '(fixed)'
+        else:
+            fixmom = ''
+        print >> out, '# magnetic moment:', \
+            paw.get_magnetic_moment(), fixmom
+    atoms = paw.get_atoms()
+    cell = atoms.get_cell().diagonal()
+    h_cv = paw.wfs.gd.h_cv * Bohr
+    h = ''
+    for h_c in h_cv:
+        h += str(h_c) + ' '
+    print >> out, '# unit cell=', cell
+    print >> out, '# h=', h
+    print >> out, '# periodic=', atoms.get_pbc()
+    print >> out, "#",
+    if not paw.scf.converged:
+        print >> out,'not',
+    print >> out, 'converged'
+    try:
+        for error in ['density','energy']:
+            print >> out, '# Log10 error('+error+')=%8.3f' %\
+                  (log(paw.error[error])/log(10.))
+        bands = paw.input_parameters['convergence']['bands']
+        print >> out, '# Log10 error for', str(bands),'bands=%8.3f' %\
+               (log(paw.error['eigenstates'])/log(10.))
+    except:
+        pass
+
+print >> out, "# energy unit:", energyunit
+print >> out, '# Fermi temp.  =', paw.occupations.width * Ha
+print >> out, '# Free energy = ', paw.hamiltonian.Etot * Ha
+print >> out, '# Zero Kelvin = ', (paw.hamiltonian.Etot + 
+                                   0.5 * paw.hamiltonian.S) * Ha
+print >> out, '# kin.    "    = ',paw.hamiltonian.Ekin * Ha
+print >> out, '# pot.    "    = ',paw.hamiltonian.Epot * Ha
+print >> out, '# xc      "    = ',paw.hamiltonian.Exc * Ha
+try:
+    eFermi = paw.get_fermi_level()
+except:
+    homo, lumo = paw.get_homo_lumo()
+    eFermi = 0.5 * (homo + lumo)
+print >> out, '# Fermi level = ', eFermi
+
+# dos
+if opt.gauss is None:
+    print >> out, eigenvalue_string(paw, '# '),
+else:
+    width = float(opt.gauss)
+    if opt.npoints is None:
+        npts = 201
+    else:
+        npts = int(opt.npoints)
+    dos = DOS(paw, width=width, npts=npts)
+    print >> out, '# Fermi level shifted to 0'
+    print >> out, '# folding with', width
+    if paw.get_number_of_spins() == 1:
+        print >> out, '# eps    dos'
+        for e, dos in zip(dos.get_energies(), dos.get_dos()):
+            print >> out, e, dos
+    else:
+        print >> out, '# eps    dos(a)   dos(b)'
+        for e, dosa, dosb in zip(dos.get_energies(),
+                                 dos.get_dos(0), dos.get_dos(1)):
+            print >> out, e, dosa, dosb
+
+# forces
+if opt.Forces:
+    if paw.forces.F_av is None:
+        print >> out, '# sorry, no forces'
+    else:
+        print >> out, '# Forces [' + energyunit + '/' + lengthunit + ']:'
+        fmax = 0.
+        scale = Ha / Bohr
+        for s, f in zip(paw.get_atoms().get_chemical_symbols(), 
+                        paw.forces.F_av):
+            norm = sqrt(npy.dot(f, f)) * scale
+            if norm > fmax:
+                fmax = norm
+            print >> out, s, norm, f * scale
+        print >> out, '# max. force', fmax 

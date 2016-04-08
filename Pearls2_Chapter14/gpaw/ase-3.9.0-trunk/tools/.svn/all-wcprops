@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/projects/ase/!svn/ver/3971/trunk/tools
+END
+ase-gui.bat
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3399/trunk/tools/ase-gui.bat
+END
+ase-run.bat
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3399/trunk/tools/ase-run.bat
+END
+ase-db.bat
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3399/trunk/tools/ase-db.bat
+END
+sphinx.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3932/trunk/tools/sphinx.py
+END
+ase-info
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3378/trunk/tools/ase-info
+END
+_ase_bash_complete.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3971/trunk/tools/_ase_bash_complete.py
+END
+pep8.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/2621/trunk/tools/pep8.py
+END
+ase-build
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3378/trunk/tools/ase-build
+END
+ase-info.bat
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3399/trunk/tools/ase-info.bat
+END
+ase-build.bat
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3399/trunk/tools/ase-build.bat
+END
+ase-gui
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3378/trunk/tools/ase-gui
+END
+ase-run
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3378/trunk/tools/ase-run
+END
+ase-db
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/3532/trunk/tools/ase-db
+END

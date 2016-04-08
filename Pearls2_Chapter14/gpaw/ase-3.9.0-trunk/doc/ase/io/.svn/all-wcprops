@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/projects/ase/!svn/ver/3736/trunk/doc/ase/io
+END
+172_mod.xyz
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3244/trunk/doc/ase/io/172_mod.xyz
+END
+opls.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3244/trunk/doc/ase/io/opls.py
+END
+opls.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3736/trunk/doc/ase/io/opls.rst
+END
+view_172_mod.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3244/trunk/doc/ase/io/view_172_mod.py
+END
+write_lammps.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3244/trunk/doc/ase/io/write_lammps.py
+END
+172_defs.par
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3244/trunk/doc/ase/io/172_defs.par
+END

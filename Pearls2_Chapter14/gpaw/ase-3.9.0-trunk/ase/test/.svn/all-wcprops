@@ -1,0 +1,431 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/projects/ase/!svn/ver/4013/trunk/ase/test
+END
+emt_h3o2m.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2818/trunk/ase/test/emt_h3o2m.py
+END
+vtk_data.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3257/trunk/ase/test/vtk_data.py
+END
+maxwellboltzmann.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/1697/trunk/ase/test/maxwellboltzmann.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3906/trunk/ase/test/__init__.py
+END
+strain.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/1707/trunk/ase/test/strain.py
+END
+eam_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3188/trunk/ase/test/eam_test.py
+END
+verlet.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/1692/trunk/ase/test/verlet.py
+END
+scaled_positions.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/1572/trunk/ase/test/scaled_positions.py
+END
+strain_emt.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3389/trunk/ase/test/strain_emt.py
+END
+mic.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3631/trunk/ase/test/mic.py
+END
+dependency_backend_gdk.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3478/trunk/ase/test/dependency_backend_gdk.py
+END
+com.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/1947/trunk/ase/test/com.py
+END
+scientificpython_bug.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3003/trunk/ase/test/scientificpython_bug.py
+END
+crystal.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/1474/trunk/ase/test/crystal.py
+END
+noncollinear.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/1931/trunk/ase/test/noncollinear.py
+END
+db.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3956/trunk/ase/test/db.py
+END
+eos.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3389/trunk/ase/test/eos.py
+END
+surface.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3967/trunk/ase/test/surface.py
+END
+example.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3088/trunk/ase/test/example.py
+END
+neighbor.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2286/trunk/ase/test/neighbor.py
+END
+stm.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3368/trunk/ase/test/stm.py
+END
+constr_setpos.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2614/trunk/ase/test/constr_setpos.py
+END
+emt2.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2360/trunk/ase/test/emt2.py
+END
+dependency_backend_gtkagg.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3820/trunk/ase/test/dependency_backend_gtkagg.py
+END
+set_momenta.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3562/trunk/ase/test/set_momenta.py
+END
+COCu111.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3429/trunk/ase/test/COCu111.py
+END
+distmom.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/970/trunk/ase/test/distmom.py
+END
+center.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3607/trunk/ase/test/center.py
+END
+dihedralconstraint.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3128/trunk/ase/test/dihedralconstraint.py
+END
+vacancy.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/1707/trunk/ase/test/vacancy.py
+END
+aep1.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3766/trunk/ase/test/aep1.py
+END
+vtk_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3752/trunk/ase/test/vtk_pipeline.py
+END
+CO2_Au111.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3743/trunk/ase/test/CO2_Au111.py
+END
+basin.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3651/trunk/ase/test/basin.py
+END
+things.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3321/trunk/ase/test/things.py
+END
+COCu111_2.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/1930/trunk/ase/test/COCu111_2.py
+END
+rotate.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/2797/trunk/ase/test/rotate.py
+END
+build.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/1676/trunk/ase/test/build.py
+END
+dimer.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/1676/trunk/ase/test/dimer.py
+END
+dimer_method.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3689/trunk/ase/test/dimer_method.py
+END
+set_get_angle.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2865/trunk/ase/test/set_get_angle.py
+END
+neb.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3476/trunk/ase/test/neb.py
+END
+emt1.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/1676/trunk/ase/test/emt1.py
+END
+db2.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3936/trunk/ase/test/db2.py
+END
+hcp.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3093/trunk/ase/test/hcp.py
+END
+bader.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2360/trunk/ase/test/bader.py
+END
+Ag-Cu100.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2814/trunk/ase/test/Ag-Cu100.py
+END
+vib.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3370/trunk/ase/test/vib.py
+END
+minimahop.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3651/trunk/ase/test/minimahop.py
+END
+rotate_euler.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/1676/trunk/ase/test/rotate_euler.py
+END
+repeat_FixAtoms.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2360/trunk/ase/test/repeat_FixAtoms.py
+END
+distance.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2861/trunk/ase/test/distance.py
+END
+coverage.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/1697/trunk/ase/test/coverage.py
+END
+geometry.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2205/trunk/ase/test/geometry.py
+END
+replay.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/2814/trunk/ase/test/replay.py
+END
+properties.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/1697/trunk/ase/test/properties.py
+END
+al.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3701/trunk/ase/test/al.py
+END
+atoms_distance.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3864/trunk/ase/test/atoms_distance.py
+END
+atom.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/1697/trunk/ase/test/atom.py
+END
+md.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/1676/trunk/ase/test/md.py
+END
+dependency_matplotlib.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3438/trunk/ase/test/dependency_matplotlib.py
+END
+h2.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3432/trunk/ase/test/h2.py
+END
+pull.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/1676/trunk/ase/test/pull.py
+END
+n2.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/1676/trunk/ase/test/n2.py
+END
+fix_bond_length_mic.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3738/trunk/ase/test/fix_bond_length_mic.py
+END
+dependency_gtk.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3438/trunk/ase/test/dependency_gtk.py
+END
+stress.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3394/trunk/ase/test/stress.py
+END
+eoswoase.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2858/trunk/ase/test/eoswoase.py
+END
+emt.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/1676/trunk/ase/test/emt.py
+END
+unitcellfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/1707/trunk/ase/test/unitcellfilter.py
+END
+ag.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3380/trunk/ase/test/ag.py
+END

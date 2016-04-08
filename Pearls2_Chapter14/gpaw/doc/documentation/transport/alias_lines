@@ -1,0 +1,27 @@
+#set the script_dir by the path of analysis_scripts in your computer
+script_dir = ''
+
+#---Potential---
+alias vt='python' +  script_dir + '/vt.py $*'
+alias vtx='python' +  script_dir + '/vtx.py $*'
+alias vty='python' +  script_dir + '/vty.py $*'
+
+#---Density---
+alias nt='python' +  script_dir + '/nt.py $*'
+alias ntx='python' +  script_dir + '/ntx.py $*'
+alias nty='python' +  script_dir + '/nty.py $*'
+
+#---Transmission and DOS---
+alias tc='python' + script_dir + '/tc.py $*'
+alias dos='python' + script_dir + '/dos.py $*'
+alias pdos='python' + script_dir + '/pdos.py $*'
+
+#---Charge---
+alias charge='python' + script_dir + '/charge.py $*'
+
+#---IV---
+alias charge='python' + script_dir + '/iv.py $*'
+
+#---Force---
+alias charge='python' + script_dir + '/force.py $*'
+

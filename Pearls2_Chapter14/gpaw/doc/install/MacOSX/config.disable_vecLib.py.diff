@@ -1,0 +1,23 @@
+Index: config.py
+===================================================================
+--- config.py	(revision 7760)
++++ config.py	(working copy)
+@@ -228,12 +228,12 @@
+         extra_compile_args += ['-Wall', '-std=c99']
+         include_dirs += ['/usr/include/malloc']
+ 
+-        if glob('/System/Library/Frameworks/vecLib.framework') != []:
+-            extra_link_args += ['-framework vecLib']
+-            msg += ['* Using vecLib']
+-        else:
+-            libraries += ['blas', 'lapack']
+-            msg +=  ['* Using standard lapack']
++        # if glob('/System/Library/Frameworks/vecLib.framework') != []:
++        #    extra_link_args += ['-framework vecLib']
++        #    msg += ['* Using vecLib']
++        # else:
++        libraries += ['blas', 'lapack']
++        msg +=  ['* Using standard lapack']
+ 
+     return msg
+ 

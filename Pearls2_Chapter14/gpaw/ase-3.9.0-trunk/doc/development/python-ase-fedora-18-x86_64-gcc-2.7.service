@@ -1,0 +1,13 @@
+[Unit]
+Description=buildslave python-ase-fedora+18+x86_64+gcc+2.7 stock
+After=network.target
+
+[Service]
+Type=forking
+User=buildslave-username
+Group=buildslave-groupname
+ExecStart=/usr/bin/sh /home/buildslave-username/python-ase-fedora+18+x86_64+gcc+2.7-start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

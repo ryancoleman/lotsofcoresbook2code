@@ -1,0 +1,197 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3982/trunk/doc/ase/calculators
+END
+turbomole.rst
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/turbomole.rst
+END
+vasp.rst
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/vasp.rst
+END
+gromacs_example_mm_relax.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/projects/ase/!svn/ver/3700/trunk/doc/ase/calculators/gromacs_example_mm_relax.py
+END
+exciting.rst
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3837/trunk/doc/ase/calculators/exciting.rst
+END
+calculators.rst
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/3737/trunk/doc/ase/calculators/calculators.rst
+END
+lammpsrun.rst
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/lammpsrun.rst
+END
+castep.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/castep.rst
+END
+dftb.rst
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/dftb.rst
+END
+his.pdb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2771/trunk/doc/ase/calculators/his.pdb
+END
+H2O_aims.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3003/trunk/doc/ase/calculators/H2O_aims.py
+END
+INCAR_NaCl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/669/trunk/doc/ase/calculators/INCAR_NaCl
+END
+emt.rst
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/emt.rst
+END
+lammps.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/lammps.rst
+END
+exciting.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3418/trunk/doc/ase/calculators/exciting.py
+END
+gromacs.rst
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/gromacs.rst
+END
+gromacs_example_mm_relax2.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/projects/ase/!svn/ver/3258/trunk/doc/ase/calculators/gromacs_example_mm_relax2.py
+END
+NaCl.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3982/trunk/doc/ase/calculators/NaCl.py
+END
+fcc_Ni_fleur.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/2286/trunk/doc/ase/calculators/fcc_Ni_fleur.py
+END
+test_ase_qmmm_manyqm.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/projects/ase/!svn/ver/3258/trunk/doc/ase/calculators/test_ase_qmmm_manyqm.py
+END
+dftb_ex2_relaxbyDFTB.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/projects/ase/!svn/ver/3659/trunk/doc/ase/calculators/dftb_ex2_relaxbyDFTB.py
+END
+dftb_ex1_relax.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3659/trunk/doc/ase/calculators/dftb_ex1_relax.py
+END
+fleur.rst
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/fleur.rst
+END
+nwchem.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/nwchem.rst
+END
+ase_qmmm_manyqm.rst
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/ase_qmmm_manyqm.rst
+END
+siesta.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3837/trunk/doc/ase/calculators/siesta.rst
+END
+ase_castep_demo.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/ase/!svn/ver/3257/trunk/doc/ase/calculators/ase_castep_demo.py
+END
+spc216.gro
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3700/trunk/doc/ase/calculators/spc216.gro
+END
+jacapo.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/jacapo.rst
+END
+FHI-aims.rst
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/FHI-aims.rst
+END
+eam.rst
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3736/trunk/doc/ase/calculators/eam.rst
+END
+dftb_ex3_make_2h2o.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/ase/!svn/ver/3659/trunk/doc/ase/calculators/dftb_ex3_make_2h2o.py
+END
+abinit.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3837/trunk/doc/ase/calculators/abinit.rst
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3698/trunk/ase/test/gromacs
+END
+test_gromacs.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3698/trunk/ase/test/gromacs/test_gromacs.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/2897/trunk/ase/test/gromacs/__init__.py
+END

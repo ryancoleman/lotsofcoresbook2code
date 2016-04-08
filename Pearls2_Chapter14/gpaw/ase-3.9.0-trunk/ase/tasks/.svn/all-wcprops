@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/projects/ase/!svn/ver/3272/trunk/ase/tasks
+END
+calcfactory.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3272/trunk/ase/tasks/calcfactory.py
+END
+bulk.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2755/trunk/ase/tasks/bulk.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2351/trunk/ase/tasks/__init__.py
+END
+task.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2716/trunk/ase/tasks/task.py
+END
+main.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2690/trunk/ase/tasks/main.py
+END
+molecule.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2768/trunk/ase/tasks/molecule.py
+END
+io.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/2576/trunk/ase/tasks/io.py
+END

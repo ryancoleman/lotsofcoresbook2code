@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3730/trunk/ase/test/nwchem
+END
+nwchem_h3o2m.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3548/trunk/ase/test/nwchem/nwchem_h3o2m.py
+END
+nwchem_broken_symmetry.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/projects/ase/!svn/ver/3668/trunk/ase/test/nwchem/nwchem_broken_symmetry.py
+END
+nwchem_cmdline.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3730/trunk/ase/test/nwchem/nwchem_cmdline.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3003/trunk/ase/test/nwchem/__init__.py
+END
+nwchem_strong_levelshift.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/projects/ase/!svn/ver/3661/trunk/ase/test/nwchem/nwchem_strong_levelshift.py
+END
+nwchem_spin_symmetry.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/3662/trunk/ase/test/nwchem/nwchem_spin_symmetry.py
+END

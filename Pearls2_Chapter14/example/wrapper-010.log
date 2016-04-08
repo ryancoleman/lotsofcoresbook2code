@@ -1,0 +1,6 @@
+host bdi rank 010 - 10c,4t,40o 
+PYMIC_BASE=/home/rmfarber/book2/s09/gpaw/pyMIC
+PYMIC_LIBRARY_PATH=/home/rmfarber/book2/s09/gpaw/pyMIC/examples/zgemm:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/svd:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/simple:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/empty_kernel:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it_lowlevel:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/dgemm:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers_offset:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_map:/home/rmfarber/book2/s09/gpaw/pyMIC/pymic:/home/rmfarber/book2/s09/gpaw/pyMIC/benchmarks:/home/rmfarber/book2/s09/gpaw/pyMIC/tests:/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/mic
+MIC_ENV_PREFIX=PYMIC
+PYMIC_LD_LIBRARY_PATH=/opt/intel/composer_xe_2015.3.187/compiler/lib/mic:/opt/intel/composer_xe_2015.3.187/mpirt/lib/mic:/opt/intel/mic/coi/device-linux-release/lib:/opt/intel/mic/myo/lib:/opt/intel/composer_xe_2015.3.187/ipp/lib/lib/mic:/opt/intel/mic/coi/device-linux-release/lib:/opt/intel/mic/myo/lib:/opt/intel/composer_xe_2015.3.187/compiler/lib/mic:/opt/intel/composer_xe_2015.3.187/mkl/lib/mic:/opt/intel/composer_xe_2015.3.187/tbb/lib/mic
+GPAW info: GPAW_OFFLOAD=1

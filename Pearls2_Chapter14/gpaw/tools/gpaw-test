@@ -1,0 +1,150 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import tempfile
+import numpy as np
+
+from trace import Trace, pickle
+
+def err(msg):
+    sys.stderr.write("%s: %s\n" % (os.path.basename(sys.argv[0]), msg))
+
+def main(outfile, tests=None, testscript='test.py'):
+    assert 'gpaw' not in sys.modules, 'GPAW must be unloaded first!'
+
+    ignore_modules = []
+    ignore_dirs = filter(len, os.getenv('IGNOREPATHS', default='').split(':'))
+    ignore_dirs.extend(np.__path__) # saves time
+
+    try:
+        # Trace module in Python 2.4 dislikes files without newline
+        # at the end. Unfortunately SciPy lacks one in __config__.py
+        import scipy
+        ignore_dirs.extend(scipy.__path__)
+    except ImportError:
+        pass
+
+    # Temporary file and directory for coverage results on this core
+    coverfile = tempfile.mktemp(prefix='gpaw-coverfile-')
+    coverdir = tempfile.mkdtemp(prefix='gpaw-coverdir-')
+
+    trace = Trace(count=1, trace=0, countfuncs=False,
+                  countcallers=False, ignoremods=ignore_modules,
+                  ignoredirs=ignore_dirs, infile=None,
+                  outfile=coverfile)
+
+    if tests is not None:
+        sys.argv.extend(tests)
+    try:
+        trace.run('execfile(%r, {})' % (testscript,))
+    except IOError, e:
+        err('Could not run test script %r because: %s' % (testscript, e))
+        sys.exit(1)
+    except SystemExit:
+        pass
+
+    coverage = trace.results()
+    coverage.write_results(summary=False, coverdir=coverdir) # temporary file
+
+
+    # NB: Do not import from gpaw before trace has been run!
+    from gpaw import mpi
+    from gpaw.version import version
+
+    mycounts = pickle.load(open(coverfile, 'rb'))[0]
+    if mpi.world.rank == 0:
+        _key = ('<string>',-1,) # entries with filename <string> are ignored
+        _value = np.fromstring(version, sep='.', dtype=int)
+        _v = lambda v, sep='.': sep.join(map(str,v))
+        if os.path.isfile(outfile):
+            print 'Resuming existing coverage file ...'
+            counts, calledfuncs, callers = pickle.load(open(outfile, 'rb'))
+            assert not calledfuncs and not callers # should both be empty
+            try:
+                assert np.all(counts[_key]==_value), (_v(counts[_key]),version)
+            except KeyError:
+                err('Coverage file has no version. %s was assumed.' % version)
+                counts[_key] = _value
+            except AssertionError, e:
+                if e[0] > e[1]: # trying to overwrite newer should fail
+                    err('Coverage file version %s (> %s). Aborting.' % e[:])
+                    sys.exit(1)
+                err('Coverage file version %s (< %s). Data discarded.' % e[:])
+                counts = {_key: _value}
+        else:
+            print 'Initiating new coverage file ...'
+            counts = {_key: _value}
+
+    if mpi.world.size == 1:
+        # Merge generated cover file with existing (if any)
+        for filename,line in mycounts.keys():
+            counts[(filename,line)] = mycounts.pop((filename,line)) \
+                + counts.get((filename,line), 0)
+    else:
+        # Find largest line number detected for each locally executed file
+        myfiles = {}
+        for filename,line in mycounts.keys():
+            assert '\n' not in filename
+            myfiles[filename] = max(myfiles.get(filename,0), line)
+
+        # Agree on which files have been executed on at least one core
+        filenames = myfiles.keys()
+        if mpi.world.rank == 0:
+            for rank in range(1, mpi.world.size):
+                filenames.extend(mpi.receive_string(rank).split('\n'))
+            filenames = np.unique(filenames).tolist()
+            tmp = '\n'.join(filenames)
+        else:
+            mpi.send_string('\n'.join(filenames), 0)
+            tmp = None
+        filenames = mpi.broadcast_string(tmp).split('\n')
+
+        # Map out largest line number detected for each globally executed file
+        filesizes = np.array([myfiles.get(filename,0) for filename in filenames])
+        mpi.world.max(filesizes)
+
+        # Merge global totals of generated cover files with existing (if any)
+        # NB: Techically, line numbers are one-indexed but empty files may
+        # lead to entries at (filename,0) due to a Python 2.4 quirk.
+        for filename,lines in zip(filenames,filesizes):
+            numexecs = np.zeros(lines+1, dtype=int)
+            for line in range(lines+1):
+                if (filename,line) in mycounts:
+                    numexecs[line] = mycounts.pop((filename,line))
+            mpi.world.sum(numexecs, 0)
+            if mpi.world.rank == 0:
+                for line in np.argwhere(numexecs).ravel():
+                    counts[(filename,line)] = numexecs[line] \
+                        + counts.get((filename,line), 0)
+
+    # Store as 3-tuple of dicts in a new pickle (i.e. same format + versions)
+    if mpi.world.rank == 0:
+        pickle.dump((counts,{},{}), open(outfile, 'wb'), 1)
+    mpi.world.barrier()
+
+    del version, mpi, sys.modules['gpaw'] # unload gpaw module references
+
+    assert not mycounts, 'Not all entries were processed: %s' % mycounts.keys()
+    os.system('rm -rf ' + coverfile + ' ' + coverdir)
+
+
+if '--coverage' in sys.argv:
+    i = sys.argv.index('--coverage')
+    sys.argv.pop(i)
+    outfile = sys.argv.pop(i)
+
+    # Get full path of test script without importing GPAW ourself
+    import subprocess
+    poi = subprocess.Popen('python -c "import gpaw; print gpaw.__path__[0]"', \
+        shell=True, stdout=subprocess.PIPE)
+    testscript = poi.stdout.read().strip() + '/test/test.py'
+    if poi.wait() != 0 or not os.path.isfile(testscript):
+        raise RuntimeError('Could not locate test script (%s).' % testscript)
+
+    # Perform coverage test
+    main(outfile, tests=[], testscript=testscript)
+else:
+    import sys
+    from gpaw.test.test import run
+    nfailed = run()

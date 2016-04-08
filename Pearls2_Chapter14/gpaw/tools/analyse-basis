@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+
+from gpaw.lcao.analyse_basis import main
+
+main()

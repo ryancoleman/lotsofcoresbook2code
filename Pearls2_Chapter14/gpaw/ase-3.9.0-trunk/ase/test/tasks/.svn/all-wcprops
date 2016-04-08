@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3964/trunk/ase/test/tasks
+END
+optandfit.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2713/trunk/ase/test/tasks/optandfit.py
+END
+analyse.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3858/trunk/ase/test/tasks/analyse.py
+END
+htb.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2788/trunk/ase/test/tasks/htb.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/2688/trunk/ase/test/tasks/__init__.py
+END
+dcdft.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3964/trunk/ase/test/tasks/dcdft.py
+END

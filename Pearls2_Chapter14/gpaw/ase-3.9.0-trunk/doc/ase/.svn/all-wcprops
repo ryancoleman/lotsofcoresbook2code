@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/projects/ase/!svn/ver/3999/trunk/doc/ase
+END
+ase.rst
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3813/trunk/doc/ase/ase.rst
+END
+data.rst
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3736/trunk/doc/ase/data.rst
+END
+general_surface.tex
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2336/trunk/doc/ase/general_surface.tex
+END
+structure.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3389/trunk/doc/ase/structure.py
+END
+lattice.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3846/trunk/doc/ase/lattice.rst
+END
+ga.rst
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3801/trunk/doc/ase/ga.rst
+END
+surface.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3736/trunk/doc/ase/surface.rst
+END
+infrared.rst
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3942/trunk/doc/ase/infrared.rst
+END
+parallel.rst
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3736/trunk/doc/ase/parallel.rst
+END
+optimize.rst
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3736/trunk/doc/ase/optimize.rst
+END
+md.rst
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3815/trunk/doc/ase/md.rst
+END
+atom.rst
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3736/trunk/doc/ase/atom.rst
+END
+utils.rst
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3944/trunk/doc/ase/utils.rst
+END
+units.rst
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3736/trunk/doc/ase/units.rst
+END
+atoms.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/1691/trunk/doc/ase/atoms.py
+END
+io.rst
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3736/trunk/doc/ase/io.rst
+END
+surface.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3999/trunk/doc/ase/surface.py
+END
+cmdline.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3659/trunk/doc/ase/cmdline.rst
+END
+neighbors.rst
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3736/trunk/doc/ase/neighbors.rst
+END
+m13.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/2351/trunk/doc/ase/m13.py
+END
+vibrations.rst
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3736/trunk/doc/ase/vibrations.rst
+END
+atoms.rst
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3864/trunk/doc/ase/atoms.rst
+END
+phonons.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3736/trunk/doc/ase/phonons.rst
+END
+trajectory.rst
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3736/trunk/doc/ase/trajectory.rst
+END
+iopng.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2154/trunk/doc/ase/iopng.py
+END
+structure.rst
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3737/trunk/doc/ase/structure.rst
+END
+dimermethod.rst
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3736/trunk/doc/ase/dimermethod.rst
+END
+save_pov.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3659/trunk/doc/ase/save_pov.py
+END
+neb.rst
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3736/trunk/doc/ase/neb.rst
+END
+phonons.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3663/trunk/doc/ase/phonons.py
+END
+setup-overview.rst
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3736/trunk/doc/ase/setup-overview.rst
+END
+general_surface.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/2336/trunk/doc/ase/general_surface.py
+END
+constraints.rst
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3736/trunk/doc/ase/constraints.rst
+END

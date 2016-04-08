@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/projects/ase/!svn/ver/3991/trunk/ase/utils
+END
+extrapolate.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3465/trunk/ase/utils/extrapolate.py
+END
+distance.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2801/trunk/ase/utils/distance.py
+END
+geometry.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3356/trunk/ase/utils/geometry.py
+END
+bee.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/1219/trunk/ase/utils/bee.py
+END
+deprecate.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/1666/trunk/ase/utils/deprecate.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3901/trunk/ase/utils/__init__.py
+END
+eosase2.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2684/trunk/ase/utils/eosase2.py
+END
+memory.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/1001/trunk/ase/utils/memory.py
+END
+sphinx.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3977/trunk/ase/utils/sphinx.py
+END
+adsorb.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3659/trunk/ase/utils/adsorb.py
+END
+linesearch.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/1630/trunk/ase/utils/linesearch.py
+END
+sjeos.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3378/trunk/ase/utils/sjeos.py
+END
+voids.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3323/trunk/ase/utils/voids.py
+END
+eos.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2778/trunk/ase/utils/eos.py
+END
+timing.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3991/trunk/ase/utils/timing.py
+END

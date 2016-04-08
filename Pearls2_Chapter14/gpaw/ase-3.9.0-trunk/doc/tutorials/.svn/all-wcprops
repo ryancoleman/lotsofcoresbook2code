@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3983/trunk/doc/tutorials
+END
+surface.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3980/trunk/doc/tutorials/surface.py
+END
+surface.rst
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/3803/trunk/doc/tutorials/surface.rst
+END
+dissociation.rst
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3149/trunk/doc/tutorials/dissociation.rst
+END
+manipulating_atoms.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/1672/trunk/doc/tutorials/manipulating_atoms.py
+END
+manipulating_atoms.rst
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/projects/ase/!svn/ver/3736/trunk/doc/tutorials/manipulating_atoms.rst
+END
+N2Ru-Dissociation1.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/3982/trunk/doc/tutorials/N2Ru-Dissociation1.py
+END
+N2Ru-Dissociation2.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/3982/trunk/doc/tutorials/N2Ru-Dissociation2.py
+END
+lattice_constant.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/2655/trunk/doc/tutorials/lattice_constant.py
+END
+lattice_constant.rst
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3736/trunk/doc/tutorials/lattice_constant.rst
+END
+atomization.rst
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/442/trunk/doc/tutorials/atomization.rst
+END
+N2.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3982/trunk/doc/tutorials/N2.py
+END
+tutorials.rst
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3799/trunk/doc/tutorials/tutorials.rst
+END
+saving_graphics.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3438/trunk/doc/tutorials/saving_graphics.py
+END
+N2Cu.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3980/trunk/doc/tutorials/N2Cu.py
+END

@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3826/trunk/ase/calculators/jacapo/utils
+END
+findsym.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/1420/trunk/ase/calculators/jacapo/utils/findsym.py
+END
+bee.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/1420/trunk/ase/calculators/jacapo/utils/bee.py
+END
+sgroup.tar.gz
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projects/ase/!svn/ver/1321/trunk/ase/calculators/jacapo/utils/sgroup.tar.gz
+END
+bader.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3229/trunk/ase/calculators/jacapo/utils/bader.py
+END
+symmol.tar.gz
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projects/ase/!svn/ver/1322/trunk/ase/calculators/jacapo/utils/symmol.tar.gz
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/870/trunk/ase/calculators/jacapo/utils/__init__.py
+END
+sgroup.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/ase/!svn/ver/1960/trunk/ase/calculators/jacapo/utils/sgroup.py
+END
+symmol.out
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/1420/trunk/ase/calculators/jacapo/utils/symmol.out
+END
+symmol.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/ase/!svn/ver/1701/trunk/ase/calculators/jacapo/utils/symmol.py
+END
+jmath.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/1420/trunk/ase/calculators/jacapo/utils/jmath.py
+END
+wannier.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/3826/trunk/ase/calculators/jacapo/utils/wannier.py
+END
+bandstructure.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/projects/ase/!svn/ver/1420/trunk/ase/calculators/jacapo/utils/bandstructure.py
+END
+isotropy.tar.gz
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/projects/ase/!svn/ver/1320/trunk/ase/calculators/jacapo/utils/isotropy.tar.gz
+END

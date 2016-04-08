@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3986/trunk/ase/db/templates
+END
+layout.html
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/3903/trunk/ase/db/templates/layout.html
+END
+summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/3986/trunk/ase/db/templates/summary.html
+END
+more.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3978/trunk/ase/db/templates/more.html
+END
+table.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/3979/trunk/ase/db/templates/table.html
+END

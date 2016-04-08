@@ -1,0 +1,17 @@
+Current configuration
+libraries ['mkl_intel_lp64', 'mkl_intel_thread', 'mkl_core', 'mkl_lapack95_lp64', 'mkl_scalapack_lp64', 'mkl_blacs_intelmpi_lp64', 'pthread', 'xc']
+library_dirs ['/opt/intel/composer_xe_2015.3.187/mkl/lib/intel64/', '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib']
+include_dirs ['/usr/lib64/python2.7/site-packages/numpy/core/include', '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include']
+define_macros [('NPY_NO_DEPRECATED_API', 7), ('GPAW_NO_UNDERSCORE_CBLACS', '1'), ('GPAW_NO_UNDERSCORE_CSCALAPACK', '1'), ('GPAW_ASYNC', 1), ('GPAW_MPI2', 1), ('GPAW_WITH_SL', '1')]
+extra_link_args ['-openmp', '-offload-option,mic,link,"-L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic/ -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lpthread"']
+extra_compile_args ['-xHOST', '-openmp', '-g', '-O3', '-no-prec-div', '-static', '-std=c99', '-fPIC', '-offload-option,mic,compiler,"-openmp"', '-opt-report-phase=offload']
+runtime_library_dirs []
+extra_objects []
+
+Parallel configuration
+mpicompiler mpiicc
+mpi_libraries []
+mpi_library_dirs []
+mpi_include_dirs []
+mpi_define_macros []
+mpi_runtime_library_dirs []

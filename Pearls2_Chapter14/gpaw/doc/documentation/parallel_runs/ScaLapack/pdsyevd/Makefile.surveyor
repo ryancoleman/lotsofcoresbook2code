@@ -1,0 +1,9 @@
+CC = /bgsys/drivers/ppcfloor/comm/bin/mpicc
+F77 = /bgsys/drivers/ppcfloor/comm/bin/mpicc
+CFLAGS = -O3 -Wall -I./include -DGPAW_NO_UNDERSCORE_CBLACS -DGPAW_NO_UNDERSCORE_CSCALAPACK -DGPAW_NO_UNDERSCORE_BLACS -DGPAW_NO_UNDERSCORE_SCALAPACK -std=c99
+INCLUDEMPI = -I/bgsys/drivers/ppcfloor/comm/include
+LDFLAGS = -O3 -L/opt/ibmcmp/xlf/bg/11.1/bglib -lxlf90_r -lxlopt -lxl -lxlfmath -L/opt/ibmcmp/xlsmp/bg/1.7/bglib -lxlsmp
+LIBSCALAPACK = /soft/apps/LAPACK/liblapack_bgp.a /soft/apps/SCALAPACK/libscalapack.a
+LIBBLACS = /soft/apps/BLACS/libblacsCinit_MPI-BGP-0.a /soft/apps/BLACS/libblacs_MPI-BGP-0.a
+LIBBLAS = /soft/apps/LAPACK/liblapack_bgp.a /soft/apps/LIBGOTO/libgoto.a
+LIBMPI = -L/bgsys/drivers/ppcfloor/comm/lib

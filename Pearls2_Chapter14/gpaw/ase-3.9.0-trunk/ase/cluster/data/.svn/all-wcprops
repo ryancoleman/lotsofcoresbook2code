@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/1630/trunk/ase/cluster/data
+END
+symmetry.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/1398/trunk/ase/cluster/data/symmetry.py
+END
+hcp.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/1609/trunk/ase/cluster/data/hcp.py
+END
+fcc.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/1630/trunk/ase/cluster/data/fcc.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/projects/ase/!svn/ver/1609/trunk/ase/cluster/data/__init__.py
+END
+au.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/1398/trunk/ase/cluster/data/au.py
+END

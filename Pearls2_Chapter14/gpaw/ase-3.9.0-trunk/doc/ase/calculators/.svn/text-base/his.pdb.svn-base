@@ -1,0 +1,15 @@
+COMPND HIS HISTIDINE
+REMARK HIS Part of HIC-Up: http://xray.bmc.uu.se/hicup
+REMARK HIS Extracted from PDB file pdb1wpu.ent
+HETATM    1  N   HIS  4234       0.999  -1.683  -0.097  1.00 20.00      
+HETATM    2  CA  HIS  4234       1.191  -0.222  -0.309  1.00 20.00      
+HETATM    3  C   HIS  4234       2.641   0.213  -0.105  1.00 20.00      
+HETATM    4  O   HIS  4234       3.529  -0.651  -0.222  1.00 20.00      
+HETATM    5  CB  HIS  4234       0.245   0.546   0.619  1.00 20.00      
+HETATM    6  CG  HIS  4234      -1.200   0.349   0.280  1.00 20.00      
+HETATM    7  ND1 HIS  4234      -1.854  -0.849   0.470  1.00 20.00      
+HETATM    8  CD2 HIS  4234      -2.095   1.176  -0.310  1.00 20.00      
+HETATM    9  CE1 HIS  4234      -3.087  -0.752   0.006  1.00 20.00      
+HETATM   10  NE2 HIS  4234      -3.258   0.467  -0.474  1.00 20.00      
+HETATM   11  OXT HIS  4234       2.889   1.404   0.141  1.00 20.00      
+REMARK HIS ENDHET

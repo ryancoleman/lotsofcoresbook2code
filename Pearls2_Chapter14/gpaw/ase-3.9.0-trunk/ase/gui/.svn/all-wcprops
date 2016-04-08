@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/projects/ase/!svn/ver/3947/trunk/ase/gui
+END
+setupwindow.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2465/trunk/ase/gui/setupwindow.py
+END
+calculator.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3378/trunk/ase/gui/calculator.py
+END
+surfaceslab.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2582/trunk/ase/gui/surfaceslab.py
+END
+rotate.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2457/trunk/ase/gui/rotate.py
+END
+save.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3363/trunk/ase/gui/save.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/82/trunk/ase/gui/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3257/trunk/ase/gui/settings.py
+END
+colors.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3872/trunk/ase/gui/colors.py
+END
+execute.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3438/trunk/ase/gui/execute.py
+END
+neb.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3652/trunk/ase/gui/neb.py
+END
+defaults.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3438/trunk/ase/gui/defaults.py
+END
+view.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3869/trunk/ase/gui/view.py
+END
+dft.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3257/trunk/ase/gui/dft.py
+END
+repeat.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3257/trunk/ase/gui/repeat.py
+END
+crystal.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/2536/trunk/ase/gui/crystal.py
+END
+status.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2465/trunk/ase/gui/status.py
+END
+pybutton.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/2465/trunk/ase/gui/pybutton.py
+END
+gui.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3869/trunk/ase/gui/gui.py
+END
+simulation.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2457/trunk/ase/gui/simulation.py
+END
+quickinfo.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2457/trunk/ase/gui/quickinfo.py
+END
+graphene.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/2582/trunk/ase/gui/graphene.py
+END
+energyforces.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2465/trunk/ase/gui/energyforces.py
+END
+progress.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/2457/trunk/ase/gui/progress.py
+END
+images.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3947/trunk/ase/gui/images.py
+END
+bulk_modulus.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/970/trunk/ase/gui/bulk_modulus.py
+END
+widgets.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/2814/trunk/ase/gui/widgets.py
+END
+constraints.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3257/trunk/ase/gui/constraints.py
+END
+nanotube.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/2582/trunk/ase/gui/nanotube.py
+END
+i18n.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/2458/trunk/ase/gui/i18n.py
+END
+render.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3358/trunk/ase/gui/render.py
+END
+nanoparticle.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2582/trunk/ase/gui/nanoparticle.py
+END
+movie.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3871/trunk/ase/gui/movie.py
+END
+gtkexcepthook.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3826/trunk/ase/gui/gtkexcepthook.py
+END
+scaling.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3064/trunk/ase/gui/scaling.py
+END
+minimize.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/2616/trunk/ase/gui/minimize.py
+END
+rot_tools.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/1630/trunk/ase/gui/rot_tools.py
+END
+graphs.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3257/trunk/ase/gui/graphs.py
+END
+debug.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2457/trunk/ase/gui/debug.py
+END
+ag.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3940/trunk/ase/gui/ag.py
+END

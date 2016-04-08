@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3257/trunk/ase/test/castep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/projects/ase/!svn/ver/2692/trunk/ase/test/castep/__init__.py
+END
+castep_interface.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/projects/ase/!svn/ver/3257/trunk/ase/test/castep/castep_interface.py
+END

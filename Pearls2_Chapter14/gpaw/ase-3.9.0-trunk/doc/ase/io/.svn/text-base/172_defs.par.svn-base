@@ -1,0 +1,30 @@
+# the blocks are separated by empty lines
+# comments are allowed
+#
+# one body - LJ-parameters and charge
+CT 0.0028619844 3.50  0.000
+C  0.0028619844 3.50  0.000
+O  0.0073717780 3.12 -0.683
+HC 0.0013009018 2.50  0.000
+H1 0 0 0
+
+# bonds
+C -CT  317.0    1.522       JCC,7,(1986),230; AA
+C -O   570.0    1.229       JCC,7,(1986),230; AA,CYT,GUA,THY,URA
+CT-HC  340.0    1.090       changed from 331 bsd on NMA nmodes; AA, SUGARS
+C -H1  340.0    1.090
+
+# angles
+CT-C -O     80.0      120.40
+HC-CT-HC    35.0      109.50
+CT-C -H1    70.0      117.00
+
+# dihedrals
+O -C -CT-HC      0.00000 6.02496E-01   -3
+
+# cutoffs
+C -CT 2.0
+C -O  1.8
+CT-HC 1.4
+C -H1 1.4
+C3-O1 1.8 # extra stuff, should not bother

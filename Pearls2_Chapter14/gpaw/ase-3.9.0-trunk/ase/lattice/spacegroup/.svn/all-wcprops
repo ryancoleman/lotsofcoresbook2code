@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3457/trunk/ase/lattice/spacegroup
+END
+spacegroup.dat
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/1474/trunk/ase/lattice/spacegroup/spacegroup.dat
+END
+spacegroup.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/projects/ase/!svn/ver/3457/trunk/ase/lattice/spacegroup/spacegroup.py
+END
+findsym.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/2588/trunk/ase/lattice/spacegroup/findsym.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/1474/trunk/ase/lattice/spacegroup/__init__.py
+END
+cell.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/1841/trunk/ase/lattice/spacegroup/cell.py
+END
+crystal.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/2309/trunk/ase/lattice/spacegroup/crystal.py
+END

@@ -1,0 +1,20 @@
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Offload optimizations [offload]
+
+OFFLOAD:main(396,1):  Offload to target MIC 1
+ Data sent from host to target
+ Data received by host from target
+
+===========================================================================
+
+*MIC* Begin optimization report for: main(int, char **)
+
+    Report from: Offload optimizations [offload]
+
+OFFLOAD:main(396,1):  Outlined offload region
+ Data received by target from host
+ Data sent from target to host
+
+===========================================================================

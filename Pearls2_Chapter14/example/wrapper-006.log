@@ -1,0 +1,294 @@
+host bdi rank 006 - 10c,4t,0o 
+PYMIC_BASE=/home/rmfarber/book2/s09/gpaw/pyMIC
+PYMIC_LIBRARY_PATH=/home/rmfarber/book2/s09/gpaw/pyMIC/examples/zgemm:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/svd:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/simple:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/empty_kernel:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it_lowlevel:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/dgemm:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers_offset:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers:/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_map:/home/rmfarber/book2/s09/gpaw/pyMIC/pymic:/home/rmfarber/book2/s09/gpaw/pyMIC/benchmarks:/home/rmfarber/book2/s09/gpaw/pyMIC/tests:/home/rmfarber/book2/s09/gpaw/gpaw/gpaw/mic
+MIC_ENV_PREFIX=PYMIC
+PYMIC_LD_LIBRARY_PATH=/opt/intel/composer_xe_2015.3.187/compiler/lib/mic:/opt/intel/composer_xe_2015.3.187/mpirt/lib/mic:/opt/intel/mic/coi/device-linux-release/lib:/opt/intel/mic/myo/lib:/opt/intel/composer_xe_2015.3.187/ipp/lib/lib/mic:/opt/intel/mic/coi/device-linux-release/lib:/opt/intel/mic/myo/lib:/opt/intel/composer_xe_2015.3.187/compiler/lib/mic:/opt/intel/composer_xe_2015.3.187/mkl/lib/mic:/opt/intel/composer_xe_2015.3.187/tbb/lib/mic
+GPAW info: GPAW_OFFLOAD=1
+OMP: Info #204: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #205: KMP_AFFINITY: cpuid leaf 11 not supported - decoding legacy APIC ids.
+OMP: Info #149: KMP_AFFINITY: Affinity capable, using global cpuid info
+OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240}
+OMP: Info #156: KMP_AFFINITY: 240 available OS procs
+OMP: Info #157: KMP_AFFINITY: Uniform topology
+OMP: Info #159: KMP_AFFINITY: 1 packages x 60 cores/pkg x 4 threads/core (60 total cores)
+OMP: Info #206: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to package 0 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to package 0 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to package 0 core 0 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to package 0 core 0 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to package 0 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to package 0 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to package 0 core 1 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to package 0 core 1 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to package 0 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to package 0 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to package 0 core 2 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to package 0 core 2 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to package 0 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to package 0 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to package 0 core 3 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 16 maps to package 0 core 3 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 17 maps to package 0 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 18 maps to package 0 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 19 maps to package 0 core 4 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 20 maps to package 0 core 4 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 21 maps to package 0 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 22 maps to package 0 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 23 maps to package 0 core 5 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 24 maps to package 0 core 5 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 25 maps to package 0 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 26 maps to package 0 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 27 maps to package 0 core 6 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 28 maps to package 0 core 6 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 29 maps to package 0 core 7 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 30 maps to package 0 core 7 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 31 maps to package 0 core 7 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 32 maps to package 0 core 7 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 33 maps to package 0 core 8 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 34 maps to package 0 core 8 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 35 maps to package 0 core 8 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 36 maps to package 0 core 8 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 37 maps to package 0 core 9 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 38 maps to package 0 core 9 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 39 maps to package 0 core 9 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 40 maps to package 0 core 9 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 41 maps to package 0 core 10 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 42 maps to package 0 core 10 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 43 maps to package 0 core 10 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 44 maps to package 0 core 10 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 45 maps to package 0 core 11 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 46 maps to package 0 core 11 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 47 maps to package 0 core 11 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 48 maps to package 0 core 11 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 49 maps to package 0 core 12 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 50 maps to package 0 core 12 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 51 maps to package 0 core 12 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 52 maps to package 0 core 12 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 53 maps to package 0 core 13 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 54 maps to package 0 core 13 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 55 maps to package 0 core 13 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 56 maps to package 0 core 13 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 57 maps to package 0 core 14 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 58 maps to package 0 core 14 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 59 maps to package 0 core 14 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 60 maps to package 0 core 14 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 61 maps to package 0 core 15 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 62 maps to package 0 core 15 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 63 maps to package 0 core 15 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 64 maps to package 0 core 15 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 65 maps to package 0 core 16 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 66 maps to package 0 core 16 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 67 maps to package 0 core 16 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 68 maps to package 0 core 16 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 69 maps to package 0 core 17 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 70 maps to package 0 core 17 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 71 maps to package 0 core 17 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 72 maps to package 0 core 17 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 73 maps to package 0 core 18 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 74 maps to package 0 core 18 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 75 maps to package 0 core 18 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 76 maps to package 0 core 18 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 77 maps to package 0 core 19 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 78 maps to package 0 core 19 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 79 maps to package 0 core 19 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 80 maps to package 0 core 19 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 81 maps to package 0 core 20 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 82 maps to package 0 core 20 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 83 maps to package 0 core 20 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 84 maps to package 0 core 20 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 85 maps to package 0 core 21 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 86 maps to package 0 core 21 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 87 maps to package 0 core 21 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 88 maps to package 0 core 21 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 89 maps to package 0 core 22 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 90 maps to package 0 core 22 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 91 maps to package 0 core 22 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 92 maps to package 0 core 22 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 93 maps to package 0 core 23 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 94 maps to package 0 core 23 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 95 maps to package 0 core 23 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 96 maps to package 0 core 23 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 97 maps to package 0 core 24 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 98 maps to package 0 core 24 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 99 maps to package 0 core 24 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 100 maps to package 0 core 24 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 101 maps to package 0 core 25 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 102 maps to package 0 core 25 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 103 maps to package 0 core 25 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 104 maps to package 0 core 25 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 105 maps to package 0 core 26 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 106 maps to package 0 core 26 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 107 maps to package 0 core 26 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 108 maps to package 0 core 26 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 109 maps to package 0 core 27 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 110 maps to package 0 core 27 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 111 maps to package 0 core 27 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 112 maps to package 0 core 27 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 113 maps to package 0 core 28 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 114 maps to package 0 core 28 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 115 maps to package 0 core 28 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 116 maps to package 0 core 28 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 117 maps to package 0 core 29 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 118 maps to package 0 core 29 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 119 maps to package 0 core 29 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 120 maps to package 0 core 29 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 121 maps to package 0 core 30 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 122 maps to package 0 core 30 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 123 maps to package 0 core 30 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 124 maps to package 0 core 30 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 125 maps to package 0 core 31 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 126 maps to package 0 core 31 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 127 maps to package 0 core 31 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 128 maps to package 0 core 31 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 129 maps to package 0 core 32 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 130 maps to package 0 core 32 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 131 maps to package 0 core 32 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 132 maps to package 0 core 32 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 133 maps to package 0 core 33 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 134 maps to package 0 core 33 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 135 maps to package 0 core 33 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 136 maps to package 0 core 33 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 137 maps to package 0 core 34 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 138 maps to package 0 core 34 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 139 maps to package 0 core 34 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 140 maps to package 0 core 34 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 141 maps to package 0 core 35 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 142 maps to package 0 core 35 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 143 maps to package 0 core 35 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 144 maps to package 0 core 35 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 145 maps to package 0 core 36 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 146 maps to package 0 core 36 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 147 maps to package 0 core 36 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 148 maps to package 0 core 36 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 149 maps to package 0 core 37 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 150 maps to package 0 core 37 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 151 maps to package 0 core 37 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 152 maps to package 0 core 37 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 153 maps to package 0 core 38 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 154 maps to package 0 core 38 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 155 maps to package 0 core 38 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 156 maps to package 0 core 38 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 157 maps to package 0 core 39 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 158 maps to package 0 core 39 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 159 maps to package 0 core 39 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 160 maps to package 0 core 39 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 161 maps to package 0 core 40 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 162 maps to package 0 core 40 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 163 maps to package 0 core 40 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 164 maps to package 0 core 40 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 165 maps to package 0 core 41 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 166 maps to package 0 core 41 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 167 maps to package 0 core 41 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 168 maps to package 0 core 41 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 169 maps to package 0 core 42 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 170 maps to package 0 core 42 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 171 maps to package 0 core 42 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 172 maps to package 0 core 42 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 173 maps to package 0 core 43 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 174 maps to package 0 core 43 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 175 maps to package 0 core 43 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 176 maps to package 0 core 43 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 177 maps to package 0 core 44 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 178 maps to package 0 core 44 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 179 maps to package 0 core 44 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 180 maps to package 0 core 44 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 181 maps to package 0 core 45 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 182 maps to package 0 core 45 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 183 maps to package 0 core 45 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 184 maps to package 0 core 45 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 185 maps to package 0 core 46 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 186 maps to package 0 core 46 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 187 maps to package 0 core 46 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 188 maps to package 0 core 46 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 189 maps to package 0 core 47 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 190 maps to package 0 core 47 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 191 maps to package 0 core 47 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 192 maps to package 0 core 47 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 193 maps to package 0 core 48 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 194 maps to package 0 core 48 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 195 maps to package 0 core 48 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 196 maps to package 0 core 48 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 197 maps to package 0 core 49 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 198 maps to package 0 core 49 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 199 maps to package 0 core 49 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 200 maps to package 0 core 49 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 201 maps to package 0 core 50 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 202 maps to package 0 core 50 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 203 maps to package 0 core 50 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 204 maps to package 0 core 50 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 205 maps to package 0 core 51 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 206 maps to package 0 core 51 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 207 maps to package 0 core 51 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 208 maps to package 0 core 51 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 209 maps to package 0 core 52 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 210 maps to package 0 core 52 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 211 maps to package 0 core 52 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 212 maps to package 0 core 52 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 213 maps to package 0 core 53 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 214 maps to package 0 core 53 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 215 maps to package 0 core 53 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 216 maps to package 0 core 53 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 217 maps to package 0 core 54 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 218 maps to package 0 core 54 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 219 maps to package 0 core 54 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 220 maps to package 0 core 54 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 221 maps to package 0 core 55 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 222 maps to package 0 core 55 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 223 maps to package 0 core 55 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 224 maps to package 0 core 55 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 225 maps to package 0 core 56 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 226 maps to package 0 core 56 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 227 maps to package 0 core 56 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 228 maps to package 0 core 56 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 229 maps to package 0 core 57 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 230 maps to package 0 core 57 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 231 maps to package 0 core 57 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 232 maps to package 0 core 57 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 233 maps to package 0 core 58 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 234 maps to package 0 core 58 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 235 maps to package 0 core 58 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 236 maps to package 0 core 58 thread 3 
+OMP: Info #171: KMP_AFFINITY: OS proc 237 maps to package 0 core 59 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 238 maps to package 0 core 59 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 239 maps to package 0 core 59 thread 2 
+OMP: Info #171: KMP_AFFINITY: OS proc 240 maps to package 0 core 59 thread 3 
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 0 bound to OS proc set {1}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 1 bound to OS proc set {2}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 2 bound to OS proc set {3}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 3 bound to OS proc set {4}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 4 bound to OS proc set {5}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 5 bound to OS proc set {6}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 6 bound to OS proc set {7}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 7 bound to OS proc set {8}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 8 bound to OS proc set {9}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 9 bound to OS proc set {10}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 10 bound to OS proc set {11}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 11 bound to OS proc set {12}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 12 bound to OS proc set {13}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 13 bound to OS proc set {14}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 14 bound to OS proc set {15}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 15 bound to OS proc set {16}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 16 bound to OS proc set {17}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 17 bound to OS proc set {18}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 18 bound to OS proc set {19}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 19 bound to OS proc set {20}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 20 bound to OS proc set {21}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 21 bound to OS proc set {22}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 22 bound to OS proc set {23}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 23 bound to OS proc set {24}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 24 bound to OS proc set {25}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 25 bound to OS proc set {26}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 26 bound to OS proc set {27}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 27 bound to OS proc set {28}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 28 bound to OS proc set {29}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 29 bound to OS proc set {30}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 30 bound to OS proc set {31}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 31 bound to OS proc set {32}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 32 bound to OS proc set {33}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 33 bound to OS proc set {34}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 34 bound to OS proc set {35}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 35 bound to OS proc set {36}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 36 bound to OS proc set {37}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 37 bound to OS proc set {38}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 38 bound to OS proc set {39}
+OMP: Info #242: KMP_AFFINITY: pid 50280 thread 39 bound to OS proc set {40}

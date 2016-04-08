@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/3383/trunk/ase/test/cmr
+END
+reactions_xsimple.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3003/trunk/ase/test/cmr/reactions_xsimple.py
+END
+rw.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3383/trunk/ase/test/cmr/rw.py
+END
+cmr_rw.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3003/trunk/ase/test/cmr/cmr_rw.py
+END
+reactions_run.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/projects/ase/!svn/ver/2846/trunk/ase/test/cmr/reactions_run.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2425/trunk/ase/test/cmr/__init__.py
+END
+ase_rw.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3383/trunk/ase/test/cmr/ase_rw.py
+END
+reactions_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/2846/trunk/ase/test/cmr/reactions_test.py
+END
+reactions.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2433/trunk/ase/test/cmr/reactions.py
+END

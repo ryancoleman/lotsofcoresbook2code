@@ -1,0 +1,63 @@
+----------------------------------------------------------
+Non-self-consistent RPA correlation energy
+----------------------------------------------------------
+Started at:   Fri Aug 15 17:47:53 2014
+
+Atoms                          : Si
+Ground state XC functional     : PBE
+Valence electrons              : 4
+Number of bands                : 9315
+Number of spins                : 2
+Number of k-points             : 1
+Number of irreducible k-points : 1
+Number of q-points             : 1
+Number of irreducible q-points : 1
+
+    q: [0.0000 0.0000 0.0000] - weight: 1.000
+
+----------------------------------------------------------
+----------------------------------------------------------
+
+Analytical coupling constant integration
+
+Frequencies
+    Gauss-Legendre integration with 16 frequency points
+    Transformed from [0,oo] to [0,1] using e^[-aw^(1/B)]
+    Highest frequency point at 800.0 eV and B=2.0
+
+Parallelization
+    Total number of CPUs          : 4
+    Frequency decomposition       : 1
+    K-point/band decomposition    : 4
+
+Response function bands : Equal to number of plane waves
+Plane wave cutoffs (eV) :  131  163  204  256  320  400
+
+# 0  -  17:49:35
+q = [0.000 0.000 0.000]
+E_cut = 131 eV / Bands = 1743:   E_c(q) = -4.322/-4.291/-4.291 eV
+E_cut = 163 eV / Bands = 2469:   E_c(q) = -4.395/-4.365/-4.365 eV
+E_cut = 204 eV / Bands = 3407:   E_c(q) = -4.443/-4.413/-4.413 eV
+E_cut = 256 eV / Bands = 4729:   E_c(q) = -4.479/-4.448/-4.448 eV
+E_cut = 320 eV / Bands = 6667:   E_c(q) = -4.506/-4.476/-4.476 eV
+E_cut = 400 eV / Bands = 9315:   E_c(q) = -4.525/-4.495/-4.495 eV
+
+==========================================================
+
+Total correlation energy:
+   131:   -4.3015 eV
+   164:   -4.3750 eV
+   205:   -4.4229 eV
+   256:   -4.4585 eV
+   320:   -4.4861 eV
+   400:   -4.5050 eV
+
+Extrapolated energies:
+   131 - 164:  -4.560 eV
+   164 - 205:  -4.544 eV
+   205 - 256:  -4.548 eV
+   256 - 320:  -4.556 eV
+   320 - 400:  -4.553 eV
+
+Calculation completed at:  Sat Aug 16 03:32:40 2014
+

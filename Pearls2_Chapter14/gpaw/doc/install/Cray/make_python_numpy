@@ -1,0 +1,75 @@
+#!/bin/csh
+
+module swap PrgEnv-pgi PrgEnv-gnu
+setenv CC cc
+setenv CXX CC
+setenv OPT '-O3 -funroll-all-loops'
+
+# edit the installation paths if necessary
+mkdir -p sw/xt5
+cd sw/xt5
+set sw_home=`pwd`
+setenv EXPAT_DIR ${sw_home}/expat-2.0.1-1
+setenv ZLIB_DIR ${sw_home}/zlib-1.2.3-1
+setenv PYTHON_DIR ${sw_home}/Python-2.5.4-1
+
+wget http://www.python.org/ftp/python/2.5.4/Python-2.5.4.tar.bz2
+wget http://sunet.dl.sourceforge.net/sourceforge/expat/expat-2.0.1.tar.gz
+wget http://www.zlib.net/zlib-1.2.3.tar.bz2
+tar jxf Python-2.5.4.tar.bz2
+tar zxf expat-2.0.1.tar.gz
+tar jxf zlib-1.2.3.tar.bz2
+wget http://python-nose.googlecode.com/files/nose-0.11.0.tar.gz
+tar zxf nose-0.11.0.tar.gz
+wget http://dfn.dl.sourceforge.net/sourceforge/numpy/numpy-1.2.1.tar.gz
+tar zxf numpy-1.2.1.tar.gz
+
+cd ${sw_home}
+echo "Making Expat"
+cd expat-2.0.1
+./configure --disable-shared --prefix=${EXPAT_DIR}
+make
+make install
+
+cd ${sw_home}
+echo "Making Zlib"
+cd zlib-1.2.3
+./configure --prefix=${ZLIB_DIR}
+make # ignore error: /usr/lib/../lib64/libc.a: could not read symbols: Bad value
+make install
+
+cd ${sw_home}
+echo "Making Python"
+cd Python-2.5.4
+
+wget --no-check-certificate http://svn.fysik.dtu.dk/projects/gpaw/trunk/doc/install/Cray/dynload_redstorm.c -O Python/dynload_jaguar.c
+
+
+./configure --prefix=${PYTHON_DIR} SO=.a DYNLOADFILE=dynload_jaguar.o MACHDEP=jaguar --host=x86_64-unknown-linux-gnu --disable-sockets --disable-ssl --enable-static --disable-shared | tee config.log
+
+wget --no-check-certificate http://svn.fysik.dtu.dk/projects/gpaw/trunk/doc/install/Cray/linkforshared.py
+cat Lib/distutils/unixccompiler.py linkforshared.py > unixccompiler.py
+mv -f unixccompiler.py  Lib/distutils
+
+mv -f Modules/Setup Modules/Setup.orig
+wget --no-check-certificate http://svn.fysik.dtu.dk/projects/gpaw/trunk/doc/install/Cray/Setup_jaguar -O Modules/Setup
+touch Modules/Setup
+
+make | tee make.log
+# ignore errors like:
+# *** WARNING: renaming "_ctypes" since importing it failed: dynamic module does not define init function (init_ctypes)
+make install | tee make_install.log
+
+cd ${sw_home}
+echo "Making Numpy"
+cd numpy-1.2.1
+${PYTHON_DIR}/bin/python setup.py install | tee install.log
+
+cd ${sw_home}/Python-2.5.4
+echo "Remaking Python"
+cat ../numpy-1.2.1/install.log | grep Append | cut -d ":" -f 2 | sed -n 's/ *//p' > append
+cat Modules/Setup append > Setup
+mv -f Setup Modules
+
+make | tee make2.log
+make install | tee make_install2.log

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3970/trunk/doc/tutorials/ga
+END
+ga_basic_parallel_main.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projects/ase/!svn/ver/3887/trunk/doc/tutorials/ga/ga_basic_parallel_main.py
+END
+ga_fcc_alloys_main.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/projects/ase/!svn/ver/3887/trunk/doc/tutorials/ga/ga_fcc_alloys_main.py
+END
+ga_basic_calc.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3801/trunk/doc/tutorials/ga/ga_basic_calc.py
+END
+ga_basic_pbs_main.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3808/trunk/doc/tutorials/ga/ga_basic_pbs_main.py
+END
+ga_fcc_alloys_relax.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/3801/trunk/doc/tutorials/ga/ga_fcc_alloys_relax.py
+END
+ga_fcc_alloys_start.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/projects/ase/!svn/ver/3887/trunk/doc/tutorials/ga/ga_fcc_alloys_start.py
+END
+basic_example_create_database.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/projects/ase/!svn/ver/3887/trunk/doc/tutorials/ga/basic_example_create_database.py
+END
+ga_fcc_references.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/projects/ase/!svn/ver/3801/trunk/doc/tutorials/ga/ga_fcc_references.py
+END
+basic_example_main_run.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/projects/ase/!svn/ver/3887/trunk/doc/tutorials/ga/basic_example_main_run.py
+END
+ga_fcc_alloys.rst
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3970/trunk/doc/tutorials/ga/ga_fcc_alloys.rst
+END
+ga_optimize.rst
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3946/trunk/doc/tutorials/ga/ga_optimize.rst
+END

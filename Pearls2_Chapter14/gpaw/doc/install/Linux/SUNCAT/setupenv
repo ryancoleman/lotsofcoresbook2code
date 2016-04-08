@@ -1,0 +1,18 @@
+#!/bin/bash
+export EXTERNALDIR=/nfs/slac/g/suncatfs/sw/external
+export NUMPYDIR=${EXTERNALDIR}/numpy/1.4.1/install/lib64/python2.4/site-packages
+export SCIPYDIR=${EXTERNALDIR}/scipy/0.7.0/install/lib64/python2.4/site-packages
+export ASEBASE=${EXTERNALDIR}/ase/3.5.0.1919/install
+export ASEDIR=${ASEBASE}/lib/python2.4/site-packages
+export INTELDIR=/afs/slac/package/intel_tools/2011u8
+export MKLDIR=${INTELDIR}/mkl/lib/intel64
+export OPENMPIDIR=${EXTERNALDIR}/intel11.1/openmpi/1.4.3/install
+
+export MKL_THREADING_LAYER=MKL_THREADING_SEQUENTIAL
+
+export OMP_NUM_THREADS=1
+export INSTALLDIR=${GPAW_HOME}/install
+export PYTHONPATH=${ASEDIR}:${SCIPYDIR}:${NUMPYDIR}:${INSTALLDIR}/lib64/python
+export PATH=/bin:/usr/bin:${OPENMPIDIR}/bin:${INTELDIR}/bin:${INSTALLDIR}/bin:${ASEBASE}/bin
+export LD_LIBRARY_PATH=${INSTALLDIR}/lib:${MKLDIR}:${INTELDIR}/lib/intel64:${OPENMPIDIR}/lib:${MKLDIR}/../32
+export GPAW_SETUP_PATH=${EXTERNALDIR}/gpaw-setups-0.6.6300

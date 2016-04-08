@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/projects/ase/!svn/ver/3998/trunk/ase/db
+END
+core.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3998/trunk/ase/db/core.py
+END
+summary.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3986/trunk/ase/db/summary.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3445/trunk/ase/db/__init__.py
+END
+jsondb.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3971/trunk/ase/db/jsondb.py
+END
+app.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3993/trunk/ase/db/app.py
+END
+convert.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3927/trunk/ase/db/convert.py
+END
+sqlite.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3971/trunk/ase/db/sqlite.py
+END
+postgresql.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3957/trunk/ase/db/postgresql.py
+END
+mysql.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3958/trunk/ase/db/mysql.py
+END
+cli.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3971/trunk/ase/db/cli.py
+END
+table.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/3978/trunk/ase/db/table.py
+END

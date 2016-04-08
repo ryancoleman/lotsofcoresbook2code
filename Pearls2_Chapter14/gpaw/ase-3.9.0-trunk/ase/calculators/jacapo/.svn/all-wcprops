@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3852/trunk/ase/calculators/jacapo
+END
+pbe_psp.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/773/trunk/ase/calculators/jacapo/pbe_psp.py
+END
+changed.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/2170/trunk/ase/calculators/jacapo/changed.py
+END
+mayavis.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/2200/trunk/ase/calculators/jacapo/mayavis.py
+END
+validate.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/2566/trunk/ase/calculators/jacapo/validate.py
+END
+jacapo.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/3852/trunk/ase/calculators/jacapo/jacapo.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/3003/trunk/ase/calculators/jacapo/__init__.py
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/1776/trunk/ase/calculators/jacapo/ChangeLog
+END
+setup.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3257/trunk/ase/calculators/jacapo/setup.py
+END
+lda_psp.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/773/trunk/ase/calculators/jacapo/lda_psp.py
+END
+pw91_psp.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/projects/ase/!svn/ver/2732/trunk/ase/calculators/jacapo/pw91_psp.py
+END
+version.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/projects/ase/!svn/ver/867/trunk/ase/calculators/jacapo/version.py
+END

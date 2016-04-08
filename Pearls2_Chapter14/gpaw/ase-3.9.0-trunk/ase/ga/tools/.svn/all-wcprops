@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/3799/trunk/ase/ga/tools
+END
+remove_from_queue
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/projects/ase/!svn/ver/3799/trunk/ase/ga/tools/remove_from_queue
+END
+get_all_candidates
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/projects/ase/!svn/ver/3799/trunk/ase/ga/tools/get_all_candidates
+END

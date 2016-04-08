@@ -1,0 +1,29 @@
+N. A. Romero
+naromero@alcf.anl.gov
+April 7, 2010
+
+Summary
+-------
+The benefits of appropriate mapping are demonstrated
+on Argonne National Laboratory's BlueGene/P Intrepid
+computer using the Au_cluster.py test case.
+
+Mapfile names reflect parallelization scheme.
+For example, BGMAP_band_XxYxZxB means that one
+should use
+--domain-decomposition=X,Y,Z, --state-parallelization=B
+
+Note that the value of Matrix.nblocks was change to
+keep the message size approximately constant between
+the calculations at 512 and 1024-nodes:
+Matrix.nblocks = 16 for state-parallelization=4
+Matrix.nblocks = 8   for state-parallelization=8
+
+At a 512-node partition (mid-plane), we see no difference
+between the two mapping types: band and domain. Note
+that band mode Mapfile is equivalent to use
+MAPPING=ZYXT for this case!
+
+At a 1024-node partition (1-rack), we see that there
+is a large difference. We need to be using band mode
+for ground-state DFT calculations.

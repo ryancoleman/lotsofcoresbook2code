@@ -1,0 +1,47 @@
+#!/usr/bin/env python
+
+# This version of gpaw-qsub works in the DTU databar as per August 2012.
+
+from optparse import OptionParser
+import os
+import sys
+
+queue='hpc'   # Other option is app
+maxcores = 8
+
+p = OptionParser()
+p.disable_interspersed_args()
+p.add_option('-p', '--procs', type=int, default=1,
+             help='number of processes')
+p.add_option('-t', '--time', type=int, default=72,
+             help='max running time in hours')
+opts, args = p.parse_args()
+
+# How many nodes?
+if opts.procs <= maxcores:
+    # Single node
+    nodeclause = "nodes=1:ppn="+str(opts.procs)
+    print "Job will be submitted to a single nodes with %i cores." % (opts.procs,)
+elif opts.procs % maxcores == 0:
+    # Use an integer number of nodes
+    nodeclause = "nodes=%i:ppn=%i" % (opts.procs // maxcores, maxcores)
+    print "Job will be submitted to %i nodes each with %i cores." % (opts.procs // maxcores, maxcores)
+else:
+    whole = opts.procs // maxcores
+    remainder = opts.procs % maxcores
+    nodeclause = "nodes=%i:ppn=%i+1:ppn=%i" % (whole, maxcores, remainder)
+    print "Job will be submitted to %i nodes with %i cores, and one node with %i cores.  THIS IS NOT OPTIMAL." % (whole, maxcores, remainder)
+
+print "Node clause is:", nodeclause
+
+jobdir = os.getcwd()
+#jobname = os.path.join(os.getcwd(), args[0])
+jobname = args[0]
+
+qsub = '''#!/bin/bash
+cd %s
+mpirun gpaw-python %s %s''' % (jobdir, jobname, ' '.join(args[1:]))
+pipe = os.popen('qsub -N %s -q %s -l %s -l walltime=%i:00:00' % (jobname, queue, nodeclause, opts.time),
+                'w')
+pipe.write(qsub)
+pipe.close()

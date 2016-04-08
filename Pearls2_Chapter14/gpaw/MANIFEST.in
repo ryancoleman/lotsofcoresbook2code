@@ -1,0 +1,7 @@
+include COPYING LICENSE config.py customize.py
+include c/*.c
+include c/*.h
+include c/xc/*.h
+include c/xc/*.c
+include c/bmgs/*.h
+include c/bmgs/*.c

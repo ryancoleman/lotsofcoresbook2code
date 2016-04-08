@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2595/trunk/ase/gui/languages
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/8/trunk/ase/gui/languages/__init__.py
+END
+en.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2595/trunk/ase/gui/languages/en.py
+END
+da.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2595/trunk/ase/gui/languages/da.py
+END

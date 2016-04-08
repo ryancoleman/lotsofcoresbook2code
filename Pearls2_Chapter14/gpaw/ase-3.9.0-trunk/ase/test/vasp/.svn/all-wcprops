@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3403/trunk/ase/test/vasp
+END
+vasp_co.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3403/trunk/ase/test/vasp/vasp_co.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2692/trunk/ase/test/vasp/__init__.py
+END
+vasp_Al_volrelax.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/projects/ase/!svn/ver/3257/trunk/ase/test/vasp/vasp_Al_volrelax.py
+END

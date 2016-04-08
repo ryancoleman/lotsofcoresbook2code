@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/projects/ase/!svn/ver/4015/trunk/ase/cluster
+END
+base.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/2643/trunk/ase/cluster/base.py
+END
+decahedron.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2060/trunk/ase/cluster/decahedron.py
+END
+icosahedron.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/2271/trunk/ase/cluster/icosahedron.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/2451/trunk/ase/cluster/__init__.py
+END
+cluster.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/2814/trunk/ase/cluster/cluster.py
+END
+wulff.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/4015/trunk/ase/cluster/wulff.py
+END
+cubic.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/2642/trunk/ase/cluster/cubic.py
+END
+hexagonal.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2642/trunk/ase/cluster/hexagonal.py
+END
+octahedron.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2450/trunk/ase/cluster/octahedron.py
+END
+compounds.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/2265/trunk/ase/cluster/compounds.py
+END
+factory.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3470/trunk/ase/cluster/factory.py
+END

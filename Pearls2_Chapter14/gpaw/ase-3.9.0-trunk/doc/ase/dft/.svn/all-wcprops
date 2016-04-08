@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/projects/ase/!svn/ver/3846/trunk/doc/ase/dft
+END
+bader.rst
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/3206/trunk/doc/ase/dft/bader.rst
+END
+dft.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3736/trunk/doc/ase/dft/dft.rst
+END
+stm.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3419/trunk/doc/ase/dft/stm.rst
+END
+wannier.rst
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3846/trunk/doc/ase/dft/wannier.rst
+END
+dos.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3329/trunk/doc/ase/dft/dos.py
+END
+dos.rst
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3736/trunk/doc/ase/dft/dos.rst
+END
+kpoints.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/projects/ase/!svn/ver/3329/trunk/doc/ase/dft/kpoints.py
+END
+kpoints.rst
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/projects/ase/!svn/ver/3737/trunk/doc/ase/dft/kpoints.rst
+END

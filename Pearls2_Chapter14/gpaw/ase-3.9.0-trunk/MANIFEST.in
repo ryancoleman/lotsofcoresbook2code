@@ -1,0 +1,8 @@
+include MANIFEST.in
+include COPYING* LICENSE README.txt
+include ase/lattice/spacegroup/spacegroup.dat
+include ase/gui/po/ag.pot
+include ase/gui/po/makefile
+include ase/gui/po/??_??/LC_MESSAGES/ag.po
+include ase/gui/po/??/LC_MESSAGES/ag.po
+recursive-include doc *

@@ -1,0 +1,5 @@
+[DEFAULT]
+library_dirs = /opt/ibmmath/essl/4.3/lib:/soft/apps/ESSL-4.3/lib:/soft/apps/LIBGOTO:/home/dulak/from_Nils_Smeds/LAPACK:/home/dulak/from_Nils_Smeds/CBLAS_goto/lib/bgp:/opt/ibmcmp/xlf/bg/11.1/bglib:/opt/ibmcmp/xlmass/bg/4.4/bglib:/opt/ibmcmp/xlsmp/bg/1.7/bglib
+include_dirs = /opt/ibmmath/essl/4.3/include:/soft/apps/ESSL-4.3/include:/home/dulak/from_Nils_Smeds/CBLAS_goto/src
+libraries = mass, xl, xlopt, xlf90_r, xlfmath, xlsmp
+search_static_first = true

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block title %}Browse ASE database{% endblock %}
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='table.js') }}"></script>
+{% endblock %}
+{% block bar1 %}
+BROWSE DATABASE
+{% endblock %}
+{% block content %}
+<form action="/">
+Search:
+<input type=hidden name=x value={{ cid }}>
+<input type=text name=query value="{{ con.query }}" onchange="this.form.submit()" size=80>
+<a href="https://wiki.fysik.dtu.dk/ase/ase/db/db.html#querying">help</a>
+<br>
+Rows per page:
+<input type=text name=limit value={{ con.limit }} onchange="this.form.submit()" size=6>
+</form>
+<br>
+Rows found: {{ nrows }}
+<br>
+Download:
+<a href="/sqlite?x={{ cid }}">db</a>,
+<a href="/json?x={{ cid }}">json</a>
+<br>
+Add column:
+{% for key in addcolumns -%}
+<a href="/?x={{ cid }}&amp;toggle={{ key }}">{{ key }}</a>{% if not loop.last %},{% endif %}
+{% endfor %} (<a href="/?x={{ cid }}&amp;toggle=reset">Reset</a>)
+
+<br>
+{% for page, name in pages %}
+{% if page < 0 %}
+{{ name }}
+{% else %}
+<a href="/?x={{ cid }}&amp;page={{ page }}">{{ name }}</a>
+{% endif %}
+{% endfor %}
+
+<br>
+Row {{ row1 }}-{{ row2 }}:
+<table id=rows>
+    <tr>
+{%- for c in t.columns %}
+<th>
+{% if con.sort == c %}&#x2193; {% elif con.sort == '-' + c %}&#x2191; {% endif -%}
+<a href="/?x={{ cid }}&amp;sort={{ c }}">{{ c }}</a>
+<a href="/?x={{ cid }}&amp;toggle={{ c }}">&#x2715;</a>
+</th>
+{%- endfor %}
+    </tr>
+{% for row in t.rows -%}
+    <tr class="click {{ loop.cycle('even', 'odd') }}"
+        onclick="open_row(this, {{ row.dct.id }}, {{ cid }});">
+    {%- autoescape false -%}
+    {%- for s in row.strings -%}
+        {% if t.right[loop.index0] -%}
+        <td class=right>{{ s }}</td>
+        {% else %}
+        <td>{{ s }}</td>
+        {% endif %}
+    {% endfor %}
+    {% endautoescape %}
+    </tr>
+    {% set dct=row.dct %}
+    {% set id=dct.id %}
+    {% if id in con.opened %}
+    {% include "more.html" %}
+    {% endif %}
+{% endfor %}
+</table>
+{% endblock content %}

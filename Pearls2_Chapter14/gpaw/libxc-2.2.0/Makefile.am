@@ -1,0 +1,40 @@
+## Process this file with automake to produce Makefile.in
+
+## Copyright (C) 2002 M. Marques, A. Castro, A. Rubio, G. Bertsch
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU Lesser General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU Lesser General Public License for more details.
+##
+## You should have received a copy of the GNU Lesser General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+## 02110-1301, USA.
+##
+## $Id: Makefile.am 11910 2014-03-21 10:31:07Z micael $
+
+ACLOCAL_AMFLAGS = -I m4
+SUBDIRS = build src testsuite
+
+include_HEADERS = xc_version.h
+EXTRA_DIST = ChangeLog PACKAGING TODO
+
+CLEANFILES = *~ *.bak
+
+rpm: dist
+	@topdir=`rpmbuild --showrc | @GREP@ ': *_topdir' | cut -f 2`; \
+	mv -f $(PACKAGE)-$(VERSION).tar.gz $$topdir/SOURCES; \
+	cp build/$(PACKAGE).spec $$topdir/SPECS; \
+	rpmbuild -ba $$topdir/SPECS/$(PACKAGE).spec; \
+	echo "-------------------------------------------------------------"; \
+        echo "  RPMs are built, and are located under:"; \
+        echo "       $$topdir/RPMS/<arch>"; \
+        echo "       $$topdir/SRPMS"; \
+        echo "-------------------------------------------------------------"
+#       scp $(RPM_DIR)/RPMS/*/libxc*.rpm marques@www.tddft.org:/server/www/tddft.org/programs/octopus/download/

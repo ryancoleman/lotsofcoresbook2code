@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+""" Program that edits the database in order to requeue a candidate in
+case the relaxation went wrong. """
+from ase.ga.data import DataConnection
+from optparse import OptionParser
+
+parser = OptionParser(
+    description='Show which structures are queued, but not done')
+parser.add_option('-f', '--db-file',
+                  default='ga_db.sql',
+                  help='Location of the SQLite DB file')
+parser.add_option('-r', '--remove-all',
+                  default='No')
+
+opt, args = parser.parse_args()
+
+db_file = opt.db_file
+
+dc = DataConnection(db_file)
+
+l = dc.get_all_candidates_in_queue()
+
+s = 'h'
+while s.find('Q') == -1 and len(l) > 0:
+    for s in l:
+        print('Queued but not done: %d' % int(s))
+    if opt.remove_all == 'Yes':
+        s = ''
+        for ni in l:
+            s += '%d ' % ni
+    else:
+        s = raw_input('Choose which you want to requeue or type Q to quit: ')
+        if s.find('Q') != -1:
+            exit()
+    iline = s.split()
+    for i in iline:
+        i = int(i.strip())
+        assert i in l, 'Not a valid ID'
+        dc.remove_from_queue(i)
+        print('Structure removed from queue %d' % i)
+    if opt.remove_all == 'Yes':
+        exit()
+    l = dc.get_all_candidates_in_queue()

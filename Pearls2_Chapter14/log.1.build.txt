@@ -1,0 +1,1070 @@
+make -C src all
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/src'
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o pymicimpl_interface.o pymicimpl_interface.cc
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o pymicimpl_misc.o pymicimpl_misc.cc
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_alloc.o libxstream/src/libxstream_alloc.cpp
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_argument.o libxstream/src/libxstream_argument.cpp
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_capture.o libxstream/src/libxstream_capture.cpp
+libxstream/src/libxstream_capture.cpp(75): warning #2571: variable has not been declared with compatible "target" attribute
+      pthread_create(&m_thread, 0, run, this);
+      ^
+
+libxstream/src/libxstream_capture.cpp(75): warning #2571: *MIC* variable has not been declared with compatible "target" attribute
+      pthread_create(&m_thread, 0, run, this);
+      ^
+
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_context.o libxstream/src/libxstream_context.cpp
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream.o libxstream/src/libxstream.cpp
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_event.o libxstream/src/libxstream_event.cpp
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_offload.o libxstream/src/libxstream_offload.cpp
+icpc  -DNDEBUG -DPYMIC_USE_XSTREAM=1 -DLIBXSTREAM_EXPORTED -offload=mandatory -Wall -pthread -g -O2 -ansi-alias -fPIC -I. -I../include -I./libxstream/include -I/usr/include/python2.7 -I/usr/lib64/python2.7/site-packages/numpy/core/include   -c -o libxstream/src/libxstream_stream.o libxstream/src/libxstream_stream.cpp
+icpc -shared -pthread -offload-option,mic,link,"--no-undefined" -o _pymicimpl.so pymicimpl_interface.o pymicimpl_misc.o ./libxstream/src/libxstream_alloc.o ./libxstream/src/libxstream_argument.o ./libxstream/src/libxstream_capture.o ./libxstream/src/libxstream_context.o ./libxstream/src/libxstream.o ./libxstream/src/libxstream_event.o ./libxstream/src/libxstream_offload.o ./libxstream/src/libxstream_stream.o
+cp _pymicimpl.so ../pymic/_pymicimpl.so
+chmod a+rX ../pymic/_pymicimpl.so
+icc -DPYMIC_USE_XSTREAM=1 -I../include -fPIC -shared -mmic -g -O2 -o liboffload_array.so offload_array.c -lm
+chmod a+rX liboffload_array.so
+cp liboffload_array.so ../pymic/liboffload_array.so
+chmod a+rX ../pymic/liboffload_array.so
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/src'
+make -C pymic all
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/pymic'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/pymic'
+make -C examples all
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples'
+for ex in ./data_map ./data_transfers ./data_transfers_offset ./dgemm ./double_it ./double_it_lowlevel ./empty_kernel ./simple ./svd ./zgemm; do make -C $ex all; done
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_map'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_map'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers_offset'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/data_transfers_offset'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/dgemm'
+icc -I../../include -I/opt/intel/composer_xe_2015.3.187/mkl/include -fPIC -shared -mmic -g -O2 -L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -lpthread -o libdgemm.so dgemm.c
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/dgemm'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it'
+icc -fPIC -I../../include -shared -mmic -g -O2 -o libdouble_it.so double_it.c
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it_lowlevel'
+icc -fPIC -I../../include -shared -mmic -g -O2 -o libdouble_it_lowlevel.so double_it_lowlevel.c
+chmod a+rX libdouble_it_lowlevel.so
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/double_it_lowlevel'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/empty_kernel'
+icc -fPIC -I../../include -shared -mmic -g -O2 -o libempty_kernel.so empty_kernel.c
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/empty_kernel'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/simple'
+icc -I../../include -I/opt/intel/composer_xe_2015.3.187/mkl/include -fPIC -shared -mmic -g -O2 -L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -lpthread -o libsimple.so simple.c
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/simple'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/svd'
+icc -I../../include -I/opt/intel/composer_xe_2015.3.187/mkl/include -fopenmp -fPIC -shared -mmic -g -O2 -L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -lpthread -o libsvd.so svd.c
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/svd'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/zgemm'
+icc -I../../include -I/opt/intel/composer_xe_2015.3.187/mkl/include -fPIC -shared -mmic -g -O2 -L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -lpthread -o libzgemm.so zgemm.c
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples/zgemm'
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/examples'
+make -C benchmarks all
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/pyMIC/benchmarks'
+icc -I../include -I/opt/intel/composer_xe_2015.3.187/mkl/include -fPIC -shared -mmic -g -L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic -lmkl_intel_lp64 -lmkl_core -lmkl_intel_thread -lpthread -o libbenchmark_kernels.so benchmark_kernels.c
+chmod a+rX libbenchmark_kernels.so
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/pyMIC/benchmarks'
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for a sed that does not truncate output... /usr/bin/sed
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking how to print strings... printf
+checking for style of include used by make... GNU
+checking for gcc... icc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether icc accepts -g... yes
+checking for icc option to accept ISO C89... none needed
+checking dependency style of icc... gcc3
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by icc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking whether the shell understands some XSI constructs... yes
+checking whether the shell understands "+="... yes
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from icc object... ok
+checking for sysroot... no
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... icc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if icc supports -fno-rtti -fno-exceptions... yes
+checking for icc option to produce PIC... -fPIC -DPIC
+checking if icc PIC flag -fPIC -DPIC works... yes
+checking if icc static flag -static works... no
+checking if icc supports -c -o file.o... yes
+checking if icc supports -c -o file.o... (cached) yes
+checking whether the icc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gcc... (cached) icc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether icc accepts -g... (cached) yes
+checking for icc option to accept ISO C89... (cached) none needed
+checking dependency style of icc... (cached) gcc3
+checking whether icc and cc understand -c and -o together... yes
+checking for inline... inline
+checking for ANSI C header files... (cached) yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking size of void*... 8
+checking for sqrtf in -lm... yes
+checking for cbrt in -lm... yes
+checking for cbrtf in -lm... yes
+checking for feenableexcept in -lm... yes
+checking for xlf90... no
+checking for f90... no
+checking for pgf90... no
+checking for pghpf... no
+checking for epcf90... no
+checking for gfortran... gfortran
+checking whether we are using the GNU Fortran compiler... yes
+checking whether gfortran accepts -g... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gfortran option to produce PIC... -fPIC
+checking if gfortran PIC flag -fPIC works... yes
+checking if gfortran static flag -static works... no
+checking if gfortran supports -c -o file.o... yes
+checking if gfortran supports -c -o file.o... (cached) yes
+checking whether the gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for Fortran flag to compile .f90 files... none
+configure: Using FCFLAGS="-pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none"
+checking whether /lib/cpp is usable for Fortran preprocessing... preprocessor mangles C++ style comment
+checking whether /lib/cpp -ansi is usable for Fortran preprocessing... yes
+checking how to get verbose linking output from gfortran... -v
+checking for Fortran libraries of gfortran...  -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/intel/composer_xe_2015.3.187/compiler/lib/intel64 -L/opt/intel/composer_xe_2015.3.187/ipp/../compiler/lib/intel64 -L/opt/intel/composer_xe_2015.3.187/ipp/lib/intel64 -L/opt/intel/composer_xe_2015.3.187/mkl/lib/intel64 -L/opt/intel/composer_xe_2015.3.187/tbb/lib/intel64/gcc4.4 -L/usr/lib/gcc/x86_64-redhat-linux/4.8.3/../../.. -lgfortran -lm -lquadmath
+checking for dummy main to link with Fortran libraries... none
+checking for Fortran name-mangling scheme... lower case, underscore, no extra underscore
+checking whether the compiler accepts very long lines... yes
+checking whether the compiler accepts "line-number" lines cast by the preprocessor... yes
+checking fortran 90 modules extension... mod
+checking for the size of a Fortran integer... 4 bytes
+checking for which C type corresponds to Fortran integer... int
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating xc_version.h
+config.status: creating src/Makefile
+config.status: creating testsuite/Makefile
+config.status: creating build/Makefile
+config.status: creating build/libxc.pc
+config.status: creating build/libxc.spec
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+config.status: executing libtool commands
+make  all-recursive
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+Making all in build
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/build'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/build'
+Making all in src
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+./get_funcs.pl . ..
+make  all-am
+make[3]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT special_functions.lo -MD -MP -MF .deps/special_functions.Tpo -c -o special_functions.lo special_functions.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT bessel.lo -MD -MP -MF .deps/bessel.Tpo -c -o bessel.lo bessel.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT expint_e1.lo -MD -MP -MF .deps/expint_e1.Tpo -c -o expint_e1.lo expint_e1.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT integrate.lo -MD -MP -MF .deps/integrate.Tpo -c -o integrate.lo integrate.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT util.lo -MD -MP -MF .deps/util.Tpo -c -o util.lo util.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mix_func.lo -MD -MP -MF .deps/mix_func.Tpo -c -o mix_func.lo mix_func.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT functionals.lo -MD -MP -MF .deps/functionals.Tpo -c -o functionals.lo functionals.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT version.lo -MD -MP -MF .deps/version.Tpo -c -o version.lo version.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda.lo -MD -MP -MF .deps/lda.Tpo -c -o lda.lo lda.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_x.lo -MD -MP -MF .deps/lda_x.Tpo -c -o lda_x.lo lda_x.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT special_functions.lo -MD -MP -MF .deps/special_functions.Tpo -c special_functions.c  -fPIC -DPIC -o .libs/special_functions.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT bessel.lo -MD -MP -MF .deps/bessel.Tpo -c bessel.c  -fPIC -DPIC -o .libs/bessel.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT expint_e1.lo -MD -MP -MF .deps/expint_e1.Tpo -c expint_e1.c  -fPIC -DPIC -o .libs/expint_e1.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT integrate.lo -MD -MP -MF .deps/integrate.Tpo -c integrate.c  -fPIC -DPIC -o .libs/integrate.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT util.lo -MD -MP -MF .deps/util.Tpo -c util.c  -fPIC -DPIC -o .libs/util.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda.lo -MD -MP -MF .deps/lda.Tpo -c lda.c  -fPIC -DPIC -o .libs/lda.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT version.lo -MD -MP -MF .deps/version.Tpo -c version.c  -fPIC -DPIC -o .libs/version.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mix_func.lo -MD -MP -MF .deps/mix_func.Tpo -c mix_func.c  -fPIC -DPIC -o .libs/mix_func.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT functionals.lo -MD -MP -MF .deps/functionals.Tpo -c functionals.c  -fPIC -DPIC -o .libs/functionals.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_x.lo -MD -MP -MF .deps/lda_x.Tpo -c lda_x.c  -fPIC -DPIC -o .libs/lda_x.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT version.lo -MD -MP -MF .deps/version.Tpo -c version.c -o version.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT special_functions.lo -MD -MP -MF .deps/special_functions.Tpo -c special_functions.c -o special_functions.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT util.lo -MD -MP -MF .deps/util.Tpo -c util.c -o util.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT expint_e1.lo -MD -MP -MF .deps/expint_e1.Tpo -c expint_e1.c -o expint_e1.o >/dev/null 2>&1
+mv -f .deps/version.Tpo .deps/version.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_x_1d.lo -MD -MP -MF .deps/lda_x_1d.Tpo -c -o lda_x_1d.lo lda_x_1d.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda.lo -MD -MP -MF .deps/lda.Tpo -c lda.c -o lda.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_x_1d.lo -MD -MP -MF .deps/lda_x_1d.Tpo -c lda_x_1d.c  -fPIC -DPIC -o .libs/lda_x_1d.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT bessel.lo -MD -MP -MF .deps/bessel.Tpo -c bessel.c -o bessel.o >/dev/null 2>&1
+mv -f .deps/special_functions.Tpo .deps/special_functions.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_x_2d.lo -MD -MP -MF .deps/lda_x_2d.Tpo -c -o lda_x_2d.lo lda_x_2d.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT functionals.lo -MD -MP -MF .deps/functionals.Tpo -c functionals.c -o functionals.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_x_2d.lo -MD -MP -MF .deps/lda_x_2d.Tpo -c lda_x_2d.c  -fPIC -DPIC -o .libs/lda_x_2d.o
+mv -f .deps/util.Tpo .deps/util.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_wigner.lo -MD -MP -MF .deps/lda_c_wigner.Tpo -c -o lda_c_wigner.lo lda_c_wigner.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_x.lo -MD -MP -MF .deps/lda_x.Tpo -c lda_x.c -o lda_x.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_wigner.lo -MD -MP -MF .deps/lda_c_wigner.Tpo -c lda_c_wigner.c  -fPIC -DPIC -o .libs/lda_c_wigner.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT integrate.lo -MD -MP -MF .deps/integrate.Tpo -c integrate.c -o integrate.o >/dev/null 2>&1
+mv -f .deps/expint_e1.Tpo .deps/expint_e1.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_gombas.lo -MD -MP -MF .deps/lda_c_gombas.Tpo -c -o lda_c_gombas.lo lda_c_gombas.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_gombas.lo -MD -MP -MF .deps/lda_c_gombas.Tpo -c lda_c_gombas.c  -fPIC -DPIC -o .libs/lda_c_gombas.o
+mv -f .deps/lda.Tpo .deps/lda.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_rpa.lo -MD -MP -MF .deps/lda_c_rpa.Tpo -c -o lda_c_rpa.lo lda_c_rpa.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_rpa.lo -MD -MP -MF .deps/lda_c_rpa.Tpo -c lda_c_rpa.c  -fPIC -DPIC -o .libs/lda_c_rpa.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_x_1d.lo -MD -MP -MF .deps/lda_x_1d.Tpo -c lda_x_1d.c -o lda_x_1d.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_x_2d.lo -MD -MP -MF .deps/lda_x_2d.Tpo -c lda_x_2d.c -o lda_x_2d.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_wigner.lo -MD -MP -MF .deps/lda_c_wigner.Tpo -c lda_c_wigner.c -o lda_c_wigner.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_gombas.lo -MD -MP -MF .deps/lda_c_gombas.Tpo -c lda_c_gombas.c -o lda_c_gombas.o >/dev/null 2>&1
+mv -f .deps/functionals.Tpo .deps/functionals.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_hl.lo -MD -MP -MF .deps/lda_c_hl.Tpo -c -o lda_c_hl.lo lda_c_hl.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_rpa.lo -MD -MP -MF .deps/lda_c_rpa.Tpo -c lda_c_rpa.c -o lda_c_rpa.o >/dev/null 2>&1
+mv -f .deps/bessel.Tpo .deps/bessel.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_vwn.lo -MD -MP -MF .deps/lda_c_vwn.Tpo -c -o lda_c_vwn.lo lda_c_vwn.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_hl.lo -MD -MP -MF .deps/lda_c_hl.Tpo -c lda_c_hl.c  -fPIC -DPIC -o .libs/lda_c_hl.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_vwn.lo -MD -MP -MF .deps/lda_c_vwn.Tpo -c lda_c_vwn.c  -fPIC -DPIC -o .libs/lda_c_vwn.o
+mv -f .deps/lda_x.Tpo .deps/lda_x.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_pz.lo -MD -MP -MF .deps/lda_c_pz.Tpo -c -o lda_c_pz.lo lda_c_pz.c
+mv -f .deps/lda_x_2d.Tpo .deps/lda_x_2d.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_pw.lo -MD -MP -MF .deps/lda_c_pw.Tpo -c -o lda_c_pw.lo lda_c_pw.c
+mv -f .deps/integrate.Tpo .deps/integrate.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_ml1.lo -MD -MP -MF .deps/lda_c_ml1.Tpo -c -o lda_c_ml1.lo lda_c_ml1.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_pz.lo -MD -MP -MF .deps/lda_c_pz.Tpo -c lda_c_pz.c  -fPIC -DPIC -o .libs/lda_c_pz.o
+mv -f .deps/lda_c_wigner.Tpo .deps/lda_c_wigner.Plo
+mv -f .deps/lda_x_1d.Tpo .deps/lda_x_1d.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_rc04.lo -MD -MP -MF .deps/lda_c_rc04.Tpo -c -o lda_c_rc04.lo lda_c_rc04.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_xc_teter93.lo -MD -MP -MF .deps/lda_xc_teter93.Tpo -c -o lda_xc_teter93.lo lda_xc_teter93.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_pw.lo -MD -MP -MF .deps/lda_c_pw.Tpo -c lda_c_pw.c  -fPIC -DPIC -o .libs/lda_c_pw.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_ml1.lo -MD -MP -MF .deps/lda_c_ml1.Tpo -c lda_c_ml1.c  -fPIC -DPIC -o .libs/lda_c_ml1.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_rc04.lo -MD -MP -MF .deps/lda_c_rc04.Tpo -c lda_c_rc04.c  -fPIC -DPIC -o .libs/lda_c_rc04.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_xc_teter93.lo -MD -MP -MF .deps/lda_xc_teter93.Tpo -c lda_xc_teter93.c  -fPIC -DPIC -o .libs/lda_xc_teter93.o
+mv -f .deps/lda_c_gombas.Tpo .deps/lda_c_gombas.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_1d_csc.lo -MD -MP -MF .deps/lda_c_1d_csc.Tpo -c -o lda_c_1d_csc.lo lda_c_1d_csc.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_1d_csc.lo -MD -MP -MF .deps/lda_c_1d_csc.Tpo -c lda_c_1d_csc.c  -fPIC -DPIC -o .libs/lda_c_1d_csc.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_hl.lo -MD -MP -MF .deps/lda_c_hl.Tpo -c lda_c_hl.c -o lda_c_hl.o >/dev/null 2>&1
+mv -f .deps/lda_c_rpa.Tpo .deps/lda_c_rpa.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_1d_loos.lo -MD -MP -MF .deps/lda_c_1d_loos.Tpo -c -o lda_c_1d_loos.lo lda_c_1d_loos.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_1d_loos.lo -MD -MP -MF .deps/lda_c_1d_loos.Tpo -c lda_c_1d_loos.c  -fPIC -DPIC -o .libs/lda_c_1d_loos.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_pz.lo -MD -MP -MF .deps/lda_c_pz.Tpo -c lda_c_pz.c -o lda_c_pz.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_ml1.lo -MD -MP -MF .deps/lda_c_ml1.Tpo -c lda_c_ml1.c -o lda_c_ml1.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_rc04.lo -MD -MP -MF .deps/lda_c_rc04.Tpo -c lda_c_rc04.c -o lda_c_rc04.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_vwn.lo -MD -MP -MF .deps/lda_c_vwn.Tpo -c lda_c_vwn.c -o lda_c_vwn.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_xc_teter93.lo -MD -MP -MF .deps/lda_xc_teter93.Tpo -c lda_xc_teter93.c -o lda_xc_teter93.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_pw.lo -MD -MP -MF .deps/lda_c_pw.Tpo -c lda_c_pw.c -o lda_c_pw.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_1d_csc.lo -MD -MP -MF .deps/lda_c_1d_csc.Tpo -c lda_c_1d_csc.c -o lda_c_1d_csc.o >/dev/null 2>&1
+mv -f .deps/lda_c_hl.Tpo .deps/lda_c_hl.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_2d_amgb.lo -MD -MP -MF .deps/lda_c_2d_amgb.Tpo -c -o lda_c_2d_amgb.lo lda_c_2d_amgb.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_1d_loos.lo -MD -MP -MF .deps/lda_c_1d_loos.Tpo -c lda_c_1d_loos.c -o lda_c_1d_loos.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_2d_amgb.lo -MD -MP -MF .deps/lda_c_2d_amgb.Tpo -c lda_c_2d_amgb.c  -fPIC -DPIC -o .libs/lda_c_2d_amgb.o
+mv -f .deps/lda_c_ml1.Tpo .deps/lda_c_ml1.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_c_2d_prm.lo -MD -MP -MF .deps/lda_c_2d_prm.Tpo -c -o lda_c_2d_prm.lo lda_c_2d_prm.c
+mv -f .deps/lda_c_pz.Tpo .deps/lda_c_pz.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT stoll.lo -MD -MP -MF .deps/stoll.Tpo -c -o stoll.lo stoll.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_2d_prm.lo -MD -MP -MF .deps/lda_c_2d_prm.Tpo -c lda_c_2d_prm.c  -fPIC -DPIC -o .libs/lda_c_2d_prm.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT stoll.lo -MD -MP -MF .deps/stoll.Tpo -c stoll.c  -fPIC -DPIC -o .libs/stoll.o
+mv -f .deps/lda_c_rc04.Tpo .deps/lda_c_rc04.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT lda_k_tf.lo -MD -MP -MF .deps/lda_k_tf.Tpo -c -o lda_k_tf.lo lda_k_tf.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_k_tf.lo -MD -MP -MF .deps/lda_k_tf.Tpo -c lda_k_tf.c  -fPIC -DPIC -o .libs/lda_k_tf.o
+mv -f .deps/lda_xc_teter93.Tpo .deps/lda_xc_teter93.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga.lo -MD -MP -MF .deps/gga.Tpo -c -o gga.lo gga.c
+mv -f .deps/lda_c_pw.Tpo .deps/lda_c_pw.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga.lo -MD -MP -MF .deps/gga.Tpo -c gga.c  -fPIC -DPIC -o .libs/gga.o
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_lg93.lo -MD -MP -MF .deps/gga_x_lg93.Tpo -c -o gga_x_lg93.lo gga_x_lg93.c
+mv -f .deps/lda_c_1d_csc.Tpo .deps/lda_c_1d_csc.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_pbe.lo -MD -MP -MF .deps/gga_x_pbe.Tpo -c -o gga_x_pbe.lo gga_x_pbe.c
+mv -f .deps/lda_c_vwn.Tpo .deps/lda_c_vwn.Plo
+mv -f .deps/lda_c_1d_loos.Tpo .deps/lda_c_1d_loos.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_rpbe.lo -MD -MP -MF .deps/gga_x_rpbe.Tpo -c -o gga_x_rpbe.lo gga_x_rpbe.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_pbea.lo -MD -MP -MF .deps/gga_x_pbea.Tpo -c -o gga_x_pbea.lo gga_x_pbea.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pbe.lo -MD -MP -MF .deps/gga_x_pbe.Tpo -c gga_x_pbe.c  -fPIC -DPIC -o .libs/gga_x_pbe.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_lg93.lo -MD -MP -MF .deps/gga_x_lg93.Tpo -c gga_x_lg93.c  -fPIC -DPIC -o .libs/gga_x_lg93.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_rpbe.lo -MD -MP -MF .deps/gga_x_rpbe.Tpo -c gga_x_rpbe.c  -fPIC -DPIC -o .libs/gga_x_rpbe.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pbea.lo -MD -MP -MF .deps/gga_x_pbea.Tpo -c gga_x_pbea.c  -fPIC -DPIC -o .libs/gga_x_pbea.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT stoll.lo -MD -MP -MF .deps/stoll.Tpo -c stoll.c -o stoll.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_2d_amgb.lo -MD -MP -MF .deps/lda_c_2d_amgb.Tpo -c lda_c_2d_amgb.c -o lda_c_2d_amgb.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_c_2d_prm.lo -MD -MP -MF .deps/lda_c_2d_prm.Tpo -c lda_c_2d_prm.c -o lda_c_2d_prm.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT lda_k_tf.lo -MD -MP -MF .deps/lda_k_tf.Tpo -c lda_k_tf.c -o lda_k_tf.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga.lo -MD -MP -MF .deps/gga.Tpo -c gga.c -o gga.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_lg93.lo -MD -MP -MF .deps/gga_x_lg93.Tpo -c gga_x_lg93.c -o gga_x_lg93.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_rpbe.lo -MD -MP -MF .deps/gga_x_rpbe.Tpo -c gga_x_rpbe.c -o gga_x_rpbe.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pbea.lo -MD -MP -MF .deps/gga_x_pbea.Tpo -c gga_x_pbea.c -o gga_x_pbea.o >/dev/null 2>&1
+mv -f .deps/stoll.Tpo .deps/stoll.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_mpbe.lo -MD -MP -MF .deps/gga_x_mpbe.Tpo -c -o gga_x_mpbe.lo gga_x_mpbe.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_mpbe.lo -MD -MP -MF .deps/gga_x_mpbe.Tpo -c gga_x_mpbe.c  -fPIC -DPIC -o .libs/gga_x_mpbe.o
+mv -f .deps/lda_c_2d_prm.Tpo .deps/lda_c_2d_prm.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_herman.lo -MD -MP -MF .deps/gga_x_herman.Tpo -c -o gga_x_herman.lo gga_x_herman.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pbe.lo -MD -MP -MF .deps/gga_x_pbe.Tpo -c gga_x_pbe.c -o gga_x_pbe.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_herman.lo -MD -MP -MF .deps/gga_x_herman.Tpo -c gga_x_herman.c  -fPIC -DPIC -o .libs/gga_x_herman.o
+mv -f .deps/lda_c_2d_amgb.Tpo .deps/lda_c_2d_amgb.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_b86.lo -MD -MP -MF .deps/gga_x_b86.Tpo -c -o gga_x_b86.lo gga_x_b86.c
+mv -f .deps/gga.Tpo .deps/gga.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_b86_mgc.lo -MD -MP -MF .deps/gga_x_b86_mgc.Tpo -c -o gga_x_b86_mgc.lo gga_x_b86_mgc.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_b86.lo -MD -MP -MF .deps/gga_x_b86.Tpo -c gga_x_b86.c  -fPIC -DPIC -o .libs/gga_x_b86.o
+mv -f .deps/lda_k_tf.Tpo .deps/lda_k_tf.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_b88.lo -MD -MP -MF .deps/gga_x_b88.Tpo -c -o gga_x_b88.lo gga_x_b88.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_b86_mgc.lo -MD -MP -MF .deps/gga_x_b86_mgc.Tpo -c gga_x_b86_mgc.c  -fPIC -DPIC -o .libs/gga_x_b86_mgc.o
+mv -f .deps/gga_x_lg93.Tpo .deps/gga_x_lg93.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_g96.lo -MD -MP -MF .deps/gga_x_g96.Tpo -c -o gga_x_g96.lo gga_x_g96.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_b88.lo -MD -MP -MF .deps/gga_x_b88.Tpo -c gga_x_b88.c  -fPIC -DPIC -o .libs/gga_x_b88.o
+mv -f .deps/gga_x_pbea.Tpo .deps/gga_x_pbea.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_pw86.lo -MD -MP -MF .deps/gga_x_pw86.Tpo -c -o gga_x_pw86.lo gga_x_pw86.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_g96.lo -MD -MP -MF .deps/gga_x_g96.Tpo -c gga_x_g96.c  -fPIC -DPIC -o .libs/gga_x_g96.o
+mv -f .deps/gga_x_rpbe.Tpo .deps/gga_x_rpbe.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_pw91.lo -MD -MP -MF .deps/gga_x_pw91.Tpo -c -o gga_x_pw91.lo gga_x_pw91.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pw86.lo -MD -MP -MF .deps/gga_x_pw86.Tpo -c gga_x_pw86.c  -fPIC -DPIC -o .libs/gga_x_pw86.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pw91.lo -MD -MP -MF .deps/gga_x_pw91.Tpo -c gga_x_pw91.c  -fPIC -DPIC -o .libs/gga_x_pw91.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_mpbe.lo -MD -MP -MF .deps/gga_x_mpbe.Tpo -c gga_x_mpbe.c -o gga_x_mpbe.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_herman.lo -MD -MP -MF .deps/gga_x_herman.Tpo -c gga_x_herman.c -o gga_x_herman.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_b86.lo -MD -MP -MF .deps/gga_x_b86.Tpo -c gga_x_b86.c -o gga_x_b86.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_b86_mgc.lo -MD -MP -MF .deps/gga_x_b86_mgc.Tpo -c gga_x_b86_mgc.c -o gga_x_b86_mgc.o >/dev/null 2>&1
+mv -f .deps/gga_x_pbe.Tpo .deps/gga_x_pbe.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_optx.lo -MD -MP -MF .deps/gga_x_optx.Tpo -c -o gga_x_optx.lo gga_x_optx.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_g96.lo -MD -MP -MF .deps/gga_x_g96.Tpo -c gga_x_g96.c -o gga_x_g96.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_optx.lo -MD -MP -MF .deps/gga_x_optx.Tpo -c gga_x_optx.c  -fPIC -DPIC -o .libs/gga_x_optx.o
+mv -f .deps/gga_x_mpbe.Tpo .deps/gga_x_mpbe.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_airy.lo -MD -MP -MF .deps/gga_x_airy.Tpo -c -o gga_x_airy.lo gga_x_airy.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mix_func.lo -MD -MP -MF .deps/mix_func.Tpo -c mix_func.c -o mix_func.o >/dev/null 2>&1
+mv -f .deps/gga_x_herman.Tpo .deps/gga_x_herman.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_c09x.lo -MD -MP -MF .deps/gga_x_c09x.Tpo -c -o gga_x_c09x.lo gga_x_c09x.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_airy.lo -MD -MP -MF .deps/gga_x_airy.Tpo -c gga_x_airy.c  -fPIC -DPIC -o .libs/gga_x_airy.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_b88.lo -MD -MP -MF .deps/gga_x_b88.Tpo -c gga_x_b88.c -o gga_x_b88.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_c09x.lo -MD -MP -MF .deps/gga_x_c09x.Tpo -c gga_x_c09x.c  -fPIC -DPIC -o .libs/gga_x_c09x.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pw86.lo -MD -MP -MF .deps/gga_x_pw86.Tpo -c gga_x_pw86.c -o gga_x_pw86.o >/dev/null 2>&1
+mv -f .deps/gga_x_b86.Tpo .deps/gga_x_b86.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_dk87.lo -MD -MP -MF .deps/gga_x_dk87.Tpo -c -o gga_x_dk87.lo gga_x_dk87.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_dk87.lo -MD -MP -MF .deps/gga_x_dk87.Tpo -c gga_x_dk87.c  -fPIC -DPIC -o .libs/gga_x_dk87.o
+mv -f .deps/gga_x_b86_mgc.Tpo .deps/gga_x_b86_mgc.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_ft97.lo -MD -MP -MF .deps/gga_x_ft97.Tpo -c -o gga_x_ft97.lo gga_x_ft97.c
+mv -f .deps/gga_x_g96.Tpo .deps/gga_x_g96.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_wc.lo -MD -MP -MF .deps/gga_x_wc.Tpo -c -o gga_x_wc.lo gga_x_wc.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ft97.lo -MD -MP -MF .deps/gga_x_ft97.Tpo -c gga_x_ft97.c  -fPIC -DPIC -o .libs/gga_x_ft97.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_optx.lo -MD -MP -MF .deps/gga_x_optx.Tpo -c gga_x_optx.c -o gga_x_optx.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_wc.lo -MD -MP -MF .deps/gga_x_wc.Tpo -c gga_x_wc.c  -fPIC -DPIC -o .libs/gga_x_wc.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_pw91.lo -MD -MP -MF .deps/gga_x_pw91.Tpo -c gga_x_pw91.c -o gga_x_pw91.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_c09x.lo -MD -MP -MF .deps/gga_x_c09x.Tpo -c gga_x_c09x.c -o gga_x_c09x.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_airy.lo -MD -MP -MF .deps/gga_x_airy.Tpo -c gga_x_airy.c -o gga_x_airy.o >/dev/null 2>&1
+mv -f .deps/gga_x_b88.Tpo .deps/gga_x_b88.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_am05.lo -MD -MP -MF .deps/gga_x_am05.Tpo -c -o gga_x_am05.lo gga_x_am05.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_am05.lo -MD -MP -MF .deps/gga_x_am05.Tpo -c gga_x_am05.c  -fPIC -DPIC -o .libs/gga_x_am05.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ft97.lo -MD -MP -MF .deps/gga_x_ft97.Tpo -c gga_x_ft97.c -o gga_x_ft97.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_dk87.lo -MD -MP -MF .deps/gga_x_dk87.Tpo -c gga_x_dk87.c -o gga_x_dk87.o >/dev/null 2>&1
+mv -f .deps/gga_x_pw86.Tpo .deps/gga_x_pw86.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_bayesian.lo -MD -MP -MF .deps/gga_x_bayesian.Tpo -c -o gga_x_bayesian.lo gga_x_bayesian.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_bayesian.lo -MD -MP -MF .deps/gga_x_bayesian.Tpo -c gga_x_bayesian.c  -fPIC -DPIC -o .libs/gga_x_bayesian.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_wc.lo -MD -MP -MF .deps/gga_x_wc.Tpo -c gga_x_wc.c -o gga_x_wc.o >/dev/null 2>&1
+mv -f .deps/gga_x_c09x.Tpo .deps/gga_x_c09x.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_kt.lo -MD -MP -MF .deps/gga_x_kt.Tpo -c -o gga_x_kt.lo gga_x_kt.c
+mv -f .deps/gga_x_optx.Tpo .deps/gga_x_optx.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_htbs.lo -MD -MP -MF .deps/gga_x_htbs.Tpo -c -o gga_x_htbs.lo gga_x_htbs.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_kt.lo -MD -MP -MF .deps/gga_x_kt.Tpo -c gga_x_kt.c  -fPIC -DPIC -o .libs/gga_x_kt.o
+mv -f .deps/gga_x_airy.Tpo .deps/gga_x_airy.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_pbe.lo -MD -MP -MF .deps/gga_c_pbe.Tpo -c -o gga_c_pbe.lo gga_c_pbe.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_htbs.lo -MD -MP -MF .deps/gga_x_htbs.Tpo -c gga_x_htbs.c  -fPIC -DPIC -o .libs/gga_x_htbs.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_pbe.lo -MD -MP -MF .deps/gga_c_pbe.Tpo -c gga_c_pbe.c  -fPIC -DPIC -o .libs/gga_c_pbe.o
+mv -f .deps/gga_x_pw91.Tpo .deps/gga_x_pw91.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_lyp.lo -MD -MP -MF .deps/gga_c_lyp.Tpo -c -o gga_c_lyp.lo gga_c_lyp.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_lyp.lo -MD -MP -MF .deps/gga_c_lyp.Tpo -c gga_c_lyp.c  -fPIC -DPIC -o .libs/gga_c_lyp.o
+mv -f .deps/gga_x_dk87.Tpo .deps/gga_x_dk87.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_p86.lo -MD -MP -MF .deps/gga_c_p86.Tpo -c -o gga_c_p86.lo gga_c_p86.c
+mv -f .deps/gga_x_ft97.Tpo .deps/gga_x_ft97.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_pw91.lo -MD -MP -MF .deps/gga_c_pw91.Tpo -c -o gga_c_pw91.lo gga_c_pw91.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_bayesian.lo -MD -MP -MF .deps/gga_x_bayesian.Tpo -c gga_x_bayesian.c -o gga_x_bayesian.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_p86.lo -MD -MP -MF .deps/gga_c_p86.Tpo -c gga_c_p86.c  -fPIC -DPIC -o .libs/gga_c_p86.o
+mv -f .deps/gga_x_wc.Tpo .deps/gga_x_wc.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_am05.lo -MD -MP -MF .deps/gga_c_am05.Tpo -c -o gga_c_am05.lo gga_c_am05.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_am05.lo -MD -MP -MF .deps/gga_x_am05.Tpo -c gga_x_am05.c -o gga_x_am05.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_pw91.lo -MD -MP -MF .deps/gga_c_pw91.Tpo -c gga_c_pw91.c  -fPIC -DPIC -o .libs/gga_c_pw91.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_am05.lo -MD -MP -MF .deps/gga_c_am05.Tpo -c gga_c_am05.c  -fPIC -DPIC -o .libs/gga_c_am05.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_kt.lo -MD -MP -MF .deps/gga_x_kt.Tpo -c gga_x_kt.c -o gga_x_kt.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_htbs.lo -MD -MP -MF .deps/gga_x_htbs.Tpo -c gga_x_htbs.c -o gga_x_htbs.o >/dev/null 2>&1
+mv -f .deps/gga_x_bayesian.Tpo .deps/gga_x_bayesian.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_lm.lo -MD -MP -MF .deps/gga_c_lm.Tpo -c -o gga_c_lm.lo gga_c_lm.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_lm.lo -MD -MP -MF .deps/gga_c_lm.Tpo -c gga_c_lm.c  -fPIC -DPIC -o .libs/gga_c_lm.o
+mv -f .deps/gga_x_am05.Tpo .deps/gga_x_am05.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_wl.lo -MD -MP -MF .deps/gga_c_wl.Tpo -c -o gga_c_wl.lo gga_c_wl.c
+mv -f .deps/gga_x_kt.Tpo .deps/gga_x_kt.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_wi.lo -MD -MP -MF .deps/gga_c_wi.Tpo -c -o gga_c_wi.lo gga_c_wi.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_wl.lo -MD -MP -MF .deps/gga_c_wl.Tpo -c gga_c_wl.c  -fPIC -DPIC -o .libs/gga_c_wl.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_wi.lo -MD -MP -MF .deps/gga_c_wi.Tpo -c gga_c_wi.c  -fPIC -DPIC -o .libs/gga_c_wi.o
+mv -f .deps/gga_x_htbs.Tpo .deps/gga_x_htbs.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_lb.lo -MD -MP -MF .deps/gga_x_lb.Tpo -c -o gga_x_lb.lo gga_x_lb.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_lb.lo -MD -MP -MF .deps/gga_x_lb.Tpo -c gga_x_lb.c  -fPIC -DPIC -o .libs/gga_x_lb.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_lb.lo -MD -MP -MF .deps/gga_x_lb.Tpo -c gga_x_lb.c -o gga_x_lb.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_p86.lo -MD -MP -MF .deps/gga_c_p86.Tpo -c gga_c_p86.c -o gga_c_p86.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_pw91.lo -MD -MP -MF .deps/gga_c_pw91.Tpo -c gga_c_pw91.c -o gga_c_pw91.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_pbe.lo -MD -MP -MF .deps/gga_c_pbe.Tpo -c gga_c_pbe.c -o gga_c_pbe.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_am05.lo -MD -MP -MF .deps/gga_c_am05.Tpo -c gga_c_am05.c -o gga_c_am05.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_lyp.lo -MD -MP -MF .deps/gga_c_lyp.Tpo -c gga_c_lyp.c -o gga_c_lyp.o >/dev/null 2>&1
+mv -f .deps/gga_x_lb.Tpo .deps/gga_x_lb.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_xc_b97.lo -MD -MP -MF .deps/gga_xc_b97.Tpo -c -o gga_xc_b97.lo gga_xc_b97.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_b97.lo -MD -MP -MF .deps/gga_xc_b97.Tpo -c gga_xc_b97.c  -fPIC -DPIC -o .libs/gga_xc_b97.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_lm.lo -MD -MP -MF .deps/gga_c_lm.Tpo -c gga_c_lm.c -o gga_c_lm.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_wl.lo -MD -MP -MF .deps/gga_c_wl.Tpo -c gga_c_wl.c -o gga_c_wl.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_wi.lo -MD -MP -MF .deps/gga_c_wi.Tpo -c gga_c_wi.c -o gga_c_wi.o >/dev/null 2>&1
+mv -f .deps/gga_c_p86.Tpo .deps/gga_c_p86.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_xc_edf1.lo -MD -MP -MF .deps/gga_xc_edf1.Tpo -c -o gga_xc_edf1.lo gga_xc_edf1.c
+mv -f .deps/gga_c_am05.Tpo .deps/gga_c_am05.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_xc_1w.lo -MD -MP -MF .deps/gga_xc_1w.Tpo -c -o gga_xc_1w.lo gga_xc_1w.c
+mv -f .deps/gga_c_pw91.Tpo .deps/gga_c_pw91.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_optc.lo -MD -MP -MF .deps/gga_c_optc.Tpo -c -o gga_c_optc.lo gga_c_optc.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_edf1.lo -MD -MP -MF .deps/gga_xc_edf1.Tpo -c gga_xc_edf1.c  -fPIC -DPIC -o .libs/gga_xc_edf1.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_1w.lo -MD -MP -MF .deps/gga_xc_1w.Tpo -c gga_xc_1w.c  -fPIC -DPIC -o .libs/gga_xc_1w.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_optc.lo -MD -MP -MF .deps/gga_c_optc.Tpo -c gga_c_optc.c  -fPIC -DPIC -o .libs/gga_c_optc.o
+mv -f .deps/gga_c_pbe.Tpo .deps/gga_c_pbe.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_tca.lo -MD -MP -MF .deps/gga_c_tca.Tpo -c -o gga_c_tca.lo gga_c_tca.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_tca.lo -MD -MP -MF .deps/gga_c_tca.Tpo -c gga_c_tca.c  -fPIC -DPIC -o .libs/gga_c_tca.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_edf1.lo -MD -MP -MF .deps/gga_xc_edf1.Tpo -c gga_xc_edf1.c -o gga_xc_edf1.o >/dev/null 2>&1
+mv -f .deps/gga_c_lm.Tpo .deps/gga_c_lm.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_bpccac.lo -MD -MP -MF .deps/gga_x_bpccac.Tpo -c -o gga_x_bpccac.lo gga_x_bpccac.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_b97.lo -MD -MP -MF .deps/gga_xc_b97.Tpo -c gga_xc_b97.c -o gga_xc_b97.o >/dev/null 2>&1
+mv -f .deps/gga_c_wl.Tpo .deps/gga_c_wl.Plo
+mv -f .deps/gga_c_lyp.Tpo .deps/gga_c_lyp.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_sogga11.lo -MD -MP -MF .deps/gga_x_sogga11.Tpo -c -o gga_x_sogga11.lo gga_x_sogga11.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_sogga11.lo -MD -MP -MF .deps/gga_c_sogga11.Tpo -c -o gga_c_sogga11.lo gga_c_sogga11.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_bpccac.lo -MD -MP -MF .deps/gga_x_bpccac.Tpo -c gga_x_bpccac.c  -fPIC -DPIC -o .libs/gga_x_bpccac.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_sogga11.lo -MD -MP -MF .deps/gga_x_sogga11.Tpo -c gga_x_sogga11.c  -fPIC -DPIC -o .libs/gga_x_sogga11.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_sogga11.lo -MD -MP -MF .deps/gga_c_sogga11.Tpo -c gga_c_sogga11.c  -fPIC -DPIC -o .libs/gga_c_sogga11.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_1w.lo -MD -MP -MF .deps/gga_xc_1w.Tpo -c gga_xc_1w.c -o gga_xc_1w.o >/dev/null 2>&1
+mv -f .deps/gga_xc_edf1.Tpo .deps/gga_xc_edf1.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_xc_th.lo -MD -MP -MF .deps/gga_xc_th.Tpo -c -o gga_xc_th.lo gga_xc_th.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_th.lo -MD -MP -MF .deps/gga_xc_th.Tpo -c gga_xc_th.c  -fPIC -DPIC -o .libs/gga_xc_th.o
+mv -f .deps/mix_func.Tpo .deps/mix_func.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_wpbeh.lo -MD -MP -MF .deps/gga_x_wpbeh.Tpo -c -o gga_x_wpbeh.lo gga_x_wpbeh.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_wpbeh.lo -MD -MP -MF .deps/gga_x_wpbeh.Tpo -c gga_x_wpbeh.c  -fPIC -DPIC -o .libs/gga_x_wpbeh.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_bpccac.lo -MD -MP -MF .deps/gga_x_bpccac.Tpo -c gga_x_bpccac.c -o gga_x_bpccac.o >/dev/null 2>&1
+mv -f .deps/gga_c_wi.Tpo .deps/gga_c_wi.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_hjs.lo -MD -MP -MF .deps/gga_x_hjs.Tpo -c -o gga_x_hjs.lo gga_x_hjs.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_sogga11.lo -MD -MP -MF .deps/gga_x_sogga11.Tpo -c gga_x_sogga11.c -o gga_x_sogga11.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_hjs.lo -MD -MP -MF .deps/gga_x_hjs.Tpo -c gga_x_hjs.c  -fPIC -DPIC -o .libs/gga_x_hjs.o
+mv -f .deps/gga_xc_1w.Tpo .deps/gga_xc_1w.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_ityh.lo -MD -MP -MF .deps/gga_x_ityh.Tpo -c -o gga_x_ityh.lo gga_x_ityh.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ityh.lo -MD -MP -MF .deps/gga_x_ityh.Tpo -c gga_x_ityh.c  -fPIC -DPIC -o .libs/gga_x_ityh.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_optc.lo -MD -MP -MF .deps/gga_c_optc.Tpo -c gga_c_optc.c -o gga_c_optc.o >/dev/null 2>&1
+mv -f .deps/gga_x_bpccac.Tpo .deps/gga_x_bpccac.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_sfat.lo -MD -MP -MF .deps/gga_x_sfat.Tpo -c -o gga_x_sfat.lo gga_x_sfat.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_tca.lo -MD -MP -MF .deps/gga_c_tca.Tpo -c gga_c_tca.c -o gga_c_tca.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_sfat.lo -MD -MP -MF .deps/gga_x_sfat.Tpo -c gga_x_sfat.c  -fPIC -DPIC -o .libs/gga_x_sfat.o
+mv -f .deps/gga_x_sogga11.Tpo .deps/gga_x_sogga11.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_ak13.lo -MD -MP -MF .deps/gga_x_ak13.Tpo -c -o gga_x_ak13.lo gga_x_ak13.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ak13.lo -MD -MP -MF .deps/gga_x_ak13.Tpo -c gga_x_ak13.c  -fPIC -DPIC -o .libs/gga_x_ak13.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_hjs.lo -MD -MP -MF .deps/gga_x_hjs.Tpo -c gga_x_hjs.c -o gga_x_hjs.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ityh.lo -MD -MP -MF .deps/gga_x_ityh.Tpo -c gga_x_ityh.c -o gga_x_ityh.o >/dev/null 2>&1
+mv -f .deps/gga_xc_b97.Tpo .deps/gga_xc_b97.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_q2d.lo -MD -MP -MF .deps/gga_x_q2d.Tpo -c -o gga_x_q2d.lo gga_x_q2d.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_sogga11.lo -MD -MP -MF .deps/gga_c_sogga11.Tpo -c gga_c_sogga11.c -o gga_c_sogga11.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_q2d.lo -MD -MP -MF .deps/gga_x_q2d.Tpo -c gga_x_q2d.c  -fPIC -DPIC -o .libs/gga_x_q2d.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_wpbeh.lo -MD -MP -MF .deps/gga_x_wpbeh.Tpo -c gga_x_wpbeh.c -o gga_x_wpbeh.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_sfat.lo -MD -MP -MF .deps/gga_x_sfat.Tpo -c gga_x_sfat.c -o gga_x_sfat.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ak13.lo -MD -MP -MF .deps/gga_x_ak13.Tpo -c gga_x_ak13.c -o gga_x_ak13.o >/dev/null 2>&1
+mv -f .deps/gga_x_ityh.Tpo .deps/gga_x_ityh.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_q2d.lo -MD -MP -MF .deps/gga_c_q2d.Tpo -c -o gga_c_q2d.lo gga_c_q2d.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_q2d.lo -MD -MP -MF .deps/gga_c_q2d.Tpo -c gga_c_q2d.c  -fPIC -DPIC -o .libs/gga_c_q2d.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_th.lo -MD -MP -MF .deps/gga_xc_th.Tpo -c gga_xc_th.c -o gga_xc_th.o >/dev/null 2>&1
+mv -f .deps/gga_x_hjs.Tpo .deps/gga_x_hjs.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_ssb_sw.lo -MD -MP -MF .deps/gga_x_ssb_sw.Tpo -c -o gga_x_ssb_sw.lo gga_x_ssb_sw.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_q2d.lo -MD -MP -MF .deps/gga_x_q2d.Tpo -c gga_x_q2d.c -o gga_x_q2d.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ssb_sw.lo -MD -MP -MF .deps/gga_x_ssb_sw.Tpo -c gga_x_ssb_sw.c  -fPIC -DPIC -o .libs/gga_x_ssb_sw.o
+mv -f .deps/gga_x_sfat.Tpo .deps/gga_x_sfat.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_ft97.lo -MD -MP -MF .deps/gga_c_ft97.Tpo -c -o gga_c_ft97.lo gga_c_ft97.c
+mv -f .deps/gga_x_ak13.Tpo .deps/gga_x_ak13.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_ft97.lo -MD -MP -MF .deps/gga_c_ft97.Tpo -c gga_c_ft97.c  -fPIC -DPIC -o .libs/gga_c_ft97.o
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_c_op.lo -MD -MP -MF .deps/gga_c_op.Tpo -c -o gga_c_op.lo gga_c_op.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_op.lo -MD -MP -MF .deps/gga_c_op.Tpo -c gga_c_op.c  -fPIC -DPIC -o .libs/gga_c_op.o
+mv -f .deps/gga_c_optc.Tpo .deps/gga_c_optc.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_n12.lo -MD -MP -MF .deps/gga_x_n12.Tpo -c -o gga_x_n12.lo gga_x_n12.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_n12.lo -MD -MP -MF .deps/gga_x_n12.Tpo -c gga_x_n12.c  -fPIC -DPIC -o .libs/gga_x_n12.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_ssb_sw.lo -MD -MP -MF .deps/gga_x_ssb_sw.Tpo -c gga_x_ssb_sw.c -o gga_x_ssb_sw.o >/dev/null 2>&1
+mv -f .deps/gga_x_q2d.Tpo .deps/gga_x_q2d.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_lv_rpw86.lo -MD -MP -MF .deps/gga_x_lv_rpw86.Tpo -c -o gga_x_lv_rpw86.lo gga_x_lv_rpw86.c
+mv -f .deps/gga_c_tca.Tpo .deps/gga_c_tca.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_2d_b86.lo -MD -MP -MF .deps/gga_x_2d_b86.Tpo -c -o gga_x_2d_b86.lo gga_x_2d_b86.c
+mv -f .deps/gga_x_wpbeh.Tpo .deps/gga_x_wpbeh.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_2d_b86_mgc.lo -MD -MP -MF .deps/gga_x_2d_b86_mgc.Tpo -c -o gga_x_2d_b86_mgc.lo gga_x_2d_b86_mgc.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_lv_rpw86.lo -MD -MP -MF .deps/gga_x_lv_rpw86.Tpo -c gga_x_lv_rpw86.c  -fPIC -DPIC -o .libs/gga_x_lv_rpw86.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_b86.lo -MD -MP -MF .deps/gga_x_2d_b86.Tpo -c gga_x_2d_b86.c  -fPIC -DPIC -o .libs/gga_x_2d_b86.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_b86_mgc.lo -MD -MP -MF .deps/gga_x_2d_b86_mgc.Tpo -c gga_x_2d_b86_mgc.c  -fPIC -DPIC -o .libs/gga_x_2d_b86_mgc.o
+mv -f .deps/gga_c_sogga11.Tpo .deps/gga_c_sogga11.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_2d_b88.lo -MD -MP -MF .deps/gga_x_2d_b88.Tpo -c -o gga_x_2d_b88.lo gga_x_2d_b88.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_b88.lo -MD -MP -MF .deps/gga_x_2d_b88.Tpo -c gga_x_2d_b88.c  -fPIC -DPIC -o .libs/gga_x_2d_b88.o
+mv -f .deps/gga_x_ssb_sw.Tpo .deps/gga_x_ssb_sw.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_2d_pbe.lo -MD -MP -MF .deps/gga_x_2d_pbe.Tpo -c -o gga_x_2d_pbe.lo gga_x_2d_pbe.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_b86.lo -MD -MP -MF .deps/gga_x_2d_b86.Tpo -c gga_x_2d_b86.c -o gga_x_2d_b86.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_b86_mgc.lo -MD -MP -MF .deps/gga_x_2d_b86_mgc.Tpo -c gga_x_2d_b86_mgc.c -o gga_x_2d_b86_mgc.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_pbe.lo -MD -MP -MF .deps/gga_x_2d_pbe.Tpo -c gga_x_2d_pbe.c  -fPIC -DPIC -o .libs/gga_x_2d_pbe.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_lv_rpw86.lo -MD -MP -MF .deps/gga_x_lv_rpw86.Tpo -c gga_x_lv_rpw86.c -o gga_x_lv_rpw86.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_q2d.lo -MD -MP -MF .deps/gga_c_q2d.Tpo -c gga_c_q2d.c -o gga_c_q2d.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_b88.lo -MD -MP -MF .deps/gga_x_2d_b88.Tpo -c gga_x_2d_b88.c -o gga_x_2d_b88.o >/dev/null 2>&1
+mv -f .deps/gga_xc_th.Tpo .deps/gga_xc_th.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_k_tflw.lo -MD -MP -MF .deps/gga_k_tflw.Tpo -c -o gga_k_tflw.lo gga_k_tflw.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_op.lo -MD -MP -MF .deps/gga_c_op.Tpo -c gga_c_op.c -o gga_c_op.o >/dev/null 2>&1
+mv -f .deps/gga_x_2d_b86.Tpo .deps/gga_x_2d_b86.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_k_pearson.lo -MD -MP -MF .deps/gga_k_pearson.Tpo -c -o gga_k_pearson.lo gga_k_pearson.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_tflw.lo -MD -MP -MF .deps/gga_k_tflw.Tpo -c gga_k_tflw.c  -fPIC -DPIC -o .libs/gga_k_tflw.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_2d_pbe.lo -MD -MP -MF .deps/gga_x_2d_pbe.Tpo -c gga_x_2d_pbe.c -o gga_x_2d_pbe.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_pearson.lo -MD -MP -MF .deps/gga_k_pearson.Tpo -c gga_k_pearson.c  -fPIC -DPIC -o .libs/gga_k_pearson.o
+mv -f .deps/gga_x_2d_b86_mgc.Tpo .deps/gga_x_2d_b86_mgc.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_k_ol1.lo -MD -MP -MF .deps/gga_k_ol1.Tpo -c -o gga_k_ol1.lo gga_k_ol1.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_n12.lo -MD -MP -MF .deps/gga_x_n12.Tpo -c gga_x_n12.c -o gga_x_n12.o >/dev/null 2>&1
+mv -f .deps/gga_x_lv_rpw86.Tpo .deps/gga_x_lv_rpw86.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_ol1.lo -MD -MP -MF .deps/gga_k_ol1.Tpo -c gga_k_ol1.c  -fPIC -DPIC -o .libs/gga_k_ol1.o
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_k_ol2.lo -MD -MP -MF .deps/gga_k_ol2.Tpo -c -o gga_k_ol2.lo gga_k_ol2.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_c_ft97.lo -MD -MP -MF .deps/gga_c_ft97.Tpo -c gga_c_ft97.c -o gga_c_ft97.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_ol2.lo -MD -MP -MF .deps/gga_k_ol2.Tpo -c gga_k_ol2.c  -fPIC -DPIC -o .libs/gga_k_ol2.o
+mv -f .deps/gga_x_2d_b88.Tpo .deps/gga_x_2d_b88.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_k_dk.lo -MD -MP -MF .deps/gga_k_dk.Tpo -c -o gga_k_dk.lo gga_k_dk.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_dk.lo -MD -MP -MF .deps/gga_k_dk.Tpo -c gga_k_dk.c  -fPIC -DPIC -o .libs/gga_k_dk.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_tflw.lo -MD -MP -MF .deps/gga_k_tflw.Tpo -c gga_k_tflw.c -o gga_k_tflw.o >/dev/null 2>&1
+mv -f .deps/gga_x_2d_pbe.Tpo .deps/gga_x_2d_pbe.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_k_meyer.lo -MD -MP -MF .deps/gga_k_meyer.Tpo -c -o gga_k_meyer.lo gga_k_meyer.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_meyer.lo -MD -MP -MF .deps/gga_k_meyer.Tpo -c gga_k_meyer.c  -fPIC -DPIC -o .libs/gga_k_meyer.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_ol1.lo -MD -MP -MF .deps/gga_k_ol1.Tpo -c gga_k_ol1.c -o gga_k_ol1.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_pearson.lo -MD -MP -MF .deps/gga_k_pearson.Tpo -c gga_k_pearson.c -o gga_k_pearson.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_ol2.lo -MD -MP -MF .deps/gga_k_ol2.Tpo -c gga_k_ol2.c -o gga_k_ol2.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_dk.lo -MD -MP -MF .deps/gga_k_dk.Tpo -c gga_k_dk.c -o gga_k_dk.o >/dev/null 2>&1
+mv -f .deps/gga_k_tflw.Tpo .deps/gga_k_tflw.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_x_vmt.lo -MD -MP -MF .deps/gga_x_vmt.Tpo -c -o gga_x_vmt.lo gga_x_vmt.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_k_meyer.lo -MD -MP -MF .deps/gga_k_meyer.Tpo -c gga_k_meyer.c -o gga_k_meyer.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_vmt.lo -MD -MP -MF .deps/gga_x_vmt.Tpo -c gga_x_vmt.c  -fPIC -DPIC -o .libs/gga_x_vmt.o
+mv -f .deps/gga_k_ol1.Tpo .deps/gga_k_ol1.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT gga_xc_oblyp_d.lo -MD -MP -MF .deps/gga_xc_oblyp_d.Tpo -c -o gga_xc_oblyp_d.lo gga_xc_oblyp_d.c
+mv -f .deps/gga_k_pearson.Tpo .deps/gga_k_pearson.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_b3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_b3lyp.Tpo -c -o hyb_gga_xc_b3lyp.lo hyb_gga_xc_b3lyp.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_oblyp_d.lo -MD -MP -MF .deps/gga_xc_oblyp_d.Tpo -c gga_xc_oblyp_d.c  -fPIC -DPIC -o .libs/gga_xc_oblyp_d.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_b3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_b3lyp.Tpo -c hyb_gga_xc_b3lyp.c  -fPIC -DPIC -o .libs/hyb_gga_xc_b3lyp.o
+mv -f .deps/gga_c_op.Tpo .deps/gga_c_op.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_o3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_o3lyp.Tpo -c -o hyb_gga_xc_o3lyp.lo hyb_gga_xc_o3lyp.c
+mv -f .deps/gga_c_q2d.Tpo .deps/gga_c_q2d.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_pbeh.lo -MD -MP -MF .deps/hyb_gga_xc_pbeh.Tpo -c -o hyb_gga_xc_pbeh.lo hyb_gga_xc_pbeh.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_o3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_o3lyp.Tpo -c hyb_gga_xc_o3lyp.c  -fPIC -DPIC -o .libs/hyb_gga_xc_o3lyp.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_pbeh.lo -MD -MP -MF .deps/hyb_gga_xc_pbeh.Tpo -c hyb_gga_xc_pbeh.c  -fPIC -DPIC -o .libs/hyb_gga_xc_pbeh.o
+mv -f .deps/gga_k_dk.Tpo .deps/gga_k_dk.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_b1wc.lo -MD -MP -MF .deps/hyb_gga_xc_b1wc.Tpo -c -o hyb_gga_xc_b1wc.lo hyb_gga_xc_b1wc.c
+mv -f .deps/gga_k_ol2.Tpo .deps/gga_k_ol2.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_b97.lo -MD -MP -MF .deps/hyb_gga_xc_b97.Tpo -c -o hyb_gga_xc_b97.lo hyb_gga_xc_b97.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_b97.lo -MD -MP -MF .deps/hyb_gga_xc_b97.Tpo -c hyb_gga_xc_b97.c  -fPIC -DPIC -o .libs/hyb_gga_xc_b97.o
+mv -f .deps/gga_k_meyer.Tpo .deps/gga_k_meyer.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_hse.lo -MD -MP -MF .deps/hyb_gga_xc_hse.Tpo -c -o hyb_gga_xc_hse.lo hyb_gga_xc_hse.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_b1wc.lo -MD -MP -MF .deps/hyb_gga_xc_b1wc.Tpo -c hyb_gga_xc_b1wc.c  -fPIC -DPIC -o .libs/hyb_gga_xc_b1wc.o
+mv -f .deps/gga_x_n12.Tpo .deps/gga_x_n12.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_xc_oblyp_d.lo -MD -MP -MF .deps/gga_xc_oblyp_d.Tpo -c gga_xc_oblyp_d.c -o gga_xc_oblyp_d.o >/dev/null 2>&1
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_cam_b3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_cam_b3lyp.Tpo -c -o hyb_gga_xc_cam_b3lyp.lo hyb_gga_xc_cam_b3lyp.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_hse.lo -MD -MP -MF .deps/hyb_gga_xc_hse.Tpo -c hyb_gga_xc_hse.c  -fPIC -DPIC -o .libs/hyb_gga_xc_hse.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_b3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_b3lyp.Tpo -c hyb_gga_xc_b3lyp.c -o hyb_gga_xc_b3lyp.o >/dev/null 2>&1
+mv -f .deps/gga_c_ft97.Tpo .deps/gga_c_ft97.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_cam_b3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_cam_b3lyp.Tpo -c hyb_gga_xc_cam_b3lyp.c  -fPIC -DPIC -o .libs/hyb_gga_xc_cam_b3lyp.o
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_gga_xc_camy_blyp.lo -MD -MP -MF .deps/hyb_gga_xc_camy_blyp.Tpo -c -o hyb_gga_xc_camy_blyp.lo hyb_gga_xc_camy_blyp.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT gga_x_vmt.lo -MD -MP -MF .deps/gga_x_vmt.Tpo -c gga_x_vmt.c -o gga_x_vmt.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_camy_blyp.lo -MD -MP -MF .deps/hyb_gga_xc_camy_blyp.Tpo -c hyb_gga_xc_camy_blyp.c  -fPIC -DPIC -o .libs/hyb_gga_xc_camy_blyp.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_o3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_o3lyp.Tpo -c hyb_gga_xc_o3lyp.c -o hyb_gga_xc_o3lyp.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_pbeh.lo -MD -MP -MF .deps/hyb_gga_xc_pbeh.Tpo -c hyb_gga_xc_pbeh.c -o hyb_gga_xc_pbeh.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_b97.lo -MD -MP -MF .deps/hyb_gga_xc_b97.Tpo -c hyb_gga_xc_b97.c -o hyb_gga_xc_b97.o >/dev/null 2>&1
+mv -f .deps/gga_xc_oblyp_d.Tpo .deps/gga_xc_oblyp_d.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga.lo -MD -MP -MF .deps/mgga.Tpo -c -o mgga.lo mgga.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_b1wc.lo -MD -MP -MF .deps/hyb_gga_xc_b1wc.Tpo -c hyb_gga_xc_b1wc.c -o hyb_gga_xc_b1wc.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_cam_b3lyp.lo -MD -MP -MF .deps/hyb_gga_xc_cam_b3lyp.Tpo -c hyb_gga_xc_cam_b3lyp.c -o hyb_gga_xc_cam_b3lyp.o >/dev/null 2>&1
+mv -f .deps/hyb_gga_xc_b3lyp.Tpo .deps/hyb_gga_xc_b3lyp.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_hse.lo -MD -MP -MF .deps/hyb_gga_xc_hse.Tpo -c hyb_gga_xc_hse.c -o hyb_gga_xc_hse.o >/dev/null 2>&1
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_lta.lo -MD -MP -MF .deps/mgga_x_lta.Tpo -c -o mgga_x_lta.lo mgga_x_lta.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga.lo -MD -MP -MF .deps/mgga.Tpo -c mgga.c  -fPIC -DPIC -o .libs/mgga.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_lta.lo -MD -MP -MF .deps/mgga_x_lta.Tpo -c mgga_x_lta.c  -fPIC -DPIC -o .libs/mgga_x_lta.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_gga_xc_camy_blyp.lo -MD -MP -MF .deps/hyb_gga_xc_camy_blyp.Tpo -c hyb_gga_xc_camy_blyp.c -o hyb_gga_xc_camy_blyp.o >/dev/null 2>&1
+mv -f .deps/hyb_gga_xc_o3lyp.Tpo .deps/hyb_gga_xc_o3lyp.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_tpss.lo -MD -MP -MF .deps/mgga_x_tpss.Tpo -c -o mgga_x_tpss.lo mgga_x_tpss.c
+mv -f .deps/hyb_gga_xc_pbeh.Tpo .deps/hyb_gga_xc_pbeh.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_br89.lo -MD -MP -MF .deps/mgga_x_br89.Tpo -c -o mgga_x_br89.lo mgga_x_br89.c
+mv -f .deps/gga_x_vmt.Tpo .deps/gga_x_vmt.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_gvt4.lo -MD -MP -MF .deps/mgga_x_gvt4.Tpo -c -o mgga_x_gvt4.lo mgga_x_gvt4.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_tpss.lo -MD -MP -MF .deps/mgga_x_tpss.Tpo -c mgga_x_tpss.c  -fPIC -DPIC -o .libs/mgga_x_tpss.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_br89.lo -MD -MP -MF .deps/mgga_x_br89.Tpo -c mgga_x_br89.c  -fPIC -DPIC -o .libs/mgga_x_br89.o
+mv -f .deps/hyb_gga_xc_b97.Tpo .deps/hyb_gga_xc_b97.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_m06l.lo -MD -MP -MF .deps/mgga_x_m06l.Tpo -c -o mgga_x_m06l.lo mgga_x_m06l.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_gvt4.lo -MD -MP -MF .deps/mgga_x_gvt4.Tpo -c mgga_x_gvt4.c  -fPIC -DPIC -o .libs/mgga_x_gvt4.o
+mv -f .deps/hyb_gga_xc_cam_b3lyp.Tpo .deps/hyb_gga_xc_cam_b3lyp.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_tau_hcth.lo -MD -MP -MF .deps/mgga_x_tau_hcth.Tpo -c -o mgga_x_tau_hcth.lo mgga_x_tau_hcth.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_m06l.lo -MD -MP -MF .deps/mgga_x_m06l.Tpo -c mgga_x_m06l.c  -fPIC -DPIC -o .libs/mgga_x_m06l.o
+mv -f .deps/hyb_gga_xc_b1wc.Tpo .deps/hyb_gga_xc_b1wc.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_2d_prhg07.lo -MD -MP -MF .deps/mgga_x_2d_prhg07.Tpo -c -o mgga_x_2d_prhg07.lo mgga_x_2d_prhg07.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_tau_hcth.lo -MD -MP -MF .deps/mgga_x_tau_hcth.Tpo -c mgga_x_tau_hcth.c  -fPIC -DPIC -o .libs/mgga_x_tau_hcth.o
+mv -f .deps/hyb_gga_xc_hse.Tpo .deps/hyb_gga_xc_hse.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_pkzb.lo -MD -MP -MF .deps/mgga_x_pkzb.Tpo -c -o mgga_x_pkzb.lo mgga_x_pkzb.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_2d_prhg07.lo -MD -MP -MF .deps/mgga_x_2d_prhg07.Tpo -c mgga_x_2d_prhg07.c  -fPIC -DPIC -o .libs/mgga_x_2d_prhg07.o
+mv -f .deps/hyb_gga_xc_camy_blyp.Tpo .deps/hyb_gga_xc_camy_blyp.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_m05.lo -MD -MP -MF .deps/mgga_x_m05.Tpo -c -o mgga_x_m05.lo mgga_x_m05.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_pkzb.lo -MD -MP -MF .deps/mgga_x_pkzb.Tpo -c mgga_x_pkzb.c  -fPIC -DPIC -o .libs/mgga_x_pkzb.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga.lo -MD -MP -MF .deps/mgga.Tpo -c mgga.c -o mgga.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_m05.lo -MD -MP -MF .deps/mgga_x_m05.Tpo -c mgga_x_m05.c  -fPIC -DPIC -o .libs/mgga_x_m05.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_lta.lo -MD -MP -MF .deps/mgga_x_lta.Tpo -c mgga_x_lta.c -o mgga_x_lta.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_gvt4.lo -MD -MP -MF .deps/mgga_x_gvt4.Tpo -c mgga_x_gvt4.c -o mgga_x_gvt4.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_m06l.lo -MD -MP -MF .deps/mgga_x_m06l.Tpo -c mgga_x_m06l.c -o mgga_x_m06l.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_tau_hcth.lo -MD -MP -MF .deps/mgga_x_tau_hcth.Tpo -c mgga_x_tau_hcth.c -o mgga_x_tau_hcth.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_tpss.lo -MD -MP -MF .deps/mgga_x_tpss.Tpo -c mgga_x_tpss.c -o mgga_x_tpss.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_2d_prhg07.lo -MD -MP -MF .deps/mgga_x_2d_prhg07.Tpo -c mgga_x_2d_prhg07.c -o mgga_x_2d_prhg07.o >/dev/null 2>&1
+mv -f .deps/mgga.Tpo .deps/mgga.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_m08.lo -MD -MP -MF .deps/mgga_x_m08.Tpo -c -o mgga_x_m08.lo mgga_x_m08.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_br89.lo -MD -MP -MF .deps/mgga_x_br89.Tpo -c mgga_x_br89.c -o mgga_x_br89.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_pkzb.lo -MD -MP -MF .deps/mgga_x_pkzb.Tpo -c mgga_x_pkzb.c -o mgga_x_pkzb.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_m05.lo -MD -MP -MF .deps/mgga_x_m05.Tpo -c mgga_x_m05.c -o mgga_x_m05.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_m08.lo -MD -MP -MF .deps/mgga_x_m08.Tpo -c mgga_x_m08.c  -fPIC -DPIC -o .libs/mgga_x_m08.o
+mv -f .deps/mgga_x_lta.Tpo .deps/mgga_x_lta.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_ms.lo -MD -MP -MF .deps/mgga_x_ms.Tpo -c -o mgga_x_ms.lo mgga_x_ms.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_ms.lo -MD -MP -MF .deps/mgga_x_ms.Tpo -c mgga_x_ms.c  -fPIC -DPIC -o .libs/mgga_x_ms.o
+mv -f .deps/mgga_x_gvt4.Tpo .deps/mgga_x_gvt4.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_mn12.lo -MD -MP -MF .deps/mgga_x_mn12.Tpo -c -o mgga_x_mn12.lo mgga_x_mn12.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_mn12.lo -MD -MP -MF .deps/mgga_x_mn12.Tpo -c mgga_x_mn12.c  -fPIC -DPIC -o .libs/mgga_x_mn12.o
+mv -f .deps/mgga_x_m06l.Tpo .deps/mgga_x_m06l.Plo
+mv -f .deps/mgga_x_tau_hcth.Tpo .deps/mgga_x_tau_hcth.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_x_mk00.lo -MD -MP -MF .deps/mgga_x_mk00.Tpo -c -o mgga_x_mk00.lo mgga_x_mk00.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_c_vsxc.lo -MD -MP -MF .deps/mgga_c_vsxc.Tpo -c -o mgga_c_vsxc.lo mgga_c_vsxc.c
+mv -f .deps/mgga_x_2d_prhg07.Tpo .deps/mgga_x_2d_prhg07.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_c_pkzb.lo -MD -MP -MF .deps/mgga_c_pkzb.Tpo -c -o mgga_c_pkzb.lo mgga_c_pkzb.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_mk00.lo -MD -MP -MF .deps/mgga_x_mk00.Tpo -c mgga_x_mk00.c  -fPIC -DPIC -o .libs/mgga_x_mk00.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_vsxc.lo -MD -MP -MF .deps/mgga_c_vsxc.Tpo -c mgga_c_vsxc.c  -fPIC -DPIC -o .libs/mgga_c_vsxc.o
+mv -f .deps/mgga_x_pkzb.Tpo .deps/mgga_x_pkzb.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_pkzb.lo -MD -MP -MF .deps/mgga_c_pkzb.Tpo -c mgga_c_pkzb.c  -fPIC -DPIC -o .libs/mgga_c_pkzb.o
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_c_bc95.lo -MD -MP -MF .deps/mgga_c_bc95.Tpo -c -o mgga_c_bc95.lo mgga_c_bc95.c
+mv -f .deps/mgga_x_m05.Tpo .deps/mgga_x_m05.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_c_m08.lo -MD -MP -MF .deps/mgga_c_m08.Tpo -c -o mgga_c_m08.lo mgga_c_m08.c
+mv -f .deps/mgga_x_tpss.Tpo .deps/mgga_x_tpss.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_bc95.lo -MD -MP -MF .deps/mgga_c_bc95.Tpo -c mgga_c_bc95.c  -fPIC -DPIC -o .libs/mgga_c_bc95.o
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_c_cc06.lo -MD -MP -MF .deps/mgga_c_cc06.Tpo -c -o mgga_c_cc06.lo mgga_c_cc06.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_m08.lo -MD -MP -MF .deps/mgga_c_m08.Tpo -c mgga_c_m08.c  -fPIC -DPIC -o .libs/mgga_c_m08.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_cc06.lo -MD -MP -MF .deps/mgga_c_cc06.Tpo -c mgga_c_cc06.c  -fPIC -DPIC -o .libs/mgga_c_cc06.o
+mv -f .deps/mgga_x_br89.Tpo .deps/mgga_x_br89.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_c_cs.lo -MD -MP -MF .deps/mgga_c_cs.Tpo -c -o mgga_c_cs.lo mgga_c_cs.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_m08.lo -MD -MP -MF .deps/mgga_x_m08.Tpo -c mgga_x_m08.c -o mgga_x_m08.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_cs.lo -MD -MP -MF .deps/mgga_c_cs.Tpo -c mgga_c_cs.c  -fPIC -DPIC -o .libs/mgga_c_cs.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_mk00.lo -MD -MP -MF .deps/mgga_x_mk00.Tpo -c mgga_x_mk00.c -o mgga_x_mk00.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_ms.lo -MD -MP -MF .deps/mgga_x_ms.Tpo -c mgga_x_ms.c -o mgga_x_ms.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_vsxc.lo -MD -MP -MF .deps/mgga_c_vsxc.Tpo -c mgga_c_vsxc.c -o mgga_c_vsxc.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_cc06.lo -MD -MP -MF .deps/mgga_c_cc06.Tpo -c mgga_c_cc06.c -o mgga_c_cc06.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_bc95.lo -MD -MP -MF .deps/mgga_c_bc95.Tpo -c mgga_c_bc95.c -o mgga_c_bc95.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_m08.lo -MD -MP -MF .deps/mgga_c_m08.Tpo -c mgga_c_m08.c -o mgga_c_m08.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_x_mn12.lo -MD -MP -MF .deps/mgga_x_mn12.Tpo -c mgga_x_mn12.c -o mgga_x_mn12.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_cs.lo -MD -MP -MF .deps/mgga_c_cs.Tpo -c mgga_c_cs.c -o mgga_c_cs.o >/dev/null 2>&1
+mv -f .deps/mgga_x_m08.Tpo .deps/mgga_x_m08.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT mgga_xc_otpss_d.lo -MD -MP -MF .deps/mgga_xc_otpss_d.Tpo -c -o mgga_xc_otpss_d.lo mgga_xc_otpss_d.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_c_pkzb.lo -MD -MP -MF .deps/mgga_c_pkzb.Tpo -c mgga_c_pkzb.c -o mgga_c_pkzb.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_xc_otpss_d.lo -MD -MP -MF .deps/mgga_xc_otpss_d.Tpo -c mgga_xc_otpss_d.c  -fPIC -DPIC -o .libs/mgga_xc_otpss_d.o
+mv -f .deps/mgga_x_mk00.Tpo .deps/mgga_x_mk00.Plo
+mv -f .deps/mgga_x_ms.Tpo .deps/mgga_x_ms.Plo
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_mgga_xc_m05.lo -MD -MP -MF .deps/hyb_mgga_xc_m05.Tpo -c -o hyb_mgga_xc_m05.lo hyb_mgga_xc_m05.c
+/bin/sh ../libtool  --tag=CC   --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT hyb_mgga_xc_tpssh.lo -MD -MP -MF .deps/hyb_mgga_xc_tpssh.Tpo -c -o hyb_mgga_xc_tpssh.lo hyb_mgga_xc_tpssh.c
+mv -f .deps/mgga_c_cc06.Tpo .deps/mgga_c_cc06.Plo
+/bin/sh ../libtool  --tag=CC --tag=F77  --mode=compile icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT libxcf90_la-xc_f.lo -MD -MP -MF .deps/libxcf90_la-xc_f.Tpo -c -o libxcf90_la-xc_f.lo `test -f 'xc_f.c' || echo './'`xc_f.c
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_mgga_xc_tpssh.lo -MD -MP -MF .deps/hyb_mgga_xc_tpssh.Tpo -c hyb_mgga_xc_tpssh.c  -fPIC -DPIC -o .libs/hyb_mgga_xc_tpssh.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_mgga_xc_m05.lo -MD -MP -MF .deps/hyb_mgga_xc_m05.Tpo -c hyb_mgga_xc_m05.c  -fPIC -DPIC -o .libs/hyb_mgga_xc_m05.o
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT mgga_xc_otpss_d.lo -MD -MP -MF .deps/mgga_xc_otpss_d.Tpo -c mgga_xc_otpss_d.c -o mgga_xc_otpss_d.o >/dev/null 2>&1
+libtool: ignoring unknown tag F77
+mv -f .deps/mgga_c_m08.Tpo .deps/mgga_c_m08.Plo
+/bin/sh ../libtool  --tag=FC --tag=F77  --mode=compile gfortran  -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -c -o libxcf90_la-libxc_funcs.lo  `test -f 'libxc_funcs.f90' || echo './'`libxc_funcs.f90
+mv -f .deps/mgga_c_bc95.Tpo .deps/mgga_c_bc95.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT libxcf90_la-xc_f.lo -MD -MP -MF .deps/libxcf90_la-xc_f.Tpo -c xc_f.c  -fPIC -DPIC -o .libs/libxcf90_la-xc_f.o
+/lib/cpp -ansi   ./libxc_master.F90 > ../src/libxc.f90
+mv -f .deps/mgga_c_cs.Tpo .deps/mgga_c_cs.Plo
+icc -DHAVE_CONFIG_H -I. -I..     -fPIC -xHOST -MT xc-info.o -MD -MP -MF .deps/xc-info.Tpo -c -o xc-info.o xc-info.c
+mv -f .deps/mgga_c_vsxc.Tpo .deps/mgga_c_vsxc.Plo
+libtool: ignoring unknown tag F77
+libtool: compile:  gfortran -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -c libxc_funcs.f90  -fPIC -o .libs/libxcf90_la-libxc_funcs.o
+libtool: compile:  gfortran -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -c libxc_funcs.f90 -o libxcf90_la-libxc_funcs.o >/dev/null 2>&1
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_mgga_xc_tpssh.lo -MD -MP -MF .deps/hyb_mgga_xc_tpssh.Tpo -c hyb_mgga_xc_tpssh.c -o hyb_mgga_xc_tpssh.o >/dev/null 2>&1
+mv -f .deps/mgga_x_mn12.Tpo .deps/mgga_x_mn12.Plo
+/bin/sh ../libtool  --tag=FC --tag=F77  --mode=compile gfortran  -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -c -o libxcf90_la-libxc.lo  `test -f 'libxc.f90' || echo './'`libxc.f90
+mv -f .deps/mgga_xc_otpss_d.Tpo .deps/mgga_xc_otpss_d.Plo
+mv -f .deps/xc-info.Tpo .deps/xc-info.Po
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT hyb_mgga_xc_m05.lo -MD -MP -MF .deps/hyb_mgga_xc_m05.Tpo -c hyb_mgga_xc_m05.c -o hyb_mgga_xc_m05.o >/dev/null 2>&1
+libtool: ignoring unknown tag F77
+libtool: compile:  gfortran -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -c libxc.f90  -fPIC -o .libs/libxcf90_la-libxc.o
+libtool: compile:  gfortran -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -c libxc.f90 -o libxcf90_la-libxc.o >/dev/null 2>&1
+mv -f .deps/mgga_c_pkzb.Tpo .deps/mgga_c_pkzb.Plo
+mv -f .deps/hyb_mgga_xc_tpssh.Tpo .deps/hyb_mgga_xc_tpssh.Plo
+libtool: compile:  icc -DHAVE_CONFIG_H -I. -I.. -fPIC -xHOST -MT libxcf90_la-xc_f.lo -MD -MP -MF .deps/libxcf90_la-xc_f.Tpo -c xc_f.c -o libxcf90_la-xc_f.o >/dev/null 2>&1
+mv -f .deps/hyb_mgga_xc_m05.Tpo .deps/hyb_mgga_xc_m05.Plo
+/bin/sh ../libtool  --tag=CC   --mode=link icc  -fPIC -xHOST -version-info 3:0:0  -o libxc.la -rpath /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib special_functions.lo bessel.lo expint_e1.lo integrate.lo util.lo mix_func.lo functionals.lo version.lo lda.lo lda_x.lo lda_x_1d.lo lda_x_2d.lo lda_c_wigner.lo lda_c_gombas.lo lda_c_rpa.lo lda_c_hl.lo lda_c_vwn.lo lda_c_pz.lo lda_c_pw.lo lda_c_ml1.lo lda_c_rc04.lo lda_xc_teter93.lo lda_c_1d_csc.lo lda_c_1d_loos.lo lda_c_2d_amgb.lo lda_c_2d_prm.lo stoll.lo lda_k_tf.lo gga.lo gga_x_lg93.lo gga_x_pbe.lo gga_x_rpbe.lo gga_x_pbea.lo gga_x_mpbe.lo gga_x_herman.lo gga_x_b86.lo gga_x_b86_mgc.lo gga_x_b88.lo gga_x_g96.lo gga_x_pw86.lo gga_x_pw91.lo gga_x_optx.lo gga_x_airy.lo gga_x_c09x.lo gga_x_dk87.lo gga_x_ft97.lo gga_x_wc.lo gga_x_am05.lo gga_x_bayesian.lo gga_x_kt.lo gga_x_htbs.lo gga_c_pbe.lo gga_c_lyp.lo gga_c_p86.lo gga_c_pw91.lo gga_c_am05.lo gga_c_lm.lo gga_c_wl.lo gga_c_wi.lo gga_x_lb.lo gga_xc_b97.lo gga_xc_edf1.lo gga_xc_1w.lo gga_c_optc.lo gga_c_tca.lo gga_x_bpccac.lo gga_x_sogga11.lo gga_c_sogga11.lo gga_xc_th.lo gga_x_wpbeh.lo gga_x_hjs.lo gga_x_ityh.lo gga_x_sfat.lo gga_x_ak13.lo gga_x_q2d.lo gga_c_q2d.lo gga_x_ssb_sw.lo gga_c_ft97.lo gga_c_op.lo gga_x_n12.lo gga_x_lv_rpw86.lo gga_x_2d_b86.lo gga_x_2d_b86_mgc.lo gga_x_2d_b88.lo gga_x_2d_pbe.lo gga_k_tflw.lo gga_k_pearson.lo gga_k_ol1.lo gga_k_ol2.lo gga_k_dk.lo gga_k_meyer.lo gga_x_vmt.lo gga_xc_oblyp_d.lo hyb_gga_xc_b3lyp.lo hyb_gga_xc_o3lyp.lo hyb_gga_xc_pbeh.lo hyb_gga_xc_b1wc.lo hyb_gga_xc_b97.lo hyb_gga_xc_hse.lo hyb_gga_xc_cam_b3lyp.lo hyb_gga_xc_camy_blyp.lo mgga.lo mgga_x_lta.lo mgga_x_tpss.lo mgga_x_br89.lo mgga_x_gvt4.lo mgga_x_m06l.lo mgga_x_tau_hcth.lo mgga_x_2d_prhg07.lo mgga_x_pkzb.lo mgga_x_m05.lo mgga_x_m08.lo mgga_x_ms.lo mgga_x_mn12.lo mgga_x_mk00.lo mgga_c_vsxc.lo mgga_c_pkzb.lo mgga_c_bc95.lo mgga_c_m08.lo mgga_c_cc06.lo mgga_c_cs.lo mgga_xc_otpss_d.lo hyb_mgga_xc_m05.lo hyb_mgga_xc_tpssh.lo   
+mv -f .deps/libxcf90_la-xc_f.Tpo .deps/libxcf90_la-xc_f.Plo
+libtool: link: icc -shared  -fPIC -DPIC  .libs/special_functions.o .libs/bessel.o .libs/expint_e1.o .libs/integrate.o .libs/util.o .libs/mix_func.o .libs/functionals.o .libs/version.o .libs/lda.o .libs/lda_x.o .libs/lda_x_1d.o .libs/lda_x_2d.o .libs/lda_c_wigner.o .libs/lda_c_gombas.o .libs/lda_c_rpa.o .libs/lda_c_hl.o .libs/lda_c_vwn.o .libs/lda_c_pz.o .libs/lda_c_pw.o .libs/lda_c_ml1.o .libs/lda_c_rc04.o .libs/lda_xc_teter93.o .libs/lda_c_1d_csc.o .libs/lda_c_1d_loos.o .libs/lda_c_2d_amgb.o .libs/lda_c_2d_prm.o .libs/stoll.o .libs/lda_k_tf.o .libs/gga.o .libs/gga_x_lg93.o .libs/gga_x_pbe.o .libs/gga_x_rpbe.o .libs/gga_x_pbea.o .libs/gga_x_mpbe.o .libs/gga_x_herman.o .libs/gga_x_b86.o .libs/gga_x_b86_mgc.o .libs/gga_x_b88.o .libs/gga_x_g96.o .libs/gga_x_pw86.o .libs/gga_x_pw91.o .libs/gga_x_optx.o .libs/gga_x_airy.o .libs/gga_x_c09x.o .libs/gga_x_dk87.o .libs/gga_x_ft97.o .libs/gga_x_wc.o .libs/gga_x_am05.o .libs/gga_x_bayesian.o .libs/gga_x_kt.o .libs/gga_x_htbs.o .libs/gga_c_pbe.o .libs/gga_c_lyp.o .libs/gga_c_p86.o .libs/gga_c_pw91.o .libs/gga_c_am05.o .libs/gga_c_lm.o .libs/gga_c_wl.o .libs/gga_c_wi.o .libs/gga_x_lb.o .libs/gga_xc_b97.o .libs/gga_xc_edf1.o .libs/gga_xc_1w.o .libs/gga_c_optc.o .libs/gga_c_tca.o .libs/gga_x_bpccac.o .libs/gga_x_sogga11.o .libs/gga_c_sogga11.o .libs/gga_xc_th.o .libs/gga_x_wpbeh.o .libs/gga_x_hjs.o .libs/gga_x_ityh.o .libs/gga_x_sfat.o .libs/gga_x_ak13.o .libs/gga_x_q2d.o .libs/gga_c_q2d.o .libs/gga_x_ssb_sw.o .libs/gga_c_ft97.o .libs/gga_c_op.o .libs/gga_x_n12.o .libs/gga_x_lv_rpw86.o .libs/gga_x_2d_b86.o .libs/gga_x_2d_b86_mgc.o .libs/gga_x_2d_b88.o .libs/gga_x_2d_pbe.o .libs/gga_k_tflw.o .libs/gga_k_pearson.o .libs/gga_k_ol1.o .libs/gga_k_ol2.o .libs/gga_k_dk.o .libs/gga_k_meyer.o .libs/gga_x_vmt.o .libs/gga_xc_oblyp_d.o .libs/hyb_gga_xc_b3lyp.o .libs/hyb_gga_xc_o3lyp.o .libs/hyb_gga_xc_pbeh.o .libs/hyb_gga_xc_b1wc.o .libs/hyb_gga_xc_b97.o .libs/hyb_gga_xc_hse.o .libs/hyb_gga_xc_cam_b3lyp.o .libs/hyb_gga_xc_camy_blyp.o .libs/mgga.o .libs/mgga_x_lta.o .libs/mgga_x_tpss.o .libs/mgga_x_br89.o .libs/mgga_x_gvt4.o .libs/mgga_x_m06l.o .libs/mgga_x_tau_hcth.o .libs/mgga_x_2d_prhg07.o .libs/mgga_x_pkzb.o .libs/mgga_x_m05.o .libs/mgga_x_m08.o .libs/mgga_x_ms.o .libs/mgga_x_mn12.o .libs/mgga_x_mk00.o .libs/mgga_c_vsxc.o .libs/mgga_c_pkzb.o .libs/mgga_c_bc95.o .libs/mgga_c_m08.o .libs/mgga_c_cc06.o .libs/mgga_c_cs.o .libs/mgga_xc_otpss_d.o .libs/hyb_mgga_xc_m05.o .libs/hyb_mgga_xc_tpssh.o      -Wl,-soname -Wl,libxc.so.3 -o .libs/libxc.so.3.0.0
+libtool: link: (cd ".libs" && rm -f "libxc.so.3" && ln -s "libxc.so.3.0.0" "libxc.so.3")
+libtool: link: (cd ".libs" && rm -f "libxc.so" && ln -s "libxc.so.3.0.0" "libxc.so")
+libtool: link: ar cru .libs/libxc.a  special_functions.o bessel.o expint_e1.o integrate.o util.o mix_func.o functionals.o version.o lda.o lda_x.o lda_x_1d.o lda_x_2d.o lda_c_wigner.o lda_c_gombas.o lda_c_rpa.o lda_c_hl.o lda_c_vwn.o lda_c_pz.o lda_c_pw.o lda_c_ml1.o lda_c_rc04.o lda_xc_teter93.o lda_c_1d_csc.o lda_c_1d_loos.o lda_c_2d_amgb.o lda_c_2d_prm.o stoll.o lda_k_tf.o gga.o gga_x_lg93.o gga_x_pbe.o gga_x_rpbe.o gga_x_pbea.o gga_x_mpbe.o gga_x_herman.o gga_x_b86.o gga_x_b86_mgc.o gga_x_b88.o gga_x_g96.o gga_x_pw86.o gga_x_pw91.o gga_x_optx.o gga_x_airy.o gga_x_c09x.o gga_x_dk87.o gga_x_ft97.o gga_x_wc.o gga_x_am05.o gga_x_bayesian.o gga_x_kt.o gga_x_htbs.o gga_c_pbe.o gga_c_lyp.o gga_c_p86.o gga_c_pw91.o gga_c_am05.o gga_c_lm.o gga_c_wl.o gga_c_wi.o gga_x_lb.o gga_xc_b97.o gga_xc_edf1.o gga_xc_1w.o gga_c_optc.o gga_c_tca.o gga_x_bpccac.o gga_x_sogga11.o gga_c_sogga11.o gga_xc_th.o gga_x_wpbeh.o gga_x_hjs.o gga_x_ityh.o gga_x_sfat.o gga_x_ak13.o gga_x_q2d.o gga_c_q2d.o gga_x_ssb_sw.o gga_c_ft97.o gga_c_op.o gga_x_n12.o gga_x_lv_rpw86.o gga_x_2d_b86.o gga_x_2d_b86_mgc.o gga_x_2d_b88.o gga_x_2d_pbe.o gga_k_tflw.o gga_k_pearson.o gga_k_ol1.o gga_k_ol2.o gga_k_dk.o gga_k_meyer.o gga_x_vmt.o gga_xc_oblyp_d.o hyb_gga_xc_b3lyp.o hyb_gga_xc_o3lyp.o hyb_gga_xc_pbeh.o hyb_gga_xc_b1wc.o hyb_gga_xc_b97.o hyb_gga_xc_hse.o hyb_gga_xc_cam_b3lyp.o hyb_gga_xc_camy_blyp.o mgga.o mgga_x_lta.o mgga_x_tpss.o mgga_x_br89.o mgga_x_gvt4.o mgga_x_m06l.o mgga_x_tau_hcth.o mgga_x_2d_prhg07.o mgga_x_pkzb.o mgga_x_m05.o mgga_x_m08.o mgga_x_ms.o mgga_x_mn12.o mgga_x_mk00.o mgga_c_vsxc.o mgga_c_pkzb.o mgga_c_bc95.o mgga_c_m08.o mgga_c_cc06.o mgga_c_cs.o mgga_xc_otpss_d.o hyb_mgga_xc_m05.o hyb_mgga_xc_tpssh.o
+libtool: link: ranlib .libs/libxc.a
+libtool: link: ( cd ".libs" && rm -f "libxc.la" && ln -s "../libxc.la" "libxc.la" )
+/bin/sh ../libtool  --tag=FC --tag=F77  --mode=link gfortran  -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -version-info 3:0:0  -o libxcf90.la -rpath /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib libxcf90_la-xc_f.lo libxcf90_la-libxc_funcs.lo libxcf90_la-libxc.lo  libxc.la 
+/bin/sh ../libtool  --tag=CC   --mode=link icc  -fPIC -xHOST -lm  -o xc-info xc-info.o libxc.la 
+libtool: ignoring unknown tag F77
+libtool: link: icc -fPIC -xHOST -o .libs/xc-info xc-info.o  -lm ./.libs/libxc.so -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib
+libtool: link: gfortran -shared  -fPIC  .libs/libxcf90_la-xc_f.o .libs/libxcf90_la-libxc_funcs.o .libs/libxcf90_la-libxc.o   -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src/.libs -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib ./.libs/libxc.so  -O3   -Wl,-soname -Wl,libxcf90.so.3 -o .libs/libxcf90.so.3.0.0
+libtool: link: (cd ".libs" && rm -f "libxcf90.so.3" && ln -s "libxcf90.so.3.0.0" "libxcf90.so.3")
+libtool: link: (cd ".libs" && rm -f "libxcf90.so" && ln -s "libxcf90.so.3.0.0" "libxcf90.so")
+libtool: link: ar cru .libs/libxcf90.a  libxcf90_la-xc_f.o libxcf90_la-libxc_funcs.o libxcf90_la-libxc.o
+libtool: link: ranlib .libs/libxcf90.a
+libtool: link: ( cd ".libs" && rm -f "libxcf90.la" && ln -s "../libxcf90.la" "libxcf90.la" )
+make[3]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+Making all in testsuite
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/testsuite'
+icc -DHAVE_CONFIG_H -I. -I..  -I./../src/ -I../src   -fPIC -xHOST -MT xc_get_data-xc-get_data.o -MD -MP -MF .deps/xc_get_data-xc-get_data.Tpo -c -o xc_get_data-xc-get_data.o `test -f 'xc-get_data.c' || echo './'`xc-get_data.c
+icc -DHAVE_CONFIG_H -I. -I..  -I./../src/ -I../src   -fPIC -xHOST -MT xc_consistency-xc-consistency.o -MD -MP -MF .deps/xc_consistency-xc-consistency.Tpo -c -o xc_consistency-xc-consistency.o `test -f 'xc-consistency.c' || echo './'`xc-consistency.c
+icc -DHAVE_CONFIG_H -I. -I..  -I./../src/ -I../src   -fPIC -xHOST -MT xc_regression-xc-regression.o -MD -MP -MF .deps/xc_regression-xc-regression.Tpo -c -o xc_regression-xc-regression.o `test -f 'xc-regression.c' || echo './'`xc-regression.c
+icc -DHAVE_CONFIG_H -I. -I..  -I./../src/ -I../src   -fPIC -xHOST -MT xc_error-xc-error.o -MD -MP -MF .deps/xc_error-xc-error.Tpo -c -o xc_error-xc-error.o `test -f 'xc-error.c' || echo './'`xc-error.c
+mv -f .deps/xc_get_data-xc-get_data.Tpo .deps/xc_get_data-xc-get_data.Po
+/bin/sh ../libtool  --tag=CC   --mode=link icc  -fPIC -xHOST   -o xc-get_data xc_get_data-xc-get_data.o -L../src/ -lxc -lm 
+mv -f .deps/xc_error-xc-error.Tpo .deps/xc_error-xc-error.Po
+/bin/sh ../libtool  --tag=CC   --mode=link icc  -fPIC -xHOST   -o xc-error xc_error-xc-error.o -lm 
+mv -f .deps/xc_regression-xc-regression.Tpo .deps/xc_regression-xc-regression.Po
+/bin/sh ../libtool  --tag=CC   --mode=link icc  -fPIC -xHOST   -o xc-regression xc_regression-xc-regression.o -L../src/ -lxc -lm 
+libtool: link: icc -fPIC -xHOST -o .libs/xc-get_data xc_get_data-xc-get_data.o  -L../src/ /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src/.libs/libxc.so -lm -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib
+libtool: link: icc -fPIC -xHOST -o xc-error xc_error-xc-error.o  -lm
+mv -f .deps/xc_consistency-xc-consistency.Tpo .deps/xc_consistency-xc-consistency.Po
+/bin/sh ../libtool  --tag=CC   --mode=link icc  -fPIC -xHOST   -o xc-consistency xc_consistency-xc-consistency.o -L../src/ -lxc -lm 
+libtool: link: icc -fPIC -xHOST -o .libs/xc-regression xc_regression-xc-regression.o  -L../src/ /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src/.libs/libxc.so -lm -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib
+libtool: link: icc -fPIC -xHOST -o .libs/xc-consistency xc_consistency-xc-consistency.o  -L../src/ /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src/.libs/libxc.so -lm -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/testsuite'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+Making install in build
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/build'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/build'
+make[2]: Nothing to be done for `install-exec-am'.
+ /usr/bin/mkdir -p '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libxc.pc '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/pkgconfig'
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/build'
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/build'
+Making install in src
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+make  install-am
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+make[3]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+ /usr/bin/mkdir -p '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libxc.la libxcf90.la '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib'
+libtool: install: /usr/bin/install -c .libs/libxc.so.3.0.0 /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxc.so.3.0.0
+libtool: install: (cd /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib && { ln -s -f libxc.so.3.0.0 libxc.so.3 || { rm -f libxc.so.3 && ln -s libxc.so.3.0.0 libxc.so.3; }; })
+libtool: install: (cd /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib && { ln -s -f libxc.so.3.0.0 libxc.so || { rm -f libxc.so && ln -s libxc.so.3.0.0 libxc.so; }; })
+libtool: install: /usr/bin/install -c .libs/libxc.lai /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxc.la
+libtool: install: warning: relinking `libxcf90.la'
+libtool: install: (cd /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src; /bin/sh /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/libtool  --tag FC --tag F77 --mode=relink gfortran -pipe -O3 -funroll-loops -ffast-math -ffree-line-length-none -version-info 3:0:0 -o libxcf90.la -rpath /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib libxcf90_la-xc_f.lo libxcf90_la-libxc_funcs.lo libxcf90_la-libxc.lo libxc.la )
+libtool: ignoring unknown tag F77
+libtool: relink: gfortran -shared  -fPIC  .libs/libxcf90_la-xc_f.o .libs/libxcf90_la-libxc_funcs.o .libs/libxcf90_la-libxc.o   -Wl,-rpath -Wl,/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib -L/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib -lxc  -O3   -Wl,-soname -Wl,libxcf90.so.3 -o .libs/libxcf90.so.3.0.0
+libtool: install: /usr/bin/install -c .libs/libxcf90.so.3.0.0T /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxcf90.so.3.0.0
+libtool: install: (cd /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib && { ln -s -f libxcf90.so.3.0.0 libxcf90.so.3 || { rm -f libxcf90.so.3 && ln -s libxcf90.so.3.0.0 libxcf90.so.3; }; })
+libtool: install: (cd /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib && { ln -s -f libxcf90.so.3.0.0 libxcf90.so || { rm -f libxcf90.so && ln -s libxcf90.so.3.0.0 libxcf90.so; }; })
+libtool: install: /usr/bin/install -c .libs/libxcf90.lai /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxcf90.la
+libtool: install: /usr/bin/install -c .libs/libxc.a /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxc.a
+libtool: install: chmod 644 /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxc.a
+libtool: install: ranlib /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxc.a
+libtool: install: /usr/bin/install -c .libs/libxcf90.a /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxcf90.a
+libtool: install: chmod 644 /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxcf90.a
+libtool: install: ranlib /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib/libxcf90.a
+libtool: finish: PATH="/home/rmfarber/book2/s09/gpaw/gpaw/build/bin.linux-x86_64-intel64-2.7:/home/rmfarber/book2/s09/gpaw/gpaw/tools/:/home/rmfarber/book2/s09/gpaw/gpaw/ase-3.9.0-trunk/tools:/opt/intel/bin:/opt/intel/advisor_xe_2015.1.10.380555/bin64:/opt/intel/vtune_amplifier_xe_2015.3.0.403110/bin64:/opt/intel/inspector_xe_2015.1.2.379161/bin64:/opt/intel//impi/5.0.3.048/intel64/bin:/opt/intel//itac/9.0.3.051/intel64/bin:/opt/intel/composer_xe_2015.3.187/bin/intel64:/opt/intel/composer_xe_2015.3.187/debugger/gdb/intel64_mic/bin:/usr/local/bin:/usr/bin:/bin:/home/rmfarber/ispc/bin:/sbin" ldconfig -n /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /usr/bin/mkdir -p '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/bin'
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c xc-info '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/bin'
+libtool: install: /usr/bin/install -c .libs/xc-info /home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/bin/xc-info
+ /usr/bin/mkdir -p '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include'
+ /usr/bin/install -c -m 644 xc.h xc_config.h xc_unconfig.h '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include'
+ /usr/bin/mkdir -p '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include'
+ /usr/bin/install -c -m 644 xc_funcs.h libxc_funcs_m.mod xc_f90_lib_m.mod xc_f90_types_m.mod '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include'
+make[3]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/src'
+Making install in testsuite
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/testsuite'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/testsuite'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/testsuite'
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/testsuite'
+make[1]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+make[2]: Entering directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+make[2]: Nothing to be done for `install-exec-am'.
+ /usr/bin/mkdir -p '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include'
+ /usr/bin/install -c -m 644 xc_version.h '/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include'
+make[2]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+make[1]: Leaving directory `/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0'
+running build_ext
+building '_gpaw' extension
+creating build/temp.linux-x86_64-intel64-2.7
+creating build/temp.linux-x86_64-intel64-2.7/c
+creating build/temp.linux-x86_64-intel64-2.7/c/bmgs
+creating build/temp.linux-x86_64-intel64-2.7/c/xc
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/_gpaw.c -o build/temp.linux-x86_64-intel64-2.7/c/_gpaw.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+c/_gpaw.c(117): warning #266: function "_Offload_report" declared implicitly
+    _Offload_report(n);
+    ^
+
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/bc.c -o build/temp.linux-x86_64-intel64-2.7/c/bc.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/extensions.h(10),
+                 from c/bc.c(12):
+/usr/include/python2.7/pyconfig-64.h(1182): warning #47: incompatible redefinition of macro "_POSIX_C_SOURCE" (declared at line 168 of "/usr/include/features.h")
+  #define _POSIX_C_SOURCE 200112L
+          ^
+
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/extensions.h(10),
+                 from c/bc.c(12):
+/usr/include/python2.7/pyconfig-64.h(1204): warning #47: incompatible redefinition of macro "_XOPEN_SOURCE" (declared at line 170 of "/usr/include/features.h")
+  #define _XOPEN_SOURCE 600
+          ^
+
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/blacs.c -o build/temp.linux-x86_64-intel64-2.7/c/blacs.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/blas.c -o build/temp.linux-x86_64-intel64-2.7/c/blas.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/cerf.c -o build/temp.linux-x86_64-intel64-2.7/c/cerf.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/fftw.c -o build/temp.linux-x86_64-intel64-2.7/c/fftw.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/hdf5.c -o build/temp.linux-x86_64-intel64-2.7/c/hdf5.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/lapack.c -o build/temp.linux-x86_64-intel64-2.7/c/lapack.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/lcao.c -o build/temp.linux-x86_64-intel64-2.7/c/lcao.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/localized_functions.h(5),
+                 from c/lcao.c(6):
+/usr/include/python2.7/pyconfig-64.h(1182): warning #47: incompatible redefinition of macro "_POSIX_C_SOURCE" (declared at line 168 of "/usr/include/features.h")
+  #define _POSIX_C_SOURCE 200112L
+          ^
+
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/localized_functions.h(5),
+                 from c/lcao.c(6):
+/usr/include/python2.7/pyconfig-64.h(1204): warning #47: incompatible redefinition of macro "_XOPEN_SOURCE" (declared at line 170 of "/usr/include/features.h")
+  #define _XOPEN_SOURCE 600
+          ^
+
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/lfc.c -o build/temp.linux-x86_64-intel64-2.7/c/lfc.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/lfc2.c -o build/temp.linux-x86_64-intel64-2.7/c/lfc2.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/localized_functions.c -o build/temp.linux-x86_64-intel64-2.7/c/localized_functions.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/mlsqr.c -o build/temp.linux-x86_64-intel64-2.7/c/mlsqr.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/mpi.c -o build/temp.linux-x86_64-intel64-2.7/c/mpi.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/operators.c -o build/temp.linux-x86_64-intel64-2.7/c/operators.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/plane_wave.c -o build/temp.linux-x86_64-intel64-2.7/c/plane_wave.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/plt.c -o build/temp.linux-x86_64-intel64-2.7/c/plt.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/point_charges.c -o build/temp.linux-x86_64-intel64-2.7/c/point_charges.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/spline.c -o build/temp.linux-x86_64-intel64-2.7/c/spline.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/symmetry.c -o build/temp.linux-x86_64-intel64-2.7/c/symmetry.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/transformers.c -o build/temp.linux-x86_64-intel64-2.7/c/transformers.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/utilities.c -o build/temp.linux-x86_64-intel64-2.7/c/utilities.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/wigner_seitz.c -o build/temp.linux-x86_64-intel64-2.7/c/wigner_seitz.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/bmgs/bmgs.c -o build/temp.linux-x86_64-intel64-2.7/c/bmgs/bmgs.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/bmgs/../extensions.h(10),
+                 from c/bmgs/fd.c(6),
+                 from c/bmgs/bmgs.c(5):
+/usr/include/python2.7/pyconfig-64.h(1182): warning #47: incompatible redefinition of macro "_POSIX_C_SOURCE" (declared at line 168 of "/usr/include/features.h")
+  #define _POSIX_C_SOURCE 200112L
+          ^
+
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/bmgs/../extensions.h(10),
+                 from c/bmgs/fd.c(6),
+                 from c/bmgs/bmgs.c(5):
+/usr/include/python2.7/pyconfig-64.h(1204): warning #47: incompatible redefinition of macro "_XOPEN_SOURCE" (declared at line 170 of "/usr/include/features.h")
+  #define _XOPEN_SOURCE 600
+          ^
+
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/bmgs/../extensions.h(10),
+                 from c/bmgs/fd.c(6),
+                 from c/bmgs/bmgs.c(5):
+/usr/include/python2.7/pyconfig-64.h(1182): warning #47: *MIC* incompatible redefinition of macro "_POSIX_C_SOURCE" (declared at line 164 of "/usr/linux-k1om-4.7/linux-k1om/usr/include/features.h")
+  #define _POSIX_C_SOURCE 200112L
+          ^
+
+In file included from /usr/include/python2.7/pyconfig.h(6),
+                 from /usr/include/python2.7/Python.h(8),
+                 from c/bmgs/../extensions.h(10),
+                 from c/bmgs/fd.c(6),
+                 from c/bmgs/bmgs.c(5):
+/usr/include/python2.7/pyconfig-64.h(1204): warning #47: *MIC* incompatible redefinition of macro "_XOPEN_SOURCE" (declared at line 166 of "/usr/linux-k1om-4.7/linux-k1om/usr/include/features.h")
+  #define _XOPEN_SOURCE 600
+          ^
+
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/ensemble_gga.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/ensemble_gga.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/libxc.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/libxc.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/m06l.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/m06l.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/pbe.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/pbe.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/pw91.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/pw91.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/revtpss.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/revtpss.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/revtpss_c_pbe.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/revtpss_c_pbe.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/rpbe.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/rpbe.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/tpss.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/tpss.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/vdw.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/vdw.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/xc.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/xc.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -fno-strict-aliasing -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -UNDEBUG -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -c c/xc/xc_mgga.c -o build/temp.linux-x86_64-intel64-2.7/c/xc/xc_mgga.o -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+icc: command line warning #10006: ignoring unknown option '-fstack-protector-strong'
+mpiicc -pthread -shared -Wl,-z,relro build/temp.linux-x86_64-intel64-2.7/c/_gpaw.o build/temp.linux-x86_64-intel64-2.7/c/bc.o build/temp.linux-x86_64-intel64-2.7/c/blacs.o build/temp.linux-x86_64-intel64-2.7/c/blas.o build/temp.linux-x86_64-intel64-2.7/c/cerf.o build/temp.linux-x86_64-intel64-2.7/c/fftw.o build/temp.linux-x86_64-intel64-2.7/c/hdf5.o build/temp.linux-x86_64-intel64-2.7/c/lapack.o build/temp.linux-x86_64-intel64-2.7/c/lcao.o build/temp.linux-x86_64-intel64-2.7/c/lfc.o build/temp.linux-x86_64-intel64-2.7/c/lfc2.o build/temp.linux-x86_64-intel64-2.7/c/localized_functions.o build/temp.linux-x86_64-intel64-2.7/c/mlsqr.o build/temp.linux-x86_64-intel64-2.7/c/mpi.o build/temp.linux-x86_64-intel64-2.7/c/operators.o build/temp.linux-x86_64-intel64-2.7/c/plane_wave.o build/temp.linux-x86_64-intel64-2.7/c/plt.o build/temp.linux-x86_64-intel64-2.7/c/point_charges.o build/temp.linux-x86_64-intel64-2.7/c/spline.o build/temp.linux-x86_64-intel64-2.7/c/symmetry.o build/temp.linux-x86_64-intel64-2.7/c/transformers.o build/temp.linux-x86_64-intel64-2.7/c/utilities.o build/temp.linux-x86_64-intel64-2.7/c/wigner_seitz.o build/temp.linux-x86_64-intel64-2.7/c/bmgs/bmgs.o build/temp.linux-x86_64-intel64-2.7/c/xc/ensemble_gga.o build/temp.linux-x86_64-intel64-2.7/c/xc/libxc.o build/temp.linux-x86_64-intel64-2.7/c/xc/m06l.o build/temp.linux-x86_64-intel64-2.7/c/xc/pbe.o build/temp.linux-x86_64-intel64-2.7/c/xc/pw91.o build/temp.linux-x86_64-intel64-2.7/c/xc/revtpss.o build/temp.linux-x86_64-intel64-2.7/c/xc/revtpss_c_pbe.o build/temp.linux-x86_64-intel64-2.7/c/xc/rpbe.o build/temp.linux-x86_64-intel64-2.7/c/xc/tpss.o build/temp.linux-x86_64-intel64-2.7/c/xc/vdw.o build/temp.linux-x86_64-intel64-2.7/c/xc/xc.o build/temp.linux-x86_64-intel64-2.7/c/xc/xc_mgga.o -L/opt/intel/composer_xe_2015.3.187/mkl/lib/intel64/ -L/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib -L/usr/lib64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_lapack95_lp64 -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -lpthread -lxc -lpython2.7 -o build/lib.linux-x86_64-intel64-2.7/_gpaw.so -openmp -offload-option,mic,link,"-L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic/ -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lpthread"
+x86_64-k1om-linux-ld: skipping incompatible /usr/lib64/libm.so when searching for -lm
+x86_64-k1om-linux-ld: skipping incompatible /usr/lib64/libpthread.so when searching for -lpthread
+x86_64-k1om-linux-ld: skipping incompatible /usr/lib64/librt.so when searching for -lrt
+x86_64-k1om-linux-ld: skipping incompatible /usr/lib64/libc.so when searching for -lc
+x86_64-k1om-linux-ld: skipping incompatible /usr/lib64/libdl.so when searching for -ldl
+x86_64-k1om-linux-ld: skipping incompatible /usr/lib64/libc.so when searching for -lc
+c/_gpaw.c(117): warning #266: function "_Offload_report" declared implicitly
+    _Offload_report(n);
+    ^
+
+c/_gpaw.c(117): warning #266: *MIC* function "_Offload_report" declared implicitly
+    _Offload_report(n);
+    ^
+
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/bc.o -c c/bc.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/localized_functions.o -c c/localized_functions.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/mpi.o -c c/mpi.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/_gpaw.o -c c/_gpaw.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/operators.o -c c/operators.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/transformers.o -c c/transformers.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/blacs.o -c c/blacs.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/utilities.o -c c/utilities.c 
+mpiicc -DNPY_NO_DEPRECATED_API=7 -DGPAW_NO_UNDERSCORE_CBLACS=1 -DGPAW_NO_UNDERSCORE_CSCALAPACK=1 -DGPAW_ASYNC=1 -DGPAW_MPI2=1 -DGPAW_WITH_SL=1 -DPARALLEL=1 -DGPAW_INTERPRETER=1 -xHOST -openmp -g -O3 -no-prec-div -static -std=c99 -fPIC -offload-option,mic,compiler,"-openmp" -opt-report-phase=offload -I/usr/lib64/python2.7/site-packages/numpy/core/include -I/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/include -I/usr/include/python2.7 -I/usr/include/python2.7 -o build/temp.linux-x86_64-intel64-2.7/c/hdf5.o -c c/hdf5.c 
+mpiicc -o build/bin.linux-x86_64-intel64-2.7//gpaw-python build/temp.linux-x86_64-intel64-2.7/c/_gpaw.o build/temp.linux-x86_64-intel64-2.7/c/bc.o build/temp.linux-x86_64-intel64-2.7/c/blacs.o build/temp.linux-x86_64-intel64-2.7/c/blas.o build/temp.linux-x86_64-intel64-2.7/c/cerf.o build/temp.linux-x86_64-intel64-2.7/c/fftw.o build/temp.linux-x86_64-intel64-2.7/c/hdf5.o build/temp.linux-x86_64-intel64-2.7/c/lapack.o build/temp.linux-x86_64-intel64-2.7/c/lcao.o build/temp.linux-x86_64-intel64-2.7/c/lfc.o build/temp.linux-x86_64-intel64-2.7/c/lfc2.o build/temp.linux-x86_64-intel64-2.7/c/localized_functions.o build/temp.linux-x86_64-intel64-2.7/c/mlsqr.o build/temp.linux-x86_64-intel64-2.7/c/mpi.o build/temp.linux-x86_64-intel64-2.7/c/operators.o build/temp.linux-x86_64-intel64-2.7/c/plane_wave.o build/temp.linux-x86_64-intel64-2.7/c/plt.o build/temp.linux-x86_64-intel64-2.7/c/point_charges.o build/temp.linux-x86_64-intel64-2.7/c/spline.o build/temp.linux-x86_64-intel64-2.7/c/symmetry.o build/temp.linux-x86_64-intel64-2.7/c/transformers.o build/temp.linux-x86_64-intel64-2.7/c/utilities.o build/temp.linux-x86_64-intel64-2.7/c/wigner_seitz.o build/temp.linux-x86_64-intel64-2.7/c/bmgs/bmgs.o build/temp.linux-x86_64-intel64-2.7/c/xc/ensemble_gga.o build/temp.linux-x86_64-intel64-2.7/c/xc/libxc.o build/temp.linux-x86_64-intel64-2.7/c/xc/m06l.o build/temp.linux-x86_64-intel64-2.7/c/xc/pbe.o build/temp.linux-x86_64-intel64-2.7/c/xc/pw91.o build/temp.linux-x86_64-intel64-2.7/c/xc/revtpss.o build/temp.linux-x86_64-intel64-2.7/c/xc/revtpss_c_pbe.o build/temp.linux-x86_64-intel64-2.7/c/xc/rpbe.o build/temp.linux-x86_64-intel64-2.7/c/xc/tpss.o build/temp.linux-x86_64-intel64-2.7/c/xc/vdw.o build/temp.linux-x86_64-intel64-2.7/c/xc/xc.o build/temp.linux-x86_64-intel64-2.7/c/xc/xc_mgga.o  -L/opt/intel/composer_xe_2015.3.187/mkl/lib/intel64/ -L/home/rmfarber/book2/s09/gpaw/gpaw/libxc-2.2.0/install/lib -L/usr/lib64/python2.7/config -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_lapack95_lp64 -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -lpthread -lxc -lpython2.7 -lpthread -ldl  -lutil -lm  -openmp -offload-option,mic,link,"-L/opt/intel/composer_xe_2015.3.187/mkl/lib/mic/ -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lpthread" -Wl,-z,relro -Xlinker -export-dynamic
+ 
+* Using standard lapack
+* Compiling gpaw with mpiicc
+* Compiling with ScaLapack
+* Architecture: linux-x86_64-intel64
+* Building a custom interpreter
+make: Nothing to be done for `all'.

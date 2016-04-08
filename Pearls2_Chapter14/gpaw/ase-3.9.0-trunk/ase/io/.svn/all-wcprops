@@ -1,0 +1,347 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/projects/ase/!svn/ver/3973/trunk/ase/io
+END
+ascii.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/5/trunk/ase/io/ascii.py
+END
+siesta.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2447/trunk/ase/io/siesta.py
+END
+aims.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3544/trunk/ase/io/aims.py
+END
+xyz.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3721/trunk/ase/io/xyz.py
+END
+gromacs.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/2868/trunk/ase/io/gromacs.py
+END
+foldtrajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/projects/ase/!svn/ver/3378/trunk/ase/io/foldtrajectory.py
+END
+gaussian_reader.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/projects/ase/!svn/ver/2743/trunk/ase/io/gaussian_reader.py
+END
+cmdft.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/1015/trunk/ase/io/cmdft.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3972/trunk/ase/io/__init__.py
+END
+cfg.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3728/trunk/ase/io/cfg.py
+END
+etsf.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/1898/trunk/ase/io/etsf.py
+END
+gpawtext.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3959/trunk/ase/io/gpawtext.py
+END
+netcdf.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3378/trunk/ase/io/netcdf.py
+END
+pdb.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3714/trunk/ase/io/pdb.py
+END
+abinit.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3792/trunk/ase/io/abinit.py
+END
+pupynere.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/787/trunk/ase/io/pupynere.py
+END
+turbomole.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3826/trunk/ase/io/turbomole.py
+END
+findsym.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/projects/ase/!svn/ver/3824/trunk/ase/io/findsym.py
+END
+gaussian.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3771/trunk/ase/io/gaussian.py
+END
+exciting.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3413/trunk/ase/io/exciting.py
+END
+extxyz.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3823/trunk/ase/io/extxyz.py
+END
+elk.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3378/trunk/ase/io/elk.py
+END
+bader.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/1226/trunk/ase/io/bader.py
+END
+lammpsrun.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/projects/ase/!svn/ver/3621/trunk/ase/io/lammpsrun.py
+END
+nwchem.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3855/trunk/ase/io/nwchem.py
+END
+eps.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/2212/trunk/ase/io/eps.py
+END
+dacapo.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3378/trunk/ase/io/dacapo.py
+END
+py.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/1700/trunk/ase/io/py.py
+END
+bundlemanipulate.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3561/trunk/ase/io/bundlemanipulate.py
+END
+iwm.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/1015/trunk/ase/io/iwm.py
+END
+x3d.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3347/trunk/ase/io/x3d.py
+END
+xsd.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3952/trunk/ase/io/xsd.py
+END
+plt.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3853/trunk/ase/io/plt.py
+END
+vnl.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/970/trunk/ase/io/vnl.py
+END
+wien2k.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3876/trunk/ase/io/wien2k.py
+END
+xsf.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3378/trunk/ase/io/xsf.py
+END
+cif.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/2462/trunk/ase/io/cif.py
+END
+espresso.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/projects/ase/!svn/ver/3378/trunk/ase/io/espresso.py
+END
+pov.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3079/trunk/ase/io/pov.py
+END
+gromos.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2868/trunk/ase/io/gromos.py
+END
+cmr_io.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/3378/trunk/ase/io/cmr_io.py
+END
+gen.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/2112/trunk/ase/io/gen.py
+END
+vasp.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3973/trunk/ase/io/vasp.py
+END
+netcdftrajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3949/trunk/ase/io/netcdftrajectory.py
+END
+fortranfile.py
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/projects/ase/!svn/ver/2024/trunk/ase/io/fortranfile.py
+END
+sdf.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/1749/trunk/ase/io/sdf.py
+END
+opls.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3653/trunk/ase/io/opls.py
+END
+v_sim.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/2388/trunk/ase/io/v_sim.py
+END
+cube.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/1336/trunk/ase/io/cube.py
+END
+castep.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/projects/ase/!svn/ver/2648/trunk/ase/io/castep.py
+END
+dftb.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/projects/ase/!svn/ver/3503/trunk/ase/io/dftb.py
+END
+bundletrajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/projects/ase/!svn/ver/3623/trunk/ase/io/bundletrajectory.py
+END
+eon.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3968/trunk/ase/io/eon.py
+END
+png.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/projects/ase/!svn/ver/3633/trunk/ase/io/png.py
+END
+vtkxml.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/projects/ase/!svn/ver/970/trunk/ase/io/vtkxml.py
+END
+trajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/projects/ase/!svn/ver/3405/trunk/ase/io/trajectory.py
+END
+mol.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/projects/ase/!svn/ver/970/trunk/ase/io/mol.py
+END

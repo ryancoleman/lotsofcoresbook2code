@@ -1,0 +1,15 @@
+benchmark;queue;arch;nodes;ppn;nmpi;ncores;offload;debug;shortname;fullname
+C60_Pb100;hoelleq;hkncc0x2;8;28;224;224;no;yes;Gh8x28;GPAW_C60_Pb100_8x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;16;28;448;448;no;yes;Gh16x28;GPAW_C60_Pb100_16x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;32;28;896;896;no;yes;Gh32x28;GPAW_C60_Pb100_32x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;40;28;1120;1120;no;yes;Gh40x28;GPAW_C60_Pb100_40x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;48;28;1344;1344;no;yes;Gh48x28;GPAW_C60_Pb100_48x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;56;28;1568;1568;no;yes;Gh56x28;GPAW_C60_Pb100_56x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;64;28;1792;1792;no;yes;Gh64x28;GPAW_C60_Pb100_64x28_host_debug
+C60_Pb100;hoelleq;hkncc0x2;8;28;224;1200;yes;yes;Go8x28;GPAW_C60_Pb100_8x28_offl_debug
+C60_Pb100;hoelleq;hkncc0x2;16;28;448;2400;yes;yes;Go16x28;GPAW_C60_Pb100_16x28_offl_debug
+C60_Pb100;hoelleq;hkncc0x2;32;28;896;4800;yes;yes;Go32x28;GPAW_C60_Pb100_32x28_offl_debug
+C60_Pb100;hoelleq;hkncc0x2;40;28;1120;6000;yes;yes;Go40x28;GPAW_C60_Pb100_40x28_offl_debug
+C60_Pb100;hoelleq;hkncc0x2;48;28;1344;7200;yes;yes;Go48x28;GPAW_C60_Pb100_48x28_offl_debug
+C60_Pb100;hoelleq;hkncc0x2;56;28;1568;8400;yes;yes;Go56x28;GPAW_C60_Pb100_56x28_offl_debug
+C60_Pb100;hoelleq;hkncc0x2;64;28;1792;9600;yes;yes;Go64x28;GPAW_C60_Pb100_64x28_offl_debug

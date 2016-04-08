@@ -1,0 +1,193 @@
+#!/usr/bin/env python
+# Emacs: treat this as -*- python -*-
+
+import os, sys
+from optparse import OptionParser, Option, OptionValueError
+import subprocess
+
+class MultipleOption(Option):
+    """OptionParser with added extend action"""
+    ACTIONS = Option.ACTIONS + ("extend",)
+    STORE_ACTIONS = Option.STORE_ACTIONS + ("extend",)
+    TYPED_ACTIONS = Option.TYPED_ACTIONS + ("extend",)
+    ALWAYS_TYPED_ACTIONS = Option.ALWAYS_TYPED_ACTIONS + ("extend",)
+
+    def take_action(self, action, dest, opt, value, values, parser):
+        if action == "extend":
+            # The extend action takes comma separated lists and turns them
+            # into python lists and append thems to list-like options
+            lvalue = value.split(",")
+            values.ensure_value(dest, []).extend(lvalue)
+        else:
+            Option.take_action(self, action, dest, opt, value, values, parser)
+
+
+def main():
+    PROG = os.path.basename(os.path.splitext(__file__)[0])
+    description = """Submits a GPAW python script to the TORQUE queue"""
+    
+    parser = OptionParser(option_class=MultipleOption,
+                          usage=('usage: %prog [OPTIONS] <script> ' +
+                                 '[SCRIPT ARGUMENTS]'),
+                          description=description)
+    parser.disable_interspersed_args()
+
+    add = parser.add_option
+    add('-x', '--export', action="extend", type='string',
+        help='Environment variables to export')
+    add('-g', '--gpaw', help='Path to GPAW')
+    add('--module', help=('Run library module as a script ' +
+                          '(terminates option list)'))
+    add('--cores', type=int,
+        help=('Determine processor scheme automatically to give a total ' +
+              'number of cores.'))
+    add('--ncpus', type=int,
+        help=('Number of actual cpus to use.'))
+    add('-n', '--threads', type=int, default=1,
+        help='Number of threads per cpu.')
+
+    # qsub options:
+    add('-q', '--queue')
+    add('-l', '--resource-list', action='extend', type='string',
+        dest='resource_list')
+    add('-m', '--mail-options', dest='mail_options')
+    add('-N', '--jobname', dest='jobname')
+
+    args = sys.argv[1:]
+    for i, arg in enumerate(args):
+        if arg.startswith('--module='):
+            module_args = args[i + 1:]
+            del args[i + 1:]
+            break
+        if arg == '--module':
+            module_args = args[i + 2:]
+            del args[i + 2:]
+            break
+    else:
+        module_args = []
+    
+    opts, args = parser.parse_args(args)
+    args += module_args
+    
+    if opts.gpaw:
+        path = opts.gpaw
+    else:
+        path = os.environ.get('GPAW_HOME')
+        if not path:
+            import gpaw
+            path = gpaw.__path__[0]
+        
+    if opts.export:
+        export = opts.export
+        pass
+    else:
+        export = []
+        
+    if opts.module:
+        jobname = opts.module
+    elif opts.jobname:
+        script = args[0]
+        jobname = opts.jobname
+    else:
+        script = args[0]
+        jobname = '_'.join(args)
+
+    qsub = '#!/usr/bin/env python\n'
+    qsub += '#PBS -N %s\n' % jobname  # set default job name
+    qsub += '#PBS -W umask=002\n'
+
+    if not opts.module:
+        if os.path.isfile(script):
+            for line in open(os.path.expanduser(script)):
+                if line.startswith('#PBS'):
+                    qsub += line
+        else:
+            p = subprocess.Popen(['which', script], stdout=subprocess.PIPE)
+            args[0] = p.communicate()[0].strip()
+
+    determine_nodes = True
+    if opts.resource_list:
+        for res in opts.resource_list:
+            if res.startswith('nodes='):
+                determine_nodes = False
+                break
+    
+    if opts.cores and determine_nodes:
+        for ppn, arch in [(16, 'xeon16'), (8, 'xeon8'), (4, 'opteron4')]:
+            if opts.cores % ppn == 0:
+                nodes = opts.cores // ppn
+                break
+        else:
+            if opts.cores < 4:
+                nodes = 1
+                ppn = opts.cores
+            else:
+                2 / 0
+        if not opts.resource_list:
+            opts.resource_list = []
+        opts.resource_list.append(
+            'nodes={0}:ppn={1}:{2}'.format(nodes, ppn, arch))
+
+    qsub += 'job = %r\n' % args
+    qsub += 'path = %r\n' % path
+    qsub += 'module = %r\n' % opts.module
+    if opts.ncpus:
+        qsub += 'ncpus = %d\n' % opts.ncpus
+    else:
+        qsub += 'ncpus = None\n'
+    qsub += 'nthreads = %d\n' % opts.threads
+    qsub += 'export = %r\n' % export
+
+    qsub += """
+import os
+import subprocess
+
+nodename = os.uname()[1]
+c = nodename[0]
+assert c in 'abcdghinmqp'
+
+nproc = len(open(os.environ['PBS_NODEFILE']).readlines())
+
+cmd = ['mpiexec']
+
+export.append('PYTHONPATH=%s:%s' % (path, os.environ.get('PYTHONPATH', '')))
+
+if c in 'ghi':
+    # Intel Niflheim node:
+    cmd += ['--mca', 'btl', '^tcp']
+
+if ncpus:
+    cmd += ['-np', str(ncpus), '--loadbalance']
+elif nthreads > 1:
+    cmd += ['-np', str(nproc // nthreads), '--loadbalance']
+if nthreads > 1:
+    export.append('OMP_NUM_THREADS=%d' % nthreads)
+
+for x in export:
+    cmd += ['-x', x]
+    
+cmd.append(os.path.join(path,
+                        'build',
+                        'bin.' + os.environ['GPAW_PLATFORM'],
+                        'gpaw-python'))
+if module:
+    cmd += ['-m', module]
+cmd += job
+
+error = subprocess.call(cmd)
+if error:
+    raise SystemExit(error)
+"""
+    cmd = ['qsub']
+    qsub_options = []
+    if opts.queue:
+        cmd += ['-q', opts.queue]
+    if opts.resource_list:
+        cmd += ['-l', ','.join(opts.resource_list)]
+    if opts.mail_options:
+        cmd += ['-m', opts.mail_options]
+    
+    subprocess.Popen(cmd, stdin=subprocess.PIPE).communicate(qsub)
+
+if __name__ == '__main__':
+    main()
